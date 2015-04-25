@@ -14,3 +14,4 @@ python-social-auth
 django-mailgun
 djangorestframework
 djangorestframework-jwt
+selenium

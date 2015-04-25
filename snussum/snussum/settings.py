@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'django_nose',
 
     # Snussum Apps
+    'users',
 )
 
 MIDDLEWARE_CLASSES = (
