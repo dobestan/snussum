@@ -1,1 +1,6 @@
 Django==1.8
+django-extension
+ipython
+autopep8
+django-nose
+nosecolor
