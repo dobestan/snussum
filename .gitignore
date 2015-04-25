@@ -58,3 +58,6 @@ target/
 
 # Environment Files ( load from autoenv )
 .env
+
+# Django Migrations
+migrations/
