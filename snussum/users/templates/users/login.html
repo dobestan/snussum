@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}로그인{% endblock %}
+
+{% block content %}
+<h1>로그인</h1>
+
+<form action="{% url 'users:login' %}" method="post" accept-charset="utf-8">{% csrf_token %}
+  <table>
+    <tr>
+      <td>{{ form.username.label_tag }}</td>
+      <td>{{ form.username }}</td>
+    </tr>
+    <tr>
+      <td>{{ form.password.label_tag }}</td>
+      <td>{{ form.password }}</td>
+    </tr>
+  </table>
+
+  <input type="submit" value="로그인" />
+</form>
+{% endblock %}
