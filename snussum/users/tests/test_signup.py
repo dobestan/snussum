@@ -9,4 +9,4 @@ class SignUpTest(LiveServerTestCase):
         self.selenium.maximize_window()
 
     def test_signup(self):
-        self.selenium.get(self.live_server_url)
+        self.selenium.get("%s%s" % (self.live_server_url, "/signup"))
