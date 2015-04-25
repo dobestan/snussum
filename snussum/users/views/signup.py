@@ -9,8 +9,8 @@ def signup(request):
         user_form = UserCreationForm(request.POST)
 
         if user_form.is_valid():
-            username = user_form.clean_username()
-            password = user_form.clean_password2()
+            username = user_form.cleaned_data['username']
+            password = user_form.cleaned_data['password2']
             user_form.save()
 
             user = authenticate(username=username, password=password)
