@@ -1,1 +1,16 @@
 Django==1.8
+django-extensions
+ipython
+autopep8
+django-nose
+nosecolor
+celery
+redis
+dj-database-url
+gunicorn
+honcho
+psycopg2
+python-social-auth
+django-mailgun
+djangorestframework
+djangorestframework-jwt
