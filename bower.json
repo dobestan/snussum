@@ -1,0 +1,14 @@
+{
+  "name": "snussum",
+  "version": "0.0.0",
+  "homepage": "https://github.com/dobestan/snussum",
+  "authors": [
+    "dobestan <dobestan@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}
