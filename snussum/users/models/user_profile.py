@@ -20,6 +20,17 @@ class UserProfileManager(models.Manager):
     def randomized_girls(self):
         return self.girls().order_by("?")
 
+    def _is_boys_more_than_girls(self):
+        return self.boys().count() >= self.girls().count()
+
+    def divide_groups(self):
+        """
+        return (Bigger, Smaller)
+        """
+        if self._is_boys_more_than_girls():
+            return (self.randomized_boys(), self.randomized_girls())
+        return (self.randomized_girls(), self.randomized_boys())
+
 
 class UserProfile(models.Model):
     objects = UserProfileManager()
@@ -38,12 +49,22 @@ class UserProfile(models.Model):
     def dating_matched_today(self):
         if self.is_boy:
             return Dating.objects.filter(boy=self.user, matched_at=date.today()).first()
-        return Dating.objects.filter(girl=self.user, matched_at=date.today()).first
+        return Dating.objects.filter(girl=self.user, matched_at=date.today()).first()
 
     def dating_matched_with(self, partner):
         if self.is_boy:
             return Dating.objects.filter(boy=self.user, girl=partner).first()
-        return Dating.objects.filter(boy=partner.user, girl=self).first()
+        return Dating.objects.filter(boy=partner, girl=self.user).first()
+
+    def is_dating_available_with(self, partner):
+        return not self.dating_matched_today() and \
+                not partner.userprofile.dating_matched_today() and \
+                not self.dating_matched_with(partner)
+
+    def create_dating_with(self, partner):
+        if self.is_boy:
+            return Dating.objects.create(boy=self.user, girl=partner)
+        return Dating.objects.create(boy=partner, girl=self.user)
 
 
 def create_user_profile(sender, instance, created, **kwargs):
