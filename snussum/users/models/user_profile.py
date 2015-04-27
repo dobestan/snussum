@@ -2,6 +2,9 @@ from django.db import models
 from django.db.models.signals import post_save
 
 from django.contrib.auth.models import User
+from relationships.models.dating import Dating
+
+from datetime import date
 
 
 class UserProfileManager(models.Manager):
@@ -31,6 +34,16 @@ class UserProfile(models.Model):
     
     def __str__(self):
         return self.user.username
+
+    def dating_matched_today(self):
+        if self.is_boy:
+            return Dating.objects.filter(boy=self.user, matched_at=date.today()).first()
+        return Dating.objects.filter(girl=self.user, matched_at=date.today()).first
+
+    def dating_matched_with(self, partner):
+        if self.is_boy:
+            return Dating.objects.filter(boy=self.user, girl=partner).first()
+        return Dating.objects.filter(boy=partner.user, girl=self).first()
 
 
 def create_user_profile(sender, instance, created, **kwargs):
