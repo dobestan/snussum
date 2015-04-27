@@ -46,10 +46,16 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-    def dating_matched_today(self):
+    def datings_matched(self):
         if self.is_boy:
-            return Dating.objects.filter(boy=self.user, matched_at=date.today()).first()
-        return Dating.objects.filter(girl=self.user, matched_at=date.today()).first()
+            return self.user.dating_girls.all()
+        return self.user.dating_boys.all()
+
+    def dating_matched_today(self):
+        return self.datings_matched().filter(matched_at=date.today()).first()
+
+    def datings_matched_recently_except_today(self):
+        return self.datings_matched().exclude(matched_at=date.today())[:3]
 
     def dating_matched_with(self, partner):
         if self.is_boy:

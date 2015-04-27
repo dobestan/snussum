@@ -24,6 +24,7 @@ class Dating(models.Model):
 
 
     class Meta:
+        ordering = ['-matched_at']
         unique_together = (
             ("boy", "girl"),
         )
