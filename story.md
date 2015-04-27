@@ -18,8 +18,10 @@ Story
 
     * Today's Matching Page ( /today )
         * Today's Matching
+
+    * Dashboard ( /ssum )
         * Matching History Summary
 
-    * Matching Detail ( /match/<hash_id> )
+    * Matching Detail ( /ssum/<hash_id> )
         * Matching Information
         * Parnter Detail

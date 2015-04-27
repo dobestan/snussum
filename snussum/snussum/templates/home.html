@@ -1,9 +1,4 @@
 {% extends "_base.html" %}
 
 {% block content %}
-  {% if user.is_authenticated %}
-    {% include "_partials/_home/_login.html" %}
-  {% else %}
-    {% include "_partials/_home/_logout.html" %}
-  {% endif %}
 {% endblock %}
