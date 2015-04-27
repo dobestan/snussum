@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True, primary_key=True)
 
+    is_boy = models.BooleanField(default=True)
+
     def __unicode__(self):
         return self.user.username
 
