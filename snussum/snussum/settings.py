@@ -47,6 +47,7 @@ INSTALLED_APPS = (
 
     # Snussum Apps
     'users',
+    'relationships',
 )
 
 MIDDLEWARE_CLASSES = (
