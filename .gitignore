@@ -68,3 +68,9 @@ migrations/
 # Grunt, Bower
 bower_components/
 node_modules/
+**/components/
+**/.sass-cache/
+
+*.css
+*.map
+snussum/snussum/static/css/
