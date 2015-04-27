@@ -4,11 +4,25 @@ from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
 
+class UserProfileManager(models.Manager):
+    def boys(self):
+        return User.objects.filter(userprofile__is_boy=True)
+
+    def girls(self):
+        return User.objects.filter(userprofile__is_boy=False)
+
+
 class UserProfile(models.Model):
+    objects = UserProfileManager()
+
     user = models.OneToOneField(User, unique=True, primary_key=True)
 
     is_boy = models.BooleanField(default=True)
 
+    def _is_girl(self):
+        return not is_boy
+    is_girl = property(_is_girl)
+    
     def __unicode__(self):
         return self.user.username
 
