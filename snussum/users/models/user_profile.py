@@ -6,6 +6,8 @@ from relationships.models.dating import Dating
 from users.models.university import University
 
 from datetime import date
+from hashlib import sha1
+from random import random
 
 
 class UserProfileManager(models.Manager):
@@ -42,6 +44,8 @@ class UserProfile(models.Model):
     is_boy = models.BooleanField(default=True)
 
     university = models.ForeignKey(University, blank=True, null=True)
+    is_university_verified = models.BooleanField(default=False)
+    university_verification_token = models.CharField(max_length=32, null=True, blank=True)
 
     def _is_girl(self):
         return not is_boy
@@ -76,15 +80,21 @@ class UserProfile(models.Model):
             return Dating.objects.create(boy=self.user, girl=partner)
         return Dating.objects.create(boy=partner, girl=self.user)
 
+    def generate_university_verification_token(self):
+        salt = sha1(str(random()).encode('utf-8')).hexdigest()[:5]
+        university_verification_token = sha1((self.user.username + salt).encode('utf-8')).hexdigest()[:32]
+        return university_verification_token
+
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        # Initialize Email ( username + mysnu_email )
-        instance.email = instance.username + "@snu.ac.kr"
-        instance.save()
-
         # Create UserProfile ( Additional User Information )
-        UserProfile.objects.create(user=instance)
-        user_profile = instance.userprofile
+        user_profile = UserProfile.objects.create(user=instance)
+
+        # Generate University Verification Token
+        user_profile.university_verification_token = \
+                user_profile.generate_university_verification_token()
+
+        user_profile.save()
 
 post_save.connect(create_user_profile, sender=User)
