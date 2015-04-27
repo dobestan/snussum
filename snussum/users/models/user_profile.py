@@ -11,6 +11,12 @@ class UserProfileManager(models.Manager):
     def girls(self):
         return User.objects.filter(userprofile__is_boy=False)
 
+    def randomized_boys(self):
+        return self.boys().order_by("?")
+
+    def randomized_girls(self):
+        return self.girls().order_by("?")
+
 
 class UserProfile(models.Model):
     objects = UserProfileManager()
@@ -23,7 +29,7 @@ class UserProfile(models.Model):
         return not is_boy
     is_girl = property(_is_girl)
     
-    def __unicode__(self):
+    def __str__(self):
         return self.user.username
 
 
