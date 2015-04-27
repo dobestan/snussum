@@ -2,8 +2,15 @@ from django.db import models
 
 from django.contrib.auth.models import User
 
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+
+from relationships.utils.hashids import get_encoded_dating_hashid
+
 
 class Dating(models.Model):
+    hash_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
+
     boy = models.ForeignKey(User, related_name="dating_girls")
     girl = models.ForeignKey(User, related_name="dating_boys")
 
@@ -31,3 +38,10 @@ class Dating(models.Model):
 
     def __str__(self):
         return "(%s, %s)" % (self.boy.username, self.girl.username)
+
+
+@receiver(post_save, sender=Dating)
+def _update_dating_hash_id(sender, instance, created, **kwargs):
+    if created:
+        instance.hash_id = get_encoded_dating_hashid(instance.id)
+        instance.save()
