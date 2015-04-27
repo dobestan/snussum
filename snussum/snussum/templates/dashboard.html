@@ -1,4 +1,8 @@
-<section id="dashboard">
-  {% include "_partials/_datings/_today.html" with dating=dating_matched_today %}
-  {% include "_partials/_datings/_recently.html" with datings=datings_matched_recently %}
-</section>
+{% extends "_base.html" %}
+
+{% block content %}
+  <section id="dashboard">
+    {% include "_partials/_datings/_today.html" with dating=dating_matched_today %}
+    {% include "_partials/_datings/_recently.html" with datings=datings_matched_recently %}
+  </section>
+{% endblock %}
