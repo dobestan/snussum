@@ -3,6 +3,7 @@ from django.db.models.signals import post_save
 
 from django.contrib.auth.models import User
 from relationships.models.dating import Dating
+from users.models.university import University
 
 from datetime import date
 
@@ -39,6 +40,8 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True, primary_key=True)
 
     is_boy = models.BooleanField(default=True)
+
+    university = models.ForeignKey(University, blank=True, null=True)
 
     def _is_girl(self):
         return not is_boy

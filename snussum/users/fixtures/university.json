@@ -1,0 +1,11 @@
+[
+  {
+    "fields": {
+      "full_name": "서울대학교",
+      "short_name": "서울대",
+      "email": "snu.ac.kr",
+      "slug": "SNU"
+    },
+    "model": "users.university"
+  }
+]
