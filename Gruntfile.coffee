@@ -17,6 +17,9 @@ module.exports = (grunt) ->
             'js/jquery.min.js': 'jquery/dist/jquery.min.js'
             'js/jquery.min.map': 'jquery/dist/jquery.min.map'
 
+            'fonts/': 'NanumBarunGothic/'
+
+
       sass:
         dist:
           files:
