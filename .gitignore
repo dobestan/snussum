@@ -64,3 +64,7 @@ target/
 
 # Django Migrations
 migrations/
+
+# Grunt, Bower
+bower_components/
+node_modules/
