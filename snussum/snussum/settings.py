@@ -134,3 +134,8 @@ LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 
 HASHIDS_DATING_SALT = os.environ["HASHIDS_DATING_SALT"]
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'components'),
+)

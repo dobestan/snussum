@@ -1,7 +1,7 @@
 module.exports = (grunt) ->
   grunt.initConfig
       clean: [
-        'snussum/components'
+        'snussum/snussum/components'
       ]
 
       bowercopy:
@@ -9,10 +9,13 @@ module.exports = (grunt) ->
           clean: true
         libs:
           options:
-            destPrefix: 'snussum/components'
+            destPrefix: 'snussum/snussum/components'
           files:
             'sass/bourbon/': 'bourbon/app/assets/stylesheets'
             'sass/neat/': 'neat/app/assets/stylesheets'
+
+            'js/jquery.min.js': 'jquery/dist/jquery.min.js'
+            'js/jquery.min.map': 'jquery/dist/jquery.min.map'
 
       sass:
         dist:
@@ -21,12 +24,12 @@ module.exports = (grunt) ->
 
           options:
             loadPath: [
-              'snussum/components/sass/bourbon/'
-              'snussum/components/sass/neat/'
+              'snussum/snussum/components/sass/bourbon/'
+              'snussum/snussum/components/sass/neat/'
             ]
 
       jshint:
-        files: 'snussum/snussum/**/*.js'
+        files: 'snussum/snussum/static/**/*.js'
 
       shell:
         pep8:
