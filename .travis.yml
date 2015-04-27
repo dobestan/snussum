@@ -8,5 +8,6 @@ install:
 before_script:
     - psql -c 'CREATE DATABASE snussum;' -U postgres
 script:
+    - pep8
     - python snussum/manage.py makemigrations users relationships
     - python snussum/manage.py migrate

@@ -8,6 +8,7 @@ from datetime import date
 
 
 class UserProfileManager(models.Manager):
+
     def boys(self):
         return User.objects.filter(userprofile__is_boy=True)
 
@@ -42,7 +43,7 @@ class UserProfile(models.Model):
     def _is_girl(self):
         return not is_boy
     is_girl = property(_is_girl)
-    
+
     def __str__(self):
         return self.user.username
 
@@ -64,8 +65,8 @@ class UserProfile(models.Model):
 
     def is_dating_available_with(self, partner):
         return not self.dating_matched_today() and \
-                not partner.userprofile.dating_matched_today() and \
-                not self.dating_matched_with(partner)
+            not partner.userprofile.dating_matched_today() and \
+            not self.dating_matched_with(partner)
 
     def create_dating_with(self, partner):
         if self.is_boy:

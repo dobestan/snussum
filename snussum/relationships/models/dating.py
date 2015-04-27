@@ -29,7 +29,6 @@ class Dating(models.Model):
         return self.is_boy_accepted and self.is_girl_accepted
     is_accepted = property(_is_accepted)
 
-
     class Meta:
         ordering = ['-matched_at']
         unique_together = (

@@ -4,6 +4,7 @@ from selenium import webdriver
 
 
 class SignUpTest(LiveServerTestCase):
+
     def setUp(self):
         self.selenium = webdriver.Chrome()
         self.selenium.maximize_window()
