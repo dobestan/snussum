@@ -1,2 +1,7 @@
 {% load staticfiles %}
-<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+
+{% if debug %}
+  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+{% else %}
+  <script type="text/javascript" src="{% static 'js/snussum.min.js' %}"></script>
+{% endif %}

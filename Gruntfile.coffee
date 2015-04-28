@@ -34,6 +34,20 @@ module.exports = (grunt) ->
       jshint:
         files: 'snussum/snussum/static/**/*.js'
 
+      cssmin:
+        target:
+          files:
+            'snussum/snussum/static/deploy/css/snussum.min.css': [
+              'snussum/snussum/static/css/application.css'
+            ]
+
+      uglify:
+        target:
+          files:
+            'snussum/snussum/static/deploy/js/snussum.min.js': [
+              'snussum/snussum/components/js/jquery.min.js'
+            ]
+
       shell:
         pep8:
           command: 'pep8'
@@ -83,6 +97,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-notify'
   grunt.loadNpmTasks 'grunt-contrib-jshint'
+  grunt.loadNpmTasks 'grunt-contrib-cssmin'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
 
 
   grunt.registerTask 'test', [
@@ -100,6 +116,13 @@ module.exports = (grunt) ->
   grunt.registerTask 'jshint-with-notify', [
     'jshint'
     'notify:jshint'
+  ]
+
+  grunt.registerTask 'deploy-staticfiles', [
+    'bowercopy'
+    'sass'
+    'cssmin'
+    'uglify'
   ]
 
   grunt.registerTask 'default', [

@@ -1,2 +1,7 @@
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/application.css' %}">
+
+{% if debug %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/application.css' %}">
+{% else %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/snussum.min.css' %}">
+{% endif %}

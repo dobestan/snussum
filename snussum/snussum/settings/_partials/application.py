@@ -14,6 +14,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Django Libraries
+    'storages',
 
     # Snussum Apps
     'users',
