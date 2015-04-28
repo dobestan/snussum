@@ -88,5 +88,14 @@
       "slug": "sogang"
     },
     "model": "users.university"
+  },
+  {
+    "fields": {
+      "full_name": "중앙대학교",
+      "short_name": "중앙대",
+      "email": "cau.ac.kr",
+      "slug": "cau"
+    },
+    "model": "users.university"
   }
 ]
