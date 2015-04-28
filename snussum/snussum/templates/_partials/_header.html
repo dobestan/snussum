@@ -1,2 +1,12 @@
 <header id="header">
+  <div class="wrapper">
+    <h1><a href="{% url 'home' %}">썸타는 서울대, 스누썸</a></h1>
+
+    <div id="header-navbar">
+      <ul>
+        <li><a class="btn-login" href="{% url 'users:login' %}">로그인</a></li>
+        <li><a class="btn-signup" href="{% url 'users:signup' %}">서울대학교 학생이신가요?</a></li>
+      </ul>
+    </div>
+  </div>
 </header>

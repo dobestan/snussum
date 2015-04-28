@@ -17,6 +17,11 @@ module.exports = (grunt) ->
             'js/jquery.min.js': 'jquery/dist/jquery.min.js'
             'js/jquery.min.map': 'jquery/dist/jquery.min.map'
 
+            'js/jquery-cookie.js': 'jquery-cookie/jquery.cookie.js'
+
+            'fonts/': 'NanumBarunGothic/'
+
+
       sass:
         dist:
           files:
@@ -29,7 +34,21 @@ module.exports = (grunt) ->
             ]
 
       jshint:
-        files: 'snussum/snussum/static/**/*.js'
+        files: 'snussum/snussum/static/js/**/*.js'
+
+      cssmin:
+        target:
+          files:
+            'snussum/snussum/static/deploy/css/snussum.min.css': [
+              'snussum/snussum/static/css/application.css'
+            ]
+
+      uglify:
+        target:
+          files:
+            'snussum/snussum/static/deploy/js/snussum.min.js': [
+              'snussum/snussum/components/js/jquery.min.js'
+            ]
 
       shell:
         pep8:
@@ -80,6 +99,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-notify'
   grunt.loadNpmTasks 'grunt-contrib-jshint'
+  grunt.loadNpmTasks 'grunt-contrib-cssmin'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
 
 
   grunt.registerTask 'test', [
@@ -97,6 +118,13 @@ module.exports = (grunt) ->
   grunt.registerTask 'jshint-with-notify', [
     'jshint'
     'notify:jshint'
+  ]
+
+  grunt.registerTask 'deploy-staticfiles', [
+    'bowercopy'
+    'sass'
+    'cssmin'
+    'uglify'
   ]
 
   grunt.registerTask 'default', [

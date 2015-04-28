@@ -3,8 +3,11 @@ from django.db.models.signals import post_save
 
 from django.contrib.auth.models import User
 from relationships.models.dating import Dating
+from users.models.university import University
 
 from datetime import date
+from hashlib import sha1
+from random import random
 
 
 class UserProfileManager(models.Manager):
@@ -40,6 +43,10 @@ class UserProfile(models.Model):
 
     is_boy = models.BooleanField(default=True)
 
+    university = models.ForeignKey(University, blank=True, null=True)
+    is_university_verified = models.BooleanField(default=False)
+    university_verification_token = models.CharField(max_length=32, null=True, blank=True)
+
     def _is_girl(self):
         return not is_boy
     is_girl = property(_is_girl)
@@ -73,15 +80,36 @@ class UserProfile(models.Model):
             return Dating.objects.create(boy=self.user, girl=partner)
         return Dating.objects.create(boy=partner, girl=self.user)
 
+    def generate_university_verification_token(self):
+        salt = sha1(str(random()).encode('utf-8')).hexdigest()[:5]
+        university_verification_token = sha1((self.user.username + salt).encode('utf-8')).hexdigest()[:32]
+        return university_verification_token
+
+    def update_university_verification_token(self):
+        university_verification_token = self.generate_university_verification_token()
+        self.university_verification_token = university_verification_token
+        self.save()
+
+    def update_university(self, email_username, university):
+        """
+        1. Update University
+        2. Update Email ( with university public email address )
+        3. Reset University Verified to False
+        4. Send Verification Email
+        """
+        self.university = university
+        self.user.email = email_username + "@" + university.email
+
+        self.is_university_verified = False
+        self.update_university_verification_token()
+
+        self.user.save()
+        self.save()
+
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        # Initialize Email ( username + mysnu_email )
-        instance.email = instance.username + "@snu.ac.kr"
-        instance.save()
-
         # Create UserProfile ( Additional User Information )
-        UserProfile.objects.create(user=instance)
-        user_profile = instance.userprofile
+        user_profile = UserProfile.objects.create(user=instance)
 
 post_save.connect(create_user_profile, sender=User)

@@ -5,10 +5,6 @@ from snussum.views import Home, Dashboard, DatingDetail, TodayDetail
 
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'snussum.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
     # Django Default
     url(r'^admin/', include(admin.site.urls)),
 
@@ -22,4 +18,5 @@ urlpatterns = [
     url(r'^today/$', TodayDetail.as_view(), name='today'),
 
     url(r'^', include('users.urls', namespace='users')),
+    url(r'^api/', include('api.urls', namespace='api')),
 ]

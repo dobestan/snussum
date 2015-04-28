@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 
 from users.models.user_profile import UserProfile
+from users.models.university import University
 
 
 class UserProfileInline(admin.StackedInline):
@@ -12,6 +13,11 @@ class UserProfileInline(admin.StackedInline):
 
 class UserProfileAdmin(UserAdmin):
     inlines = [UserProfileInline]
+
+
+@admin.register(University)
+class UniversityAdmin(admin.ModelAdmin):
+    pass
 
 
 admin.site.unregister(User)

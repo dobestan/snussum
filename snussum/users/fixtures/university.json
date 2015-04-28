@@ -1,0 +1,101 @@
+[
+  {
+    "fields": {
+      "full_name": "서울대학교",
+      "short_name": "서울대",
+      "email": "snu.ac.kr",
+      "slug": "snu"
+    },
+    "model": "users.university"
+  },
+  {
+    "fields": {
+      "full_name": "카이스트",
+      "short_name": "카이스트",
+      "email": "kaist.ac.kr",
+      "slug": "kaist"
+    },
+    "model": "users.university"
+  },
+  {
+    "fields": {
+      "full_name": "포스텍",
+      "short_name": "포스텍",
+      "email": "postech.ac.kr",
+      "slug": "postech"
+    },
+    "model": "users.university"
+  },
+  {
+    "fields": {
+      "full_name": "연세대학교",
+      "short_name": "연세대",
+      "email": "yonsei.ac.kr",
+      "slug": "yonsei"
+    },
+    "model": "users.university"
+  },
+  {
+    "fields": {
+      "full_name": "고려대학교",
+      "short_name": "고려대",
+      "email": "korea.ac.kr",
+      "slug": "korea"
+    },
+    "model": "users.university"
+  },
+  {
+    "fields": {
+      "full_name": "성균관대학교",
+      "short_name": "성균관대",
+      "email": "skku.ac.kr",
+      "slug": "skku"
+    },
+    "model": "users.university"
+  },
+  {
+    "fields": {
+      "full_name": "한양대학교",
+      "short_name": "한양대",
+      "email": "hanyang.ac.kr",
+      "slug": "hanyang"
+    },
+    "model": "users.university"
+  },
+  {
+    "fields": {
+      "full_name": "이화여자대학교",
+      "short_name": "이화여대",
+      "email": "ewha.ac.kr",
+      "slug": "ewha"
+    },
+    "model": "users.university"
+  },
+  {
+    "fields": {
+      "full_name": "경희대학교",
+      "short_name": "경희대",
+      "email": "khu.ac.kr",
+      "slug": "khu"
+    },
+    "model": "users.university"
+  },
+  {
+    "fields": {
+      "full_name": "서강대학교",
+      "short_name": "서강대",
+      "email": "sogang.ac.kr",
+      "slug": "sogang"
+    },
+    "model": "users.university"
+  },
+  {
+    "fields": {
+      "full_name": "중앙대학교",
+      "short_name": "중앙대",
+      "email": "cau.ac.kr",
+      "slug": "cau"
+    },
+    "model": "users.university"
+  }
+]

@@ -1,0 +1,76 @@
+{% extends "_base.html" %}
+{% load staticfiles %}
+
+{% block title %}인증하기{% endblock %}
+
+{% block content %}
+<section id="verify">
+
+  <section id="verify-description" class="page-description">
+    <div class="wrapper">
+      <h1>학교 인증하기</h1>
+      <p>썸타는 서울대, 스누썸 서비스를 이용하기 위해서는 학교 이메일을 통해서 이메일 인증을 거쳐야만 사용할 수 있습니다.</p>
+    </div>
+  </section>
+
+  <section id="universities">
+    <div class="wrapper">
+      <ul>
+        {% for university in universities %}
+        <li class="university" data-name="{{ university.full_name }}" data-university="{{ university.id }}" data-email="{{ university.email }}">
+        <img class="logo" src="{% static 'img/logo/' %}{{ university.slug }}.png" alt="{{ university }}"/>
+          {{ university }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <section id="verify-summary">
+    <div class="wrapper">
+      <input type="text" value="{{ user.username }}" name="username"/><span id="university-email">@snu.ac.kr</span>
+
+      <button type="submit">이메일 등록하기</button>
+    </div>
+  </section>
+
+</section>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+  $("section#universities").find("img.logo").first().addClass("selected");
+
+  $("li.university").click(function(){
+    var university_name = $(this).data("name");
+    var university_id = $(this).data("university");
+    var university_email = $(this).data("email");
+
+    $("img.selected").removeClass("selected");
+    $(this).find("img").addClass("selected");
+
+    $("span#university-email").text("@" + university_email);
+  });
+
+  $("section#verify-summary").find("button").click(function(){
+    var university = $("img.selected").parent("li.university");
+
+    var university = $(university).data("university");
+    var username = $("section#verify-summary").find("input").val();
+
+    var data = {
+      'username': username,
+      'university': university
+    };
+
+    $.ajax({
+      url: '/api/users/university/',
+      type: 'PUT',
+      data: data,
+      success: function(result) {
+      }
+    });
+  });
+});
+</script>
+
+{% endblock %}
