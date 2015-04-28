@@ -1,0 +1,11 @@
+Django==1.8
+celery
+redis
+dj-database-url
+gunicorn
+honcho
+psycopg2
+python-social-auth
+djangorestframework
+djangorestframework-jwt
+hashids
