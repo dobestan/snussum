@@ -19,11 +19,7 @@ class UpdateProfileUniversity(UpdateProfileBase):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         university = University.objects.get(id=request.data.get('university'))
-
-        self.request.user.userprofile.university = university
-        self.request.user.userprofile.save()
-
-        self.request.user.email = request.data.get('username') + "@" + university.email
-        self.request.user.save()
-
+        email_username = request.data.get('username')
+        
+        self.request.user.userprofile.update_university(email_username, university)
         return Response(status=status.HTTP_200_OK)

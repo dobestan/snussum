@@ -85,16 +85,30 @@ class UserProfile(models.Model):
         university_verification_token = sha1((self.user.username + salt).encode('utf-8')).hexdigest()[:32]
         return university_verification_token
 
+    def update_university_verification_token(self):
+        university_verification_token = self.generate_university_verification_token()
+        self.university_verification_token = university_verification_token
+        self.save()
+
+    def update_university(self, email_username, university):
+        """
+        1. Update University
+        2. Update Email ( with university public email address )
+        3. Reset University Verified to False
+        4. Send Verification Email
+        """
+        self.university = university
+        self.user.email = email_username + "@" + university.email
+
+        self.is_university_verified = False
+        self.update_university_verification_token()
+
+        self.user.save()
+        self.save()
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         # Create UserProfile ( Additional User Information )
         user_profile = UserProfile.objects.create(user=instance)
-
-        # Generate University Verification Token
-        user_profile.university_verification_token = \
-                user_profile.generate_university_verification_token()
-
-        user_profile.save()
 
 post_save.connect(create_user_profile, sender=User)
