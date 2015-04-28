@@ -1,0 +1,16 @@
+section#today {
+  background-color: blue;
+}
+
+section#recently {
+  background-color: green;
+}
+
+.dating {
+  $mobile: new-breakpoint(max-width 480px 4);
+
+  @include span-columns(4);
+  @include media($mobile) {
+    @include span-columns(12);
+  }
+}

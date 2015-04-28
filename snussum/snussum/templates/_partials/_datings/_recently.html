@@ -1,5 +1,7 @@
 <section id="recently">
-  {% for dating in datings %}
-    {% include "_partials/_datings/_recently/_dating.html" with dating=dating %}
-  {% endfor %}
+  <div class="wrapper">
+    {% for dating in datings %}
+      {% include "_partials/_datings/_recently/_dating.html" with dating=dating %}
+    {% endfor %}
+  </div>
 </section>

@@ -1,0 +1,48 @@
+header#header {
+  background-color: rgba(#ECF0F1, 0.7);
+  color: #4183D7;
+
+  .wrapper {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    h1 {
+      float: left;
+
+      a {
+        color: #4183D7;
+        text-decoration: none;
+      }
+    }
+
+    #header-navbar {
+      float: right;
+    }
+
+    ul {
+      li {
+        color: black;
+        display: inline;
+
+        a {
+          text-decoration: none;
+          padding: 10px;
+          color: #4183D7;
+
+          &.btn-signup {
+            border: 2px solid #4183D7;
+            border-radius: 20px;
+
+            &:hover {
+              background-color: #4183D7;
+              color: white;
+            }
+          }
+
+          &.btn-login {
+          }
+        }
+      }
+    }
+  }
+}
