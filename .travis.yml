@@ -4,7 +4,7 @@ python:
 addons:
   postgresql: '9.3'
 install:
-    - pip install -r requirements.txt
+    - pip install -r requirements/development.txt
     - npm install -g grunt-cli bower
     - npm install
 before_script:
