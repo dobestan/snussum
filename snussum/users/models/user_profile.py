@@ -106,6 +106,7 @@ class UserProfile(models.Model):
         self.user.save()
         self.save()
 
+
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         # Create UserProfile ( Additional User Information )

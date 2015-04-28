@@ -16,10 +16,10 @@ class APIUpdateUniversityTest(APITestCase):
 
         self.user = User.objects.create_user(username=self.username, password=self.password)
         self.url = reverse("api:update-university")
-        
+
         self.university = University.objects.create(
-            full_name = "fullname",
-            short_name = "short",
+            full_name="fullname",
+            short_name="short",
             email="snu.ac.kr",
             slug="SNU",
         )

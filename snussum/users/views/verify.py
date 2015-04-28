@@ -16,7 +16,6 @@ class Verify(TemplateView):
         return context
 
 
-
 def university_verification(request, university_verification_token):
     if request.user.is_authenticated() and request.user.userprofile.is_university_verified:
         return redirect("home")

@@ -11,5 +11,8 @@ urlpatterns = patterns(
     url(r'^logout/$', 'users.views.logout', name='logout'),
 
     url(r'^verify/$', Verify.as_view(), name='verify'),
-    url(r'^verify/(?P<university_verification_token>\w+)/$', 'users.views.university_verification', name='university-verification'),
+    url(r'^verify/(?P<university_verification_token>\w+)/$',
+        'users.views.university_verification',
+        name='university-verification'
+        ),
 )

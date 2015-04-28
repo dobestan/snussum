@@ -13,6 +13,7 @@ class UpdateProfileBase(APIView):
 
 
 class UpdateProfileUniversity(UpdateProfileBase):
+
     def put(self, request, *args, **kwargs):
         if not request.data.get('university', None) and \
                 not request.data.get('username', None):
@@ -20,6 +21,6 @@ class UpdateProfileUniversity(UpdateProfileBase):
 
         university = University.objects.get(id=request.data.get('university'))
         email_username = request.data.get('username')
-        
+
         self.request.user.userprofile.update_university(email_username, university)
         return Response(status=status.HTTP_200_OK)
