@@ -17,6 +17,8 @@ module.exports = (grunt) ->
             'js/jquery.min.js': 'jquery/dist/jquery.min.js'
             'js/jquery.min.map': 'jquery/dist/jquery.min.map'
 
+            'js/jquery-cookie.js': 'jquery-cookie/jquery.cookie.js'
+
             'fonts/': 'NanumBarunGothic/'
 
 
@@ -32,7 +34,7 @@ module.exports = (grunt) ->
             ]
 
       jshint:
-        files: 'snussum/snussum/static/**/*.js'
+        files: 'snussum/snussum/static/js/**/*.js'
 
       cssmin:
         target:
