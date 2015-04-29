@@ -38,6 +38,10 @@ class UserProfileManager(models.Manager):
         return (self.randomized_girls(), self.randomized_boys())
 
 
+def _profile_image_upload_to(instance, filename):
+    return "profile/%s" % instance.hash_id + "." + filename.split(".")[-1]
+        
+
 class UserProfile(models.Model):
     objects = UserProfileManager()
 
@@ -53,7 +57,7 @@ class UserProfile(models.Model):
     nickname = models.CharField(max_length=8, blank=True, null=True, unique=True)
     profile_introduce = models.TextField(blank=True, null=True)
 
-    profile_image = models.ImageField(upload_to='profile', blank=True, null=True)
+    profile_image = models.ImageField(upload_to=_profile_image_upload_to, blank=True, null=True)
 
     def _is_profile_verified(self):
         if self.nickname and \
