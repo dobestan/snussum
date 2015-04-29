@@ -75,3 +75,4 @@ node_modules/
 *.map
 snussum/snussum/static/css/
 snussum/snussum/static/deploy/
+snussum/snussum/media/

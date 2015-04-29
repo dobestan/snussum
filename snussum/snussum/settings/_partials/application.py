@@ -71,6 +71,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'components'),
 )
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 MAILGUN_ACCESS_KEY = os.environ["MAILGUN_ACCESS_KEY"]
 MAILGUN_SERVER_NAME = os.environ["MAILGUN_SERVER_NAME"]
