@@ -60,6 +60,7 @@ class APIUpdateUniversityTest(APITestCase):
 
 
 class APIUpdateNicknameTest(APITestCase):
+
     def setUp(self):
         # Create user for testing
         self.username = "test_username"
@@ -95,6 +96,7 @@ class APIUpdateNicknameTest(APITestCase):
 
 
 class APIUpdateIntroduceTest(APITestCase):
+
     def setUp(self):
         # Create user for testing
         self.username = "test_username"
