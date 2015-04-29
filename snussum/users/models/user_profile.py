@@ -51,10 +51,10 @@ class UserProfile(models.Model):
     profile_introduce = models.TextField(blank=True, null=True)
 
     def _is_profile_verified(self):
-        if not self.nickname and \
-                not self.profile_introduce:
-            return False
-        return True
+        if self.nickname and \
+                self.profile_introduce:
+            return True
+        return False
     is_profile_verified = property(_is_profile_verified)
 
     def _is_girl(self):

@@ -54,7 +54,7 @@ def profile_verifed_required(function=None):
             if request.user.userprofile.is_profile_verified:
                 return view_func(request, *arg, **kwargs)
             else:
-                return redirect('verify-profile')
+                return redirect('users:verify-profile')
 
         _view.__name__ = view_func.__name__
         _view.__dict__ = view_func.__dict__
