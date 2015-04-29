@@ -5,6 +5,7 @@ INSTALLED_APPS += (
     # Django Libraries
     'django_extensions',
     'django_nose',
+    'debug_toolbar',
 )
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
