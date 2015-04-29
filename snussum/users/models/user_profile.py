@@ -40,8 +40,9 @@ class UserProfileManager(models.Manager):
 
 def _profile_image_upload_to(instance, filename):
     return "profile/%s" % instance.hash_id + \
-            "-" + sha1(str(random()).encode('utf-8')).hexdigest()[:8] + \
-            "." + filename.split(".")[-1]
+        "-" + sha1(str(random()).encode('utf-8')).hexdigest()[:8] + \
+        "." + filename.split(".")[-1]
+
 
 class UserProfile(models.Model):
     objects = UserProfileManager()
