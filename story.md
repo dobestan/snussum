@@ -25,3 +25,9 @@ Story
     * Matching Detail ( /ssum/<hash_id> )
         * Matching Information
         * Parnter Detail
+
+* Verification Process
+    * manage via user_profile property and decorator
+
+    * verify/university, verify/snu
+    * verify/profile
