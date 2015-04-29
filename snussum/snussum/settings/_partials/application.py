@@ -5,6 +5,9 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 INSTALLED_APPS = (
+    # http://django-grappelli.readthedocs.org/en/latest/quickstart.html#installation
+    'grappelli',
+
     # Django Default
     'django.contrib.admin',
     'django.contrib.auth',
@@ -15,6 +18,7 @@ INSTALLED_APPS = (
 
     # Django Libraries
     'storages',
+    'imagekit',
 
     # Snussum Apps
     'users',
@@ -64,6 +68,7 @@ TEMPLATES = [
 ]
 
 HASHIDS_DATING_SALT = os.environ["HASHIDS_DATING_SALT"]
+HASHIDS_USER_PROFILE_SALT = os.environ["HASHIDS_USER_PROFILE_SALT"]
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),

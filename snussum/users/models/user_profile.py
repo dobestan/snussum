@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from relationships.models.dating import Dating
 from users.models.university import University
 
+from users.utils.hashids import get_encoded_user_profile_hashid
+
 from datetime import date
 from hashlib import sha1
 from random import random
@@ -36,10 +38,17 @@ class UserProfileManager(models.Manager):
         return (self.randomized_girls(), self.randomized_boys())
 
 
+def _profile_image_upload_to(instance, filename):
+    return "profile/%s" % instance.hash_id + \
+        "-" + sha1(str(random()).encode('utf-8')).hexdigest()[:8] + \
+        "." + filename.split(".")[-1]
+
+
 class UserProfile(models.Model):
     objects = UserProfileManager()
 
     user = models.OneToOneField(User, unique=True, primary_key=True)
+    hash_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
 
     is_boy = models.BooleanField(default=True)
 
@@ -49,6 +58,8 @@ class UserProfile(models.Model):
 
     nickname = models.CharField(max_length=8, blank=True, null=True, unique=True)
     profile_introduce = models.TextField(blank=True, null=True)
+
+    profile_image = models.ImageField(upload_to=_profile_image_upload_to, blank=True, null=True)
 
     def _is_profile_verified(self):
         if self.nickname and \
@@ -121,5 +132,8 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         # Create UserProfile ( Additional User Information )
         user_profile = UserProfile.objects.create(user=instance)
+
+        user_profile.hash_id = get_encoded_user_profile_hashid(user_profile.pk)
+        user_profile.save()
 
 post_save.connect(create_user_profile, sender=User)
