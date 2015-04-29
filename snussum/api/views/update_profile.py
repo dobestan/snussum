@@ -37,3 +37,12 @@ class UpdateProfileNickname(UpdateProfileBase):
         self.request.user.userprofile.nickname = nickname
         self.request.user.userprofile.save()
         return Response(status=status.HTTP_200_OK)
+
+
+class UpdateProfileIntroduce(UpdateProfileBase):
+
+    def put(self, request, *args, **kwargs):
+        introduce = request.data.get('introduce')
+        self.request.user.userprofile.profile_introduce = introduce
+        self.request.user.userprofile.save()
+        return Response(status=status.HTTP_200_OK)
