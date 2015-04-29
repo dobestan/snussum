@@ -7,13 +7,21 @@ from django.contrib.auth.models import User
 from users.models.university import University
 
 
-class Verify(TemplateView):
-    template_name = "users/verify.html"
+class VerifyUniversity(TemplateView):
+    template_name = "users/verify/univ.html"
 
     def get_context_data(self, **kwargs):
-        context = super(Verify, self).get_context_data(**kwargs)
+        context = super(VerifyUniversity, self).get_context_data(**kwargs)
         context["universities"] = University.objects.all()
         return context
+
+
+class VerifyUniversitySNU(TemplateView):
+    template_name = "users/verify/snu.html"
+
+
+class VerifyProfile(TemplateView):
+    template_name = "users/verify/profile.html"
 
 
 def university_verification(request, university_verification_token):
