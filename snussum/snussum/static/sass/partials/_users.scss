@@ -96,3 +96,13 @@ section#verify {
     }
   }
 }
+
+section#verify-profile {
+  textarea {
+    $box: border-box;
+    @mixin box-sizing($box) {
+      @include prefixer(box-sizing, $box, webkit moz spec);
+    }
+    width: 100%;
+  }
+}

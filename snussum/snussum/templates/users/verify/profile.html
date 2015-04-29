@@ -6,12 +6,12 @@
       <h1>프로필 업데이트</h1>
 
       <section id="verify-profile-nickname">
-        <input type="text" value="" name="nickname" id="nickname"/>
+        <input type="text" value="{{ user.userprofile.nickname }}" name="nickname" id="nickname"/>
         <button type="submit">별명으로 사용하기</button>
       </section>
 
       <section id="verify-profile-introduce">
-        <textarea name="introduce" id="introduce"></textarea>
+        <textarea name="introduce" id="introduce" rows=40>{{ user.userprofile.profile_introduce }}</textarea>
         <button type="submit">자기소개 업데이트</button>
       </section>
     </div>
