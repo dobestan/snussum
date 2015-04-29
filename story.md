@@ -31,3 +31,15 @@ Story
 
     * verify/university, verify/snu
     * verify/profile
+
+* Deploy Automation ( Staging Server, Production Server )
+    * using Ansible.
+
+    * Staging Server
+        * using Vagrant
+        * How to test SSL? ( Create a example SSL? )
+        * should NOT upload to production s3 bucket ( use default S3 )
+
+    * Production Server
+        * using AWS EC2
+        * real SSL
