@@ -50,6 +50,8 @@ class UserProfile(models.Model):
     nickname = models.CharField(max_length=8, blank=True, null=True, unique=True)
     profile_introduce = models.TextField(blank=True, null=True)
 
+    profile_image = models.ImageField(upload_to='profile', blank=True, null=True)
+
     def _is_profile_verified(self):
         if self.nickname and \
                 self.profile_introduce:

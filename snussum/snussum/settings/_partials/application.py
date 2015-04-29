@@ -15,6 +15,7 @@ INSTALLED_APPS = (
 
     # Django Libraries
     'storages',
+    'imagekit',
 
     # Snussum Apps
     'users',
