@@ -47,6 +47,16 @@ class UserProfile(models.Model):
     is_university_verified = models.BooleanField(default=False)
     university_verification_token = models.CharField(max_length=32, null=True, blank=True)
 
+    nickname = models.CharField(max_length=8, blank=True, null=True, unique=True)
+    profile_introduce = models.TextField(blank=True, null=True)
+
+    def _is_profile_verified(self):
+        if self.nickname and \
+                self.profile_introduce:
+            return True
+        return False
+    is_profile_verified = property(_is_profile_verified)
+
     def _is_girl(self):
         return not is_boy
     is_girl = property(_is_girl)

@@ -2,18 +2,33 @@ from django.views.generic.base import TemplateView
 
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.utils.decorators import method_decorator
+
+from users.decorators import university_verified_required
 
 from django.contrib.auth.models import User
 from users.models.university import University
 
 
-class Verify(TemplateView):
-    template_name = "users/verify.html"
+class VerifyUniversity(TemplateView):
+    template_name = "users/verify/univ.html"
 
     def get_context_data(self, **kwargs):
-        context = super(Verify, self).get_context_data(**kwargs)
+        context = super(VerifyUniversity, self).get_context_data(**kwargs)
         context["universities"] = University.objects.all()
         return context
+
+
+class VerifyUniversitySNU(TemplateView):
+    template_name = "users/verify/snu.html"
+
+
+class VerifyProfile(TemplateView):
+    template_name = "users/verify/profile.html"
+
+    @method_decorator(university_verified_required)
+    def dispatch(self, *args, **kwargs):
+        return super(VerifyProfile, self).dispatch(*args, **kwargs)
 
 
 def university_verification(request, university_verification_token):

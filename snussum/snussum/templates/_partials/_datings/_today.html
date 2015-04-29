@@ -1,5 +1,10 @@
 <section id="today">
   <div class="wrapper">
-    {{ dating }}
+    <h2>오늘의 썸</h2>
+    {% if dating %}
+      {{ dating }}
+    {% else %}
+      오늘의 데이트가 없습니다.
+    {% endif  %}
   </div>
 </section>

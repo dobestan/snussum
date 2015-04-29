@@ -4,8 +4,13 @@
 
     <div id="header-navbar">
       <ul>
-        <li><a class="btn-login" href="{% url 'users:login' %}">로그인</a></li>
-        <li><a class="btn-signup" href="{% url 'users:signup' %}">서울대학교 학생이신가요?</a></li>
+        {% if user.is_authenticated %}
+          <li><a class="btn-ssum" href="{% url 'dashboard' %}">오늘의 썸</a></li>
+          <li><a class="btn-logout" href="{% url 'users:logout' %}">로그아웃</a></li>
+        {% else %}
+          <li><a class="btn-login" href="{% url 'users:login' %}">로그인</a></li>
+          <li><a class="btn-signup" href="{% url 'users:signup' %}">회원가입하고 썸타기</a></li>
+        {% endif %}
       </ul>
     </div>
   </div>
