@@ -3,6 +3,9 @@ from django.contrib import admin
 
 from snussum.views import Home, Dashboard, DatingDetail, TodayDetail
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     # Django Default
@@ -19,4 +22,4 @@ urlpatterns = [
 
     url(r'^', include('users.urls', namespace='users')),
     url(r'^api/', include('api.urls', namespace='api')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
