@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from relationships.models.dating import Dating
 from users.models.university import University
 
+from users.utils.hashids import get_encoded_user_profile_hashid
+
 from datetime import date
 from hashlib import sha1
 from random import random
@@ -40,6 +42,7 @@ class UserProfile(models.Model):
     objects = UserProfileManager()
 
     user = models.OneToOneField(User, unique=True, primary_key=True)
+    hash_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
 
     is_boy = models.BooleanField(default=True)
 
@@ -123,5 +126,8 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         # Create UserProfile ( Additional User Information )
         user_profile = UserProfile.objects.create(user=instance)
+
+        user_profile.hash_id = get_encoded_user_profile_hashid(user_profile.pk)
+        user_profile.save()
 
 post_save.connect(create_user_profile, sender=User)
