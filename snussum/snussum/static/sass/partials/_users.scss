@@ -13,6 +13,56 @@ section#login {
   }
 }
 
+section#signup {
+  section#signup-description {
+    div.wrapper {
+      border: 1px solid black;
+      padding: 10px;
+    }
+  }
+
+  section#signup-content {
+    section#signup-agreement {
+
+      section#signup-agreement-title {
+        @include span-columns(2);
+      }
+
+      section#signup-agreement-content {
+        @include span-columns(10);
+
+        div.agreement {
+          @include span-columns(5 of 10);
+
+          div.agreement-content {
+            max-width: 100%;
+            height: 100px;
+            overflow: scroll;
+          }
+        }
+      }
+    }
+
+    section#campaign {
+      section#campaign-title {
+        @include span-columns(2);
+      }
+
+      section#campaign-content {
+        @include span-columns(10);
+      }
+    }
+
+    section#signup-form {
+      @include span-columns(8);
+    }
+
+    section#signup-event {
+      @include span-columns(4);
+    }
+  }
+}
+
 section#verify {
   section#universities {
     ul {
