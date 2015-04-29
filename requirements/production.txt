@@ -13,3 +13,4 @@ hashids
 boto
 django-imagekit
 pillow
+django-grappelli

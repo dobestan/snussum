@@ -5,6 +5,9 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 INSTALLED_APPS = (
+    # http://django-grappelli.readthedocs.org/en/latest/quickstart.html#installation
+    'grappelli',
+
     # Django Default
     'django.contrib.admin',
     'django.contrib.auth',

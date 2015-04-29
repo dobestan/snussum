@@ -9,6 +9,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     # Django Default
+    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
     # Project Libraries
