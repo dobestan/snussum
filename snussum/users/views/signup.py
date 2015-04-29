@@ -19,7 +19,7 @@ def signup(request):
             user = authenticate(username=username, password=password)
             login(request, user)
 
-            return redirect("home")
+            return redirect("users:verify-snu")
 
         return render(request, "users/signup.html", {
             'form': user_form

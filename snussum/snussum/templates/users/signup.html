@@ -3,24 +3,28 @@
 {% block title %}회원가입{% endblock %}
 
 {% block content %}
-<h1>회원가입</h1>
+<section id="signup">
+  <div class="wrapper">
+    <h1>회원가입</h1>
 
-<form action="{% url 'users:signup' %}" method="post" accept-charset="utf-8">{% csrf_token %}
-  <table>
-    <tr>
-      <td>{{ form.username.label_tag }}</td>
-      <td>{{ form.username }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.password1.label_tag }}</td>
-      <td>{{ form.password1 }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.password2.label_tag }}</td>
-      <td>{{ form.password2 }}</td>
-    </tr>
-  </table>
+    <form action="{% url 'users:signup' %}" method="post" accept-charset="utf-8">{% csrf_token %}
+      <table>
+        <tr>
+          <td>{{ form.username.label_tag }}</td>
+          <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+          <td>{{ form.password1.label_tag }}</td>
+          <td>{{ form.password1 }}</td>
+        </tr>
+        <tr>
+          <td>{{ form.password2.label_tag }}</td>
+          <td>{{ form.password2 }}</td>
+        </tr>
+      </table>
 
-  <input type="submit" value="회원가입" />
-</form>
+      <input type="submit" value="회원가입" />
+    </form>
+  </div>
+</section>
 {% endblock %}
