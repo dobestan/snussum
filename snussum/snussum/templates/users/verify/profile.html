@@ -1,4 +1,36 @@
 {% extends "_base.html" %}
 
 {% block content %}
+  <section id="verify-profile">
+    <div class="wrapper">
+      <h1>프로필 업데이트</h1>
+
+      <section id="verify-profile-nickname">
+        <input type="text" value="" name="nickname" id="nickname"/>
+        <button type="submit">별명으로 사용하기</button>
+      </section>
+    </div>
+  </section>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+  $("section#verify-profile-nickname").find("button").click(function(){
+    var nickname = $("input#nickname").val();
+
+    $.ajax({
+      url: '/api/users/nickname/',
+      type: 'PUT',
+      data: {'nickname': nickname},
+      success: function(result){
+        alert("Success!");
+      },
+      error: function(result){
+        alert("Error!");
+      }
+    })
+  });
+});
+</script>
+
 {% endblock %}
+
