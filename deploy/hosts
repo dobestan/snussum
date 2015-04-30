@@ -1,0 +1,1 @@
+dev.snussum.com ansible_ssh_host=192.168.57.36 ansible_ssh_user=root

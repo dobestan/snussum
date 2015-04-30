@@ -1,0 +1,11 @@
+# vim:ft=ansible:
+- hosts: all
+  sudo: yes
+  remote_user: vagrant
+
+  tasks:
+    - name: Creates destination directory
+      file: state=directory mode=0700 dest=/root/.ssh/
+
+    - name: Pushes user's rsa key to root's vagrant box
+      copy: src=~/.ssh/id_rsa.pub dest=/root/.ssh/authorized_keys owner=root mode=0600

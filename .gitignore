@@ -76,3 +76,6 @@ node_modules/
 snussum/snussum/static/css/
 snussum/snussum/static/deploy/
 snussum/snussum/media/
+
+# Vagrant
+.vagrant/
