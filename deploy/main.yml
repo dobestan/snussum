@@ -1,0 +1,5 @@
+- name: Apply common configuration to all nodes
+  hosts: all
+
+  roles:
+    - nginx

@@ -1,0 +1,8 @@
+server_name: "staging.snussum.com"
+proxy_pass_port: 8000
+
+ssl_certificate_src_path: "~/.ssh/snussum.com/ssl-bundle.crt"
+ssl_certificate_key_src_path: "~/.ssh/snussum.com/private.key"
+
+ssl_certificate_dest_path: "/root/.ssh/ssl-bundle.crt"
+ssl_certificate_key_dest_path: "/root/.ssh/private.key"
