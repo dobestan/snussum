@@ -1,0 +1,14 @@
+- name: Install PostgreSQL Dependencies
+  apt:
+    pkg: "{{ item }}"
+    state: present 
+  with_items: ["python-psycopg2", "python-pycurl", "locales"]
+
+- name: Install PostgreSQL
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "postgresql-{{ postgresql_version }}"
+    - "postgresql-client-{{ postgresql_version }}"
+    - "postgresql-contrib-{{ postgresql_version }}"
