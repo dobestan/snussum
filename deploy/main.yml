@@ -4,4 +4,5 @@
   roles:
     - common
     - db
+    - web
     - nginx

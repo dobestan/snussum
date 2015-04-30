@@ -9,5 +9,9 @@
     pkg: "{{ item }}"
     state: present
   with_items:
+    - "make"
     - "build-essential"
     - "git"
+    - "wget"
+    - "curl"
+    - "llvm"
