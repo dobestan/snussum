@@ -10,3 +10,7 @@ ssl_certificate_key_dest_path: "/root/.ssh/private.key"
 
 # Postgresql
 postgresql_version: 9.3
+
+postgresql_database_name: "snussum"
+postgresql_user: "snussum"
+postgresql_password: lookup('env', 'POSTGRESQL_PASSWORD')

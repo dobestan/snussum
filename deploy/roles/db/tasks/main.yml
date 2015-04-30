@@ -2,7 +2,8 @@
   apt:
     pkg: "{{ item }}"
     state: present 
-  with_items: ["python-psycopg2", "python-pycurl", "locales"]
+  with_items: 
+    - "python-psycopg2"
 
 - name: Install PostgreSQL
   apt:
@@ -12,3 +13,25 @@
     - "postgresql-{{ postgresql_version }}"
     - "postgresql-client-{{ postgresql_version }}"
     - "postgresql-contrib-{{ postgresql_version }}"
+
+- name: Ensure PostgreSQL is running
+  service:
+    name: postgresql
+    state: started
+
+- name: Create database
+  sudo_user: postgres
+  postgresql_db: name={{ postgresql_database_name }}
+
+- name: Create user
+  sudo_user: postgres
+  postgresql_user:
+    db: "{{ postgresql_database_name }}"
+    name: "{{ postgresql_user }}"
+    password: "{{ postgresql_password }}"
+
+- name: Ensure user does not have unneccessary privileges
+  sudo_user: postgres
+  postgresql_user:
+    name: "{{ postgresql_user }}"
+    role_attr_flags: "NOSUPERUSER,NOCREATEDB"
