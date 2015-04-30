@@ -1,0 +1,13 @@
+- name: apt-get update
+  apt: update_cache=yes
+
+- name: apt-get upgrade
+  apt: upgrade=full
+
+- name: Install Packages
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "build-essential"
+    - "git"

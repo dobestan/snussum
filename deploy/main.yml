@@ -2,5 +2,6 @@
   hosts: all
 
   roles:
+    - common
     - db
     - nginx
