@@ -5,11 +5,10 @@ import requests
 
 def send_email(data):
     """
-    data should have 3 arguments
     data = {
-        'to': "...",
-        'subject': "...",
-        'text': "...",
+        'to': "...", ( * required )
+        'subject': "...", ( * required )
+        'body': "...", ( * required )
     }
     """
 
@@ -18,8 +17,7 @@ def send_email(data):
 
     data['from'] = '스누썸 <contact@snussum.com>'
     data['to'] = 'dobestan@gmail.com'
-    data['subject'] = 'hello world'
-    data['text'] = 'hello world'
+    data['text'] = data['body']
 
     request = requests.post(
         MAILGUN_EMAIL_BASE_URL,
