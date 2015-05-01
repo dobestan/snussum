@@ -1,6 +1,43 @@
 {% extends "_base.html" %}
+{% load datings %}
 
 {% block content %}
-  <h1>DatingDetail</h1>
-  {{ dating }}
+  {% with partner=dating|partner:user %}
+    <section id="profile">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-sm-12 col-md-4">
+            <div class="thumbnail">
+              <img src="http://local.snussum.com:9000/media/profile/1111-8f90231f.png" alt=""/>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-4">
+            <h3>{{ partner.userprofile.nickname }}</h3>
+          </div>
+
+          <div class="col-sm-12 col-md-4">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="introduce">
+      <div class="container">
+        <div class="row">
+          <div class="bs-callout bs-callout-primary">
+            <h4>자기소개</h4>
+            <p>
+              {{ partner.userprofile.profile_introduce }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="analytics">
+    </section>
+  {% endwith %}
 {% endblock %}

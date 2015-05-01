@@ -1,13 +1,1 @@
 @import "bourbon";
-@import "neat";
-
-body {
-  margin:0;
-  padding:0;
-
-  // background: url(http://local.snussum.com:9000/static/img/background.png);
-}
-
-div.wrapper {
-  @include outer-container;
-}

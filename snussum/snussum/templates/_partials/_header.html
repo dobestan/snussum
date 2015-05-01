@@ -1,17 +1,27 @@
-<header id="header">
-  <div class="wrapper">
-    <h1><a href="{% url 'home' %}">썸타는 서울대, 스누썸</a></h1>
-
-    <div id="header-navbar">
-      <ul>
-        {% if user.is_authenticated %}
-          <li><a class="btn-ssum" href="{% url 'dashboard' %}">오늘의 썸</a></li>
-          <li><a class="btn-logout" href="{% url 'users:logout' %}">로그아웃</a></li>
-        {% else %}
-          <li><a class="btn-login" href="{% url 'users:login' %}">로그인</a></li>
-          <li><a class="btn-signup" href="{% url 'users:signup' %}">회원가입하고 썸타기</a></li>
-        {% endif %}
-      </ul>
+<header id="header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="{% url "home" %}" class="navbar-brand">썸타는 서울대, 스누썸</a>
+      <button type="button" class="navbar-toggle"
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        >
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
+
+    <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
+      {% if user.is_authenticated %}
+        <li><a href="{% url "dashboard" %}">오늘의 매칭</a></li>
+        <li><a href="{% url "users:profile" %}">마이페이지</a></li>
+        <li><a href="{% url "users:logout" %}">로그아웃</a></li>
+      {% else %}
+        <li><a href="{% url "users:login" %}">로그인</a></li>
+        <li><a href="{% url "users:signup" %}">회원가입</a></li>
+      {% endif %}
+    </ul>
   </div>
 </header>

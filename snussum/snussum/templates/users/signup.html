@@ -4,86 +4,36 @@
 
 {% block content %}
 <section id="signup">
-  
-  <section id="signup-description">
-    <div class="wrapper">
-      <h1>회원가입</h1>
-      <p>서울대학생의, 서울대학생에 의한, 서울대학생을 위한 소개팅</p>
+
+  <section class="container">
+    <div class="row">
+      <div class="page-header">
+        <h1>회원가입 <small>하고 썸타기</small></h1>
+        <p>서울대학생의, 서울대학생에 의한, 서울대학생을 위한 소개팅</p>
+      </div>
     </div>
   </section>
 
-  <section id="signup-content">
-    <div class="wrapper">
+  <section class="container">
+    <div class="row">
+      <form action="{% url 'users:signup' %}" method="post" accept-charset="utf-8">{% csrf_token %}
+        <table>
+          <tr>
+            <td>아이디</td>
+            <td>{{ form.username }}</td>
+          </tr>
+          <tr>
+            <td>비밀번호</td>
+            <td>{{ form.password1 }}</td>
+          </tr>
+          <tr>
+            <td>비밀번호 확인</td>
+            <td>{{ form.password2 }}</td>
+          </tr>
+        </table>
 
-      <section id="signup-agreement">
-        <section id="signup-agreement-title">
-          <h2>약관 동의</h2>
-        </section>
-        <section id="signup-agreement-content">
-          <div class="agreement">
-            <p>
-              <h3>서비스 이용약관</h3>
-              <div class="agreement-content">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-              </div>
-              <input type="checkbox"/>
-              서비스 이용약관에 동의합니다.
-            </p>
-          </div>
-          <div class="agreement">
-            <p>
-              <h3>개인정보 취급방침</h3>
-              <div class="agreement-content">
-              </div>
-              <input type="checkbox"/>
-              개인정보 취급방침에 동의합니다.
-            </p>
-          </div>
-        </section>
-      </section>
-
-      <section id="campaign">
-        <div class="wrapper">
-          <section id="campaign-title">
-            <h2>약간 동의</h2>
-          </section>
-          <section id="campaign-content">
-            <p>나는 낙성대 관악02 버스의 서서가는 줄이 비상식적이고 이기적인 행동이라고 생각하는 것에 "약간" 동의합니다.</p>
-          </section>
-        </div>
-      </section>
-
-      <section id="signup-form">
-        <form action="{% url 'users:signup' %}" method="post" accept-charset="utf-8">{% csrf_token %}
-          <table>
-            <tr>
-              <td>아이디</td>
-              <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-              <td>비밀번호</td>
-              <td>{{ form.password1 }}</td>
-            </tr>
-            <tr>
-              <td>비밀번호 확인</td>
-              <td>{{ form.password2 }}</td>
-            </tr>
-          </table>
-
-          <input type="submit" value="회원가입" />
-        </form>
-      </section>
-
-      <section id="signup-event">
-        event
-      </section>
+        <input type="submit" value="회원가입" />
+      </form>
     </div>
   </section>
   

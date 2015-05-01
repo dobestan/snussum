@@ -1,22 +1,2 @@
 footer#footer {
-  background-color: rgba(#34495E, 0.8);
-  // color: #ECF0F1;
-  color:white;
-
-  .wrapper {
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-
-  section#legal {
-    @include span-columns(8);
-  }
-
-  section#footer-logo {
-    @include span-columns(4);
-
-    h1 {
-      float: right;
-    }
-  }
 }

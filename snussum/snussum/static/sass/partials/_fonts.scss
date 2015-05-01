@@ -45,6 +45,6 @@
        url(../fonts/NanumBarunGothicBold.ttf) format('truetype');
 }
 
-body {
+*, body, h1, h2, h3, h4, h5, h6, p, div, section, article {
   font-family: 'Nanum Barun Gothic', sans-serif;
 }
