@@ -4,6 +4,7 @@
     state: present 
   with_items: 
     - "python-psycopg2"
+    - "libpq-dev"
 
 - name: Install PostgreSQL
   apt:

@@ -1,3 +1,0 @@
-# Gunicorn Settings
-gunicorn_user: "snussum"
-gunicorn_group: webapps
