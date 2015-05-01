@@ -3,8 +3,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from api.utils.sms import send_sms
-from api.utils.email import send_email
+from api.tasks.messages import send_sms, send_email
 
 
 class APIMessageBase(APIView):
@@ -14,12 +13,12 @@ class APIMessageBase(APIView):
 class APIMessageSMS(APIMessageBase):
 
     def post(self, request, *args, **kwargs):
-        send_sms(request.data)
+        send_sms.delay(request.data)
         return Response(status=status.HTTP_200_OK)
 
 
 class APIMessageEmail(APIMessageBase):
 
     def post(self, request, *args, **kwargs):
-        send_email(request.data)
+        send_email.delay(request.data)
         return Response(status=status.HTTP_200_OK)
