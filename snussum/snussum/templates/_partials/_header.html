@@ -14,17 +14,14 @@
     </div>
 
     <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
-      <li><a href="">TEST</a></li>
-      <li><a href="">TEST</a></li>
-      <li><a href="">TEST</a></li>
-      <li><a href="#" data-toggle="dropdown">TEST <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a>Anchor Text</a></li>
-          <li class="divider"></li>
-          <li><a>Anchor Text</a></li>
-          <li><a>Anchor Text</a></li>
-        </ul>
-      </li>
+      {% if user.is_authenticated %}
+        <li><a href="{% url "dashboard" %}">오늘의 매칭</a></li>
+        <li><a href="{% url "users:profile" %}">마이페이지</a></li>
+        <li><a href="{% url "users:logout" %}">로그아웃</a></li>
+      {% else %}
+        <li><a href="{% url "users:login" %}">로그인</a></li>
+        <li><a href="{% url "users:signup" %}">회원가입</a></li>
+      {% endif %}
     </ul>
   </div>
 </header>
