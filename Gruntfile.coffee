@@ -11,13 +11,14 @@ module.exports = (grunt) ->
           options:
             destPrefix: 'snussum/snussum/components'
           files:
-            'sass/bourbon/': 'bourbon/app/assets/stylesheets'
-            'sass/neat/': 'neat/app/assets/stylesheets'
-
             'js/jquery.min.js': 'jquery/dist/jquery.min.js'
             'js/jquery.min.map': 'jquery/dist/jquery.min.map'
-
             'js/jquery-cookie.js': 'jquery-cookie/jquery.cookie.js'
+            'js/bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js'
+
+            'sass/bourbon/': 'bourbon/app/assets/stylesheets'
+
+            'css/bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
 
             'fonts/': 'NanumBarunGothic/'
 
@@ -30,7 +31,6 @@ module.exports = (grunt) ->
           options:
             loadPath: [
               'snussum/snussum/components/sass/bourbon/'
-              'snussum/snussum/components/sass/neat/'
             ]
 
       jshint:
