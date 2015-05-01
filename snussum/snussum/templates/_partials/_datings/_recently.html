@@ -1,7 +1,16 @@
-<section id="recently" class="container">
-  <div class="row">
-    {% for dating in datings %}
-      {% include "_partials/_datings/_recently/_dating.html" with dating=dating %}
-    {% endfor %}
+<section id="recently">
+  <div class="container">
+    <div class="row">
+      <div class="page-header text-center">
+        <h1>지나간 매칭</h1>
+        <p>지나간 매칭 또한 수락하거나 연락할 수 있습니다</p>
+      </div>
+
+      <div class="datings text-center">
+        {% for dating in datings %}
+          {% include "_partials/_datings/_recently/_dating.html" with dating=dating %}
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </section>

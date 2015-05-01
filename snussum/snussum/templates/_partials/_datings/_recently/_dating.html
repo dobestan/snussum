@@ -1,3 +1,11 @@
+{% load datings %}
+
 <article class="dating">
-  {{ dating }}
+  {% with partner=dating|partner:user %}
+    <div class="col-sm-12 col-md-4">
+      <div class="thumbnail">
+        <img src="http://local.snussum.com:9000/media/profile/1111-8f90231f.png" alt=""/>
+      </div>
+    </div>
+  {% endwith %}
 </article>

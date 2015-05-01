@@ -1,9 +1,23 @@
-<section id="today" class="container">
-  <div class="row">
-    {% if dating %}
-      {{ dating }}
-    {% else %}
-      오늘의 데이트가 없습니다.
-    {% endif  %}
+{% load datings %}
+
+<section id="today">
+  <div class="container">
+    <div class="row">
+      <div class="page-header text-center">
+        <h1>오늘의 매칭</h1>
+        <p>매일 밤 자정이 지나면 오늘의 매칭이 지나갑니다</p>
+      </div>
+
+      <div class="datings">
+        <div class="col-md-4">
+        </div>
+        {% if dating %}
+          {% include "_partials/_datings/_recently/_dating.html" with dating=dating %}
+        {% else %}
+        {% endif %}
+        <div class="col-md-4">
+        </div>
+      </div>
+    </div>
   </div>
 </section>
