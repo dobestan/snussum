@@ -3,9 +3,12 @@
 <article class="dating">
   {% with partner=dating|partner:user %}
     <div class="col-sm-12 col-md-4">
-      <div class="thumbnail">
-        <img src="http://local.snussum.com:9000/media/profile/1111-8f90231f.png" alt=""/>
-      </div>
+      <a href="{% url "dating-detail" dating.hash_id %}">
+        <div class="thumbnail">
+          <img src="http://local.snussum.com:9000/media/profile/1111-8f90231f.png" alt=""/>
+          <h3 class="text-center">{{ partner.userprofile.nickname }}</h3>
+        </div>
+      </a>
     </div>
   {% endwith %}
 </article>
