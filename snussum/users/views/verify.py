@@ -41,6 +41,6 @@ def university_verification(request, university_verification_token):
     )
 
     user.userprofile.is_university_verified = True
-    user.save()
+    user.userprofile.save()
 
     return redirect("home")

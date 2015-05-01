@@ -1,10 +1,11 @@
 from django.core.urlresolvers import reverse
-from django.core.mail import send_mail
 
 from django.contrib.auth.models import User
 
 from django.template.loader import get_template
 from django.template import Context
+
+from api.tasks.messages import send_email
 
 
 def send_university_verification_email(user_id):
@@ -18,10 +19,10 @@ def send_university_verification_email(user_id):
         })
     })
 
-    send_mail(
-        "[스누썸] 서울대학교 학생 인증을 위한 이메일입니다.",
-        email_template.render(email_context),
-        "스누썸 <verify@snussum.com>",
-        ["dobestan@snu.ac.kr"],
-        fail_silently=False,
-    )
+    data = {
+        'to': "dobestan@gmail.com",
+        'subject': "[스누썸] 서울대학교 학생 인증을 위한 이메일입니다.",
+        'body': email_template.render(email_context),
+    }
+
+    send_email.delay(data)

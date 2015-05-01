@@ -75,10 +75,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'components'),
 )
 
-EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-MAILGUN_ACCESS_KEY = os.environ["MAILGUN_ACCESS_KEY"]
-MAILGUN_SERVER_NAME = os.environ["MAILGUN_SERVER_NAME"]
-
 WSGI_APPLICATION = 'snussum.wsgi.application'
 
 DEBUG = True
@@ -97,3 +93,12 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
+
+API_STORE_SMS_BASE_URL = os.environ['API_STORE_SMS_BASE_URL']
+API_STORE_SMS_KEY = os.environ['API_STORE_SMS_KEY']
+
+API_STORE_SMS_SEND_NAME = "썸타는 서울대, 스누썸"
+API_STORE_SMS_SUBJECT = "썸타는 서울대, 스누썸"
+
+MAILGUN_ACCESS_KEY = os.environ["MAILGUN_ACCESS_KEY"]
+MAILGUN_SERVER_NAME = os.environ["MAILGUN_SERVER_NAME"]
