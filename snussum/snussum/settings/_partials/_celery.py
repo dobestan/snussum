@@ -11,7 +11,7 @@ CELERYBEAT_SCHEDULE = {
         'task': 'relationships.tasks.datings.match_all',
 
         # Execute daily at midnight.
-        'schedule': crontab(minute=0, hour=0), 
+        'schedule': crontab(minute=0, hour=0),
     },
 }
 
