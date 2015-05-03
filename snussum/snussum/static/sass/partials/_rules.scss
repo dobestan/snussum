@@ -1,0 +1,41 @@
+section#rules {
+  ul.rules {
+    list-style-type: none;
+    padding-left: 16px;
+    border-left: 1px solid #EEEEEE;
+    font-size: 16px;
+    line-height: 1.75;
+
+    li.rule {
+      padding-bottom: 30px;
+
+      h2 {
+        font-size: 18px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+
+  nav {
+    font-size: 14px;
+    color: black;
+
+    li {
+      &.active {
+        color: red;
+      }
+
+      a {
+        padding: 4px;
+        padding-left: 10px;
+        color: inherit;
+
+        &:hover {
+          color: red;
+          border-left: 1px solid red;
+          background-color: none;
+        }
+      }
+    }
+  }
+}
