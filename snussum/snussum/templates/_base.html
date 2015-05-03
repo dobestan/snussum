@@ -13,5 +13,7 @@
     {% include "_partials/_header.html" %}
     <div id="content">{% block content %}{% endblock %}</div>
     {% include "_partials/_footer.html" %}
+
+    {% if not debug %}{% include "_partials/_security.html" %}{% endif %}
   </body>
 </html>
