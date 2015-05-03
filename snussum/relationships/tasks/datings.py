@@ -1,7 +1,10 @@
+from celery import shared_task
+
 from users.models.user_profile import UserProfile
 from relationships.models.dating import Dating
 
 
+@shared_task
 def match_all():
     bigger_group, smaller_group = UserProfile.objects.divide_groups()
 
