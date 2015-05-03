@@ -14,3 +14,4 @@ boto
 django-imagekit
 pillow
 django-grappelli
+flower
