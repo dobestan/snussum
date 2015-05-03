@@ -1,13 +1,16 @@
 section#rules {
+  color: $snussum-darkgrey;
+
   ul.rules {
     list-style-type: none;
     padding-left: 16px;
-    border-left: 1px solid #EEEEEE;
+    border-left: 1px solid $snussum-lightgrey;
     font-size: 16px;
     line-height: 1.75;
 
     li.rule {
       padding-bottom: 30px;
+      font-weight: lighter;
 
       h2 {
         font-size: 18px;
@@ -18,22 +21,21 @@ section#rules {
 
   nav {
     font-size: 14px;
-    color: black;
 
     li {
       &.active {
-        color: red;
+        color: $snussum-blue;
+        border-left: 1px solid $snussum-blue;
       }
 
       a {
-        padding: 4px;
+        padding: 3px;
         padding-left: 10px;
         color: inherit;
 
         &:hover {
-          color: red;
-          border-left: 1px solid red;
-          background-color: none;
+          color: $snussum-blue;
+          border-left: 1px solid $snussum-blue;
         }
       }
     }
