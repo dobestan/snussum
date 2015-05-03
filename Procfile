@@ -1,2 +1,4 @@
 web: python snussum/manage.py runserver 9000
 worker: celery --workdir=snussum/ --app=snussum.celery:app worker --loglevel INFO
+beat: celery --workdir=snussum/ --app=snussum.celery:app beat --loglevel INFO
+flower: celery --workdir=snussum/ --app=snussum.celery:app flower

@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 
 class APIMessageBaseTest(APITestCase):
+
     def setUp(self):
         self.username = "test_username"
         self.password = "test_password"
@@ -13,6 +14,7 @@ class APIMessageBaseTest(APITestCase):
 
 
 class APIMessageMixin(object):
+
     def test_login_required(self):
         data = {}
         response = self.client.post(self.url, data, format="json")
@@ -26,6 +28,7 @@ class APIMessageMixin(object):
 
 
 class APIMessageSMSTest(APIMessageBaseTest, APIMessageMixin):
+
     def setUp(self):
         super(APIMessageSMSTest, self).setUp()
         self.url = reverse("api:sms")
@@ -41,6 +44,7 @@ class APIMessageSMSTest(APIMessageBaseTest, APIMessageMixin):
 
 
 class APIMessageEmailTest(APIMessageBaseTest, APIMessageMixin):
+
     def setUp(self):
         super(APIMessageEmailTest, self).setUp()
         self.url = reverse("api:email")

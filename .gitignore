@@ -79,3 +79,6 @@ snussum/snussum/media/
 
 # Vagrant
 .vagrant/
+
+# Celery
+**/celerybeat-schedule
