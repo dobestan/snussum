@@ -2,10 +2,10 @@
 
 <article class="dating">
   {% with partner=dating|partner:user %}
-    <div class="col-sm-12 col-md-4">
+    <div class="col-xs-12 col-sm-4">
       <a href="{% url "dating-detail" dating.hash_id %}">
         <div class="thumbnail">
-          <img src="http://local.snussum.com:9000/media/profile/1111-8f90231f.png" alt=""/>
+          <img src="https://pbs.twimg.com/media/CADbOlSUsAAmmdw.jpg" alt=""/>
           <h3 class="text-center">{{ partner.userprofile.nickname }}</h3>
         </div>
       </a>
