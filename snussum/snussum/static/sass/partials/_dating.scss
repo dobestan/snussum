@@ -1,15 +1,21 @@
 section#dashboard {
-  article.dating {
+  $border-radius-size: 15px;
+
+  div.dating {
     div.dating-background {
-      background-image: url(https://pbs.twimg.com/media/CADbOlSUsAAmmdw.jpg);
+      background-position: 50%;
       background-size: cover;
       height: 400px;
       position: relative;
+
+      border-radius: $border-radius-size;
 
       div.dating-background-layer {
         background-color: rgba(black, 0.5);
         width: 100%;
         height: 100%;
+      
+        border-radius: $border-radius-size;
       }
 
       div.dating-background-half-layer {
@@ -19,12 +25,12 @@ section#dashboard {
 
         position: absolute;
         top: 50%;
+
+        @include border-bottom-radius($border-radius-size);
       }
     }
 
     div.dating-profile-image {
-      background-image: url(https://pbs.twimg.com/media/CADbOlSUsAAmmdw.jpg);
-
       background-repeat: no-repeat;
       background-position: 50%;
       border-radius: 50%;
@@ -38,6 +44,22 @@ section#dashboard {
       position: absolute;
       left: 30%;
       bottom: 30%;
+    }
+
+    div.dating-information {
+      div.dating-information-username {
+        position: absolute;
+        bottom: 15%;
+
+        // How to center a “position: absolute” element
+        // http://stackoverflow.com/questions/8508275/how-to-center-a-position-absolute-element
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+
+        font-weight: bold;
+      }
     }
   }
 }

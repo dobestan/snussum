@@ -1,14 +1,18 @@
 {% load datings %}
 
-<article class="dating">
+<div class="dating">
   {% with partner=dating|partner:user %}
     <div class="col-xs-12 col-sm-4">
-      <div class="dating-background">
+      <div class="dating-background" style="background-image: url(http://cfile27.uf.tistory.com/original/254ABF4C53A2E1E51E668F);">
         <div class="dating-background-layer"></div>
         <div class="dating-background-half-layer"></div>
       </div>
-      <a href="{% url "dating-detail" dating.hash_id %}"><div class="dating-profile-image"></div></a>
-      <div class="dating-information"></div>
+      <a href="{% url "dating-detail" dating.hash_id %}"><div class="dating-profile-image" style="background-image: url(http://cfile27.uf.tistory.com/original/254ABF4C53A2E1E51E668F);"></div></a>
+      <div class="dating-information">
+        <div class="dating-information-username">
+          <p>{{ partner.userprofile.nickname }}</p>
+        </div>
+      </div>
     </div>
   {% endwith %}
-</article>
+</div>
