@@ -21,8 +21,9 @@ module.exports = (grunt) ->
 
             'css/bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
             'css/animate.min.css': 'animate.css/animate.min.css'
+            'css/font-awesome.min.css': 'fontawesome/css/font-awesome.min.css'
 
-            'fonts/': 'NanumBarunGothic/'
+            'fonts/': ['NanumBarunGothic/', 'fontawesome/fonts/']
 
 
       sass:
