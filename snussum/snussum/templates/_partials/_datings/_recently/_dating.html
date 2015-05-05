@@ -1,14 +1,18 @@
 {% load datings %}
 
-<article class="dating">
+<div class="dating">
   {% with partner=dating|partner:user %}
-    <div class="col-sm-12 col-md-4">
-      <a href="{% url "dating-detail" dating.hash_id %}">
-        <div class="thumbnail">
-          <img src="http://local.snussum.com:9000/media/profile/1111-8f90231f.png" alt=""/>
-          <h3 class="text-center">{{ partner.userprofile.nickname }}</h3>
+    <div class="col-xs-12 col-sm-4">
+      <div class="dating-background" style="background-image: url({{ partner.userprofile.profile_image_url }});">
+        <div class="dating-background-layer"></div>
+        <div class="dating-background-half-layer"></div>
+      </div>
+      <a href="{% url "dating-detail" dating.hash_id %}"><div class="dating-profile-image" style="background-image: url({{ partner.userprofile.profile_image_url }});"></div></a>
+      <div class="dating-information">
+        <div class="dating-information-username">
+          <p>{{ partner.userprofile.nickname }}</p>
         </div>
-      </a>
+      </div>
     </div>
   {% endwith %}
-</article>
+</div>

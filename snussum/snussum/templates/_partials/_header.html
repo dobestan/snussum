@@ -1,4 +1,4 @@
-<header id="header" class="navbar navbar-default navbar-fixed-top">
+<header id="header" class="navbar navbar-default navbar-static-top">
   <div class="container">
     <div class="navbar-header">
       <a href="{% url "home" %}" class="navbar-brand">썸타는 서울대, 스누썸</a>
@@ -19,8 +19,8 @@
         <li><a href="{% url "users:profile" %}">마이페이지</a></li>
         <li><a href="{% url "users:logout" %}">로그아웃</a></li>
       {% else %}
-        <li><a href="{% url "users:login" %}">로그인</a></li>
-        <li><a href="{% url "users:signup" %}">회원가입</a></li>
+        <li><a href="{% url "users:login" %}" class="btn-login">로그인</a></li>
+        <li><a href="{% url "users:signup" %}" class="btn-signup">회원가입하고 썸타기</a></li>
       {% endif %}
     </ul>
   </div>

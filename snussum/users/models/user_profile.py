@@ -11,6 +11,8 @@ from datetime import date
 from hashlib import sha1
 from random import random
 
+from django.templatetags.static import static
+
 
 class UserProfileManager(models.Manager):
 
@@ -60,6 +62,16 @@ class UserProfile(models.Model):
     profile_introduce = models.TextField(blank=True, null=True)
 
     profile_image = models.ImageField(upload_to=_profile_image_upload_to, blank=True, null=True)
+
+    def _profile_image_url(self):
+        if self.profile_image:
+            return self.profile_image.url
+
+        if self.is_boy:
+            return static('img/profile/boy.jpg')
+        else:
+            return static('img/profile/girl.jpg')
+    profile_image_url = property(_profile_image_url)
 
     def _is_profile_verified(self):
         if self.nickname and \

@@ -1,0 +1,21 @@
+header#header {
+  background-color: $snussum-lightgrey;
+  color: $snussum-blue;
+
+  a.navbar-brand {
+    color: inherit;
+  }
+
+  li {
+    color: $snussum-blue;
+
+    a {
+      color: inherit;
+
+      &:hover {
+        background-color: $snussum-blue;
+        color: $snussum-lightgrey;
+      }
+    }
+  }
+}
