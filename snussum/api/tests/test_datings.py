@@ -25,21 +25,29 @@ class DatingCommentTest(APITestCase):
         self.other_user_password = "otherpassword"
         self.other_user = User.objects.create_user(username=self.other_user_username, password=self.other_user_password)
 
+        self.content = "Phasellus ultricies et tellus quis molestie. Interdum et malesuada fames."
+        self.data = {'content': self.content}
+
 
     def test_login_required(self):
-        data = {}
-        response = self.client.post(self.url, data, format="json")
+        response = self.client.post(self.url, self.data, format="json")
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
         response = self.client.login(username=self.other_user_username, password=self.other_user_password)
         self.assertTrue(response)
 
-        response = self.client.post(self.url, data, format="json")
+        response = self.client.post(self.url, self.data, format="json")
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
         response = self.client.logout()
         response = self.client.login(username=self.boy_username, password=self.boy_password)
         self.assertTrue(response)
 
-        response = self.client.post(self.url, data, format="json")
+        response = self.client.post(self.url, self.data, format="json")
         self.assertNotEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_creating_comment_on_dating(self):
+        response = self.client.login(username=self.boy_username, password=self.boy_password)
+        response = self.client.post(self.url, self.data, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)

@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from relationships.models.dating import Dating
+from relationships.models.comment import Comment
 
 
 class DatingComment(APIView):
@@ -15,4 +16,11 @@ class DatingComment(APIView):
         if self.request.user not in [dating.boy, dating.girl]:
             return Response(status=status.HTTP_403_FORBIDDEN)
 
-        return Response(status=status.HTTP_200_OK)
+        comment = \
+            Comment.objects.create(user=self.request.user, dating=dating, content=request.data.get('content'))
+
+        data = {
+                'content': comment.content,
+        }
+
+        return Response(status=status.HTTP_201_CREATED, data=data)
