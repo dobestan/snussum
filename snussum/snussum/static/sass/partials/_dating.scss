@@ -1,0 +1,36 @@
+section#comments {
+  .container {
+    background-image: url(http://local.snussum.com:9000/static/img/kakaotalk.jpg);
+  }
+
+  .comment {
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    p {
+      margin: 0px;
+    }
+
+    .media-body {
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    &.comment-by-me {
+      text-align: left;
+
+
+      .media-body {
+        background-color: yellow;
+      }
+    }
+
+    &.comment-by-partner {
+      text-align: right;
+
+      .media-body {
+        background-color: white;
+      }
+    }
+  }
+}
