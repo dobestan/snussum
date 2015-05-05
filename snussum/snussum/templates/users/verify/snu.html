@@ -2,15 +2,48 @@
 
 {% block content %}
 <section id="verify-snu">
-  <div class="wrapper">
-    <h1>서울대학교 인증하기</h1>
-    <p>썸타는 서울대 서비스는 서울대학교 인증을 통해서 사용하실 수 있습니다.</p>
+  <section class="container">
+    <div class="row">
+      <div class="page-header text-center">
+        <h1>서울대학교 인증 <small><span class="label label-success">Beta</span></small></h1>
+        <p>썸타는 서울대, 스누썸은 다양한 인증 방법을 지원하고 있습니다.</p>
+      </div>
+    </div>
+  </section>
 
-    <ul>
-      <li>마이스누 이메일을 통한 인증</li>
-      <li>마이스누 로그인을 통한 인증</li>
-      <li>스누라이프 로그인을 통한 인증</li>
-    </ul>
-  </div>
+  <section class="container">
+    <div class="row">
+      <ul>
+        <li class="col-md-4 active">
+          <div>
+            <a href="#mysnu-email" data-toggle="tab" aria-controls="mysnu-email">
+              마이스누 이메일
+            </a>
+          </div>
+        </li>
+        <li class="col-md-4">
+          <div>
+            <a href="#mysnu-login" data-toggle="tab" aria-controls="mysnu-login">
+              마이스누 로그인
+            </a>
+          </div>
+        </li>
+        <li class="col-md-4">
+          <div>
+            <a href="#snulife-login" data-toggle="tab" aria-controls="snulife-login">
+              스누라이프 로그인
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <div role="tabpanel" id="mysnu-email" class="active">hello world</div>
+      <div role="tabpanel" id="mysnu-login">hello WORLD</div>
+      <div role="tabpanel" id="snulife-login">HELLO world</div>
+    </div>
+  </section>
+  
 </section>
 {% endblock %}
