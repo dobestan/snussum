@@ -8,6 +8,7 @@ from relationships.models.dating import Dating
 
 
 class DatingCommentTest(APITestCase):
+
     def setUp(self):
         self.boy_username = "boyuser"
         self.boy_password = "boypassword"
@@ -27,7 +28,6 @@ class DatingCommentTest(APITestCase):
 
         self.content = "Phasellus ultricies et tellus quis molestie. Interdum et malesuada fames."
         self.data = {'content': self.content}
-
 
     def test_login_required(self):
         response = self.client.post(self.url, self.data, format="json")

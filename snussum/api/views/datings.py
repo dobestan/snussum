@@ -20,7 +20,7 @@ class DatingComment(APIView):
             Comment.objects.create(user=self.request.user, dating=dating, content=request.data.get('content'))
 
         data = {
-                'content': comment.content,
+            'content': comment.content,
         }
 
         return Response(status=status.HTTP_201_CREATED, data=data)

@@ -9,5 +9,5 @@ class Comment(models.Model):
     dating = models.ForeignKey(Dating)
 
     content = models.TextField()
-    
+
     created_at = models.DateTimeField(auto_now_add=True)

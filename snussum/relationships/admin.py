@@ -8,6 +8,7 @@ from relationships.models.comment import Comment
 class DatingAdmin(admin.ModelAdmin):
     readonly_fields = ('matched_at',)
 
+
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     pass
