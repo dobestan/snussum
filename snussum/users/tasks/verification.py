@@ -7,6 +7,8 @@ from django.template import Context
 
 from api.tasks.messages import send_email
 
+import requests
+
 
 def send_university_verification_email(user_id):
     user = User.objects.get(pk=user_id)
@@ -26,3 +28,21 @@ def send_university_verification_email(user_id):
     }
 
     send_email.delay(data)
+
+
+def snulife_login(username, password):
+    BASE_URL = "http://snulife.com/main"
+
+    data = {
+            'success_return_url': '/main',
+            'act': 'procMemberLogin',
+            'mid': 'main',
+            'user_id': username,
+            'password': password,
+    }
+
+    response = requests.post(BASE_URL, data=data, params={}, headers={})
+
+    if "잘못된 비밀번호입니다." in response.content.decode(response.encoding):
+        return False
+    return True
