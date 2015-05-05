@@ -3,12 +3,12 @@
 <article class="dating">
   {% with partner=dating|partner:user %}
     <div class="col-xs-12 col-sm-4">
-      <a href="{% url "dating-detail" dating.hash_id %}">
-        <div class="thumbnail">
-          <img src="https://pbs.twimg.com/media/CADbOlSUsAAmmdw.jpg" alt=""/>
-          <h3 class="text-center">{{ partner.userprofile.nickname }}</h3>
-        </div>
-      </a>
+      <div class="dating-background">
+        <div class="dating-background-layer"></div>
+        <div class="dating-background-half-layer"></div>
+      </div>
+      <a href="{% url "dating-detail" dating.hash_id %}"><div class="dating-profile-image"></div></a>
+      <div class="dating-information"></div>
     </div>
   {% endwith %}
 </article>
