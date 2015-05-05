@@ -11,4 +11,8 @@ class DatingComment(APIView):
 
     def post(self, request, *args, **kwargs):
         dating = Dating.objects.get(hash_id=self.kwargs['hash_id'])
+
+        if self.request.user not in [dating.boy, dating.girl]:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+
         return Response(status=status.HTTP_200_OK)

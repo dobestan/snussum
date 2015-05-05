@@ -21,12 +21,23 @@ class DatingCommentTest(APITestCase):
 
         self.url = reverse("api:dating-comment", kwargs={'hash_id': self.dating.hash_id})
 
+        self.other_user_username = "otheruser"
+        self.other_user_password = "otherpassword"
+        self.other_user = User.objects.create_user(username=self.other_user_username, password=self.other_user_password)
+
 
     def test_login_required(self):
         data = {}
         response = self.client.post(self.url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
+        response = self.client.login(username=self.other_user_username, password=self.other_user_password)
+        self.assertTrue(response)
+
+        response = self.client.post(self.url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        response = self.client.logout()
         response = self.client.login(username=self.boy_username, password=self.boy_password)
         self.assertTrue(response)
 
