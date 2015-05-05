@@ -41,12 +41,23 @@
     </section>
 
     <section id="comments">
-      <div class="container">
-
+      <div class="container kakaotalk">
         {% include "datings/_comments/_partner.html" %} 
         {% include "datings/_comments/_me.html" %} 
         {% include "datings/_comments/_partner.html" %} 
-
+      </div>
+      <section id="comments-input">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-10 col-md-11 col-no-padding">
+              <textarea name="" id="" rows="4" class="form-control"></textarea>
+            </div>
+            <div class="col-xs-2 col-md-1 col-no-padding">
+              <button>전송</button>
+            </div>
+          </div>
+        </div>
+      </section>
     </section>
   {% endwith %}
 {% endblock %}
