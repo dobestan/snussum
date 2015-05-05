@@ -61,6 +61,12 @@ class UserProfile(models.Model):
 
     profile_image = models.ImageField(upload_to=_profile_image_upload_to, blank=True, null=True)
 
+    def _profile_image_url(self):
+        if self.profile_image:
+            return profile_image.url
+        return "http://cfile27.uf.tistory.com/original/254ABF4C53A2E1E51E668F"
+    profile_image_url = property(_profile_image_url)
+
     def _is_profile_verified(self):
         if self.nickname and \
                 self.profile_introduce:
