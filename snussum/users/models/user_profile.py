@@ -11,6 +11,8 @@ from datetime import date
 from hashlib import sha1
 from random import random
 
+from django.templatetags.static import static
+
 
 class UserProfileManager(models.Manager):
 
@@ -64,7 +66,11 @@ class UserProfile(models.Model):
     def _profile_image_url(self):
         if self.profile_image:
             return profile_image.url
-        return "http://cfile27.uf.tistory.com/original/254ABF4C53A2E1E51E668F"
+
+        if self.is_boy:
+            return static('img/profile/boy.jpg')
+        else:
+            return static('img/profile/girl.jpg')
     profile_image_url = property(_profile_image_url)
 
     def _is_profile_verified(self):
