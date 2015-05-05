@@ -75,6 +75,15 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def _get_social_auth_profile(self, provider):
+        return self.user.social_auth.filter(provider=provider).first()
+
+    def facebook(self):
+        return self._get_social_auth_profile("facebook")
+
+    def kakao(self):
+        return self._get_social_auth_profile("kakao")
+
     def datings_matched(self):
         if self.is_boy:
             return self.user.dating_girls.all()
