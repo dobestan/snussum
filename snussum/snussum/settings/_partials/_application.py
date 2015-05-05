@@ -17,6 +17,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Django Libraries
+    'social.apps.django_app.default',
     'storages',
     'imagekit',
 
@@ -62,6 +63,9 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },

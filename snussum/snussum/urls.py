@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
     # Project Libraries
+    url('', include('social.apps.django_app.urls', namespace='social')),
+
 
     # Project Urls
     url(r'^$', Home.as_view(), name='home'),
