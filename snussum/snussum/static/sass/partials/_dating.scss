@@ -1,11 +1,53 @@
 section#comments {
-  .container {
+  section#comments-input {
+    $textarea-height: 100px;
+    $border-radius-size: 15px;
+
+    .container {
+      background-color: lightgrey;
+
+      .row {
+        padding: 10px;
+
+        textarea {
+          @include border-left-radius($border-radius-size);
+          height: $textarea-height;
+        }
+
+        button {
+          // Remove default style
+          border: 0;
+
+          background-color: yellow;
+
+          display: block;
+          width: 100%;
+          height: $textarea-height;
+
+          @include border-right-radius($border-radius-size);
+
+          &:active {
+            background: grey;
+          }
+        }
+      }
+    }
+  }
+
+  .container.kakaotalk {
     background-image: url(http://local.snussum.com:9000/static/img/kakaotalk.jpg);
+    min-height: 300px;
   }
 
   .comment {
     padding-top: 15px;
     padding-bottom: 15px;
+
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
 
     p {
       margin: 0px;
@@ -17,7 +59,7 @@ section#comments {
     }
 
     &.comment-by-me {
-      text-align: left;
+      text-align: right;
 
 
       .media-body {
@@ -26,7 +68,7 @@ section#comments {
     }
 
     &.comment-by-partner {
-      text-align: right;
+      text-align: left;
 
       .media-body {
         background-color: white;

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from relationships.models.dating import Dating
-from relationships.models.comments import Comment
+from relationships.models.comment import Comment
 
 
 @admin.register(Dating)

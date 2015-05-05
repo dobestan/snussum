@@ -40,63 +40,71 @@
     <section id="analytics">
     </section>
 
-    <section id="comments">
-      <div class="container">
-
-        <div class="row">
-          <div class="comment comment-by-me col-xs-9">
-            <div class="media">
-              <div class="media-left">
-                <img class="media-object" src="http://placehold.it/64x64" alt=""/>
-              </div>
-              <div class="media-body">
-                <p>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                  tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                  vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                  no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-              </div>
+    <section id="comments" data-hash-id="{{ dating.hash_id }}">
+      <div class="container kakaotalk">
+        {% for comment in dating.comment_set.all %}
+          {% if comment.user == user %}
+            {% include "datings/_comments/_me.html" with content=comment.content %} 
+          {% else %}
+            {% include "datings/_comments/_partner.html" with content=comment.content %} 
+          {% endif %}
+        {% endfor %}
+      </div>
+      <section id="comments-input">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-10 col-md-11 col-no-padding">
+              <textarea name="" id="" rows="4" class="form-control"></textarea>
+            </div>
+            <div class="col-xs-2 col-md-1 col-no-padding">
+              <button>전송</button>
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="comment comment-by-partner col-xs-9 col-xs-offset-3">
-            <div class="media">
-              <div class="media-body">
-                <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-              <div class="media-right">
-                <img class="media-object" src="http://placehold.it/64x64" alt=""/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="comment comment-by-me col-xs-9">
-            <div class="media">
-              <div class="media-left">
-                <img class="media-object" src="http://placehold.it/64x64" alt=""/>
-              </div>
-              <div class="media-body">
-                <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      </section>
     </section>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+    var comments = $("section#comments");
+    var dating_hash_id = $(comments).data("hash-id");
+
+    $("section#comments button").click(function(){
+      var content = $(comments).find("textarea").val();
+      var data = {
+        'content': content
+      };
+      
+      function kakaotalk(content){
+        var html = '<div class="row">\
+          <div class="comment comment-by-me col-xs-9 col-xs-offset-3">\
+            <div class="media">\
+              <div class="media-body">\
+                <p>\
+                CONTENT\
+                </p>\
+              </div>\
+            </div>\
+          </div>\
+        </div>'.replace('CONTENT', content);
+
+        $(comments).find("div.kakaotalk").append(html);
+        $(comments).find("textarea").val("");
+      };
+      
+      $.ajax({
+        url: '/api/ssum/' + dating_hash_id + '/comment/',
+        type: 'POST',
+        data: data,
+        success: function(result){
+          kakaotalk(result.content);
+        },
+        error: function(result){
+        }
+      });
+    });
+});
+</script>
+
   {% endwith %}
 {% endblock %}
