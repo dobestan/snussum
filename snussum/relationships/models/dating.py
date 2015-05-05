@@ -7,6 +7,8 @@ from django.db.models.signals import post_save
 
 from relationships.utils.hashids import get_encoded_dating_hashid
 
+from datetime import date
+
 
 class Dating(models.Model):
     hash_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
@@ -28,6 +30,12 @@ class Dating(models.Model):
     def _is_accepted(self):
         return self.is_boy_accepted and self.is_girl_accepted
     is_accepted = property(_is_accepted)
+
+    def pretty_date(self):
+        if self.matched_at == date.today():
+            return "오늘의 매칭" 
+        else:
+            return "%s월 %s일" % (self.matched_at.month, self.matched_at.day)
 
     class Meta:
         ordering = ['-matched_at']

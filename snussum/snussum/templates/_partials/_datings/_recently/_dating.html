@@ -6,12 +6,12 @@
       <div class="dating-background" style="background-image: url({{ partner.userprofile.profile_image_url }});">
         <div class="dating-background-layer"></div>
         <div class="dating-background-half-layer"></div>
+        <div class="dating-background-top-layer"></div>
       </div>
       <a href="{% url "dating-detail" dating.hash_id %}"><div class="dating-profile-image" style="background-image: url({{ partner.userprofile.profile_image_url }});"></div></a>
       <div class="dating-information">
-        <div class="dating-information-username">
-          <p>{{ partner.userprofile.nickname }}</p>
-        </div>
+        <div class="dating-information-username"><p>{{ partner.userprofile.nickname }}</p></div>
+        <div class="dating-information-date"><p>{{ dating.pretty_date }}</p></div>
       </div>
     </div>
   {% endwith %}
