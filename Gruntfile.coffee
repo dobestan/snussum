@@ -15,10 +15,12 @@ module.exports = (grunt) ->
             'js/jquery.min.map': 'jquery/dist/jquery.min.map'
             'js/jquery-cookie.js': 'jquery-cookie/jquery.cookie.js'
             'js/bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js'
+            'js/bootstrap-notify.min.js': 'remarkable-bootstrap-notify/bootstrap-notify.min.js'
 
             'sass/bourbon/': 'bourbon/app/assets/stylesheets'
 
             'css/bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
+            'css/animate.min.css': 'animate.css/animate.min.css'
 
             'fonts/': 'NanumBarunGothic/'
 

@@ -1,6 +1,8 @@
 <script type="text/javascript" charset="utf-8">
 {# Disable Right Click #}
 $(document).on("contextmenu",function(e){
+    $.notify({message: "오른쪽 마우스 클릭은 보안상의 이유로 제한되어 있습니다. \
+      더 나은 서비스를 위해서 노력하겠습니다. 감사합니다."}, {type: 'danger'});
     return false;
 });
 </script>
