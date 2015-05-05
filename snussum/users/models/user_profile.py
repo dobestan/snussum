@@ -65,7 +65,7 @@ class UserProfile(models.Model):
 
     def _profile_image_url(self):
         if self.profile_image:
-            return profile_image.url
+            return self.profile_image.url
 
         if self.is_boy:
             return static('img/profile/boy.jpg')
