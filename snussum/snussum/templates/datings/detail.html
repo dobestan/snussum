@@ -42,9 +42,13 @@
 
     <section id="comments" data-hash-id="{{ dating.hash_id }}">
       <div class="container kakaotalk">
-        {% include "datings/_comments/_partner.html" %} 
-        {% include "datings/_comments/_me.html" %} 
-        {% include "datings/_comments/_partner.html" %} 
+        {% for comment in dating.comment_set.all %}
+          {% if comment.user == user %}
+            {% include "datings/_comments/_me.html" with content=comment.content %} 
+          {% else %}
+            {% include "datings/_comments/_partner.html" with content=comment.content %} 
+          {% endif %}
+        {% endfor %}
       </div>
       <section id="comments-input">
         <div class="container">
