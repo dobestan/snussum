@@ -43,59 +43,9 @@
     <section id="comments">
       <div class="container">
 
-        <div class="row">
-          <div class="comment comment-by-me col-xs-9">
-            <div class="media">
-              <div class="media-left">
-                <img class="media-object" src="{{ user.userprofile.profile_image_url }}" alt=""/>
-              </div>
-              <div class="media-body">
-                <p>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                  tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                  vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                  no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="comment comment-by-partner col-xs-9 col-xs-offset-3">
-            <div class="media">
-              <div class="media-body">
-                <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-              <div class="media-right">
-                <img class="media-object" src="{{ partner.userprofile.profile_image_url }}" alt=""/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="comment comment-by-me col-xs-9">
-            <div class="media">
-              <div class="media-left">
-                <img class="media-object" src="{{ user.userprofile.profile_image_url }}" alt=""/>
-              </div>
-              <div class="media-body">
-                <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% include "datings/_comments/_partner.html" %} 
+        {% include "datings/_comments/_me.html" %} 
+        {% include "datings/_comments/_partner.html" %} 
 
     </section>
   {% endwith %}

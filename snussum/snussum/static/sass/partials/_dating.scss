@@ -23,7 +23,7 @@ section#comments {
     }
 
     &.comment-by-me {
-      text-align: left;
+      text-align: right;
 
 
       .media-body {
@@ -32,7 +32,7 @@ section#comments {
     }
 
     &.comment-by-partner {
-      text-align: right;
+      text-align: left;
 
       .media-body {
         background-color: white;
