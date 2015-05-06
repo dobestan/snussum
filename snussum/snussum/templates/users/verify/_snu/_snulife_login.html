@@ -38,7 +38,10 @@ $(document).ready(function(){
       type: 'POST',
       data: data,
       success: function(result){
-        alert("로그인 성공");
+        $.notify(
+          {message: "스누라이프 로그인 인증에 성공하였습니다."},
+          {type: 'success'}
+        );
       },
       error: function(result){
         $.notify(
