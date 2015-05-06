@@ -7,7 +7,7 @@ from django.template import Context
 
 from api.tasks.messages import send_email
 
-import requests
+from selenium import webdriver
 
 
 def send_university_verification_email(user_id):
@@ -31,18 +31,20 @@ def send_university_verification_email(user_id):
 
 
 def snulife_login(username, password):
-    BASE_URL = "http://snulife.com/main"
+    BASE_URL = "https://snulife.com/?act=dispMemberLoginForm"
 
-    data = {
-            'success_return_url': '/main',
-            'act': 'procMemberLogin',
-            'mid': 'main',
-            'user_id': username,
-            'password': password,
-    }
+    driver = webdriver.Chrome()
+    driver.get(BASE_URL)
+    
+    input_username = driver.find_element_by_id("uid")
+    input_username.send_keys(username)
 
-    response = requests.post(BASE_URL, data=data, params={}, headers={})
+    input_password = driver.find_element_by_id("upw")
+    input_password.send_keys(password)
 
-    if "잘못된 비밀번호입니다." in response.content.decode(response.encoding):
-        return False
-    return True
+    login_button = driver.find_element_by_css_selector("div#content div.btnArea span.btn input")
+    login_button.click()
+
+    if driver.find_elements_by_css_selector("div.userNickName"):
+        return True
+    return False
