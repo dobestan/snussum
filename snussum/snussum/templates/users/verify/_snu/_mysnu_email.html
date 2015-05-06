@@ -1,0 +1,51 @@
+<div class="page-header text-center">
+  <h1>mySNU x 이메일 <small><span class="label label-primary">Stable</span></small></h1>
+  <p>
+    마이스누 이메일 인증을 통해서 서울대학교 인증을 할 수 있습니다.
+  </p>
+</div>
+
+<div class="col-md-4 col-md-offset-4">
+  <div class="form-group">
+    <label for="">마이스누 아이디</label>
+      <div class="input-group">
+        <input id="mysnu-email-username" type="text" value="" name="" class="form-control"/>
+        <div class="input-group-addon">@snu.ac.kr</div>
+      </div>
+  </div>
+
+    <input id="mysnu-email-button" type="submit" value="마이스누 이메일 등록" />
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+  $("input#mysnu-email-button").click(function(){
+    var username = $("input#mysnu-email-username").val();
+    var data = {'username': username};
+
+    $.ajax({
+      url: '/api/users/mysnu/email/',
+      type: 'POST',
+      data: data,
+      success: function(result){
+        $.notify(
+          {icon: "fa fa-envelope" ,message: "입력하신 이메일로 인증 메일이 발송되었습니다."},
+          {type: 'success'}
+        );
+      },
+      error: function(result){
+        $.notify(
+          {
+            icon: "fa fa-exclamation-triangle",
+            message: "현재 서버와의 통신에 문제가 있습니다.\
+            지속적으로 동일한 문제가 발생하는 경우 다른 인증 방법을 통해서\
+            인증해주시면 감사하겠습니다."
+          },
+          {type: 'danger'}
+        );
+      }
+    });
+  })
+});
+</script>

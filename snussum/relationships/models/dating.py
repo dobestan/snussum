@@ -33,7 +33,7 @@ class Dating(models.Model):
 
     def pretty_date(self):
         if self.matched_at == date.today():
-            return "오늘의 매칭" 
+            return "오늘의 매칭"
         else:
             return "%s월 %s일" % (self.matched_at.month, self.matched_at.day)
 
