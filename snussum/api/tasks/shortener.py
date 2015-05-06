@@ -7,7 +7,6 @@ import requests
 import json
 
 
-
 @shared_task
 def shorten_url(long_url):
     """
@@ -35,10 +34,15 @@ def url_builder(url, utm_source=None, utm_medium=None, utm_term=None, utm_conten
     """
 
     data = {}
-    if utm_source: data['utm_source'] = utm_source
-    if utm_medium: data['utm_medium'] = utm_medium
-    if utm_term: data['utm_term'] = utm_term
-    if utm_content: data['utm_content'] = utm_content
-    if utm_campaign: data['utm_campaign'] = utm_campaign
+    if utm_source:
+        data['utm_source'] = utm_source
+    if utm_medium:
+        data['utm_medium'] = utm_medium
+    if utm_term:
+        data['utm_term'] = utm_term
+    if utm_content:
+        data['utm_content'] = utm_content
+    if utm_campaign:
+        data['utm_campaign'] = utm_campaign
 
     return url + "?" + urllib.parse.urlencode(data)

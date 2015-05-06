@@ -35,7 +35,7 @@ def snulife_login(username, password):
 
     driver = webdriver.Chrome()
     driver.get(BASE_URL)
-    
+
     input_username = driver.find_element_by_id("uid")
     input_username.send_keys(username)
 
