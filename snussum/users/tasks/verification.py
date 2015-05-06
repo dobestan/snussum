@@ -48,3 +48,26 @@ def snulife_login(username, password):
     if driver.find_elements_by_css_selector("div.userNickName"):
         return True
     return False
+
+
+def mysnu_login(username, password):
+    BASE_URL = "http://my.snu.ac.kr/mysnu/portal/"
+
+    driver = webdriver.Chrome()
+    driver.get(BASE_URL)
+
+    input_username = driver.find_element_by_id("si_id")
+    input_username.send_keys(username)
+
+    input_password = driver.find_element_by_id("si_pwd")
+    input_password.send_keys(password)
+
+    login_button = driver.find_element_by_id("btn_login")
+    login_button.click()
+
+    # if Login fails
+    # - https://sso.snu.ac.kr/nls3/error.jsp?errorCode=5401
+
+    if "error" in driver.current_url:
+        return False
+    return True
