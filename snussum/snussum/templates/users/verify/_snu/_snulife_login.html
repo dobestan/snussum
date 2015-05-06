@@ -6,12 +6,38 @@
 <div class="col-md-4 col-md-offset-4">
   <div class="form-group">
     <label for="">스누라이프 아이디</label>
-    <input type="text" value="" name="" class="form-control"/>
+    <input type="text" id="snulife-username" value="" name="" class="form-control"/>
   </div>
   <div class="form-group">
     <label for="">스누라이프 비밀번호</label>
-    <input type="password" value="" name="" class="form-control"/>
+    <input type="password" id="snulife-password" value="" name="" class="form-control"/>
   </div>
 
-    <input type="submit" value="스누라이프 로그인" />
+    <input type="submit" id="snulife-login-button" value="스누라이프 로그인" />
 </div>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+  $("input#snulife-login-button").click(function(){
+    var username = $("input#snulife-username").val();
+    var password = $("input#snulife-password").val();
+
+    var data = {
+      'username': username,
+      'password': password
+    }
+
+    $.ajax({
+      url: '/api/users/snulife/login/',
+      type: 'POST',
+      data: data,
+      success: function(result){
+        alert("로그인 성공");
+      },
+      error: function(result){
+        alert("로그인 실패");
+      }
+    })
+  })
+});
+</script>

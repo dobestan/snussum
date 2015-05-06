@@ -3,6 +3,7 @@ from django.conf.urls import patterns, url
 from api.views.update_profile import UpdateProfileUniversity, UpdateProfileNickname, UpdateProfileIntroduce
 from api.views.messages import APIMessageSMS, APIMessageEmail
 from api.views.datings import DatingComment
+from api.views.verify import VerifySNUSnulifeLogin
 
 
 urlpatterns = patterns(
@@ -17,4 +18,7 @@ urlpatterns = patterns(
 
     url(r'sms/$', APIMessageSMS.as_view(), name='sms'),
     url(r'email/$', APIMessageEmail.as_view(), name='email'),
+
+    # SNU Verifications
+    url(r'users/snulife/login/$', VerifySNUSnulifeLogin.as_view(), name='snulife-login'),
 )
