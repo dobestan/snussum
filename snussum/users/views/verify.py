@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 
-from users.decorators import university_verified_required
+from users.decorators import university_verified_required, university_not_verified_required
 
 from django.contrib.auth.models import User
 from users.models.university import University
@@ -21,6 +21,10 @@ class VerifyUniversity(TemplateView):
 
 class VerifyUniversitySNU(TemplateView):
     template_name = "users/verify/snu.html"
+
+    @method_decorator(university_not_verified_required)
+    def dispatch(self, *args, **kwargs):
+        return super(VerifyUniversitySNU, self).dispatch(*args, **kwargs)
 
 
 class VerifyProfile(TemplateView):

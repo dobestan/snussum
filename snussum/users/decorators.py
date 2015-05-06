@@ -48,6 +48,26 @@ def university_verified_required(function=None):
         return _dec(function)
 
 
+def university_not_verified_required(function=None):
+    def _dec(view_func):
+        def _view(request, *arg, **kwargs):
+            if not request.user.userprofile.is_university_verified:
+                return view_func(request, *arg, **kwargs)
+            else:
+                return redirect('users:verify-profile')
+
+        _view.__name__ = view_func.__name__
+        _view.__dict__ = view_func.__dict__
+        _view.__doc__ = view_func.__doc__
+
+        return _view
+
+    if function is None:
+        return _dec
+    else:
+        return _dec(function)
+
+
 def profile_verifed_required(function=None):
     def _dec(view_func):
         def _view(request, *arg, **kwargs):
