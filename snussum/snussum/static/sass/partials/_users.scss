@@ -1,0 +1,21 @@
+section#verify-snu {
+  ul {
+    list-style-type: none;
+    padding-left: 0px;
+  }
+
+  div.snu-verification-lists {
+    div.snu-verification-list {
+    }
+  }
+
+  div.snu-verification-details {
+    div.snu-verification-detail {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+}
