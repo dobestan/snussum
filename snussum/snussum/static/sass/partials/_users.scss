@@ -5,7 +5,23 @@ section#verify-snu {
   }
 
   div.snu-verification-lists {
-    div.snu-verification-list {
+    .snu-verification-list {
+      padding-bottom: 15px;
+
+      a {
+        color: black;
+        text-decoration: none;
+
+        padding: 10px;
+      }
+
+      &.active {
+        a {
+          color: white;
+          background-color: $snussum-blue;
+          border-radius: 5px;
+        }
+      }
     }
   }
 

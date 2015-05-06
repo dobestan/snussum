@@ -5,33 +5,32 @@
   <section class="container">
     <div class="row">
       <div class="page-header text-center">
-        <h1>서울대학교 인증 <small><span class="label label-success">Beta</span></small></h1>
+        <h1>서울대학교 인증</h1>
         <p>썸타는 서울대, 스누썸은 다양한 인증 방법을 지원하고 있습니다.</p>
       </div>
-    </div>
   </section>
 
   <section class="container">
-    <div class="row snu-verification-lists">
+    <div class="row snu-verification-lists text-center">
       <ul>
-        <li class="col-xs-4 active snu-verification-list">
+        <li class="col-sm-4 active snu-verification-list">
           <div>
             <a href="#mysnu-email" data-toggle="tab" aria-controls="mysnu-email">
-              마이스누 이메일
+              마이스누 x 이메일
             </a>
           </div>
         </li>
-        <li class="col-xs-4 snu-verification-list">
+        <li class="col-sm-4 snu-verification-list">
           <div>
             <a href="#mysnu-login" data-toggle="tab" aria-controls="mysnu-login">
-              마이스누 로그인
+              마이스누 x 로그인
             </a>
           </div>
         </li>
-        <li class="col-xs-4 snu-verification-list">
+        <li class="col-sm-4 snu-verification-list">
           <div>
             <a href="#snulife-login" data-toggle="tab" aria-controls="snulife-login">
-              스누라이프 로그인
+              스누라이프 x 로그인
             </a>
           </div>
         </li>
@@ -39,9 +38,15 @@
     </div>
 
     <div class="row snu-verification-details">
-      <div role="tabpanel" id="mysnu-email" class="snu-verification-detail animated fadeInUp active">hello world</div>
-      <div role="tabpanel" id="mysnu-login" class="snu-verification-detail animated fadeInUp">hello WORLD</div>
-      <div role="tabpanel" id="snulife-login" class="snu-verification-detail animated fadeInUp">HELLO world</div>
+      <div role="tabpanel" id="mysnu-email" class="snu-verification-detail animated fadeIn active">
+        {% include "users/verify/_snu/_mysnu_email.html" %}
+      </div>
+      <div role="tabpanel" id="mysnu-login" class="snu-verification-detail animated fadeIn">
+        {% include "users/verify/_snu/_mysnu_login.html" %}
+      </div>
+      <div role="tabpanel" id="snulife-login" class="snu-verification-detail animated fadeIn">
+        {% include "users/verify/_snu/_snulife_login.html" %}
+      </div>
     </div>
   </section>
   
