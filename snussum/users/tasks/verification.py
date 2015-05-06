@@ -68,6 +68,6 @@ def mysnu_login(username, password):
     # if Login fails
     # - https://sso.snu.ac.kr/nls3/error.jsp?errorCode=5401
 
-    if "error" in driver.current_url:
+    if "nls" in driver.current_url:
         return False
     return True
