@@ -5,7 +5,6 @@ from django.contrib.auth import login, authenticate
 
 from users.decorators import anonymous_required
 
-from django.contrib import messages
 
 
 @anonymous_required
@@ -26,9 +25,6 @@ def signup(request):
                                  extra_tags="success")
             return redirect("users:verify-snu")
 
-        messages.add_message(request, messages.INFO,
-                             '입력하신 정보가 올바르지 않습니다. 다시 한번 확인 부탁드립니다. 감사합니다.',
-                             extra_tags="danger")
         return render(request, "users/signup.html", {
             'form': user_form
         })
