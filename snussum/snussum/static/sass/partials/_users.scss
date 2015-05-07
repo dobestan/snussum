@@ -35,3 +35,14 @@ section#verify-snu {
     }
   }
 }
+
+section#verify-profile {
+  div.form-group {
+    padding: 15px;
+  }
+
+  p {
+    &.success {display: none;}
+    &.danger {display: none;}
+  }
+}

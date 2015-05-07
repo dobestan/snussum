@@ -31,6 +31,12 @@ class UpdateProfileNickname(UpdateProfileBase):
 
     def put(self, request, *args, **kwargs):
         nickname = request.data.get('nickname')
+
+        # 요청한 사용자의 닉네임이 현재 사용중인 닉네임인 경우
+        if request.user.userprofile.nickname == nickname:
+            return Response(status=status.HTTP_200_OK)
+
+        # 다른 사용자가 이미 닉네임을 사용하고 있는 경우
         if User.objects.filter(userprofile__nickname=nickname).first():
             return Response(status=status.HTTP_400_BAD_REQUEST)
 

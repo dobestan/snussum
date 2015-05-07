@@ -83,6 +83,10 @@ def profile_verifed_required(function=None):
             if request.user.userprofile.is_profile_verified:
                 return view_func(request, *arg, **kwargs)
             else:
+                messages.add_message(request, messages.INFO,\
+                        '서비스 이용을 위해서 기본정보 입력이 필요합니다.\
+                        성실한 개인정보 입력은 상대방에 대한 예의입니다.',\
+                        extra_tags="danger")
                 return redirect('users:verify-profile')
 
         _view.__name__ = view_func.__name__
