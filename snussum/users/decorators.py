@@ -56,8 +56,9 @@ def university_not_verified_required(function=None):
             if not request.user.userprofile.is_university_verified:
                 return view_func(request, *arg, **kwargs)
             else:
-                messages.add_message(request, messages.SUCCESS,\
-                        '이미 대학교 인증이 완료되었습니다.')
+                messages.add_message(request, messages.INFO,\
+                        '이미 대학교 인증이 완료되었습니다. ( %s )' % request.user.userprofile.university.full_name,\
+                        extra_tags="success")
                 return redirect('users:verify-profile')
 
         _view.__name__ = view_func.__name__
