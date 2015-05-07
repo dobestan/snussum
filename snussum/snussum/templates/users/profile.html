@@ -1,8 +1,16 @@
 {% extends "_base.html" %}
 
 {% block content %}
-<h1>Profile</h1>
+<section id="profile">
 
-{{ user.userprofile.profile_image.url }}
-<img src="{{ user.userprofile.profile_image.url }}" alt=""/>
+  <section class="container">
+    <div class="row">
+      <div class="page-header text-center">
+        <h1>마이페이지 <small>Profile</small></h1>
+        <p>기본정보를 확인하거나 수정하실 수 있습니다</p>
+      </div>
+    </div>
+  </section>
+
+</section>
 {% endblock %}
