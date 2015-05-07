@@ -17,6 +17,13 @@
   <section class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4 col-sm-12 col-xs-12">
+        <section>
+          <a href="{% url "social:begin" backend="kakao" %}" class="text-center social-login social-login-kakao"><i class="fa fa-comment"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;카카오 계정으로 회원가입</a>
+          <a href="{% url "social:begin" backend="facebook" %}" class="text-center social-login social-login-facebook"><i class="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;페이스북 계정으로 회원가입</a>
+        </section>
+
+        <hr />
+
         <form action="{% url 'users:signup' %}" method="post" accept-charset="utf-8">{% csrf_token %}
           {% if form.errors %}
             <p class="small danger">
@@ -39,11 +46,6 @@
             <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;스누썸 계정으로 회원가입
           </button>
         </form>
-
-        <section>
-          <a href="{% url "social:begin" backend="kakao" %}" class="text-center social-login social-login-kakao"><i class="fa fa-comment"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;카카오 계정으로 회원가입</a>
-          <a href="{% url "social:begin" backend="facebook" %}" class="text-center social-login social-login-facebook"><i class="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;페이스북 계정으로 회원가입</a>
-        </section>
       </div>
     </div>
   </section>
