@@ -17,3 +17,4 @@ django-grappelli
 flower
 django-secure
 django-redis
+django-cachalot

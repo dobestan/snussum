@@ -18,6 +18,7 @@ INSTALLED_APPS = (
 
     # Django Libraries
     "djangosecure",
+    'cachalot',
     'social.apps.django_app.default',
     'storages',
     'imagekit',
