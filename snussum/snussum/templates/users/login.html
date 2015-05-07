@@ -33,6 +33,11 @@
           </div>
           <input type="submit" value="로그인" />
         </form>
+
+        <section>
+          <a href="{% url "social:begin" backend="kakao" %}" class="text-center social-login social-login-kakao"><i class="fa fa-comment"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;카카오 계정으로 로그인</a>
+          <a href="{% url "social:begin" backend="facebook" %}" class="text-center social-login social-login-facebook"><i class="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;페이스북 계정으로 로그인</a>
+        </section>
       </div>
     </div>
   </section>
