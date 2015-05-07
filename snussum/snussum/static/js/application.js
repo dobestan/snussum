@@ -21,4 +21,14 @@ $(document).ready(function(){
   }).ajaxStop(function(){
     $("section#loading").addClass("hide");
   });
+
+  // Django Message Notification
+  var messages = $("body#body").data("messages").split(";");
+  var tags = $("body#body").data("message-tags").split(";");
+
+  for (i=0; i<messages.length-1; i++){
+    $.notify(
+      {message: messages[i]}, {type: tags[i]}
+    );
+  }
 });

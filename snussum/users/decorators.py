@@ -1,6 +1,8 @@
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 
+from django.contrib import messages
+
 
 def anonymous_required(function=None, redirect_field_name=None):
     def _dec(view_func):
@@ -52,8 +54,15 @@ def university_not_verified_required(function=None):
     def _dec(view_func):
         def _view(request, *arg, **kwargs):
             if not request.user.userprofile.is_university_verified:
+                messages.add_message(request, messages.INFO,\
+                        '서비스 이용을 위해서 서울대학교 인증이 필요합니다.\
+                        현재 이메일 인증(마이스누), 로그인 인증(마이스누, 스누라이프)을 지원합니다.',\
+                        extra_tags="danger")
                 return view_func(request, *arg, **kwargs)
             else:
+                messages.add_message(request, messages.INFO,\
+                        '이미 대학교 인증이 완료되었습니다. ( %s )' % request.user.userprofile.university.full_name,\
+                        extra_tags="success")
                 return redirect('users:verify-profile')
 
         _view.__name__ = view_func.__name__
