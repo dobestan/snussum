@@ -6,7 +6,6 @@ from django.contrib.auth import login, authenticate
 from users.decorators import anonymous_required
 
 
-
 @anonymous_required
 def signup(request):
     if request.method == "POST":
