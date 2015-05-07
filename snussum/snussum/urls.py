@@ -11,7 +11,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     # Django Default
     url(r'^grappelli/', include('grappelli.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    url(r'^%s/' % settings.ADMIN_URL, include(admin.site.urls)),
 
     # Project Libraries
     url('', include('social.apps.django_app.urls', namespace='social')),

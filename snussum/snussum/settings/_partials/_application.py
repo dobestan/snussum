@@ -22,6 +22,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'storages',
     'imagekit',
+    'admin_honeypot',
 
     # Snussum Apps
     'users',
@@ -130,3 +131,5 @@ CACHES = {
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+
+ADMIN_URL = os.environ["ADMIN_URL"]

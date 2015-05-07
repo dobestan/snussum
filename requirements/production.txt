@@ -18,3 +18,4 @@ flower
 django-secure
 django-redis
 django-cachalot
+django-admin-honeypot
