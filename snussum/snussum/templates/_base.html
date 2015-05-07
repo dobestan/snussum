@@ -9,7 +9,10 @@
     {% include "_partials/javascripts.html" %}
     {% include "_partials/_google-analytics.html" %}
   </head>
-  <body id="body">
+  <body id="body"
+    data-messages="{% for message in messages %}{{message}};{% endfor %}"
+    data-message-tags="{% for message in messages %}{{ message.tags }};{% endfor %}"
+  >
     {% include "_partials/_header.html" %}
     <div id="content">{% block content %}{% endblock %}</div>
     {% include "_partials/_footer.html" %}
