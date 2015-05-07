@@ -75,7 +75,7 @@ class UserProfile(models.Model):
 
     def _is_profile_verified(self):
         if self.nickname and \
-                self.profile_introduce:
+                self.profile_introduce and len(self.profile_introduce) >= 50:
             return True
         return False
     is_profile_verified = property(_is_profile_verified)
