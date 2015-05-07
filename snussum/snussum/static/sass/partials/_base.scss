@@ -7,13 +7,25 @@ $snussum-red: #E74C3C;
 $snussum-blue: #3498DB;
 $snussum-orange: #F39C12;
 
-.social-login {
+@mixin btn-login {
+  border: none;
   display: block;
   text-decoration: none;
-
   border-radius: 3px;
   padding: 10px;
   margin: 10px 0;
+  width: 100%;
+}
+
+.snussum-login {
+  @include btn-login;
+
+  background-color: $snussum-darkgrey;
+  color: $snussum-lightgrey;
+}
+
+.social-login {
+  @include btn-login;
 
   &.social-login-kakao {
     text-decoration: inherit;
