@@ -6,3 +6,31 @@ $snussum-lightgrey: #ECF0F1;
 $snussum-red: #E74C3C;
 $snussum-blue: #3498DB;
 $snussum-orange: #F39C12;
+
+.danger {color: #D9534F;}
+.success {color: #5CB85C;}
+
+.border {
+  border: 2px solid $snussum-lightgrey;
+  border-radius: 5px;
+
+  &.border-primary {
+    border-color: #428BCA;
+  }
+
+  &.border-info {
+    border-color: #5BC0DE;
+  }
+
+  &.border-warning {
+    border-color: #F0AD4E;
+  }
+
+  &.border-success {
+    border-color: #5CB85C;
+  }
+
+  &.border-danger {
+    border-color: #D9534F;
+  }
+}

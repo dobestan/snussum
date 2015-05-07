@@ -2,37 +2,104 @@
 
 {% block content %}
   <section id="verify-profile">
-    <div class="wrapper">
-      <h1>프로필 업데이트</h1>
+    <section class="container">
+      <div class="row">
+        <div class="page-header text-center">
+          <h1>기본정보 입력 <small>Personal Info</small></h1>
+          <p>
+            성실한 개인정보 입력은 상대방에 대한 예의입니다
+          </p>
+        </div>
+      </div>
+    </section>
 
-      <section id="verify-profile-nickname">
-        <input type="text" value="{{ user.userprofile.nickname }}" name="nickname" id="nickname"/>
-        <button type="submit">별명으로 사용하기</button>
-      </section>
+    <section id="verify-profile-nickname">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-4 col-md-offset-4">
+            <div class="form-group border">
+              <label for="">닉네임 <span class="small">( 매칭 시 상대방에게 표시되는 이름 )</span></label>
+              <input type="text" value="{{ user.userprofile.nickname }}" required name="nickname" id="nickname" class="form-control" maxlength=8/>
+              <button type="submit">별명으로 사용하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <section id="verify-profile-introduce">
-        <textarea name="introduce" id="introduce" rows=40>{{ user.userprofile.profile_introduce }}</textarea>
-        <button type="submit">자기소개 업데이트</button>
-      </section>
-    </div>
+    <section id="verify-profile-introduce">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-4 col-md-offset-4">
+            <div class="form-group border">
+              <label for="">자기소개</label>
+              <p class="small danger">
+                * 매칭 상대방을 위해서 자기소개는 반드시 50자 이상 작성해주셔야 합니다.
+                조금 불편하시더라고, 더 나은 서비스를 위해서 성실한 작성 부탁드리겠습니다. 감사합니다.
+              </p>
+              <p class="small success">
+                * 성실한 자기소개를 작성해주셔서 진심으로 감사드립니다.
+              </p>
+
+              <textarea name="introduce" id="introduce" class="form-control" rows=10>{{ user.userprofile.profile_introduce }}</textarea>
+              <button type="submit">자기소개 업데이트</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </section>
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
   $("section#verify-profile-nickname").find("button").click(function(){
     var nickname = $("input#nickname").val();
+    var form = $(this).parent(".form-group");
 
     $.ajax({
       url: '/api/users/nickname/',
       type: 'PUT',
       data: {'nickname': nickname},
       success: function(result){
-        alert("Success!");
+        $.notify(
+          {message: "닉네임이 성공적으로 등록되었습니다."},
+          {type: "success"}
+        );
+
+        $("input#nickname").prop("readonly", true);
+        $(this).remove();
+
+        $(form).removeClass("border-danger");
+        $(form).addClass("border-success");
       },
       error: function(result){
-        alert("Error!");
+        $.notify(
+          {message: "사용할 수 없는 닉네임입니다. 다른 닉네임으로 등록해주시면 감사하겠습니다."},
+          {type: "danger"}
+        );
+        $(form).removeClass("border-success");
+        $(form).addClass("border-danger");
       }
     })
+  });
+
+  $("section#verify-profile-introduce").find("textarea#introduce").on('input', function(){
+      var length = $(this).val().length;
+      var form = $(this).parent(".form-group");
+
+      var success_msg = $(form).find("p.success");
+      var danger_msg = $(form).find("p.danger");
+
+      if (length > 50) {
+        $(form).removeClass("border-danger").addClass("border-success");
+        $(danger_msg).hide();
+        $(success_msg).show();
+
+      } else {
+        $(form).removeClass("border-success").addClass("border-danger");
+        $(success_msg).hide();
+        $(danger_msg).show();
+      }
   });
 
   $("section#verify-profile-introduce").find("button").click(function(){
@@ -43,10 +110,17 @@ $(document).ready(function(){
       type: 'PUT',
       data: {'introduce': introduce},
       success: function(result){
-        alert("Success!");
+        $.notify(
+          {message: "자기소개가 성공적으로 등록되었습니다."},
+          {type: "success"}
+        );
       },
       error: function(result){
-        alert("Error!");
+        $.notify(
+          {message: "자기소개가 업데이트 되지 않았습니다.\
+          자기소개는 50자 이상 작성해야 하며, 성적이거나 선정적인 문구를 포함할 수 없습니다."},
+          {type: "danger"}
+        );
       }
     })
   });
