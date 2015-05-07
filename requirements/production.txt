@@ -16,3 +16,4 @@ pillow
 django-grappelli
 flower
 django-secure
+django-redis
