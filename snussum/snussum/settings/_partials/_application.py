@@ -17,6 +17,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Django Libraries
+    "djangosecure",
     'social.apps.django_app.default',
     'storages',
     'imagekit',
@@ -28,6 +29,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    "djangosecure.middleware.SecurityMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

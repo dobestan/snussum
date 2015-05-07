@@ -21,3 +21,29 @@ STATIC_URL = 'https://cdn.snussum.com/'
 STATICFILES_DIRS = (
     os.path.join(os.path.join(BASE_DIR, 'static'), 'deploy'),
 )
+
+
+# Django Secure - ONLY Production
+# https://github.com/carljm/django-secure/
+# http://django-secure.readthedocs.org/en/latest/index.html
+
+# all non-SSL requests should be permanently redirected to SSL.
+SECURE_SSL_REDIRECT = True
+
+# prevent framing of your pages and protect them from clickjacking.
+SECURE_FRAME_DENY = True
+
+# prevent the browser from guessing asset content types.
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security
+SECURE_HSTS_SECONDS = 30
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+# enable the browser's XSS filtering protections.
+SECURE_BROWSER_XSS_FILTER = True
+
+# https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-SESSION_COOKIE_HTTPONLY
+# https://docs.djangoproject.com/en/1.8/ref/settings/#session-cookie-secure
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
