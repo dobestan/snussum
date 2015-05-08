@@ -1,6 +1,12 @@
 from snussum.settings import *
 
 
+INSTALLED_APPS += (
+    # Django Libraries
+    'raven.contrib.django.raven_compat',
+)
+
+
 # Deployment checklist
 # https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 DEBUG = False
@@ -47,3 +53,9 @@ SECURE_BROWSER_XSS_FILTER = True
 # https://docs.djangoproject.com/en/1.8/ref/settings/#session-cookie-secure
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
+
+
+# Set your DSN value
+RAVEN_CONFIG = {
+    'dsn': 'https://4445971377fd46fa8c60b8da0367cde9:a53eddf3cc974e0fa4db16823d565c5c@app.getsentry.com/43279',
+}
