@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.postgres.fields import IntegerRangeField
+
 from django.db.models.signals import post_save
 
 from django.contrib.auth.models import User
@@ -66,7 +68,11 @@ class UserProfile(models.Model):
     age = models.IntegerField(blank=True, null=True)
     height = models.IntegerField(blank=True, null=True)
     weight = models.IntegerField(blank=True, null=True)
-    
+
+    age_condition = IntegerRangeField(blank=True, null=True)
+    height_condition = IntegerRangeField(blank=True, null=True)
+    weight_condition = IntegerRangeField(blank=True, null=True)
+
     def _profile_image_url(self):
         if self.profile_image:
             return self.profile_image.url
