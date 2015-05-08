@@ -23,7 +23,6 @@ INSTALLED_APPS = (
     'storages',
     'imagekit',
     'admin_honeypot',
-    'raven.contrib.django.raven_compat',
 
     # Snussum Apps
     'users',
@@ -134,8 +133,3 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
 ADMIN_URL = os.environ["ADMIN_URL"]
-
-# Set your DSN value
-RAVEN_CONFIG = {
-    'dsn': 'https://4445971377fd46fa8c60b8da0367cde9:a53eddf3cc974e0fa4db16823d565c5c@app.getsentry.com/43279',
-}
