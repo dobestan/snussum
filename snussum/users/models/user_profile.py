@@ -63,6 +63,10 @@ class UserProfile(models.Model):
 
     profile_image = models.ImageField(upload_to=_profile_image_upload_to, blank=True, null=True)
 
+    age = models.IntegerField(blank=True, null=True)
+    height = models.IntegerField(blank=True, null=True)
+    weight = models.IntegerField(blank=True, null=True)
+    
     def _profile_image_url(self):
         if self.profile_image:
             return self.profile_image.url
