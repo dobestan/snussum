@@ -12,5 +12,27 @@
     </div>
   </section>
 
+  <section class="container">
+    <div class="profile-settings-lists text-center">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="profile-settings-list active">
+          <a href="#account" data-toggle="tab" aria-controls="account">기본 정보</a>
+        </li>
+        <li class="profile-settings-list">
+          <a href="#information" data-toggle="tab" aria-controls="information">프로필 정보</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container profile-settings-details tab-content">
+    <section id="account" role="tabpanel" class="tab-pane profile-settings-detail active">
+      {% include "users/_profile/_account.html" %}
+    </section>
+    <section id="information" role="tabpanel" class="tab-pane profile-settings-detail">
+      {% include "users/_profile/_information.html" %}
+    </section>
+  </section>
+
 </section>
 {% endblock %}
