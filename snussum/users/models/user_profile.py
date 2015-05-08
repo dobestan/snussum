@@ -132,13 +132,16 @@ class UserProfile(models.Model):
         """
         return not self.dating_matched_today() and \
             not partner.userprofile.dating_matched_today() and \
-            not self.dating_matched_with(partner)
+            not self.dating_matched_with(partner) and \
+            self.is_conditions_available_with(partner) and \
+            partner.userprofile.is_conditions_available_with(self.user)
 
     def is_conditions_available_with(self, partner):
         """
         모든 조건에 부합하는지 검사한다.
         """
-        pass
+        return self.is_age_condition_available_with(partner) and \
+            self.is_height_condition_available_with(partner)
 
     def is_age_condition_available_with(self, partner):
         # 나이 조건에 상대방의 나이가 적합한지 확인한다.
@@ -161,7 +164,14 @@ class UserProfile(models.Model):
 
 
     def is_height_condition_available_with(self, partner):
-        pass
+        if not self.height_condition:
+            return True
+        elif self.height_condition and not partner.userprofile.height:
+            return False
+        elif partner.userprofile.height in self.height_condition:
+            return True
+        else:
+            return False
 
     def is_weight_condition_available_with(self, partner):
         pass
