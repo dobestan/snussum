@@ -16,12 +16,14 @@ module.exports = (grunt) ->
             'js/jquery-cookie.js': 'jquery-cookie/jquery.cookie.js'
             'js/bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js'
             'js/bootstrap-notify.min.js': 'remarkable-bootstrap-notify/bootstrap-notify.min.js'
+            'js/bootstrap-switch.min.js': 'bootstrap-switch/dist/js/bootstrap-switch.min.js'
 
             'sass/bourbon/': 'bourbon/app/assets/stylesheets'
 
             'css/bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
             'css/animate.min.css': 'animate.css/animate.min.css'
             'css/font-awesome.min.css': 'fontawesome/css/font-awesome.min.css'
+            'css/bootstrap-switch.min.css': 'bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css'
 
             'fonts/': ['NanumBarunGothic/', 'fontawesome/fonts/']
 
