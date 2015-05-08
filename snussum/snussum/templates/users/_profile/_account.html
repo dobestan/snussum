@@ -1,0 +1,19 @@
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+<hr />
+
+{% if user.userprofile.kakao %}
+  <p class="text-center social-login social-login-kakao"><i class="fa fa-comment"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;카카오 계정 연동 완료</p>
+{% else %}
+  <a href="{% url "social:begin" backend="kakao" %}" class="text-center social-login social-login-kakao"><i class="fa fa-comment"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;카카오 계정 연동하기</a>
+{% endif %}
+
+{% if user.userprofile.facebook %}
+<p class="text-center social-login social-login-facebook"><i class="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;페이스북 계정 연동 완료</p>
+{% else %}
+<a href="{% url "social:begin" backend="facebook" %}" class="text-center social-login social-login-facebook"><i class="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;페이스북 계정 연동하기</a>
+{% endif %}
+
