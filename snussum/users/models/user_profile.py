@@ -125,7 +125,7 @@ class UserProfile(models.Model):
     def is_dating_available_with(self, partner):
         """
         매칭이 가능한지 여부를 파악한다.
-        
+
         1. 기본 조건 검사 ( 기존 매칭 여부, 당일 매칭 여부 등 )
         2. 나의 조건 - 상대방 프로필 검사
         3. 나의 프로필 - 상대방 조건 검사
@@ -154,14 +154,13 @@ class UserProfile(models.Model):
             # 나이 조건이 설정되었으나 상대방의 나이가 없는 경우
             return False
         elif partner.userprofile.age in self.age_condition:
-            # 나이 조건이 설정되었고, 
+            # 나이 조건이 설정되었고,
             # 상대방의 나이가 있는 경우,
             # 나이 조건에 상대방의 나이가 포함된다면 True를 반환한다.
             return True
         else:
             # 나이 조건에 상대방의 나이가 포함되지 않는다면 True를 반환한다.
             return False
-
 
     def is_height_condition_available_with(self, partner):
         if not self.height_condition:
