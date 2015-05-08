@@ -6,6 +6,17 @@ section#login {
   }
 }
 
+section#signup {
+  .form-group {
+    .danger {
+      display: none;
+    }
+    .success {
+      display: none;
+    }
+  }
+}
+
 section#verify-snu {
   ul {
     list-style-type: none;
