@@ -123,9 +123,48 @@ class UserProfile(models.Model):
         return Dating.objects.filter(boy=partner, girl=self.user).first()
 
     def is_dating_available_with(self, partner):
+        """
+        매칭이 가능한지 여부를 파악한다.
+        
+        1. 기본 조건 검사 ( 기존 매칭 여부, 당일 매칭 여부 등 )
+        2. 나의 조건 - 상대방 프로필 검사
+        3. 나의 프로필 - 상대방 조건 검사
+        """
         return not self.dating_matched_today() and \
             not partner.userprofile.dating_matched_today() and \
             not self.dating_matched_with(partner)
+
+    def is_conditions_available_with(self, partner):
+        """
+        모든 조건에 부합하는지 검사한다.
+        """
+        pass
+
+    def is_age_condition_available_with(self, partner):
+        # 나이 조건에 상대방의 나이가 적합한지 확인한다.
+
+        if not self.age_condition:
+            # 나이 조건이 설정되지 않았다면 ( UserProfile Default )
+            # 상대방의 나이와 상관 없이 True를 반환한다.
+            return True
+        elif self.age_condition and not partner.userprofile.age:
+            # 나이 조건이 설정되었으나 상대방의 나이가 없는 경우
+            return False
+        elif partner.userprofile.age in self.age_condition:
+            # 나이 조건이 설정되었고, 
+            # 상대방의 나이가 있는 경우,
+            # 나이 조건에 상대방의 나이가 포함된다면 True를 반환한다.
+            return True
+        else:
+            # 나이 조건에 상대방의 나이가 포함되지 않는다면 True를 반환한다.
+            return False
+
+
+    def is_height_condition_available_with(self, partner):
+        pass
+
+    def is_weight_condition_available_with(self, partner):
+        pass
 
     def create_dating_with(self, partner):
         if self.is_boy:
