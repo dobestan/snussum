@@ -24,12 +24,13 @@
             </p>
           {% endif %}
           <div class="form-group">
-            <label for="">아이디</label>
-            <input id="id_username" class="form-control" maxlength="30" name="username" type="text">
+            <label for="">아이디</label> <span class="small danger">* 아이디를 정확하게 입력해주세요.</span>
+            <input id="id_username" class="form-control" maxlength="30" name="username" type="text" placeholder="아이디" required>
           </div>
           <div class="form-group">
-            <label for="">비밀번호</label>
-            <input id="id_password" class="form-control" name="password" type="password">
+            <label for="">비밀번호</label> <span class="small danger">* 비밀번호를 정확하게 입력해주세요.</span>
+
+            <input id="id_password" class="form-control" name="password" type="password" placeholder="비밀번호" required>
           </div>
           <button type="submit" class="text-center btn-snussum-darkgrey">
             <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;스누썸 계정으로 로그인
@@ -47,4 +48,29 @@
   </section>
 
 </section>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+  var input_username = $("section#login").find("input#id_username");
+  var input_password = $("section#login").find("input#id_password");
+
+  $(input_username).on('input', function(){
+    var danger_msg = $(this).parent(".form-group").find(".danger");
+    if ($(this).val().length == 0){
+      danger_msg.show();
+    } else {
+      danger_msg.hide();
+    }
+  });
+
+  $(input_password).on('input', function(){
+    var danger_msg = $(this).parent(".form-group").find(".danger");
+    if ($(this).val().length == 0){
+      danger_msg.show();
+    } else {
+      danger_msg.hide();
+    }
+  });
+});
+</script>
 {% endblock %}

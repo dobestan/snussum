@@ -1,3 +1,11 @@
+section#login {
+  .form-group {
+    .danger {
+      display: none;
+    }
+  }
+}
+
 section#verify-snu {
   ul {
     list-style-type: none;
