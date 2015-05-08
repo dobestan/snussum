@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% load staticfiles %}
 
 {% block content %}
   <section id="verify-profile">
@@ -20,7 +21,25 @@
             <div class="form-group border {% if user.userprofile.nickname %}border-success{% endif %}">
               <label for="">닉네임 <span class="small">( 매칭 시 상대방에게 표시되는 이름 )</span></label>
               <input type="text" value="{% if user.userprofile.nickname %}{{ user.userprofile.nickname }}{% endif %}" required placeholder="{{ user.username }}" name="nickname" id="nickname" class="form-control" maxlength=8/>
-              <button type="submit">별명으로 사용하기</button>
+              <button class="btn-snussum" type="submit">별명으로 사용하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="verify-profile-gender">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-4 col-md-offset-4">
+            <div class="form-group border">
+              <label>성별 <span class="small">( 선택 후 변경이 불가합니다 )</span></label>
+
+              <div class="text-center">
+                <img class="fa-spin" src="{% static "img/profile/transparent/boy.png" %}" alt=""/>
+                <img class="fa-spin" src="{% static "img/profile/transparent/girl.png" %}" alt=""/>
+              </div>
+              <button class="btn-snussum" type="submit">성별 입력하기</button>
             </div>
           </div>
         </div>
@@ -42,7 +61,7 @@
               </p>
 
               <textarea name="introduce" id="introduce" class="form-control" rows=10>{% if user.userprofile.profile_introduce %}{{ user.userprofile.profile_introduce }}{% endif %}</textarea>
-              <button type="submit">자기소개 업데이트</button>
+              <button class="btn-snussum" type="submit">자기소개 업데이트</button>
             </div>
           </div>
         </div>

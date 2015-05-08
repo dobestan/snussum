@@ -45,4 +45,9 @@ section#verify-profile {
     &.success {display: none;}
     &.danger {display: none;}
   }
+
+  img {
+    width: 40%;
+    @include filter(grayscale(100%));
+  }
 }
