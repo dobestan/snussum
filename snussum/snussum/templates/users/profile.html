@@ -32,6 +32,9 @@
           <li class="profile-settings-list">
             <a href="#information" data-toggle="tab" aria-controls="information">프로필 정보</a>
           </li>
+          <li class="profile-settings-list">
+            <a href="#condition" data-toggle="tab" aria-controls="condition">매칭 조건</a>
+          </li>
         </ul>
       </div>
 
@@ -41,6 +44,9 @@
         </section>
         <section id="information" role="tabpanel" class="tab-pane profile-settings-detail animated fadeIn">
           {% include "users/_profile/_information.html" %}
+        </section>
+        <section id="condition" role="tabpanel" class="tab-pane profile-settings-detail animated fadeIn">
+          {% include "users/_profile/_condition.html" %}
         </section>
       </section>
     </div>
