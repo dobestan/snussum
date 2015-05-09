@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url
 
-from api.views.update_profile import UpdateProfileUniversity, UpdateProfileNickname, UpdateProfileIntroduce, UpdateProfileGender
+from api.views.update_profile import UpdateProfileUniversity, UpdateProfileNickname,\
+        UpdateProfileIntroduce, UpdateProfileGender
 from api.views.messages import APIMessageSMS, APIMessageEmail
 from api.views.datings import DatingComment
 from api.views.verify import VerifySNUSnulifeLogin, VerifySNUMysnuLogin, VerifySNUMysnuEmail
