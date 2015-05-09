@@ -133,6 +133,33 @@ $(document).ready(function(){
     $(girl_makeup).addClass("active");
   });
 
+  $("section#verify-profile-gender").find("button").click(function(){
+      var form = $(this).parent(".form-group");
+      var active_img = $(form).find("img.active");
+      
+      if (active_img.length == 0){
+        $.notify({message: "성별을 선택해주세요."}, {type: "danger"});
+      } else {
+        var gender = $(active_img).attr('id').replace("_makeup", "");
+
+        $.ajax({
+          url: '/api/users/gender/',
+          type: 'PUT',
+          data: {'gender': gender},
+          success: function(result){
+            $.notify({message: "성별이 성공적으로 등록되었습니다."}, {type: "success"});
+            $(form).removeClass("border-danger");
+            $(form).addClass("border-success");
+          },
+          error: function(result){
+            $.notify({message: "서버와의 통신에 문제가 있습니다."}, {type: "danger"});
+            $(form).removeClass("border-success");
+            $(form).addClass("border-danger");
+          }
+        });
+      }
+  });
+
   $("section#verify-profile-introduce").find("textarea#introduce").on('input', function(){
       var length = $(this).val().length;
       var form = $(this).parent(".form-group");

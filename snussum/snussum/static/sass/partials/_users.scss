@@ -69,6 +69,8 @@ section#verify-profile {
     width: 100%;
     @include filter(grayscale(100%));
 
+    padding-bottom: 10px;
+
     &.active {
       @include filter(grayscale(0%));
     }
