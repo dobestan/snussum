@@ -52,3 +52,15 @@ class UpdateProfileIntroduce(UpdateProfileBase):
         self.request.user.userprofile.profile_introduce = introduce
         self.request.user.userprofile.save()
         return Response(status=status.HTTP_200_OK)
+
+
+class UpdateProfileGender(UpdateProfileBase):
+
+    def put(self, request, *args, **kwargs):
+        gender = request.data.get('gender')
+        if gender == "boy":
+            self.request.user.userprofile.is_boy = True
+        if gender == "girl":
+            self.request.user.userprofile.is_boy = False
+        self.request.user.userprofile.save()
+        return Response(status=status.HTTP_200_OK)
