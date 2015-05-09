@@ -21,7 +21,6 @@
           <a href="{% url "social:begin" backend="kakao" %}" class="text-center social-login social-login-kakao"><i class="fa fa-comment"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;카카오 계정으로 회원가입</a>
           <a href="{% url "social:begin" backend="facebook" %}" class="text-center social-login social-login-facebook"><i class="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;페이스북 계정으로 회원가입</a>
         </section>
-
         <hr />
 
         <form action="{% url 'users:signup' %}" method="post" accept-charset="utf-8">{% csrf_token %}
@@ -47,6 +46,10 @@
             <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;스누썸 계정으로 회원가입
           </button>
         </form>
+
+        <div class="pull-right">
+          <p class="small">이미 회원이신가요? <a href="{% url "users:login" %}">로그인</a></p>
+        </div>
       </div>
     </div>
   </section>
