@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from relationships.models.dating import Dating
 from users.models.university import University
 
+from users.tasks.password import send_password_reset_sms, \
+    send_password_reset_email
+
 from users.utils.hashids import get_encoded_user_profile_hashid
 
 from datetime import date
@@ -107,6 +110,14 @@ class UserProfile(models.Model):
 
     def kakao(self):
         return self._get_social_auth_profile("kakao")
+
+    def reset_password(self):
+        new_password = sha1(str(random()).encode('utf-8')).hexdigest()[:6]
+        self.user.set_password(new_password)
+        self.user.save()
+
+        send_password_reset_sms(self.user, new_password)
+        send_password_reset_email(self.user, new_password)
 
     def datings_matched(self):
         if self.is_boy:
