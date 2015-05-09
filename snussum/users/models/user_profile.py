@@ -61,6 +61,8 @@ class UserProfile(models.Model):
     university_verification_token = models.CharField(max_length=32, null=True, blank=True)
 
     nickname = models.CharField(max_length=8, blank=True, null=True, unique=True)
+    phonenumber = models.CharField(max_length=11, blank=True, null=True, unique=True)
+
     profile_introduce = models.TextField(blank=True, null=True)
 
     profile_image = models.ImageField(upload_to=_profile_image_upload_to, blank=True, null=True)
