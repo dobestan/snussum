@@ -64,3 +64,21 @@ class UpdateProfileGender(UpdateProfileBase):
             self.request.user.userprofile.is_boy = False
         self.request.user.userprofile.save()
         return Response(status=status.HTTP_200_OK)
+
+
+class ResetPassword(APIView):
+
+    def post(self, request, *args, **kwargs):
+        email = request.data.get('email', None)
+        phonenumber = request.data.get('phonenumber', None)
+
+        if email:
+            user = User.objects.get(email=email)
+        if phonenumber:
+            user = User.objects.get(userprofile__phonenumber=phonenumber)
+
+        if not user:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        user.userprofile.reset_password()
+        return Response(status=status.HTTP_200_OK)
