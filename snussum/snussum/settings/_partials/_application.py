@@ -23,6 +23,7 @@ INSTALLED_APPS = (
     'storages',
     'imagekit',
     'admin_honeypot',
+    'notifications',
 
     # Snussum Apps
     'users',
