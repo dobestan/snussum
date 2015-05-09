@@ -8,11 +8,25 @@
     </tr>
     <tr>
       <th>이메일</th>
-      <td>{{ user.email }}</td>
+      <td>
+        {% if user.email %}
+          {{ user.email }}
+        {% else %}
+          <span class="small danger">
+            * 이메일이 등록되지 않았습니다.<br/>
+            이메일이 등록되지 않은 경우 비밀번호 찾기 및 이메일 알림 기능을
+            이용할 수 없습니다.
+          </span>
+        {% endif %}
+      </td>
     </tr>
     <tr>
       <th>상태</th>
-      <td>{{ user.userprofile.university.full_name }}</td>
+      <td>
+        <span class="success">
+          <i class="fa fa-check"></i> {{ user.userprofile.university.full_name }} 인증 완료
+        </span>
+      </td>
     </tr>
     <tr>
       <th>소셜 계정 연동</th>

@@ -85,4 +85,10 @@ section#profile {
   ul.nav.nav-tabs {
     margin-bottom: 15px;
   }
+
+  table {
+    th {
+      min-width: 100px;
+    }
+  }
 }

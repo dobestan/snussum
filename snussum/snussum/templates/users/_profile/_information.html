@@ -1,0 +1,40 @@
+<table class="table table-striped">
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th>닉네임</th>
+      <td>{{ user.userprofile.nickname }}</td>
+    </tr>
+    <tr>
+      <th>자기소개</th>
+      <td>{{ user.userprofile.profile_introduce }}</td>
+    </tr>
+    <tr>
+      <th>나이</th>
+      <td>
+        {% if user.userprofile.age %}
+          {{ user.userprofile.age }}
+        {% else %}
+          <span class="small danger">
+            나이정보가 등록되지 않았습니다.<br/>
+            상대방이 나이 조건을 설정해둔 경우, 매칭되지 않습니다.
+          </span>
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <th>키</th>
+      <td>
+        {% if user.userprofile.height %}
+          {{ user.userprofile.height }} cm
+        {% else %}
+          <span class="small danger">
+            키(신장) 정보가 등록되지 않았습니다.<br/>
+            상대방이 키 조건을 설정해둔 경우, 매칭되지 않습니다.
+          </span>
+        {% endif %}
+      </td>
+    </tr>
+  </tbody>
+</table>
