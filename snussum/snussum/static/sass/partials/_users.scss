@@ -82,6 +82,25 @@ section#verify-profile {
 }
 
 section#profile {
+  section#notifications {
+    ul.notifications {
+      list-style-type: none;
+      padding-left: 0;
+
+      li.notification {
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
+
+        p {
+          position: relative;
+        }
+      }
+    }
+  } 
+
   ul.nav.nav-tabs {
     margin-bottom: 15px;
   }
