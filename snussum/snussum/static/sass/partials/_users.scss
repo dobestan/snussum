@@ -82,6 +82,10 @@ section#verify-profile {
 }
 
 section#profile {
+  .editing {
+    display: none;
+  }
+
   ul.nav.nav-tabs {
     margin-bottom: 15px;
   }
@@ -89,6 +93,9 @@ section#profile {
   table {
     th {
       width: 100px;
+    }
+
+    td {
     }
   }
 }
