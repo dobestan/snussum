@@ -2,14 +2,29 @@
 
 {% block content %}
 <section id="home">
-  <section id="main-slide">
-    <div class="wrapper">
-      <p>
-        서울대학생의 </br>
-        서울대학생에 의한 </br>
-        서울대학생을 위한</br>
-      </p>
-    </div>
-  </section>
+  <div class="container">
+    <section class="col-xs-12 col-sm-12 col-md-8">
+      <section>
+        <h1>셀프소개팅 <small></small></h1>
+
+        {% include "datings/self_dating/_dating.html" %}
+        {% include "datings/self_dating/_dating.html" %}
+        {% include "datings/self_dating/_dating.html" %}
+      </section>
+    </section>
+
+    <section class="col-xs-12 col-sm-12 col-md-4">
+      <h1>명예의 전당 <small></small></h1>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+          tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+          vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+          no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        </div>
+      </div>
+    </section>
+  </div>
 </section>
 {% endblock %}
