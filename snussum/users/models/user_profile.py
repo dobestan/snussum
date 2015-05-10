@@ -70,6 +70,8 @@ class UserProfile(models.Model):
 
     profile_image = models.ImageField(upload_to=_profile_image_upload_to, blank=True, null=True)
 
+    is_dating_enabled = models.BooleanField(default=True)
+
     age = models.IntegerField(blank=True, null=True)
     height = models.IntegerField(blank=True, null=True)
     weight = models.IntegerField(blank=True, null=True)
@@ -192,6 +194,14 @@ class UserProfile(models.Model):
         if self.is_boy:
             return Dating.objects.create(boy=self.user, girl=partner)
         return Dating.objects.create(boy=partner, girl=self.user)
+
+    def update_conditions(self, is_dating_enabled=True, min_age=None, max_age=None, \
+            min_height=None, max_height=None):
+        self.is_dating_enabled = is_dating_enabled
+
+        self.age_condition = (min_age, max_age)
+        self.height_condition = (min_height, max_height)
+        self.save()
 
     def generate_university_verification_token(self):
         salt = sha1(str(random()).encode('utf-8')).hexdigest()[:5]

@@ -1,8 +1,9 @@
 from django.conf.urls import patterns, url
 
 from api.views.update_profile import UpdateProfileUniversity, UpdateProfileNickname,\
-    UpdateProfileIntroduce, UpdateProfileGender, ResetPassword
+    UpdateProfileIntroduce, UpdateProfileGender, ResetPassword, UpdateProfileConditions
 from api.views.messages import APIMessageSMS, APIMessageEmail, ContactAdmin
+from api.views.messages import APIMessageSMS, APIMessageEmail
 from api.views.datings import DatingComment
 from api.views.verify import VerifySNUSnulifeLogin, VerifySNUMysnuLogin, VerifySNUMysnuEmail
 
@@ -15,6 +16,7 @@ urlpatterns = patterns(
     url(r'^users/nickname/$', UpdateProfileNickname.as_view(), name='update-nickname'),
     url(r'^users/introduce/$', UpdateProfileIntroduce.as_view(), name='update-introduce'),
     url(r'^users/gender/$', UpdateProfileGender.as_view(), name='update-gender'),
+    url(r'^users/conditions/$', UpdateProfileConditions.as_view(), name='update-conditions'),
 
     url(r'^users/password/reset/$', ResetPassword.as_view(), name='reset-password'),
 

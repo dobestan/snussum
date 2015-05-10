@@ -66,6 +66,30 @@ class UpdateProfileGender(UpdateProfileBase):
         return Response(status=status.HTTP_200_OK)
 
 
+class UpdateProfileConditions(UpdateProfileBase):
+
+    def put(self, request, *args, **kwargs):
+        min_age = request.data.get('min_age', None)
+        max_age = request.data.get('max_age', None)
+        min_height = request.data.get('min_height', None)
+        max_height = request.data.get('max_height', None)
+
+        min_age = int(min_age) if min_age else None
+        max_age = int(max_age) if max_age else None
+        min_height = int(min_height) if min_height else None
+        max_height = int(max_height) if max_height else None
+
+        self.request.user.userprofile.update_conditions(
+            is_dating_enabled=True,
+            min_age=min_age,
+            max_age=max_age,
+            min_height=min_height,
+            max_height=max_height,
+        )
+
+        return Response(status=status.HTTP_200_OK)
+
+
 class ResetPassword(APIView):
 
     def post(self, request, *args, **kwargs):
