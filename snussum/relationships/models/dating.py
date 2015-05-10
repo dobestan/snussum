@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from notifications import notify
 
 from relationships.utils.hashids import get_encoded_dating_hashid
 
@@ -52,3 +53,8 @@ def _update_dating_hash_id(sender, instance, created, **kwargs):
     if created:
         instance.hash_id = get_encoded_dating_hashid(instance.id)
         instance.save()
+
+        notify.send(instance.girl, recipient=instance.boy, \
+            action_object=instance, verb="created")
+        notify.send(instance.boy, recipient=instance.girl, \
+            action_object=instance, verb="created")

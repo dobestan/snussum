@@ -15,12 +15,22 @@
   <section class="container">
 
     <div class="col-sm-12 col-md-6">
-      <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-        vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      </p>
+      <ul>
+        {% for notification in user.notifications.all %}
+        <li>
+          {% if notification.action_object_content_type.name == "dating" %}
+            <a href="{% url "dating-detail" notification.action_object.hash_id %}">
+              <strong>{{ notification.actor.userprofile.nickname }}</strong>님과 새롭게 매칭되었습니다.
+              {{ notification.action_object.matched_at }}
+            </a>
+          {% elif notification.action_object_content_type.name == "comment" %}
+          <a href="{% url "dating-detail" notification.action_object.dating.hash_id %}">
+            <strong>{{ notification.actor.userprofile.nickname }}</strong>님이 새로운 메시지를 보냈습니다: "{{ notification.description }}"
+          </a>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
     </div>
 
     <div class="col-sm-12 col-md-6">
