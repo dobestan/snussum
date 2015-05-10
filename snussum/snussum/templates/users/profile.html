@@ -24,7 +24,7 @@
               {{ notification.action_object.matched_at }}
             </a>
           {% elif notification.action_object_content_type.name == "comment" %}
-          <a href="{% url "dating-detail" notification.action_object.dating.hash_id %}">
+          <a href="{% url "dating-detail" notification.action_object.dating.hash_id %}#{{ notification.action_object.hash_id }}">
             <strong>{{ notification.actor.userprofile.nickname }}</strong>님이 새로운 메시지를 보냈습니다: "{{ notification.description }}"
           </a>
           {% endif %}
