@@ -3,38 +3,38 @@ section#comments {
     $textarea-height: 100px;
     $border-radius-size: 15px;
 
-    .container {
-      background-color: lightgrey;
+    background-color: lightgrey;
 
-      .row {
-        padding: 10px;
+    .row {
+      padding: 10px 20px;
 
-        textarea {
-          @include border-left-radius($border-radius-size);
-          height: $textarea-height;
-        }
+      textarea {
+        @include border-left-radius($border-radius-size);
+        height: $textarea-height;
+      }
 
-        button {
-          // Remove default style
-          border: 0;
+      button {
+        // Remove default style
+        border: 0;
 
-          background-color: yellow;
+        background-color: yellow;
 
-          display: block;
-          width: 100%;
-          height: $textarea-height;
+        display: block;
+        width: 100%;
+        height: $textarea-height;
 
-          @include border-right-radius($border-radius-size);
+        @include border-right-radius($border-radius-size);
 
-          &:active {
-            background: grey;
-          }
+        &:active {
+          background: grey;
         }
       }
     }
   }
 
-  .container.kakaotalk {
+  .kakaotalk {
+    padding: 0 15px;
+
     background-image: url(http://local.snussum.com:9000/static/img/kakaotalk.jpg);
     min-height: 300px;
   }
