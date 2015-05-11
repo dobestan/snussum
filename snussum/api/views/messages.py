@@ -25,13 +25,13 @@ class APIMessageEmail(APIMessageBase):
 
 
 class ContactAdmin(APIView):
-    
+
     def post(self, request, *args, **kwargs):
         content = request.data.get("content", None)
         contact = request.data.get("contact", None)
 
         send_sms.delay({"to": "01022205736", "body": "%s from %s" % (content, contact)})
-        
+
         if contact:
             send_sms.delay({
                 'to': contact,
