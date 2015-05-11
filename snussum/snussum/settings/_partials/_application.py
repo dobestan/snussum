@@ -24,6 +24,7 @@ INSTALLED_APPS = (
     'imagekit',
     'admin_honeypot',
     'notifications',
+    'django_summernote',
 
     # Snussum Apps
     'users',
@@ -136,3 +137,19 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
 ADMIN_URL = os.environ["ADMIN_URL"]
+
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode
+    # or set False to use SummernoteInplaceWidget - no iframe mode
+    'width': '100%',
+    'height': '480',
+    'lang': 'ko-KR',
+
+    # Customize toolbar buttons
+    'toolbar': [
+        ['style', ['style']],
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['para', ['ul', 'ol']],
+        ['insert', ['link', 'picture']],
+    ],
+}

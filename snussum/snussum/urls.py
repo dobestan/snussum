@@ -19,7 +19,7 @@ urlpatterns = [
 
     # Project Libraries
     url('', include('social.apps.django_app.urls', namespace='social')),
-
+    url(r'^summernote/', include('django_summernote.urls')),
 
     # Project Urls
     url(r'^$', Home.as_view(), name='home'),

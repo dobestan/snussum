@@ -211,3 +211,10 @@ section#dashboard {
     margin-bottom: 0;
   }
 }
+
+#self-dating-new {
+  .bootstrap-tagsinput {
+    display: block;
+    width: 100% !important;
+  }
+}
