@@ -9,7 +9,7 @@ from relationships.utils.hashids import get_encoded_self_dating_hashid
 
 from django.contrib.auth.models import User
 
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 
 class SelfDating(models.Model):
@@ -30,6 +30,21 @@ class SelfDating(models.Model):
 
     def get_absolute_url(self):
         return "/wanted/%s/" % self.hash_id
+
+    def _time_left(self):
+        if self.is_finished:
+            return None
+        time_left_in_timedelta =  self.ends_at - datetime.now()
+        return {
+            'days': time_left_in_timedelta.days,
+            'hours': time_left_in_timedelta.seconds // 3600,
+            'minutes': time_left_in_timedelta.seconds // 60 % 60,
+        }
+    time_left = property(_time_left)
+
+    def _is_finished(self):
+        return datetime.now() > self.ends_at
+    is_finished = property(_is_finished)
 
 
 class SelfDatingApply(models.Model):
