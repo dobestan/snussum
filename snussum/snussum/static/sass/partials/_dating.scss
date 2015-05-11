@@ -163,3 +163,51 @@ section#dashboard {
     }
   }
 }
+
+.self-dating {
+  .panel-body {
+    padding: 20px;
+  }
+
+  h3 {
+    margin-top: 5px;
+  }
+
+  p {
+    font-weight: lighter;
+  }
+
+  ul {
+    display: inline;
+    list-style-type: none;
+    padding-left: 0;
+
+    li {
+    }
+  }
+
+  .self-dating-summary {
+    ul {
+      li {
+        border-bottom: 1px solid $snussum-lightgrey;
+        padding-bottom: 7px;
+      }
+    }
+  }
+
+  .self-dating-preferences {
+    div {
+      padding: 3px 0;
+    }
+
+    ul {
+      li {
+        display: inline;
+      }
+    }
+  }
+  
+  .progress {
+    margin-bottom: 0;
+  }
+}
