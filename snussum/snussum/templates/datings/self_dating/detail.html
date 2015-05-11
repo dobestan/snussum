@@ -1,1 +1,67 @@
-<h1>Self Dating</h1>
+{% extends "_base.html" %}
+
+{% block content %}
+<section id="self-dating-detail">
+  <div class="container">
+    <div class="col-xs-12 col-sm-8">
+      <section>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h1>{{ self_dating.title }}</h1>
+
+            <hr />
+
+            {{ self_dating.content|safe }}
+
+            <hr />
+
+            <div class="self-dating-preferences">
+              <div>
+                <span>저는</span>
+                <ul>
+                  {% for tag in self_dating.tags_myself %}
+                    <li><span class="label label-info">{{ tag }}</span></li>
+                  {% endfor %}
+                </ul>
+                <span><strong>{% if self_dating.user.userprofile.is_boy %}남자{% else %}여자{% endif %}</strong> 입니다</span>
+              </div>
+              <div>
+                <span>저는</span>
+                <ul>
+                  {% for tag in self_dating.tags_partner %}
+                    <li><span class="label label-success">{{ tag }}</span></li>
+                  {% endfor %}
+                </ul>
+                <span><strong>{% if self_dating.user.userprofile.is_boy %}여자{% else %}남성{% endif %}</strong> 을 원합니다</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>셀프소개팅 지원자</h2>
+      </section>
+
+      <section>
+        <h2>유사 프로젝트</h2>
+      </section>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
+      <section>
+        <div class="panel panel-default">
+          <div class="panel-body">
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="row">
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+{% endblock %}
