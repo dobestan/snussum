@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 
 from api.views.update_profile import UpdateProfileUniversity, UpdateProfileNickname,\
     UpdateProfileIntroduce, UpdateProfileGender, ResetPassword
-from api.views.messages import APIMessageSMS, APIMessageEmail
+from api.views.messages import APIMessageSMS, APIMessageEmail, ContactAdmin
 from api.views.datings import DatingComment
 from api.views.verify import VerifySNUSnulifeLogin, VerifySNUMysnuLogin, VerifySNUMysnuEmail
 
@@ -27,4 +27,6 @@ urlpatterns = patterns(
     url(r'^users/snulife/login/$', VerifySNUSnulifeLogin.as_view(), name='snulife-login'),
     url(r'^users/mysnu/login/$', VerifySNUMysnuLogin.as_view(), name='mysnu-login'),
     url(r'^users/mysnu/email/$', VerifySNUMysnuEmail.as_view(), name='mysnu-email'),
+
+    url(r'^contact/$', ContactAdmin.as_view(), name='contact'),
 )
