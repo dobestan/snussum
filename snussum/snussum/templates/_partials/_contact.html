@@ -1,0 +1,69 @@
+{% load staticfiles %}
+
+<section id="contact">
+  <section id="snussum-contact" class="container animated bounceInRight">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-8">
+        <div class="panel">
+          <div class="panel-body">
+            <p class="text-center"><strong>관리자한테 문자보내기</strong></p>
+            <p class="small">
+              안녕하세요. 썸타는 서울대, 스누썸 개발자 "썸날"입니다. 지속적으로 학우 여러분들에게 더 나은 스누썸 서비스를 제공하기 위해서 적극적으로 학우 여러분들의 의견을 받고자 합니다.
+            </p>
+            <div class="form-group">
+              <textarea name="" id="contact_content" class="form-control" placeholder="스누썸에 대한 문의사항이나 피드백을 남겨주세요. 학우 여러분이 남겨주신 소중한 피드백은 서비스 개발에 큰 도움이 됩니다." rows="10"></textarea>
+            </div>
+
+            <div class="form-group">
+              <span class="small success"><i class="fa fa-check"></i> 답장이 필요한 문의의 경우 연락처를 남겨주시면 제가 직접 확인 후 빠르게 연락드릴 수 있도록 하겠습니다. 감사합니다.</span>
+              <input type="tel" value="" name="" id="contact_contact" class="form-control" placeholder="(선택) 010-0000-0000"/>
+            </div>
+
+            <button type="submit" class="text-center btn-snussum-darkgrey">
+              <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관리자한테 문자 보내기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <img class="" src="{% static "img/profile/transparent/boy.png" %}" alt=""/>
+</section>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+  var image = $("section#contact").find("img");
+  var contact_section = $("section#snussum-contact");
+  var button = $(contact_section).find("button");
+
+  $(image).click(function(){
+    $(contact_section).toggle();
+  });
+
+  $(button).click(function(){
+    var content = $(contact_section).find("textarea#contact_content").val();
+    var contact = $(contact_section).find("input#contact_contact").val();
+
+    var data = {
+      'content': content,
+      'contact': contact
+    };
+
+    $.ajax({
+      url: '/api/contact/',
+      type: 'POST',
+      data: data,
+      success: function(result){
+        $(contact_section).toggle();
+        $.notify({message: '성공적으로 피드백/문의사항이 전달되었습니다.'},
+          {type: "success"});
+      },
+      error: function(result){
+        $.notify({message: '현재 서버와의 통신에 문제가 있습니다.'},
+          {type: "danger"});
+      }
+    });
+  });
+});
+</script>
