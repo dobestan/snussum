@@ -5,6 +5,8 @@ from snussum.views import Home, Dashboard
 from snussum.views.rules import Privacy, Service
 from snussum.views.dating import DatingDetail, TodayDetail, SelfDatingDetail
 
+from relationships.views.self_dating import SelfDatingFormView
+
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -29,6 +31,7 @@ urlpatterns = [
     url(r'^ssum/(?P<slug>\w+)/$', DatingDetail.as_view(), name='dating-detail'),
     url(r'^today/$', TodayDetail.as_view(), name='today'),
 
+    url(r'^wanted/new/$', SelfDatingFormView.as_view(), name='self-dating-new'),
     url(r'^wanted/(?P<slug>\w+)/$', SelfDatingDetail.as_view(), name='self-dating-detail'),
 
     url(r'^', include('users.urls', namespace='users')),
