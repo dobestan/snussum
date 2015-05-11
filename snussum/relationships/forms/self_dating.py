@@ -7,7 +7,7 @@ from django_summernote.widgets import SummernoteWidget
 class SelfDatingForm(ModelForm):
     class Meta:
         model = SelfDating
-        exclude = []
+        fields = ['title', 'content', 'tags_myself', 'tags_partner']
         widgets = {
             'content': SummernoteWidget(),
         }

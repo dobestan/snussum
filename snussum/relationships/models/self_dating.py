@@ -28,6 +28,9 @@ class SelfDating(models.Model):
     def __str__(self):
         return self.user.username
 
+    def get_absolute_url(self):
+        return "/wanted/%s/" % self.hash_id
+
 
 class SelfDatingApply(models.Model):
     dating = models.ForeignKey(SelfDating)
