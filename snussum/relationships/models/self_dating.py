@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -15,8 +16,14 @@ class SelfDating(models.Model):
     hash_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
     user = models.ForeignKey(User)
 
+    title = models.CharField(max_length=30)
+    content = models.TextField()
+
     created_at = models.DateTimeField(auto_now_add=True)
     ends_at = models.DateTimeField(default=None, blank=True, null=True)
+
+    tags_myself = ArrayField(models.CharField(max_length=8), blank=True)
+    tags_partner = ArrayField(models.CharField(max_length=8), blank=True)
 
     def __str__(self):
         return self.user.username
