@@ -142,7 +142,7 @@ SUMMERNOTE_CONFIG = {
     # Using SummernoteWidget - iframe mode
     # or set False to use SummernoteInplaceWidget - no iframe mode
     'width': '100%',
-    'height': '480',
+    'height': '240',
     'lang': 'ko-KR',
 
     # Customize toolbar buttons
@@ -151,5 +151,17 @@ SUMMERNOTE_CONFIG = {
         ['style', ['bold', 'italic', 'underline', 'clear']],
         ['para', ['ul', 'ol']],
         ['insert', ['link', 'picture']],
+        ['view', ['fullscreen']],
     ],
+
+    # Set external media files for SummernoteInplaceWidget.
+    # !!! Be sure to put {{ form.media }} in template before initiate summernote.
+    'inplacewidget_external_css': (                                             
+        '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',      
+        '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css',
+    ),                                                                          
+    'inplacewidget_external_js': (                                              
+        '//code.jquery.com/jquery-1.9.1.min.js',                                
+        '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',        
+    ),
 }
