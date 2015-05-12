@@ -32,11 +32,6 @@ def _send_notifications(sender, instance, created, **kwargs):
         else:
             partner = instance.dating.boy
 
-        if len(instance.content) < 30:
-            content = instance.content
-        else:
-            content = instance.content[:30] + "..."
-
         notify.send(instance.user, recipient=partner, \
             action_object=instance, verb="created", \
-            description=content)
+            description=instance.content)
