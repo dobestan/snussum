@@ -15,36 +15,7 @@
       <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
         <ul class="notifications">
           {% for notification in user.notifications.all %}
-          <li class="notification">
-            {% if notification.action_object_content_type.name == "dating" %}
-              <a href="{% url "dating-detail" notification.action_object.hash_id %}">
-                <div class="media">
-                  <div class="media-left">
-                    <img src="{{ notification.actor.userprofile.profile_image_url }}" alt=""/>
-                  </div>
-                  <div class="media-body">
-                    <p>
-                      <strong>{{ notification.actor.userprofile.nickname }}</strong>님과 새롭게 매칭되었습니다.
-                    </p>
-                  </div>
-                  
-                </div>
-              </a>
-            {% elif notification.action_object_content_type.name == "comment" %}
-              <a href="{% url "dating-detail" notification.action_object.dating.hash_id %}#{{ notification.action_object.hash_id }}">
-                <div class="media">
-                  <div class="media-left">
-                    <img src="{{ notification.actor.userprofile.profile_image_url }}" alt=""/>
-                  </div>
-                  <div class="media-body">
-                    <p>
-                      <strong>{{ notification.actor.userprofile.nickname }}</strong>님이 새로운 메시지를 보냈습니다: "{{ notification.description }}"
-                    </p>
-                  </div>
-                </div>
-              </a>
-            {% endif %}
-          </li>
+            {% include "users/_notifications/_notification.html" with notification=notification %}
           {% endfor %}
         </ul>
       </div>
