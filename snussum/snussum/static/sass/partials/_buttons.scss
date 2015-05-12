@@ -6,6 +6,11 @@
   padding: 10px;
   margin: 10px 0;
   width: 100%;
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 .btn-snussum-darkgrey {

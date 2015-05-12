@@ -19,6 +19,3 @@ class SelfDatingApplyForm(ModelForm):
     class Meta:
         model = SelfDatingApply
         fields = ['content']
-        widgets = {
-            'content': SummernoteInplaceWidget(),
-        }

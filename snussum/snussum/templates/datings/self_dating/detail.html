@@ -48,6 +48,15 @@
         </div>
       </section>
 
+      <section id="self-dating-apply-section" class="visible-xs">
+        <div class="panel panel-default border border-red">
+          <div class="panel-body">
+            <h2>셀프소개팅 지원하기</h2>
+            {% include "datings/self_dating/_apply_form.html" %}
+          </div>
+        </div>
+      </section>
+
       <section>
         <div class="panel panel-default">
           <div class="panel-body">
@@ -58,36 +67,23 @@
             {% endfor %}
           </div>
         </div>
-      
-
       </section>
     </div>
 
     <div class="col-xs-12 col-sm-4">
-      <section id="self-dating-apply" data-spy="affix">
+      <section id="self-dating-apply-sidebar" data-spy="affix">
         <div class="panel panel-default border border-red">
           <div class="panel-body">
             <h2>셀프소개팅 지원하기</h2>
-
-            {{ form.media }}
-            <form action="" method="" accept-charset="utf-8">
-              <div class="form-group">
-                <label>상대방에게 전달할 문구</label>
-                {{ form.content }}
-              </div>
-
-              <button type="submit" class="text-center btn-snussum-red">
-                <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셀프소개팅 지원하기
-              </button>
-            </form>
+            {% include "datings/self_dating/_apply_form.html" %}
           </div>
         </div>
       </section>
 
       <section class="visible-xs">
-        <button id="btn-self-dating-apply" type="button" class="text-center btn-snussum-red">
+        <a id="btn-self-dating-apply" href="#self-dating-apply-section" class="text-center btn-snussum-red">
           <i class="fa fa-sign-in"></i>&nbsp;셀소 지원하기
-        </button>
+        </a>
       </section>
     </div>
   </div>
