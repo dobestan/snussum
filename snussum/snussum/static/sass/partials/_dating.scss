@@ -228,3 +228,21 @@ section#dashboard {
     width: 100% !important;
   }
 }
+
+
+// SelfDatingApply Form ( fixed sidebar )
+
+#self-dating-apply {
+}
+
+
+// SelfDatingApply Button ( fixed button on mobile )
+
+#btn-self-dating-apply {
+  position: fixed;
+  width: 45%;
+  left: 5%;
+  bottom: 10px;
+
+  z-index: 1000;
+}
