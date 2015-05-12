@@ -26,9 +26,10 @@
             <span class="label label-default">{% if user.notifications.unread %}{{ user.notifications.unread.count }}{% endif %}</span>
           </a>
           <ul class="dropdown-menu notifications" role="notifications">
-            {% for notification in user.notifications.unread %}
+            {% for notification in user.notifications.unread|slice:"3" %}
               {% include "users/_notifications/_notification.html" with notification=notification %}
             {% endfor %}
+            <li class="notification-center text-center"><a href="{% url 'users:notification' %}">알람 전체보기</a></li>
           </ul>
         </li>
         <li><a href="{% url "users:profile" %}">마이페이지</a></li>

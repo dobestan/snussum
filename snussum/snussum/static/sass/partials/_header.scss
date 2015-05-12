@@ -45,6 +45,8 @@ header#header {
   // Notifications Style
   ul.notifications {
     padding-top: 0px;
+    padding-bottom: 0px;
+
     background-color: $snussum-lightgrey;
 
     li.notification {
@@ -52,6 +54,15 @@ header#header {
 
       &:hover{
         background-color: $snussum-orange;
+      }
+    }
+    
+    li.notification-center {
+      color: white;
+      background-color: $snussum-darkgrey;
+
+      &:hover {
+        background-color: $snussum-red;
       }
     }
   }
