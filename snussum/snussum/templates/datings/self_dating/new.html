@@ -1,0 +1,73 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<section id="self-dating-new">
+  <section class="container">
+    <div class="row">
+      <div class="page-header text-center">
+        <h1>셀소 등록하기 <small>셀프소개팅</small></h1>
+        <p>서울대학생의, 서울대학생에 의한, 서울대학생을 위한 소개팅</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <form action="{% url "self-dating-new" %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+          {% if form.errors %}
+            <p class="small danger">
+              <i class="fa fa-close"></i> 셀프소개팅 양식에 문제가 있습니다. 다시 한번 확인 후 신청 부탁드립니다.
+            </p>
+          {% endif %}
+          
+          <div class="form-group">
+            <label>제목</label>
+            <input type="text" value="" name="title" id="id_title" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+            <label>본문</label>
+            {{ form.content|safe }}
+          </div>
+
+          <hr/>
+
+          <p class="small success">
+            <i class="fa fa-check"></i>
+            스누썸 셀프소개팅 ( 이하 "셀소" )은 효과적인 매칭 시스템 도입을 위해서 태그 기능을 제공합니다.
+          </p>
+
+          <div class="form-group">
+            <label>나를 나타내는 태그</label>
+            <span class="small success">
+              <i class="fa fa-check"></i> 저는 이런 <strong>{% if user.userprofile.is_boy %}남자{% else %}여자{% endif %}</strong>입니다
+            </span>
+            <input type="text" value="" name="tags_myself" id="id_tags_myself" class="form-control" data-role="tagsinput"/>
+          </div>
+
+          <div class="form-group">
+            <label>상대방을 나타내는 태그</label>
+            <span class="small success">
+              <i class="fa fa-check"></i>저는 이런 <strong>{% if user.userprofile.is_boy %}여자{% else %}남자{% endif %}</strong>를 원합니다
+            </span>
+            <input type="text" value="" name="tags_partner" id="id_tags_partner" class="form-control" data-role="tagsinput"/>
+          </div>
+
+          <div class="form-group">
+            <label>셀프소개팅 진행 동의</label>
+            <p>
+              <input type="checkbox"/> 
+              나({{ user.userprofile.nickname }})는 셀프 소개팅 진행과정에 대해서 충분히 숙지하였으며, 셀프 소개팅을 진행하는 것에 동의합니다.
+            </p>
+          </div>
+
+          <button type="submit" class="text-center btn-snussum-darkgrey">
+            <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셀프 소개팅 등록하기
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</section>
+{% endblock %}

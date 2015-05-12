@@ -13,9 +13,31 @@
       </button>
     </div>
 
+    <ul class="nav navbar-nav navbar-left collapse navbar-collapse">
+      <li><a href="{% url "dashboard" %}">오늘의 매칭</a></li>
+      <li><a href="{% url "dashboard" %}">셀프소개팅</a></li>
+    </ul>
+
     <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
       {% if user.is_authenticated %}
-        <li><a href="{% url "dashboard" %}">오늘의 매칭</a></li>
+        <li class="hidden-md hidden-lg">
+        <a href="{% url "users:notification" %}">
+            <i class="fa fa-bell"></i>
+            <span class="label label-default">{% if user.notifications.unread %}{{ user.notifications.unread.count }}{% endif %}</span>
+          </a>
+        </li>
+        <li class="dropdown hidden-xs hidden-sm">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fa fa-bell"></i>
+            <span class="label label-default">{% if user.notifications.unread %}{{ user.notifications.unread.count }}{% endif %}</span>
+          </a>
+          <ul class="dropdown-menu notifications" role="notifications">
+            {% for notification in user.notifications.unread|slice:"3" %}
+              {% include "users/_notifications/_notification.html" with notification=notification %}
+            {% endfor %}
+            <li class="notification-center text-center"><a href="{% url 'users:notification' %}">알람 전체보기</a></li>
+          </ul>
+        </li>
         <li><a href="{% url "users:profile" %}">마이페이지</a></li>
         <li><a href="{% url "users:logout" %}">로그아웃</a></li>
       {% else %}

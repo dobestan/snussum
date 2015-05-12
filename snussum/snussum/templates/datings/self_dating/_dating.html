@@ -1,0 +1,50 @@
+<div class="panel panel-default self-dating" style="border: 2px solid {% if self_dating.user.userprofile.is_boy %}#3498DB{% else %}#E74C3C{% endif %}">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3><a href="{% url "self-dating-detail" self_dating.hash_id %}">{{ self_dating.title }}</a></h3>
+        <p>
+          <span><i class="fa fa-user"></i> {{ self_dating.user.userprofile.nickname }}</span> | 
+          <span>등록일자 {{ self_dating.created_at|date:"Y년 m월 d일" }}</span>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8">
+        <p>
+          {{ self_dating.content|striptags|truncatechars_html:120 }}
+        </p>
+        <div class="self-dating-preferences">
+          <div>
+            <span>저는</span>
+            <ul>
+              {% for tag in self_dating.tags_myself %}
+                <li><span class="label label-info">{{ tag }}</span></li>
+              {% endfor %}
+            </ul>
+            <span><strong>{% if self_dating.user.userprofile.is_boy %}남자{% else %}여자{% endif %}</strong> 입니다</span>
+          </div>
+          <div>
+            <span>저는</span>
+            <ul>
+              {% for tag in self_dating.tags_partner %}
+                <li><span class="label label-success">{{ tag }}</span></li>
+              {% endfor %}
+            </ul>
+            <span><strong>{% if self_dating.user.userprofile.is_boy %}여자{% else %}남성{% endif %}</strong> 을 원합니다</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 self-dating-summary">
+        <ul>
+          <li><i class="fa fa-clock-o"></i> {% if self_dating.is_finished %}셀프소개팅 종료{% else %}마감 <strong>
+            {% if self_dating.time_left.days %}{{ self_dating.time_left.days}}일{% endif %}
+            {% if self_dating.time_left.hours %}{{ self_dating.time_left.hours}}시간{% endif %}
+            {% if self_dating.time_left.minutes %}{{ self_dating.time_left.minutes}}분{% endif %} 전
+          </strong>{% endif %}</li>
+          <li><i class="fa fa-pencil"></i> 총 <strong>{{ self_dating.selfdatingapply_set.count }}명</strong> 지원</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

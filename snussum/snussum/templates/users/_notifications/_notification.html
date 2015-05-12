@@ -1,0 +1,7 @@
+<li class="notification {% if notification.unread %}unread{% endif %}">
+  {% if notification.action_object_content_type.name == "dating" %}
+    {% include "users/_notifications/_dating.html" %}
+  {% elif notification.action_object_content_type.name == "comment" %}
+    {% include "users/_notifications/_comment.html" %}
+  {% endif %}
+</li>

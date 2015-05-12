@@ -23,6 +23,8 @@ INSTALLED_APPS = (
     'storages',
     'imagekit',
     'admin_honeypot',
+    'notifications',
+    'django_summernote',
 
     # Snussum Apps
     'users',
@@ -76,6 +78,8 @@ TEMPLATES = [
 ]
 
 HASHIDS_DATING_SALT = os.environ["HASHIDS_DATING_SALT"]
+HASHIDS_SELF_DATING_SALT = os.environ["HASHIDS_SELF_DATING_SALT"]
+HASHIDS_COMMENT_SALT = os.environ["HASHIDS_COMMENT_SALT"]
 HASHIDS_USER_PROFILE_SALT = os.environ["HASHIDS_USER_PROFILE_SALT"]
 
 STATICFILES_DIRS = (
@@ -133,3 +137,19 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
 ADMIN_URL = os.environ["ADMIN_URL"]
+
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode
+    # or set False to use SummernoteInplaceWidget - no iframe mode
+    'width': '100%',
+    'height': '480',
+    'lang': 'ko-KR',
+
+    # Customize toolbar buttons
+    'toolbar': [
+        ['style', ['style']],
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['para', ['ul', 'ol']],
+        ['insert', ['link', 'picture']],
+    ],
+}

@@ -17,6 +17,9 @@ module.exports = (grunt) ->
             'js/bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js'
             'js/bootstrap-notify.min.js': 'remarkable-bootstrap-notify/bootstrap-notify.min.js'
             'js/bootstrap-switch.min.js': 'bootstrap-switch/dist/js/bootstrap-switch.min.js'
+            'js/bootstrap-datetimepicker.min.js': 'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+            'js/moment.min.js': 'moment/min/moment.min.js'
+            'js/bootstrap-tagsinput.min.js': 'bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js'
 
             'sass/bourbon/': 'bourbon/app/assets/stylesheets'
 
@@ -24,6 +27,8 @@ module.exports = (grunt) ->
             'css/animate.min.css': 'animate.css/animate.min.css'
             'css/font-awesome.min.css': 'fontawesome/css/font-awesome.min.css'
             'css/bootstrap-switch.min.css': 'bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css'
+            'css/bootstrap-datetimepicker.min.css': 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
+            'css/bootstrap-tagsinput.css': 'bootstrap-tagsinput/dist/bootstrap-tagsinput.css'
 
             'fonts/': ['NanumBarunGothic/', 'fontawesome/fonts/']
 

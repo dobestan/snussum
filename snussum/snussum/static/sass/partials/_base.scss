@@ -1,5 +1,6 @@
 @import "bourbon";
 
+// Snussum Custom Color-Set
 // http://flatuicolors.com/
 $snussum-darkgrey: #34495E;
 $snussum-lightgrey: #ECF0F1;
@@ -7,31 +8,40 @@ $snussum-red: #E74C3C;
 $snussum-blue: #3498DB;
 $snussum-orange: #F39C12;
 
+// Bootstrap Colors
+$bootstrap-primary: #428BCA;
+$bootstrap-info: #5BC0DE;
+$bootstrap-warning: #F0AD4E;
+$bootstrap-success: #5CB85C;
+$bootstrap-danger: #D9534F;
 
-.danger {color: #D9534F;}
-.success {color: #5CB85C;}
+.primary {color: $bootstrap-primary;}
+.info {color: $bootstrap-info;}
+.warning {color: $bootstrap-warning;}
+.success {color: $bootstrap-success;}
+.danger {color: $bootstrap-danger;}
+
+.darkgrey {color: $snussum-darkgrey;}
+.lightgrey {color: $snussum-lightgrey;}
+.red {color: $snussum-red;}
+.blue {color: $snussum-blue;}
+.oranger {color: $snussum-orange;}
 
 .border {
   border: 2px solid $snussum-lightgrey;
   border-radius: 5px;
 
-  &.border-primary {
-    border-color: #428BCA;
-  }
+  // Bootstrap Style Borders
+  &.border-primary {border-color: $bootstrap-primary;}
+  &.border-info {border-color: $bootstrap-info;}
+  &.border-warning {border-color: $bootstrap-warning;}
+  &.border-success {border-color: $bootstrap-success;}
+  &.border-danger {border-color: $bootstrap-danger;}
 
-  &.border-info {
-    border-color: #5BC0DE;
-  }
-
-  &.border-warning {
-    border-color: #F0AD4E;
-  }
-
-  &.border-success {
-    border-color: #5CB85C;
-  }
-
-  &.border-danger {
-    border-color: #D9534F;
-  }
+  // Snussum Custom Style Borders
+  &.border-darkgrey {border-color: $snussum-darkgrey;}
+  &.border-lightgrey {border-color: $snussum-lightgrey;}
+  &.border-red {border-color: $snussum-red;}
+  &.border-blue {border-color: $snussum-blue;}
+  &.border-orange {border-color: $snussum-orange;}
 }

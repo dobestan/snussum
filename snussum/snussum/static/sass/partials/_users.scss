@@ -92,3 +92,36 @@ section#profile {
     }
   }
 }
+
+
+// Notifications
+
+ul.notifications {
+  list-style-type: none;
+  padding-left: 0;
+
+  li.notification {
+    &.unread {
+      background-color: $snussum-lightgrey;
+    }
+
+    &:hover {
+      background-color: $snussum-orange;
+      color: white;
+    }
+
+    div.media {
+      padding: 10px;
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}

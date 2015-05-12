@@ -3,66 +3,46 @@
 
 {% block content %}
   {% with partner=dating|partner:user %}
-    <section id="profile">
-      <div class="container">
-        <div class="row">
+    <div class="container">
+      <div class="col-xs-12 col-sm-8">
+        <section id="profile">
+        </section>
 
-          <div class="col-sm-12 col-md-4">
-            <div class="thumbnail">
-              <img src="http://local.snussum.com:9000/media/profile/1111-8f90231f.png" alt=""/>
+        <section id="introduce">
+        </section>
+
+        <section id="analytics">
+        </section>
+
+        <section id="comments" data-hash-id="{{ dating.hash_id }}">
+          <div class="kakaotalk">
+            {% for comment in dating.comment_set.all %}
+              {% if comment.user == user %}
+                {% include "datings/_comments/_me.html" with content=comment.content %} 
+              {% else %}
+                {% include "datings/_comments/_partner.html" with content=comment.content %} 
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <section id="comments-input">
+            <div class="row">
+              <div class="col-xs-10 col-no-padding">
+                <textarea name="" id="" rows="4" class="form-control"></textarea>
+              </div>
+              <div class="col-xs-2 col-no-padding">
+                <button>전송</button>
+              </div>
             </div>
-          </div>
-
-          <div class="col-sm-12 col-md-4">
-            <h3>{{ partner.userprofile.nickname }}</h3>
-          </div>
-
-          <div class="col-sm-12 col-md-4">
-          </div>
-
-        </div>
+          </section>
+        </section>
       </div>
-    </section>
 
-    <section id="introduce">
-      <div class="container">
-        <div class="row">
-          <div class="bs-callout bs-callout-primary">
-            <h4>자기소개</h4>
-            <p>
-              {{ partner.userprofile.profile_introduce }}
-            </p>
-          </div>
-        </div>
+      <div class="col-xs-12 col-sm-4">
       </div>
-    </section>
 
-    <section id="analytics">
-    </section>
+    </div>
 
-    <section id="comments" data-hash-id="{{ dating.hash_id }}">
-      <div class="container kakaotalk">
-        {% for comment in dating.comment_set.all %}
-          {% if comment.user == user %}
-            {% include "datings/_comments/_me.html" with content=comment.content %} 
-          {% else %}
-            {% include "datings/_comments/_partner.html" with content=comment.content %} 
-          {% endif %}
-        {% endfor %}
-      </div>
-      <section id="comments-input">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-10 col-md-11 col-no-padding">
-              <textarea name="" id="" rows="4" class="form-control"></textarea>
-            </div>
-            <div class="col-xs-2 col-md-1 col-no-padding">
-              <button>전송</button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </section>
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
