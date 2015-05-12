@@ -20,7 +20,13 @@
 
     <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
       {% if user.is_authenticated %}
-        <li class="dropdown">
+        <li class="hidden-md hidden-lg">
+        <a href="{% url "users:notification" %}">
+            <i class="fa fa-bell"></i>
+            <span class="label label-default">{% if user.notifications.unread %}{{ user.notifications.unread.count }}{% endif %}</span>
+          </a>
+        </li>
+        <li class="dropdown hidden-xs hidden-sm">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             <i class="fa fa-bell"></i>
             <span class="label label-default">{% if user.notifications.unread %}{{ user.notifications.unread.count }}{% endif %}</span>
