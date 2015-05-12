@@ -21,7 +21,7 @@
     <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
       {% if user.is_authenticated %}
         <li>
-          <a href="{% url "users:profile" %}">
+          <a href="{% url "users:notification" %}">
             <i class="fa fa-bell"></i>
             <span class="label label-default">{% if user.notifications.unread %}{{ user.notifications.unread.count }}{% endif %}</span>
           </a>
