@@ -4,7 +4,7 @@
 <section id="self-dating-detail">
   <div class="container">
     <div class="col-xs-12 col-sm-8">
-      <section>
+      <section class="self-dating">
         <div class="panel panel-default">
           <div class="panel-body">
             <h1>{{ self_dating.title }}</h1>
@@ -41,7 +41,11 @@
       </section>
 
       <section>
-        <h2>셀프소개팅 지원자</h2>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h2>지원자 현황</h2>
+          </div>
+        </div>
       </section>
 
       <section>
@@ -53,6 +57,18 @@
       <section>
         <div class="panel panel-default">
           <div class="panel-body">
+            <h2>셀프소개팅 지원하기</h2>
+
+            <form action="" method="" accept-charset="utf-8">
+              <div class="form-group">
+                <label>상대방에게 전달할 문구</label>
+                {{ form.content }}
+              </div>
+
+              <button type="submit" class="text-center btn-snussum-red">
+                <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셀프소개팅 지원하기
+              </button>
+            </form>
           </div>
         </div>
       </section>

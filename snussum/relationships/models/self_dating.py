@@ -51,6 +51,8 @@ class SelfDatingApply(models.Model):
     dating = models.ForeignKey(SelfDating)
     user = models.ForeignKey(User)
 
+    content = models.TextField()
+
 
 @receiver(post_save, sender=SelfDating)
 def _update_self_dating(sender, instance, created, **kwargs):

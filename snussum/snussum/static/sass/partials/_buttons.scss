@@ -22,6 +22,13 @@
   color: $snussum-darkgrey;
 }
 
+.btn-snussum-red {
+  @include btn-default;
+
+  background-color: $snussum-red;
+  color: $snussum-lightgrey;
+}
+
 .social-login {
   @include btn-default;
 
