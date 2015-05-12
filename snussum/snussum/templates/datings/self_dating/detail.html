@@ -49,7 +49,17 @@
       </section>
 
       <section>
-        <h2>유사 프로젝트</h2>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h2>다른 셀프소개팅</h2>
+
+            {% for self_dating in recent_self_datings %}
+              {% include "datings/self_dating/_dating.html" with self_dating=self_dating %}
+            {% endfor %}
+          </div>
+        </div>
+      
+
       </section>
     </div>
 
