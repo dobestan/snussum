@@ -5,9 +5,12 @@
     </div>
     <div class="media-body">
       <p>
-        <strong>{{ notification.actor.userprofile.nickname }}</strong>님과 새롭게 매칭되었습니다.
+        <strong>{{ notification.actor.userprofile.nickname }}</strong> 님과 새롭게 매칭되었습니다.
+      </p>
+      <p class="small pull-right darkgrey">
+        <i class="fa fa-clock-o"></i>
+        {{ notification.timesince }}
       </p>
     </div>
-    
   </div>
 </a>
