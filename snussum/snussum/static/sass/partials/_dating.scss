@@ -241,9 +241,20 @@ section#dashboard {
 
 #btn-self-dating-apply {
   position: fixed;
-  width: 45%;
   left: 5%;
   bottom: 10px;
+
+  width: 45%;
+
+  z-index: 1000;
+}
+
+#btn-self-dating-new {
+  position: fixed;
+  left: 5%;
+  bottom: 55px;
+
+  width: 45%;
 
   z-index: 1000;
 }
