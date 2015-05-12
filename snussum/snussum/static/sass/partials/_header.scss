@@ -11,13 +11,15 @@ header#header {
   }
 
   li {
-    color: $snussum-darkgrey;
+    color: white;
+
+    &:hover {background-color: $snussum-red;}
 
     a {
-      color: white;
+      color: inherit;
 
       &:hover {
-        background-color: $snussum-red;
+        background-color: inherit;
         color: white;
       }
 
@@ -38,5 +40,19 @@ header#header {
 
   button {
     color: white;
+  }
+
+  // Notifications Style
+  ul.notifications {
+    padding-top: 0px;
+    background-color: $snussum-lightgrey;
+
+    li.notification {
+      color: black;
+
+      &:hover{
+        background-color: $snussum-orange;
+      }
+    }
   }
 }

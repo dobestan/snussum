@@ -105,13 +105,13 @@ ul.notifications {
       background-color: $snussum-lightgrey;
     }
 
+    &:hover {
+      background-color: $snussum-orange;
+      color: white;
+    }
+
     div.media {
       padding: 10px;
-
-      &:hover {
-        background-color: $snussum-orange;
-        color: white;
-      }
     }
 
     img {
