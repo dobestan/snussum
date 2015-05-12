@@ -34,7 +34,7 @@ class SelfDating(models.Model):
     def _time_left(self):
         if self.is_finished:
             return None
-        time_left_in_timedelta =  self.ends_at - datetime.now()
+        time_left_in_timedelta = self.ends_at - datetime.now()
         return {
             'days': time_left_in_timedelta.days,
             'hours': time_left_in_timedelta.seconds // 3600,

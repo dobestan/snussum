@@ -7,7 +7,6 @@ from relationships.models.dating import Dating
 from relationships.models.self_dating import SelfDating
 
 
-
 class DatingDetail(DetailView):
     model = Dating
     slug_field = "hash_id"

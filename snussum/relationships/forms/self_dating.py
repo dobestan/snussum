@@ -5,6 +5,7 @@ from django_summernote.widgets import SummernoteWidget
 
 
 class SelfDatingForm(ModelForm):
+
     class Meta:
         model = SelfDating
         fields = ['title', 'content', 'tags_myself', 'tags_partner']
