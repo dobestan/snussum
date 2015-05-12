@@ -1,4 +1,4 @@
-<li class="notification">
+<li class="notification {% if notification.unread %}unread{% endif %}">
   {% if notification.action_object_content_type.name == "dating" %}
     <a href="{% url "dating-detail" notification.action_object.hash_id %}">
       <div class="media">

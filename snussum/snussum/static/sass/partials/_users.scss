@@ -101,6 +101,19 @@ ul.notifications {
   padding-left: 0;
 
   li.notification {
+    &.unread {
+      background-color: $snussum-lightgrey;
+    }
+
+    div.media {
+      padding: 10px;
+
+      &:hover {
+        background-color: $snussum-orange;
+        color: white;
+      }
+    }
+
     img {
       width: 60px;
       height: 60px;
@@ -108,7 +121,7 @@ ul.notifications {
 
     a {
       text-decoration: none;
-      color: inherit
+      color: inherit;
     }
   }
 }
