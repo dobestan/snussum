@@ -26,8 +26,12 @@ urlpatterns = patterns(
     url(r'^verify/snu/$', VerifyUniversitySNU.as_view(), name='verify-snu'),
     url(r'^verify/profile/$', VerifyProfile.as_view(), name='verify-profile'),
 
-    url(r'^verify/(?P<university_verification_token>\w+)/$',
-        'users.views.university_verification',
+    url(r'^verify/university/(?P<university_verification_token>\w+)/$',
+        'users.views.verify.university_verification',
         name='university-verification'
+        ),
+    url(r'^verify/phonenumber/(?P<phonenumber_verification_token>\w+)/$',
+        'users.views.verify.phonenumber_verification',
+        name='phonenumber-verification'
         ),
 )

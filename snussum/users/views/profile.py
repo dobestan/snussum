@@ -82,8 +82,9 @@ class UpdateUserProfileAccountPhonenumber(UpdateView, UpdateUserProfileBase):
         return self.request.user.userprofile
 
     def form_valid(self, form):
+        self.request.user.userprofile.update_phonenumber(form.cleaned_data['phonenumber'])
         messages.add_message(self.request, messages.INFO,
-                             '연락처가 성공적으로 업데이트 되었습니다. 앞으로의 SMS 알림은 새롭게 등록한 이메일로 발송됩니다.',
+                             '연락처가 성공적으로 업데이트 되었습니다. SMS로 발송된 인증 링크를 확인해주세요',
                              extra_tags="success")
         return super(UpdateUserProfileAccountPhonenumber, self).form_valid(form)
 

@@ -9,6 +9,8 @@ from users.decorators import university_verified_required, university_not_verifi
 from django.contrib.auth.models import User
 from users.models.university import University
 
+from django.contrib import messages
+
 
 class VerifyUniversity(TemplateView):
     template_name = "users/verify/univ.html"
@@ -47,4 +49,15 @@ def university_verification(request, university_verification_token):
     user.userprofile.is_university_verified = True
     user.userprofile.save()
 
+    return redirect("home")
+
+
+def phonenumber_verification(request, phonenumber_verification_token):
+    user = get_object_or_404(User, userprofile__phonenumber_verification_token=phonenumber_verification_token)
+    user.userprofile.is_phonenumber_verified = True
+    user.userprofile.save()
+
+    messages.add_message(request, messages.INFO,
+                         '연락처가 인증되었습니다. 감사합니다.',
+                         extra_tags="success")
     return redirect("home")
