@@ -30,6 +30,8 @@ class Dating(models.Model):
 
     def _is_accepted(self):
         return self.is_boy_accepted and self.is_girl_accepted
+
+    _is_accepted.boolean = True
     is_accepted = property(_is_accepted)
 
     def pretty_date(self):
