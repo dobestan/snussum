@@ -1,13 +1,18 @@
-{% if user.userprofile.phonenumber %}
+{% if user.userprofile.is_phonenumber_verified %}
+  <span class="small success">
+    <i class="fa fa-check"></i>
+    상대방과 서로 수락하게 되면, 서로의 연락처가 공개됩니다.
+    연락처 공개 전, 아래의 대화방을 통해서 충분한 대화 나누시기 바랍니다.
+  </span>
   <button type="submit" class="text-center btn-snussum-red">
-    <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셀프소개팅 지원하기
+    <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연락처 공개하기
   </button>
 {% else %}
-<span class="small danger">
+<p class="small danger">
   <i class="fa fa-close"></i>
-  상대방과 매칭 후 연락을 위한 연락처가 등록되어있지 않습니다.
+  상대방과 매칭을 위해서는 연락처 인증이 필요합니다.
   아래의 양식을 통해서 인증할 수 있습니다.
-</span>
+</p>
 
 <form action="{% url "users:update-profile-account-phonenumber" %}" method="POST" accept-charset="utf-8">{% csrf_token %}
   <div class="form-group">

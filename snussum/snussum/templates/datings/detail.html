@@ -2,7 +2,7 @@
 {% load datings %}
 
 {% block content %}
-  {% with partner=dating|partner:user %}
+  {% with partner=dating|partner:user partner_is_accepted=dating|partner_is_accepted:user myself_is_accepted=dating|myself_is_accepted:user %}
     <div class="container">
       <div class="col-xs-12 col-sm-8">
         <section id="profile">
