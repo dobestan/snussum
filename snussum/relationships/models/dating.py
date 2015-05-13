@@ -22,8 +22,8 @@ class Dating(models.Model):
     boy_checked_at = models.DateTimeField(blank=True, null=True)
     girl_checked_at = models.DateTimeField(blank=True, null=True)
 
-    is_boy_accepted = models.BooleanField(default=False)
-    is_girl_accepted = models.BooleanField(default=False)
+    is_boy_accepted = models.NullBooleanField()
+    is_girl_accepted = models.NullBooleanField()
 
     boy_accepted_at = models.DateTimeField(blank=True, null=True)
     girl_accepted_at = models.DateTimeField(blank=True, null=True)
