@@ -9,9 +9,29 @@
         </section>
 
         <section id="introduce">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2>자기소개</h2>
+              {{ partner.userprofile.profile_introduce|safe }}
+            </div>
+          </div>
         </section>
 
         <section id="analytics">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2>통계</h2>
+            </div>
+          </div>
+        </section>
+
+        <section class="visible-xs">
+          <div class="panel panel-default border border-red">
+            <div class="panel-body">
+              <h2>수락하기</h2>
+              {% include "datings/_accept_form.html" %}
+            </div>
+          </div>
         </section>
 
         <section id="comments" data-hash-id="{{ dating.hash_id }}">
@@ -39,6 +59,14 @@
       </div>
 
       <div class="col-xs-12 col-sm-4">
+        <section id="dating-accept-sidebar" data-spy="affix">
+          <div class="panel panel-default border border-red">
+            <div class="panel-body">
+              <h2>수락하기</h2>
+              {% include "datings/_accept_form.html" %}
+            </div>
+          </div>
+        </section>
       </div>
 
     </div>
