@@ -28,6 +28,9 @@ class Dating(models.Model):
     boy_accepted_at = models.DateTimeField(blank=True, null=True)
     girl_accepted_at = models.DateTimeField(blank=True, null=True)
 
+    boy_accepted_message = models.TextField(blank=True, null=True)
+    girl_accepted_message = models.TextField(blank=True, null=True)
+
     def _is_accepted(self):
         return self.is_boy_accepted and self.is_girl_accepted
 
