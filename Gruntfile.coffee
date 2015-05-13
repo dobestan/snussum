@@ -20,6 +20,7 @@ module.exports = (grunt) ->
             'js/bootstrap-datetimepicker.min.js': 'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
             'js/moment.min.js': 'moment/min/moment.min.js'
             'js/bootstrap-tagsinput.min.js': 'bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js'
+            'js/bootstrap-tagsinput.min.js.map': 'bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js.map'
             'js/highcharts.min.js': 'highcharts/highcharts.js'
 
             'sass/bourbon/': 'bourbon/app/assets/stylesheets'
