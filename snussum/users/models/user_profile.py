@@ -57,14 +57,18 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True, primary_key=True)
     hash_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
 
+    nickname = models.CharField(max_length=8, blank=True, null=True, unique=True)
     is_boy = models.BooleanField(default=True)
 
+    # University Validation ( Email Validation )
     university = models.ForeignKey(University, blank=True, null=True)
     is_university_verified = models.BooleanField(default=False)
     university_verification_token = models.CharField(max_length=32, null=True, blank=True)
 
-    nickname = models.CharField(max_length=8, blank=True, null=True, unique=True)
+    # PhoneNumber Validation
     phonenumber = models.CharField(max_length=11, blank=True, null=True, unique=True)
+    is_phonenumber_verified = models.BooleanField(default=False)
+    phonenumber_verification_token = models.CharField(max_length=32, null=True, blank=True)
 
     profile_introduce = models.TextField(blank=True, null=True)
 
@@ -72,10 +76,12 @@ class UserProfile(models.Model):
 
     is_dating_enabled = models.BooleanField(default=True)
 
+    # Introduce
     age = models.IntegerField(blank=True, null=True)
     height = models.IntegerField(blank=True, null=True)
     weight = models.IntegerField(blank=True, null=True)
 
+    # Condition
     age_condition = IntegerRangeField(blank=True, null=True)
     height_condition = IntegerRangeField(blank=True, null=True)
     weight_condition = IntegerRangeField(blank=True, null=True)
@@ -203,14 +209,27 @@ class UserProfile(models.Model):
         self.height_condition = (min_height, max_height)
         self.save()
 
-    def generate_university_verification_token(self):
+    def generate_verification_token(self):
         salt = sha1(str(random()).encode('utf-8')).hexdigest()[:5]
         university_verification_token = sha1((self.user.username + salt).encode('utf-8')).hexdigest()[:32]
         return university_verification_token
 
     def update_university_verification_token(self):
-        university_verification_token = self.generate_university_verification_token()
+        university_verification_token = self.generate_verification_token()
         self.university_verification_token = university_verification_token
+        self.save()
+
+    def update_phonenumber_verification_token(self):
+        phonenumber_verification_token = self.generate_verification_token()
+        self.phonenumber_verification_token = phonenumber_verification_token
+        self.save()
+
+    def update_phonenumber(self, phonenumber):
+        self.phonenumber = phonenumber
+
+        self.is_phonenumber_verified = False
+        self.update_phonenumber_verification_token()
+
         self.save()
 
     def update_university(self, email_username, university):
