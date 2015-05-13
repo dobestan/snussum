@@ -1,40 +1,121 @@
-<table class="table table-striped">
-  <thead>
-  </thead>
-  <tbody>
-    <tr>
-      <th>닉네임</th>
-      <td>{{ user.userprofile.nickname }}</td>
-    </tr>
-    <tr>
-      <th>자기소개</th>
-      <td>{{ user.userprofile.profile_introduce }}</td>
-    </tr>
-    <tr>
-      <th>나이</th>
-      <td>
-        {% if user.userprofile.age %}
-          {{ user.userprofile.age }}
-        {% else %}
+{{ information_form.media }}
+
+<form action="{% url "users:update-profile-information" %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+  <table class="table table-striped">
+    <thead>
+    </thead>
+    <tbody>
+      <tr>
+        <th>닉네임</th>
+        <td>
+          <div class="edited">
+            {{ user.userprofile.nickname }}
+          </div>
+          <div class="editing">
+            <div class="form-group">
+              <input type="text" value="{{ user.userprofile.nickname }}" name="nickname" id="id_nickname" class="form-control" maxlength="8" required/>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>고유태그</th>
+        <td>
           <span class="small danger">
-            나이정보가 등록되지 않았습니다.<br/>
-            상대방이 나이 조건을 설정해둔 경우, 매칭되지 않습니다.
-          </span>
-        {% endif %}
-      </td>
-    </tr>
-    <tr>
-      <th>키</th>
-      <td>
-        {% if user.userprofile.height %}
-          {{ user.userprofile.height }} cm
-        {% else %}
-          <span class="small danger">
-            키(신장) 정보가 등록되지 않았습니다.<br/>
-            상대방이 키 조건을 설정해둔 경우, 매칭되지 않습니다.
-          </span>
-        {% endif %}
-      </td>
-    </tr>
-  </tbody>
-</table>
+            <i class="fa fa-check"></i> 고유태그 ( "유저 식별자 ")는 블랙리스트 및 불량 이용자 관리를 위해서 사용됩니다.
+          </span><br/>
+          #{{ user.userprofile.hash_id }}
+        </td>
+      </tr>
+      <tr>
+        <th>자기소개</th>
+        <td>
+          <div class="edited">
+            {{ user.userprofile.profile_introduce|safe }}
+          </div>
+          <div class="editing">
+            {{ information_form.profile_introduce }}
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>나이</th>
+        <td>
+          <div class="edited">
+            {% if user.userprofile.age %}
+              <span class="small success">
+                <i class="fa fa-check"></i> 
+                나이가 성공적으로 등록되었습니다.
+                상대방이 나이 조건을 설정해두지 않은 경우, 상대방의 나이 조건에 부합할 경우 모두 매칭됩니다.
+              </span></br>
+              {{ user.userprofile.age }} 살
+            {% else %}
+              <span class="small danger">
+                <i class="fa fa-close"></i> 
+                나이가 등록되지 않았습니다.
+                상대방이 나이 조건을 설정해둔 경우, 매칭되지 않습니다.
+              </span>
+            {% endif %}
+          </div>
+          <div class="editing">
+            <div class="form-group">
+              <input type="number" value="{{ user.userprofile.age }}" name="age" id="id_age" class="form-control"/>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>키</th>
+        <td>
+          <div class="edited">
+            {% if user.userprofile.height %}
+              <span class="small success">
+                <i class="fa fa-check"></i> 
+                키(신장)가 성공적으로 등록되었습니다.
+                상대방이 키(신장) 조건을 설정해두지 않은 경우, 상대방의 키(신장) 조건에 부합할 경우 모두 매칭됩니다.
+              </span></br>
+              {{ user.userprofile.height }} cm
+            {% else %}
+              <span class="small danger">
+                <i class="fa fa-close"></i> 
+                키(신장)가 등록되지 않았습니다.
+                상대방이 키 조건을 설정해둔 경우, 매칭되지 않습니다.
+              </span>
+            {% endif %}
+          </div>
+          <div class="editing">
+            <div class="form-group">
+              <input type="number" value="{{ user.userprofile.height }}" name="height" id="id_height" class="form-control"/>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" class="text-center btn-snussum-darkgrey edited">
+    <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;프로필 정보 수정하기
+  </button>
+
+  <button type="submit" class="text-center btn-snussum-red editing">
+    <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;프로필 정보 업데이트
+  </button>
+
+</form>
+
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+  var information = $("section#profile").find("#information");
+  var button_edited = $(information).find("button.edited");
+  var button_editing = $(information).find("button.editing");
+
+  var edited_items = $(information).find(".edited");
+  var editing_items = $(information).find(".editing");
+
+  $(button_edited).click(function(){
+    $(edited_items).hide();
+    $(editing_items).show();
+  });
+});
+</script>

@@ -24,7 +24,10 @@ def shorten_url(long_url):
     }
 
     response = requests.post(BASE_URL, params=params, data=json.dumps(data), headers=headers)
-    return response
+    content = json.loads(response.content.decode('UTF-8'))
+    short_url = content.get('id')
+
+    return short_url
 
 
 def url_builder(url, utm_source=None, utm_medium=None, utm_term=None, utm_content=None, utm_campaign=None):

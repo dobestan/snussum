@@ -1,3 +1,22 @@
-<button type="submit" class="text-center btn-snussum-red">
-  <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셀프소개팅 지원하기
-</button>
+{% if user.userprofile.phonenumber %}
+  <button type="submit" class="text-center btn-snussum-red">
+    <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셀프소개팅 지원하기
+  </button>
+{% else %}
+<span class="small danger">
+  <i class="fa fa-close"></i>
+  상대방과 매칭 후 연락을 위한 연락처가 등록되어있지 않습니다.
+  아래의 양식을 통해서 인증할 수 있습니다.
+</span>
+
+<form action="{% url "users:update-profile-account-phonenumber" %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+  <div class="form-group">
+    <input type="tel" value="{{ user.userprofile.phonenumber }}" name="phonenumber" id="id_phonenumber" class="form-control"/>
+  </div>
+
+  <button type="submit" class="text-center btn-snussum-red">
+    <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연락처 업데이트
+  </button>
+</form>
+{% endif %}
+

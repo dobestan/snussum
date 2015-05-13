@@ -5,70 +5,162 @@
     <tr>
       <th>매칭 상태</th>
       <td>
-        <span class="success">
-          <i class="fa fa-check"></i> 매칭 활성화
-        </span>
+        <div class="edited">
+          <span class="success">
+            <i class="fa fa-check"></i> 매칭 활성화
+          </span>
+        </div>
+        <div class="editing">
+          <span class="success small">
+            <i class="fa fa-check"></i> 매칭 활성화와 관련된 부분은 준비중입니다 ( 홀딩, 명예의 전당, 블랙리스트 등 )
+          </span>
+        </div>
       </td>
     </tr>
 
     <tr>
       <th>상대방 나이</th>
       <td>
-        {% if user.userprofile.age_condition %}
-          {% if user.userprofile.age_condition.lower and user.userprofile.age_condition.upper %}
+        <div class="edited">
+          {% if user.userprofile.age_condition %}
+            {% if user.userprofile.age_condition.lower and user.userprofile.age_condition.upper %}
+              <span class="small success">
+                <i class="fa fa-check"></i> 나이조건이 설정되었습니다. 아래의 조건에 부합하는 상대방과 매칭됩니다.
+              </span><br/>
+            {% elif user.userprofile.age_condition.lower and not user.userprofile.age_condition.upper %}
+              <span class="small success">
+                <i class="fa fa-check"></i> 최소나이가 설정되었습니다. 최대 나이는 제한없이 매칭됩니다.
+              </span><br/>
+            {% elif not user.userprofile.age_condition.lower and user.userprofile.age_condition.upper %}
+              <span class="small success">
+                <i class="fa fa-check"></i> 최대나이가 설정되었습니다. 최소 나이는 제한없이 매칭됩니다.
+              </span><br/>
+            {% endif %}
+              {% if user.userprofile.age_condition.lower %}{{ user.userprofile.age_condition.lower }}살 이상{% endif %}
+              {% if user.userprofile.age_condition.upper %}{{ user.userprofile.age_condition.upper }}살 이하{% endif %}
+          {% else %}
             <span class="small success">
-              <i class="fa fa-check"></i> 나이조건이 설정되었습니다. 아래의 조건에 부합하는 상대방과 매칭됩니다.
-            </span><br/>
-          {% elif user.userprofile.age_condition.lower and not user.userprofile.age_condition.upper %}
-            <span class="small success">
-              <i class="fa fa-check"></i> 최소나이가 설정되었습니다. 최대 나이는 제한없이 매칭됩니다.
-            </span><br/>
-          {% elif not user.userprofile.age_condition.lower and user.userprofile.age_condition.upper %}
-            <span class="small success">
-              <i class="fa fa-check"></i> 최대나이가 설정되었습니다. 최소 나이는 제한없이 매칭됩니다.
-            </span><br/>
+              <i class="fa fa-check"></i> 상대방 나이 조건이 설정되지 않았습니다.
+              이 경우에는, 나이와 상관없이 모든 상대방과 매칭됩니다.
+            </span>
           {% endif %}
-            {% if user.userprofile.age_condition.lower %}{{ user.userprofile.age_condition.lower }}살 이상{% endif %}
-            {% if user.userprofile.age_condition.upper %}{{ user.userprofile.age_condition.upper }}살 이하{% endif %}
-            의
-        {% else %}
-          <span class="small success">
-            <i class="fa fa-check"></i> 상대방 나이 조건이 설정되지 않았습니다.
-            이 경우에는, 나이와 상관없이 모든 상대방과 매칭됩니다.
+            모든 상대방과 매칭
+        </div>
+        <div class="editing">
+          <span class="success small">
+            <i class="fa fa-check"></i> 입력하지 않으시면 제한 조건이 없는 것으로 설정됩니다.
           </span>
-        {% endif %}
-          모든 상대방과 매칭
+          <div class="form-group">
+            <label for="">최소 나이</label>
+            <input type="number" value="{{ user.userprofile.age_condition.lower }}" name="" id="min_age" class="form-control" placeholder="예, 16 (처..철컹)"/>
+          </div>
+          <div class="form-group">
+            <label for="">최대 나이</label>
+            <input type="number" value="{{ user.userprofile.age_condition.upper }}" name="" id="max_age" class="form-control" placeholder="예, 80"/>
+          </div>
+        </div>
       </td>
     </tr>
 
     <tr>
       <th>상대방 키</th>
       <td>
-        {% if user.userprofile.height_condition %}
-          {% if user.userprofile.height_condition.lower and user.userprofile.height_condition.upper %}
+        <div class="edited">
+          {% if user.userprofile.height_condition %}
+            {% if user.userprofile.height_condition.lower and user.userprofile.height_condition.upper %}
+              <span class="small success">
+                <i class="fa fa-check"></i> 키(신장) 조건이 설정되었습니다. 아래의 조건에 부합하는 상대방과 매칭됩니다.
+              </span><br/>
+            {% elif user.userprofile.height_condition.lower and not user.userprofile.height_condition.upper %}
+              <span class="small success">
+                <i class="fa fa-check"></i> 최소 키(신장)가 설정되었습니다. 최대 키(신장)는 제한없이 매칭됩니다.
+              </span><br/>
+            {% elif not user.userprofile.height_condition.lower and user.userprofile.height_condition.upper %}
+              <span class="small success">
+                <i class="fa fa-check"></i> 최대 키(신장)가 설정되었습니다. 최소 키(신장)는 제한없이 매칭됩니다.
+              </span><br/>
+            {% endif %}
+              {% if user.userprofile.height_condition.lower %}{{ user.userprofile.height_condition.lower }}cm 이상{% endif %}
+              {% if user.userprofile.height_condition.upper %}{{ user.userprofile.height_condition.upper }}cm 이하{% endif %}
+          {% else %}
             <span class="small success">
-              <i class="fa fa-check"></i> 키(신장) 조건이 설정되었습니다. 아래의 조건에 부합하는 상대방과 매칭됩니다.
-            </span><br/>
-          {% elif user.userprofile.height_condition.lower and not user.userprofile.height_condition.upper %}
-            <span class="small success">
-              <i class="fa fa-check"></i> 최소 키(신장)가 설정되었습니다. 최대 키(신장)는 제한없이 매칭됩니다.
-            </span><br/>
-          {% elif not user.userprofile.height_condition.lower and user.userprofile.height_condition.upper %}
-            <span class="small success">
-              <i class="fa fa-check"></i> 최대 키(신장)가 설정되었습니다. 최소 키(신장)는 제한없이 매칭됩니다.
+              <i class="fa fa-check"></i> 상대방 키 조건이 설정되지 않았습니다.
+              이 경우에는, 키와 상관없이 모든 상대방과 매칭됩니다.
             </span><br/>
           {% endif %}
-            {% if user.userprofile.heignt_condition.lower %}{{ user.userprofile.height_condition.lower }}cm 이상{% endif %}
-            {% if user.userprofile.height_condition.upper %}{{ user.userprofile.height_condition.upper }}cm 이하{% endif %}
-            의
-        {% else %}
-          <span class="small success">
-            <i class="fa fa-check"></i> 상대방 키 조건이 설정되지 않았습니다.
-            이 경우에는, 키와 상관없이 모든 상대방과 매칭됩니다.
-          </span><br/>
-        {% endif %}
-          모든 상대방과 매칭
+            모든 상대방과 매칭
+        </div>
+        <div class="editing">
+          <span class="success small">
+            <i class="fa fa-check"></i> 입력하지 않으시면 제한 조건이 없는 것으로 설정됩니다.
+          </span>
+          <div class="form-group">
+            <label for="">최소 키(cm)</label>
+            <input type="number" value="{{ user.userprofile.height_condition.lower }}" name="" id="min_height" class="form-control" placeholder="예, 132"/>
+          </div>
+          <div class="form-group">
+            <label for="">최대 키(cm)</label>
+            <input type="number" value="{{ user.userprofile.height_condition.upper }}" name="" id="max_height" class="form-control" placeholder="예, 216"/>
+          </div>
+        </div>
       </td>
     </tr>
   </tbody>
 </table>
+
+<button type="submit" class="text-center btn-snussum-darkgrey edited">
+  <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;매칭 조건 수정하기
+</button>
+
+<button type="submit" class="text-center btn-snussum-darkgrey editing">
+  <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;매칭 조건 업데이트
+</button>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+  var condition = $("section#profile").find("#condition");
+  var button_edited = $(condition).find("button.edited");
+  var button_editing = $(condition).find("button.editing");
+
+  var edited_items = $(condition).find(".edited");
+  var editing_items = $(condition).find(".editing");
+
+  $(button_edited).click(function(){
+    $(edited_items).hide();
+    $(editing_items).show();
+  });
+
+  $(button_editing).click(function(){
+    var min_age = $(condition).find("input#min_age").val();
+    var max_age = $(condition).find("input#max_age").val();
+
+    var min_height = $(condition).find("input#min_height").val();
+    var max_height = $(condition).find("input#max_height").val();
+
+    data = {
+      'min_age': min_age,
+      'max_age': max_age,
+      'min_height': min_height,
+      'max_height': max_height
+    };
+
+    $.ajax({
+      url: '/api/users/conditions/',
+      type: 'PUT',
+      data: data,
+      success: function(result){
+        $(editing_items).hide();
+        $(edited_items).show();
+
+        $.notify({message: "매칭 조건이 성공적으로 업데이트 되었습니다."},
+          {type: "success"});
+        location.reload();
+      },
+      error: function(result){
+        $.notify({message: "서버와의 통신에 문제가 있습니다. 다시 한번 확인 부탁드립니다. 감사합니다."},
+          {type: "danger"})
+      }
+    });
+  });
+})
+</script>

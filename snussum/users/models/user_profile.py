@@ -9,6 +9,7 @@ from users.models.university import University
 
 from users.tasks.password import send_password_reset_sms, \
     send_password_reset_email
+from users.tasks.verification import send_phonenumber_verification_sms
 
 from users.utils.hashids import get_encoded_user_profile_hashid
 
@@ -57,23 +58,31 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True, primary_key=True)
     hash_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
 
+    nickname = models.CharField(max_length=8, blank=True, null=True, unique=True)
     is_boy = models.BooleanField(default=True)
 
+    # University Validation ( Email Validation )
     university = models.ForeignKey(University, blank=True, null=True)
     is_university_verified = models.BooleanField(default=False)
     university_verification_token = models.CharField(max_length=32, null=True, blank=True)
 
-    nickname = models.CharField(max_length=8, blank=True, null=True, unique=True)
+    # PhoneNumber Validation
     phonenumber = models.CharField(max_length=11, blank=True, null=True, unique=True)
+    is_phonenumber_verified = models.BooleanField(default=False)
+    phonenumber_verification_token = models.CharField(max_length=32, null=True, blank=True)
 
     profile_introduce = models.TextField(blank=True, null=True)
 
     profile_image = models.ImageField(upload_to=_profile_image_upload_to, blank=True, null=True)
 
+    is_dating_enabled = models.BooleanField(default=True)
+
+    # Introduce
     age = models.IntegerField(blank=True, null=True)
     height = models.IntegerField(blank=True, null=True)
     weight = models.IntegerField(blank=True, null=True)
 
+    # Condition
     age_condition = IntegerRangeField(blank=True, null=True)
     height_condition = IntegerRangeField(blank=True, null=True)
     weight_condition = IntegerRangeField(blank=True, null=True)
@@ -193,15 +202,37 @@ class UserProfile(models.Model):
             return Dating.objects.create(boy=self.user, girl=partner)
         return Dating.objects.create(boy=partner, girl=self.user)
 
-    def generate_university_verification_token(self):
+    def update_conditions(self, is_dating_enabled=True, min_age=None, max_age=None,
+                          min_height=None, max_height=None):
+        self.is_dating_enabled = is_dating_enabled
+
+        self.age_condition = (min_age, max_age)
+        self.height_condition = (min_height, max_height)
+        self.save()
+
+    def generate_verification_token(self):
         salt = sha1(str(random()).encode('utf-8')).hexdigest()[:5]
         university_verification_token = sha1((self.user.username + salt).encode('utf-8')).hexdigest()[:32]
         return university_verification_token
 
     def update_university_verification_token(self):
-        university_verification_token = self.generate_university_verification_token()
+        university_verification_token = self.generate_verification_token()
         self.university_verification_token = university_verification_token
         self.save()
+
+    def update_phonenumber_verification_token(self):
+        phonenumber_verification_token = self.generate_verification_token()
+        self.phonenumber_verification_token = phonenumber_verification_token
+        self.save()
+
+    def update_phonenumber(self, phonenumber):
+        self.phonenumber = phonenumber
+
+        self.is_phonenumber_verified = False
+        self.update_phonenumber_verification_token()
+
+        self.save()
+        send_phonenumber_verification_sms.delay(self.pk)
 
     def update_university(self, email_username, university):
         """
