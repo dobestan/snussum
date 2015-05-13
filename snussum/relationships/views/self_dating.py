@@ -40,5 +40,6 @@ class SelfDatingDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(SelfDatingDetail, self).get_context_data(**kwargs)
         context['form'] = SelfDatingApplyForm()
-        context['recent_self_datings'] = SelfDating.objects.exclude(pk=context['self_dating'].pk).order_by('-ends_at')[:3]
+        context['recent_self_datings'] = SelfDating.objects.exclude(
+            pk=context['self_dating'].pk).order_by('-ends_at')[:3]
         return context

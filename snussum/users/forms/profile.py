@@ -29,7 +29,7 @@ class UserProfileAccountPhonenumberForm(ModelForm):
 
 
 class UserProfileAccountEmailForm(ModelForm):
-    
+
     class Meta:
         model = User
         fields = ['email']

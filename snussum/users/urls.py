@@ -1,7 +1,8 @@
 from django.conf.urls import patterns, url
 
 from users.views.verify import VerifyUniversity, VerifyUniversitySNU, VerifyProfile
-from users.views.profile import Profile, Notification, UpdateUserProfileInformation, UpdateUserProfileAccountEmail, UpdateUserProfileAccountPhonenumber
+from users.views.profile import Profile, Notification, UpdateUserProfileInformation, UpdateUserProfileAccountEmail, \
+        UpdateUserProfileAccountPhonenumber
 from users.views.password import PasswordReset
 
 
@@ -20,7 +21,9 @@ urlpatterns = patterns(
     # Update UserProfile
     url(r'^profile/information/$', UpdateUserProfileInformation.as_view(), name='update-profile-information'),
     url(r'^profile/account/email/$', UpdateUserProfileAccountEmail.as_view(), name='update-profile-account-email'),
-    url(r'^profile/account/phonenumber/$', UpdateUserProfileAccountPhonenumber.as_view(), name='update-profile-account-phonenumber'),
+    url(r'^profile/account/phonenumber/$',
+        UpdateUserProfileAccountPhonenumber.as_view(),
+        name='update-profile-account-phonenumber'),
 
     url(r'^verify/univ/$', VerifyUniversity.as_view(), name='verify-univ'),
     url(r'^verify/snu/$', VerifyUniversitySNU.as_view(), name='verify-snu'),

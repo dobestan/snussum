@@ -202,8 +202,8 @@ class UserProfile(models.Model):
             return Dating.objects.create(boy=self.user, girl=partner)
         return Dating.objects.create(boy=partner, girl=self.user)
 
-    def update_conditions(self, is_dating_enabled=True, min_age=None, max_age=None, \
-            min_height=None, max_height=None):
+    def update_conditions(self, is_dating_enabled=True, min_age=None, max_age=None,
+                          min_height=None, max_height=None):
         self.is_dating_enabled = is_dating_enabled
 
         self.age_condition = (min_age, max_age)

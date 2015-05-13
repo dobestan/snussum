@@ -17,9 +17,12 @@ from selenium import webdriver
 def send_phonenumber_verification_sms(user_id):
     user = User.objects.get(pk=user_id)
 
-    url = reverse("users:phonenumber-verification", kwargs={'phonenumber_verification_token': user.userprofile.phonenumber_verification_token})
-    
-    url = "http://local.snussum.com:9000"+ url
+    url = reverse(
+        "users:phonenumber-verification",
+        kwargs={
+            'phonenumber_verification_token': user.userprofile.phonenumber_verification_token})
+
+    url = "http://local.snussum.com:9000" + url
     url = url_builder(url, utm_source="sms", utm_medium="verification")
     url = shorten_url(url)
 

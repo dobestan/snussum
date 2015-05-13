@@ -11,7 +11,7 @@ from users.models.user_profile import UserProfile
 from django.contrib.auth.models import User
 
 from users.forms.profile import UserProfileInformationForm, UserProfileAccountEmailForm, \
-        UserProfileAccountPhonenumberForm
+    UserProfileAccountPhonenumberForm
 
 from django.core.urlresolvers import reverse
 from django.contrib import messages
