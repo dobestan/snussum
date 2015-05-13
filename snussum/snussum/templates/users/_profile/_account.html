@@ -4,12 +4,21 @@
   <tbody>
     <tr>
       <th>아이디</th>
-      <td>{{ user.username }}</td>
+      <td>
+        <span class="small success">
+          <i class="fa fa-check"></i> 아이디는 어떠한 경우에도 상대방에게 노출되지 않습니다.
+        </span><br/>
+        {{ user.username }}
+      </td>
     </tr>
     <tr>
       <th>이메일</th>
       <td>
         {% if user.email %}
+          <span class="small success">
+            <i class="fa fa-check"></i> 이메일이 성공적으로 등록되었습니다. 이메일은 매칭 시 상대방에게 공개됩니다.
+          </span><br/>
+        {{ user.username }}
           {{ user.email }}
         {% else %}
           <span class="small danger">
@@ -32,12 +41,18 @@
       <th>소셜 계정 연동</th>
       <td>
         {% if user.userprofile.kakao %}
+          <span class="small success">
+            <i class="fa fa-check"></i> 카카오 계정이 성공적으로 등록되었습니다.
+          </span><br/>
           <p class="text-center social-login social-login-kakao"><i class="fa fa-comment"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;카카오 계정 연동 완료</p>
         {% else %}
           <a href="{% url "social:begin" backend="kakao" %}" class="text-center social-login social-login-kakao"><i class="fa fa-comment"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;카카오 계정 연동하기</a>
         {% endif %}
 
         {% if user.userprofile.facebook %}
+          <span class="small success">
+            <i class="fa fa-check"></i> 페이스북 계정이 성공적으로 등록되었습니다.
+          </span><br/>
         <p class="text-center social-login social-login-facebook"><i class="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;페이스북 계정 연동 완료</p>
         {% else %}
         <a href="{% url "social:begin" backend="facebook" %}" class="text-center social-login social-login-facebook"><i class="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;페이스북 계정 연동하기</a>
