@@ -8,7 +8,10 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 
 from users.models.user_profile import UserProfile
-from users.forms.profile import UserProfileInformationForm
+from django.contrib.auth.models import User
+
+from users.forms.profile import UserProfileInformationForm, UserProfileAccountEmailForm, \
+        UserProfileAccountPhonenumberForm
 
 from django.core.urlresolvers import reverse
 from django.contrib import messages
@@ -29,6 +32,7 @@ class Profile(TemplateView):
 
 
 class UpdateUserProfileBase(View):
+    model = UserProfile
 
     @method_decorator(require_POST)
     @method_decorator(login_required)
@@ -43,14 +47,48 @@ class UpdateUserProfileInformation(UpdateView, UpdateUserProfileBase):
     def get_object(self):
         return self.request.user.userprofile
 
-    def get_success_url(self):
-        return reverse("users:profile")
-
     def form_valid(self, form):
         messages.add_message(self.request, messages.INFO,
                              '프로필이 성공적으로 업데이트 되었습니다. 감사합니다.',
                              extra_tags="success")
         return super(UpdateUserProfileInformation, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse("users:profile")
+
+
+class UpdateUserProfileAccountEmail(UpdateView, UpdateUserProfileBase):
+    model = User
+    fields = ['email']
+
+    def get_object(self):
+        return self.request.user
+
+    def form_valid(self, form):
+        messages.add_message(self.request, messages.INFO,
+                             '이메일이 성공적으로 업데이트 되었습니다. 앞으로의 이메일 알림은 새롭게 등록한 이메일로 발송됩니다.',
+                             extra_tags="success")
+        return super(UpdateUserProfileAccountEmail, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse("users:profile")
+
+
+class UpdateUserProfileAccountPhonenumber(UpdateView, UpdateUserProfileBase):
+    model = UserProfile
+    fields = ['phonenumber']
+
+    def get_object(self):
+        return self.request.user.userprofile
+
+    def form_valid(self, form):
+        messages.add_message(self.request, messages.INFO,
+                             '연락처가 성공적으로 업데이트 되었습니다. 앞으로의 SMS 알림은 새롭게 등록한 이메일로 발송됩니다.',
+                             extra_tags="success")
+        return super(UpdateUserProfileAccountPhonenumber, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse("users:profile")
 
 
 class Notification(TemplateView):

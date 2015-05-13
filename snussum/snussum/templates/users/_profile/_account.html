@@ -14,19 +14,68 @@
     <tr>
       <th>이메일</th>
       <td>
-        {% if user.email %}
-          <span class="small success">
-            <i class="fa fa-check"></i> 이메일이 성공적으로 등록되었습니다. 이메일은 매칭 시 상대방에게 공개됩니다.
-          </span><br/>
-        {{ user.username }}
-          {{ user.email }}
-        {% else %}
-          <span class="small danger">
-            * 이메일이 등록되지 않았습니다.<br/>
-            이메일이 등록되지 않은 경우 비밀번호 찾기 및 이메일 알림 기능을
-            이용할 수 없습니다.
-          </span>
-        {% endif %}
+        <div class="edited">
+          {% if user.email %}
+            <span class="small success">
+              <i class="fa fa-check"></i> 이메일이 성공적으로 등록되었습니다. 이메일은 매칭 시 상대방에게 공개됩니다.
+            </span><br/>
+            {{ user.email }}
+          {% else %}
+            <span class="small danger">
+              <i class="fa fa-close"></i>
+              이메일이 등록되지 않았습니다.<br/>
+              이메일이 등록되지 않은 경우 비밀번호 찾기 및 이메일 알림 기능을
+              이용할 수 없습니다.
+            </span>
+          {% endif %}
+        </div>
+        <div class="editing">
+          <form action="{% url "users:update-profile-account-email" %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+            <div class="form-group">
+              <input type="email" value="{{ user.email }}" name="email" id="id_email" class="form-control"/>
+            </div>
+          
+            <button id="btn-email-editing" type="submit" class="text-center btn-snussum-red editing">
+              <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 업데이트
+            </button>
+          </form>
+        </div>
+
+        <button id="btn-email-edited" type="button" class="text-center btn-snussum-darkgrey edited">
+          <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 수정하기
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <th>연락처</th>
+      <td>
+        <div class="edited">
+          {% if user.userprofile.phonenumber %}
+            {{ user.userprofile.phonenumber }}
+          {% else %}
+            <span class="small danger">
+              <i class="fa fa-close"></i>
+              연락처가 등록되지 않았습니다.<br/>
+              연락처가 등록되지 않은 경우 비밀번호 찾기 및 SMS 알림 기능을
+              이용할 수 없습니다.
+            </span><br/>
+          {% endif %}
+        </div>
+        <div class="editing">
+          <form action="{% url "users:update-profile-account-phonenumber" %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+            <div class="form-group">
+              <input type="tel" value="{{ user.userprofile.phonenumber }}" name="phonenumber" id="id_phonenumber" class="form-control"/>
+            </div>
+          
+            <button id="btn-phonenumber-editing" type="submit" class="text-center btn-snussum-red editing">
+              <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연락처 업데이트
+            </button>
+          </form>
+        </div>
+
+        <button id="btn-phonenumber-edited" type="button" class="text-center btn-snussum-darkgrey edited">
+          <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연락처 수정하기
+        </button>
       </td>
     </tr>
     <tr>
@@ -67,3 +116,17 @@
     </tr>
   </tbody>
 </table>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+  var account = $("section#profile").find("#account");
+
+  var button_edited = $(account).find("button.edited");
+  var button_editing = $(account).find("button.editing");
+
+  $(button_edited).click(function(){
+    $(this).parent("td").find(".edited").hide();
+    $(this).parent("td").find(".editing").show();
+  });
+});
+</script>
