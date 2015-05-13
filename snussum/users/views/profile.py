@@ -11,6 +11,7 @@ from users.models.user_profile import UserProfile
 from users.forms.profile import UserProfileInformationForm
 
 from django.core.urlresolvers import reverse
+from django.contrib import messages
 
 
 class Profile(TemplateView):
@@ -44,6 +45,12 @@ class UpdateUserProfileInformation(UpdateView, UpdateUserProfileBase):
 
     def get_success_url(self):
         return reverse("users:profile")
+
+    def form_valid(self, form):
+        messages.add_message(self.request, messages.INFO,
+                             '프로필이 성공적으로 업데이트 되었습니다. 감사합니다.',
+                             extra_tags="success")
+        return super(UpdateUserProfileInformation, self).form_valid(form)
 
 
 class Notification(TemplateView):
