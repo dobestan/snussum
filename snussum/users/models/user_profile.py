@@ -9,6 +9,7 @@ from users.models.university import University
 
 from users.tasks.password import send_password_reset_sms, \
     send_password_reset_email
+from users.tasks.verification import send_phonenumber_verification_sms
 
 from users.utils.hashids import get_encoded_user_profile_hashid
 
@@ -231,6 +232,7 @@ class UserProfile(models.Model):
         self.update_phonenumber_verification_token()
 
         self.save()
+        send_phonenumber_verification_sms.delay(self.pk)
 
     def update_university(self, email_username, university):
         """

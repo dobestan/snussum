@@ -1,3 +1,5 @@
+from celery import shared_task
+
 from django.core.urlresolvers import reverse
 
 from django.contrib.auth.models import User
@@ -5,9 +7,28 @@ from django.contrib.auth.models import User
 from django.template.loader import get_template
 from django.template import Context
 
-from api.tasks.messages import send_email
+from api.tasks.messages import send_email, send_sms
+from api.tasks.shortener import shorten_url, url_builder
 
 from selenium import webdriver
+
+
+@shared_task
+def send_phonenumber_verification_sms(user_id):
+    user = User.objects.get(pk=user_id)
+
+    url = reverse("users:phonenumber-verification", kwargs={'phonenumber_verification_token': user.userprofile.phonenumber_verification_token})
+    
+    url = "http://local.snussum.com:9000"+ url
+    url = url_builder(url, utm_source="sms", utm_medium="verification")
+    url = shorten_url(url)
+
+    data = {
+        'to': user.userprofile.phonenumber,
+        'body': "[스누썸] 링크를 클릭하시면 인증이 완료됩니다. ( %s )" % url,
+    }
+
+    send_sms.delay(data)
 
 
 def send_university_verification_email(user_id):
