@@ -34,10 +34,16 @@
         <td>
           <div class="edited">
             {% if user.userprofile.age %}
-              {{ user.userprofile.age }}
+              <span class="small success">
+                <i class="fa fa-check"></i> 
+                나이가 성공적으로 등록되었습니다.
+                상대방이 나이 조건을 설정해두지 않은 경우, 상대방의 나이 조건에 부합할 경우 모두 매칭됩니다.
+              </span></br>
+              {{ user.userprofile.age }} 살
             {% else %}
               <span class="small danger">
-                나이정보가 등록되지 않았습니다.<br/>
+                <i class="fa fa-close"></i> 
+                나이가 등록되지 않았습니다.
                 상대방이 나이 조건을 설정해둔 경우, 매칭되지 않습니다.
               </span>
             {% endif %}
@@ -54,10 +60,16 @@
         <td>
           <div class="edited">
             {% if user.userprofile.height %}
+              <span class="small success">
+                <i class="fa fa-check"></i> 
+                키(신장)가 성공적으로 등록되었습니다.
+                상대방이 키(신장) 조건을 설정해두지 않은 경우, 상대방의 키(신장) 조건에 부합할 경우 모두 매칭됩니다.
+              </span></br>
               {{ user.userprofile.height }} cm
             {% else %}
               <span class="small danger">
-                키(신장) 정보가 등록되지 않았습니다.<br/>
+                <i class="fa fa-close"></i> 
+                키(신장)가 등록되지 않았습니다.
                 상대방이 키 조건을 설정해둔 경우, 매칭되지 않습니다.
               </span>
             {% endif %}
@@ -76,7 +88,7 @@
     <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;프로필 정보 수정하기
   </button>
 
-  <button type="submit" class="text-center btn-snussum-darkgrey editing">
+  <button type="submit" class="text-center btn-snussum-red editing">
     <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;프로필 정보 업데이트
   </button>
 
