@@ -10,6 +10,8 @@ from django.views.decorators.http import require_POST
 from users.models.user_profile import UserProfile
 from users.forms.profile import UserProfileInformationForm
 
+from django.core.urlresolvers import reverse
+
 
 class Profile(TemplateView):
     template_name = "users/profile.html"
@@ -30,12 +32,18 @@ class UpdateUserProfileBase(View):
     @method_decorator(require_POST)
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(View, self).dispatch(*args, **kwargs)
+        return super(UpdateUserProfileBase, self).dispatch(*args, **kwargs)
 
 
-class UpdateUserProfileInformation(UpdateUserProfileBase):
+class UpdateUserProfileInformation(UpdateView, UpdateUserProfileBase):
     model = UserProfile
     fields = ['nickname', 'profile_introduce', 'age', 'height']
+
+    def get_object(self):
+        return self.request.user.userprofile
+
+    def get_success_url(self):
+        return reverse("users:profile")
 
 
 class Notification(TemplateView):
