@@ -8,6 +8,10 @@ INSTALLED_APPS += (
     'debug_toolbar',
 )
 
+MIDDLEWARE_CLASSES += (
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+)
+
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 INTERNAL_IPS = (
