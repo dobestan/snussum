@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
@@ -29,7 +30,7 @@ class SelfDating(models.Model):
         return self.user.username
 
     def get_absolute_url(self):
-        return "/wanted/%s/" % self.hash_id
+        return reverse("self-dating-detail", kwargs={'slug': self.hash_id})
 
     def _time_left(self):
         if self.is_finished:

@@ -1,3 +1,5 @@
+from django.core.urlresolvers import reverse
+
 from django.db import models
 
 from django.contrib.auth.models import User
@@ -51,6 +53,9 @@ class Dating(models.Model):
 
     def __str__(self):
         return "(%s, %s)" % (self.boy.username, self.girl.username)
+
+    def get_absolute_url(self):
+        return reverse("dating-detail", kwargs={'slug': self.hash_id})
 
 
 @receiver(post_save, sender=Dating)
