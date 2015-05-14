@@ -59,7 +59,13 @@ PIPELINE_JS = {
 PIPELINE_CSS = {
     'main': {
         'source_filenames': (
-            'css/*.css',
+            'css/bootstrap.min.css',
+            'css/font-awesome.min.css',
+            'css/animate.min.css',
+            'css/bootstrap-tagsinput.css',
+            'css/bootstrap-switch.min.css',
+            'css/bootstrap-datetimepicker.min.css',
+            'css/application.css',
         ),
         'output_filename': (
             'css/snussum.min.css'
