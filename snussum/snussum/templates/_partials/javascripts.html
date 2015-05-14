@@ -1,16 +1,4 @@
 {% load staticfiles %}
+{% load pipeline %}
 
-{% if debug %}
-  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/jquery-cookie.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/bootstrap-notify.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/bootstrap-switch.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/moment.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/bootstrap-tagsinput.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/highcharts.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/application.js' %}"></script>
-{% else %}
-  <script type="text/javascript" src="{% static 'js/snussum.min.js' %}"></script>
-{% endif %}
+{% javascript 'main' %}
