@@ -3,7 +3,7 @@ from django.contrib import admin
 
 from snussum.views import Home, Dashboard
 from snussum.views.rules import Privacy, Service
-from snussum.views.dating import DatingDetail, TodayDetail
+from relationships.views.dating import DatingDetail, TodayDetail
 
 from relationships.views.self_dating import SelfDatingFormView, SelfDatingDetail
 
