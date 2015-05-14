@@ -1,3 +1,4 @@
+from django.views.generic import View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 
@@ -5,37 +6,41 @@ from relationships.forms.self_dating import SelfDatingForm, SelfDatingApplyForm
 
 from django.utils.decorators import method_decorator
 from users.decorators import university_verified_required, profile_verifed_required
+from django.contrib.auth.decorators import login_required
 
 from relationships.models.self_dating import SelfDating
 
 
-class SelfDatingFormView(CreateView):
-    template_name = "datings/self_dating/new.html"
-    form_class = SelfDatingForm
-
-    @method_decorator(university_verified_required)
-    @method_decorator(profile_verifed_required)
-    def dispatch(self, *args, **kwargs):
-        return super(SelfDatingFormView, self).dispatch(*args, **kwargs)
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        self.object.save()
-
-        return super(SelfDatingFormView, self).form_valid(form)
-
-
-class SelfDatingDetail(DetailView):
+class SelfDatingBase(View):
     model = SelfDating
     slug_field = "hash_id"
-    template_name = "datings/self_dating/detail.html"
     context_object_name = "self_dating"
 
     @method_decorator(university_verified_required)
     @method_decorator(profile_verifed_required)
+    @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(SelfDatingDetail, self).dispatch(*args, **kwargs)
+        return super(SelfDatingBase, self).dispatch(*args, **kwargs)
+
+
+class SelfDatingCreate(SelfDatingBase, CreateView):
+    template_name = "datings/self_dating/new.html"
+    form_class = SelfDatingForm
+
+    def form_invalid(self, form):
+        print(form)
+
+    def form_valid(self, form):
+        print(form)
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+
+        return super(SelfDatingCreate, self).form_valid(form)
+
+
+class SelfDatingDetail(SelfDatingBase, DetailView):
+    template_name = "datings/self_dating/detail.html"
 
     def get_context_data(self, **kwargs):
         context = super(SelfDatingDetail, self).get_context_data(**kwargs)
