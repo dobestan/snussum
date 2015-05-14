@@ -32,7 +32,11 @@ module.exports = (grunt) ->
             'css/bootstrap-datetimepicker.min.css': 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
             'css/bootstrap-tagsinput.css': 'bootstrap-tagsinput/dist/bootstrap-tagsinput.css'
 
-            'fonts/': ['NanumBarunGothic/', 'fontawesome/fonts/']
+            'fonts/': [
+              'NanumBarunGothic/',
+              'fontawesome/fonts/',
+              'bootstrap/fonts/'
+            ]
 
 
       sass:
