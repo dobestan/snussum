@@ -25,6 +25,7 @@ INSTALLED_APPS = (
     'admin_honeypot',
     'notifications',
     'django_summernote',
+    'pipeline',
 
     # Snussum Apps
     'users',
@@ -34,8 +35,9 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     "djangosecure.middleware.SecurityMiddleware",
-    
+
     'django.middleware.gzip.GZipMiddleware',
+    'pipeline.middleware.MinifyHTMLMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -162,3 +164,14 @@ SUMMERNOTE_CONFIG = {
     'inplacewidget_external_css': (),
     'inplacewidget_external_js': (),
 }
+
+# django-pipeline
+# https://django-pipeline.readthedocs.org/en/latest/installation.html
+
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
