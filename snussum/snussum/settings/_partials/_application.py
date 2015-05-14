@@ -87,11 +87,6 @@ HASHIDS_SELF_DATING_SALT = os.environ["HASHIDS_SELF_DATING_SALT"]
 HASHIDS_COMMENT_SALT = os.environ["HASHIDS_COMMENT_SALT"]
 HASHIDS_USER_PROFILE_SALT = os.environ["HASHIDS_USER_PROFILE_SALT"]
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'components'),
-)
-
 WSGI_APPLICATION = 'snussum.wsgi.application'
 
 DEBUG = True
@@ -164,14 +159,3 @@ SUMMERNOTE_CONFIG = {
     'inplacewidget_external_css': (),
     'inplacewidget_external_js': (),
 }
-
-# django-pipeline
-# https://django-pipeline.readthedocs.org/en/latest/installation.html
-
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'pipeline.finders.PipelineFinder',
-)
