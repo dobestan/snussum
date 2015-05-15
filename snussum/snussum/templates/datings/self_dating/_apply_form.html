@@ -1,7 +1,7 @@
-<form action="" method="" accept-charset="utf-8">
+<form action="{% url "self-dating-apply" self_dating.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
   <div class="form-group">
     <label>상대방에게 전달할 문구</label>
-    <textarea name="" id="" class="form-control" rows=10></textarea>
+    <textarea id="id_content" name="content" class="form-control" rows=10></textarea>
   </div>
 
   <button type="submit" class="text-center btn-snussum-red">

@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from users.decorators import university_verified_required, profile_verifed_required
 from django.contrib.auth.decorators import login_required
 
-from relationships.models.self_dating import SelfDating
+from relationships.models.self_dating import SelfDating, SelfDatingApply
 
 
 class SelfDatingBase(View):
@@ -44,3 +44,18 @@ class SelfDatingDetail(SelfDatingBase, DetailView):
         context['recent_self_datings'] = SelfDating.objects.exclude(
             pk=context['self_dating'].pk).order_by('-ends_at')[:3]
         return context
+
+
+class SelfDatingApply(SelfDatingBase, CreateView):
+    model = SelfDatingApply
+    fields = ['content']
+
+    def form_valid(self, form):
+        self_dating = SelfDating.objects.get(hash_id=self.kwargs['slug'])
+
+        self_dating_apply_object = form.save(commit=False)
+        self_dating_apply_object.user = self.request.user
+        self_dating_apply_object.self_dating = self_dating
+        self_dating_apply_object.save()
+
+        return super(SelfDatingApply, self).form_valid(form)

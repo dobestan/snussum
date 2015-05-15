@@ -49,10 +49,18 @@ class SelfDating(models.Model):
 
 
 class SelfDatingApply(models.Model):
-    dating = models.ForeignKey(SelfDating)
+    self_dating = models.ForeignKey(SelfDating)
     user = models.ForeignKey(User)
 
     content = models.TextField()
+
+    class Meta:
+        unique_together = (
+            ("self_dating", "user"),
+        )
+
+    def get_absolute_url(self):
+        return reverse("self-dating-detail", kwargs={'slug': self.self_dating.hash_id})
 
 
 @receiver(post_save, sender=SelfDating)
