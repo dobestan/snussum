@@ -5,6 +5,11 @@ from relationships.models.self_dating import SelfDating, SelfDatingApply
 from relationships.models.comment import Comment
 
 
+class CommentInline(admin.TabularInline):
+    model = Comment
+    readonly_fields = ('created_at',)
+
+
 @admin.register(Dating)
 class DatingAdmin(admin.ModelAdmin):
     readonly_fields = ('matched_at',)
@@ -15,6 +20,7 @@ class DatingAdmin(admin.ModelAdmin):
         'is_boy_accepted',
         'is_girl_accepted',
     )
+    inlines = [CommentInline]
 
 
 class SelfDatingApplyInline(admin.TabularInline):
@@ -34,8 +40,3 @@ class SelfDatingAdmin(admin.ModelAdmin):
         'apply_is_not_accepted_count',
     )
     inlines = [SelfDatingApplyInline, ]
-
-
-@admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
-    pass
