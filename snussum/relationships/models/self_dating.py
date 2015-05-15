@@ -6,7 +6,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from notifications import notify
 
-from relationships.utils.hashids import get_encoded_self_dating_hashid
+from relationships.utils.hashids import get_encoded_self_dating_hashid, get_encoded_self_dating_apply_hashid
 
 from django.contrib.auth.models import User
 
@@ -101,6 +101,8 @@ class SelfDating(models.Model):
 
 
 class SelfDatingApply(models.Model):
+    hash_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
+
     self_dating = models.ForeignKey(SelfDating)
     user = models.ForeignKey(User)
 
@@ -128,4 +130,11 @@ def _update_self_dating(sender, instance, created, **kwargs):
         if not instance.ends_at:
             instance.ends_at = instance.created_at + timedelta(3)
 
+        instance.save()
+
+
+@receiver(post_save, sender=SelfDatingApply)
+def _update_self_dating_apply(sender, instance, created, **kwargs):
+    if created:
+        instance.hash_id = get_encoded_self_dating_apply_hashid(instance.id)
         instance.save()

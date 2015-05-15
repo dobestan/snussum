@@ -1,0 +1,48 @@
+<li class="self-dating-apply">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="media">
+        <div class="media-left">
+          <img src="{{ self_dating_apply.user.userprofile.profile_image_url }}" alt=""/>
+        </div>
+        <div class="media-body">
+          <p>
+            {{ self_dating_apply.content }}
+          </p>
+          <div class="edited">
+            <div class="col-xs-6 col-no-padding">
+              <button type="submit" class="text-center btn-snussum-red">
+                <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수락하기
+              </button>
+            </div>
+            <div class="col-xs-6 col-no-padding">
+              <button type="submit" class="text-center btn-snussum-darkgrey">
+                <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;거절하기
+              </button>
+            </div>
+          </div>
+          <div class="editing">
+            <form action="{% url "self-dating-apply-accept" self_dating.hash_id self_dating_apply.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+              <div class="form-group">
+                <textarea name="accepted_message" id="id_accepted_message" class="form-control" required></textarea>
+                <button type="submit" class="text-center btn-snussum-red">
+                  <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수락하기
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="editing">
+            <form action="{% url "self-dating-apply-refuse" self_dating.hash_id self_dating_apply.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+              <div class="form-group">
+                <textarea name="accepted_message" id="id_accepted_message" class="form-control" required></textarea>
+                <button type="submit" class="text-center btn-snussum-red">
+                  <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;거절하기
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

@@ -1,6 +1,8 @@
+from django.shortcuts import get_object_or_404
+
 from django.views.generic import View
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from relationships.forms.self_dating import SelfDatingForm, SelfDatingApplyForm
 
@@ -9,6 +11,8 @@ from users.decorators import university_verified_required, profile_verifed_requi
 from django.contrib.auth.decorators import login_required
 
 from relationships.models.self_dating import SelfDating, SelfDatingApply
+
+from datetime import datetime
 
 
 class SelfDatingBase(View):
@@ -46,7 +50,7 @@ class SelfDatingDetail(SelfDatingBase, DetailView):
         return context
 
 
-class SelfDatingApply(SelfDatingBase, CreateView):
+class SelfDatingApplyCreate(SelfDatingBase, CreateView):
     model = SelfDatingApply
     fields = ['content']
 
@@ -58,4 +62,32 @@ class SelfDatingApply(SelfDatingBase, CreateView):
         self_dating_apply_object.self_dating = self_dating
         self_dating_apply_object.save()
 
-        return super(SelfDatingApply, self).form_valid(form)
+        return super(SelfDatingApplyCreate, self).form_valid(form)
+
+
+class SelfDatingApplyAccept(SelfDatingBase, UpdateView):
+    model = SelfDatingApply
+    fields = ["accepted_message", ]
+
+    def get_object(self):
+        return get_object_or_404(self.model, hash_id=self.kwargs['self_dating_apply_hash_id'])
+
+    def form_valid(self, form):
+        self.object.is_accepted = True
+        self.object.accepted_at = datetime.now()
+
+        return super(SelfDatingApplyAccept, self).form_valid(form)
+
+
+class SelfDatingApplyRefuse(SelfDatingBase, UpdateView):
+    model = SelfDatingApply
+    fields = ["accepted_message", ]
+
+    def get_object(self):
+        return get_object_or_404(self.model, hash_id=self.kwargs['self_dating_apply_hash_id'])
+
+    def form_valid(self, form):
+        self.object.is_accepted = False
+        self.object.accepted_at = datetime.now()
+
+        return super(SelfDatingApplyRefuse, self).form_valid(form)

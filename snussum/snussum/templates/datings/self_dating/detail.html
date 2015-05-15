@@ -72,54 +72,7 @@
 
               <ul class="self-dating-applies">
                 {% for self_dating_apply in self_dating.selfdatingapply_set.all %}
-                  <li class="self-dating-apply">
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        <div class="media">
-                          <div class="media-left">
-                            <img src="{{ self_dating_apply.user.userprofile.profile_image_url }}" alt=""/>
-                          </div>
-                          <div class="media-body">
-                            <p>
-                              {{ self_dating_apply.content }}
-                            </p>
-                            <div class="edited">
-                              <div class="col-xs-6 col-no-padding">
-                                <button type="submit" class="text-center btn-snussum-red">
-                                  <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수락하기
-                                </button>
-                              </div>
-                              <div class="col-xs-6 col-no-padding">
-                                <button type="submit" class="text-center btn-snussum-darkgrey">
-                                  <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;거절하기
-                                </button>
-                              </div>
-                            </div>
-                            <div class="editing">
-                              <form action="" method="POST" accept-charset="utf-8">{% csrf_token %}
-                                <div class="form-group">
-                                  <textarea name="" id="" class="form-control" required></textarea>
-                                  <button type="submit" class="text-center btn-snussum-red">
-                                    <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수락하기
-                                  </button>
-                                </div>
-                              </form>
-                            </div>
-                            <div class="editing">
-                              <form action="" method="POST" accept-charset="utf-8">{% csrf_token %}
-                                <div class="form-group">
-                                  <textarea name="" id="" class="form-control" required></textarea>
-                                  <button type="submit" class="text-center btn-snussum-red">
-                                    <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;거절하기
-                                  </button>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
+                  {% include "datings/self_dating/_self_dating_apply.html" with self_dating_apply=self_dating_apply %}
                 {% endfor %}
               </ul>
             </div>
