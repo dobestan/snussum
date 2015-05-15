@@ -69,16 +69,18 @@
         </section>
       </div>
 
-      <section class="visible-xs">
-        <a id="btn-dating-accept" href="#dating-accept-section" class="text-center btn-snussum-red">
-          <i class="fa fa-thumbs-o-up"></i>&nbsp;수락하기
-        </a>
-      </section>
-      <section class="visible-xs">
-        <a id="btn-dating-refuse" href="#dating-accept-section" class="text-center btn-snussum-darkgrey">
-          <i class="fa fa-thumbs-o-down"></i>&nbsp;거절하기
-        </a>
-      </section>
+      {% if not dating.is_accepted and myself_is_accepted == None %}
+        <section class="visible-xs">
+          <a id="btn-dating-accept" href="#dating-accept-section" class="text-center btn-snussum-red">
+            <i class="fa fa-thumbs-o-up"></i>&nbsp;수락하기
+          </a>
+        </section>
+        <section class="visible-xs">
+          <a id="btn-dating-refuse" href="#dating-accept-section" class="text-center btn-snussum-darkgrey">
+            <i class="fa fa-thumbs-o-down"></i>&nbsp;거절하기
+          </a>
+        </section>
+      {% endif %}
 
     </div>
 

@@ -28,21 +28,29 @@
       연락처 공개 전, 아래의 대화방을 통해서 충분한 대화 나누시기 바랍니다.
     </p>
 
-    <form action="{% url "dating-accept" dating.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
-      <label>상대방에게 남길 메시지</label>
-      <div class="form-group"k>
-        <textarea name="content" id="id_content" class="form-control" rows="3" placeholder="상대방에게 수락 시 남기는 메시지는 SMS로 발송됩니다"></textarea>
-      </div>
-      <button type="submit" class="text-center btn-snussum-red">
-        <i class="fa fa-thumbs-o-up"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연락처 공개하기
-      </button>
-    </form>
-    <hr />
-    <form action="{% url "dating-refuse" dating.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
-      <button type="submit" class="text-center btn-snussum-darkgrey">
-        <i class="fa fa-thumbs-o-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인연이 아니였네요
-      </button>
-    </form>
+    {% if myself_is_accepted == None %}
+      <form action="{% url "dating-accept" dating.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+        <label>상대방에게 남길 메시지</label>
+        <div class="form-group"k>
+          <textarea name="content" id="id_content" class="form-control" rows="3" placeholder="상대방에게 수락 시 남기는 메시지는 SMS로 발송됩니다"></textarea>
+        </div>
+        <button type="submit" class="text-center btn-snussum-red">
+          <i class="fa fa-thumbs-o-up"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연락처 공개하기
+        </button>
+      </form>
+      <hr />
+      <form action="{% url "dating-refuse" dating.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+        <button type="submit" class="text-center btn-snussum-darkgrey">
+          <i class="fa fa-thumbs-o-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인연이 아니였네요
+        </button>
+      </form>
+    {% else %}
+      <p class="small danger">
+        <i class="fa fa-close"></i>
+        상대방의 의사를 기다리고 있습니다.
+      </p>
+    {% endif %}
+
   {% endif %}
 
 {% else %}
