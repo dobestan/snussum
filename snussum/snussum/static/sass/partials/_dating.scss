@@ -229,6 +229,23 @@ section#dashboard {
   }
 }
 
+#self-dating-detail {
+  ul.self-dating-applies {
+    list-style-type: none;
+    padding-left: 0;
+
+    li.self-dating-apply {
+      img {
+        width: 60px;
+        height: 60px;
+
+        border-radius: 50%;
+        border: 1px solid $snussum-lightgrey;
+      }
+    }
+  }
+}
+
 
 // Fixed Layout
 
