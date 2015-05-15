@@ -1,6 +1,7 @@
 from django.views.generic.base import TemplateView
 
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from users.decorators import university_verified_required, profile_verifed_required
 
 
@@ -13,6 +14,7 @@ class Dashboard(TemplateView):
         context['datings_matched_recently'] = self.request.user.userprofile.datings_matched_recently_except_today()
         return context
 
+    @method_decorator(login_required)
     @method_decorator(university_verified_required)
     @method_decorator(profile_verifed_required)
     def dispatch(self, *args, **kwargs):

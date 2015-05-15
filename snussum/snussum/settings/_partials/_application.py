@@ -25,6 +25,7 @@ INSTALLED_APPS = (
     'admin_honeypot',
     'notifications',
     'django_summernote',
+    'pipeline',
 
     # Snussum Apps
     'users',
@@ -34,6 +35,10 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     "djangosecure.middleware.SecurityMiddleware",
+
+    'django.middleware.gzip.GZipMiddleware',
+    'pipeline.middleware.MinifyHTMLMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -81,11 +86,6 @@ HASHIDS_DATING_SALT = os.environ["HASHIDS_DATING_SALT"]
 HASHIDS_SELF_DATING_SALT = os.environ["HASHIDS_SELF_DATING_SALT"]
 HASHIDS_COMMENT_SALT = os.environ["HASHIDS_COMMENT_SALT"]
 HASHIDS_USER_PROFILE_SALT = os.environ["HASHIDS_USER_PROFILE_SALT"]
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'components'),
-)
 
 WSGI_APPLICATION = 'snussum.wsgi.application'
 
@@ -137,25 +137,3 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
 ADMIN_URL = os.environ["ADMIN_URL"]
-
-SUMMERNOTE_CONFIG = {
-    # Using SummernoteWidget - iframe mode
-    # or set False to use SummernoteInplaceWidget - no iframe mode
-    'width': '100%',
-    'height': '240',
-    'lang': 'ko-KR',
-
-    # Customize toolbar buttons
-    'toolbar': [
-        ['style', ['style']],
-        ['style', ['bold', 'italic', 'underline', 'clear']],
-        ['para', ['ul', 'ol']],
-        ['insert', ['link', 'picture']],
-        ['view', ['fullscreen']],
-    ],
-
-    # Set external media files for SummernoteInplaceWidget.
-    # !!! Be sure to put {{ form.media }} in template before initiate summernote.
-    'inplacewidget_external_css': (),
-    'inplacewidget_external_js': (),
-}

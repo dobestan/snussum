@@ -1,3 +1,5 @@
+from django.core.urlresolvers import reverse
+
 from django.db import models
 
 from django.contrib.auth.models import User
@@ -22,14 +24,19 @@ class Dating(models.Model):
     boy_checked_at = models.DateTimeField(blank=True, null=True)
     girl_checked_at = models.DateTimeField(blank=True, null=True)
 
-    is_boy_accepted = models.BooleanField(default=False)
-    is_girl_accepted = models.BooleanField(default=False)
+    is_boy_accepted = models.NullBooleanField()
+    is_girl_accepted = models.NullBooleanField()
 
     boy_accepted_at = models.DateTimeField(blank=True, null=True)
     girl_accepted_at = models.DateTimeField(blank=True, null=True)
 
+    boy_accepted_message = models.TextField(blank=True, null=True)
+    girl_accepted_message = models.TextField(blank=True, null=True)
+
     def _is_accepted(self):
         return self.is_boy_accepted and self.is_girl_accepted
+
+    _is_accepted.boolean = True
     is_accepted = property(_is_accepted)
 
     def pretty_date(self):
@@ -46,6 +53,9 @@ class Dating(models.Model):
 
     def __str__(self):
         return "(%s, %s)" % (self.boy.username, self.girl.username)
+
+    def get_absolute_url(self):
+        return reverse("dating-detail", kwargs={'slug': self.hash_id})
 
 
 @receiver(post_save, sender=Dating)

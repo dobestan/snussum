@@ -3,9 +3,9 @@ from django.contrib import admin
 
 from snussum.views import Home, Dashboard
 from snussum.views.rules import Privacy, Service
-from snussum.views.dating import DatingDetail, TodayDetail
 
-from relationships.views.self_dating import SelfDatingFormView, SelfDatingDetail
+from relationships.views.dating import DatingDetail, TodayDetail, DatingAccept, DatingRefuse
+from relationships.views.self_dating import SelfDatingCreate, SelfDatingDetail, SelfDatingApply
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -29,10 +29,14 @@ urlpatterns = [
 
     url(r'^ssum/$', Dashboard.as_view(), name='dashboard'),
     url(r'^ssum/(?P<slug>\w+)/$', DatingDetail.as_view(), name='dating-detail'),
+    url(r'^ssum/(?P<slug>\w+)/accept/$', DatingAccept.as_view(), name='dating-accept'),
+    url(r'^ssum/(?P<slug>\w+)/refuse/$', DatingRefuse.as_view(), name='dating-refuse'),
+
     url(r'^today/$', TodayDetail.as_view(), name='today'),
 
-    url(r'^wanted/new/$', SelfDatingFormView.as_view(), name='self-dating-new'),
+    url(r'^wanted/new/$', SelfDatingCreate.as_view(), name='self-dating-new'),
     url(r'^wanted/(?P<slug>\w+)/$', SelfDatingDetail.as_view(), name='self-dating-detail'),
+    url(r'^wanted/(?P<slug>\w+)/apply/$', SelfDatingApply.as_view(), name='self-dating-apply'),
 
     url(r'^', include('users.urls', namespace='users')),
     url(r'^api/', include('api.urls', namespace='api')),

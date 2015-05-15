@@ -22,3 +22,4 @@ django-admin-honeypot
 django-notifications-hq
 raven
 django-summernote
+django-pipeline
