@@ -3,15 +3,15 @@ from django.conf.urls import patterns, url
 from users.views.verify import VerifyUniversity, VerifyUniversitySNU, VerifyProfile
 from users.views.profile import Profile, Notification, UpdateUserProfileInformation, UpdateUserProfileAccountEmail, \
         UpdateUserProfileAccountPhonenumber
-from users.views.password import PasswordReset
+from users.views.auth import PasswordReset
 
 
 urlpatterns = patterns(
     '',
 
-    url(r'^login/$', 'users.views.login', name='login'),
-    url(r'^signup/$', 'users.views.signup', name='signup'),
-    url(r'^logout/$', 'users.views.logout', name='logout'),
+    url(r'^login/$', 'users.views.auth.login', name='login'),
+    url(r'^signup/$', 'users.views.auth.signup', name='signup'),
+    url(r'^logout/$', 'users.views.auth.logout', name='logout'),
 
     url(r'^password/reset/$', PasswordReset.as_view(), name='password-reset'),
 
