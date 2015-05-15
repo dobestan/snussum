@@ -6,6 +6,8 @@ from django.contrib.auth.admin import UserAdmin
 from users.models.user_profile import UserProfile
 from users.models.university import University
 
+from relationships.admin import SelfDatingApplyInline
+
 
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
@@ -33,7 +35,7 @@ class UserAdmin(UserAdmin):
         return super(UserAdmin, self).add_view(*args, **kwargs)
 
     def change_view(self, *args, **kwargs):
-        self.inlines = [UserProfileInline]
+        self.inlines = [UserProfileInline, SelfDatingApplyInline, ]
         return super(UserAdmin, self).change_view(*args, **kwargs)
 
     def hash_id(self, obj):
