@@ -3,7 +3,6 @@ from django import template
 
 register = template.Library()
 
-
 @register.filter(name='partner')
 def partner(dating, user):
     if dating.boy == user:

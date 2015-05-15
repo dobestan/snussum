@@ -1,6 +1,8 @@
 {% extends "_base.html" %}
+{% load self_datings %}
 
 {% block content %}
+  {% with myself_dating_apply=self_dating|myself_dating_apply:user %}
 <section id="self-dating-detail">
   <div class="container">
     <div class="col-xs-12 col-sm-8">
@@ -92,4 +94,5 @@
     </div>
   </div>
 </section>
+  {% endwith %}
 {% endblock %}
