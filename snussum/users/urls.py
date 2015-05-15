@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 
 from users.views.verify import VerifyUniversity, VerifyUniversitySNU, VerifyProfile
 from users.views.profile import Profile, Notification, UpdateUserProfileInformation, UpdateUserProfileAccountEmail, \
-        UpdateUserProfileAccountPhonenumber
+    UpdateUserProfileAccountPhonenumber
 from users.views.auth import PasswordReset
 
 

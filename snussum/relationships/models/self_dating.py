@@ -70,7 +70,7 @@ class SelfDating(models.Model):
     apply_is_not_checked_count = property(_apply_is_not_checked_count)
 
     def _apply_is_accepted_ratio(self):
-       if self.apply_count:
+        if self.apply_count:
             return self.apply_is_accepted_count / self.apply_count
     apply_is_accepted_ratio = property(_apply_is_accepted_ratio)
 
@@ -107,7 +107,6 @@ class SelfDatingApply(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
-    
     is_accepted = models.NullBooleanField()
     accepted_at = models.DateTimeField(blank=True, null=True)
     accepted_message = models.TextField(blank=True, null=True)

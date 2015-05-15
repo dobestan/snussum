@@ -10,6 +10,7 @@ from relationships.models.dating import Dating
 
 from datetime import datetime
 
+
 class DatingBase(View):
     model = Dating
     slug_field = "hash_id"
@@ -27,6 +28,7 @@ class DatingDetail(DatingBase, DetailView):
 
 
 class TodayDetail(DatingBase, DetailView):
+
     def get_object(self):
         return self.request.user.userprofile.dating_matched_today()
 
