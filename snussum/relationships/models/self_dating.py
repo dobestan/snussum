@@ -65,6 +65,39 @@ class SelfDating(models.Model):
         return self.selfdatingapply_set.filter(is_accepted=False).count()
     apply_is_not_accepted_count = property(_apply_is_not_accepted_count)
 
+    def _apply_is_not_checked_count(self):
+        return self.selfdatingapply_set.filter(is_accepted=None).count()
+    apply_is_not_checked_count = property(_apply_is_not_checked_count)
+
+    def _apply_is_accepted_ratio(self):
+       if self.apply_count:
+            return self.apply_is_accepted_count / self.apply_count
+    apply_is_accepted_ratio = property(_apply_is_accepted_ratio)
+
+    def _apply_is_not_accepted_ratio(self):
+        if self.apply_count:
+            return self.apply_is_not_accepted_count / self.apply_count
+    apply_is_not_accepted_ratio = property(_apply_is_not_accepted_ratio)
+
+    def _apply_is_not_checked_ratio(self):
+        if self.apply_count:
+            return self.apply_is_not_checked_count / self.apply_count
+    apply_is_not_checked_ratio = property(_apply_is_not_checked_ratio)
+
+    def _apply_is_accepted_percentage(self):
+        if self.apply_count:
+            return self.apply_is_accepted_ratio * 100
+    apply_is_accepted_percentage = property(_apply_is_accepted_percentage)
+
+    def _apply_is_not_accepted_percentage(self):
+        if self.apply_count:
+            return self.apply_is_not_accepted_ratio * 100
+    apply_is_not_accepted_percentage = property(_apply_is_not_accepted_percentage)
+
+    def _apply_is_not_checked_percentage(self):
+        if self.apply_count:
+            return self.apply_is_not_checked_ratio * 100
+    apply_is_not_checked_percentage = property(_apply_is_not_checked_percentage)
 
 
 class SelfDatingApply(models.Model):

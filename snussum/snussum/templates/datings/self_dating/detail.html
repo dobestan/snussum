@@ -53,6 +53,18 @@
                 상대방에게 전달된 메시지나 특정 개인에 대한 수락, 거절 여부는 확인하실 수 없습니다.
               </p>
 
+              <div class="progress">
+                <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: {{ self_dating.apply_is_accepted_percentage }}%;">
+                  {{ self_dating.apply_is_accepted_percentage|floatformat:-1 }}%
+                </div>
+                <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: {{ self_dating.apply_is_not_accepted_percentage }}%;">
+                  {{ self_dating.apply_is_not_accepted_percentage|floatformat:-1 }}%
+                </div>
+                <div class="progress-bar progress-bar-striped active" style="width: {{ self_dating.apply_is_not_checked_percentage }}%;">
+                  {{ self_dating.apply_is_not_checked_percentage|floatformat:-1 }}%
+                </div>
+              </div>
+
               {% if self_dating.user == user %}
                 <p class="success">
                   <i class="fa fa-check"></i>
