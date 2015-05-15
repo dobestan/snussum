@@ -11,7 +11,13 @@
       <textarea name="content" id="id_content" class="form-control" rows="3" placeholder="상대방에게 수락 시 남기는 메시지는 SMS로 발송됩니다"></textarea>
     </div>
     <button type="submit" class="text-center btn-snussum-red">
-      <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연락처 공개하기
+      <i class="fa fa-thumbs-o-up"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연락처 공개하기
+    </button>
+  </form>
+  <hr />
+  <form action="{% url "dating-refuse" dating.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+    <button type="submit" class="text-center btn-snussum-darkgrey">
+      <i class="fa fa-thumbs-o-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인연이 아니였네요
     </button>
   </form>
 {% else %}

@@ -51,8 +51,20 @@ class DatingAccept(DatingBase, UpdateView):
         return super(DatingAccept, self).form_valid(form)
 
 
-class DatingRefuse(DatingBase):
-    pass
+class DatingRefuse(DatingBase, UpdateView):
+    model = Dating
+    fields = []
+
+    def form_valid(self, form):
+        if self.request.user.userprofile.is_boy:
+            self.object.is_boy_accepted = False
+            self.object.boy_accepted_at = datetime.now()
+        else:
+            self.object.is_girl_accepted = False
+            self.object.girl_accepted_at = datetime.now()
+        self.object.save()
+
+        return super(DatingRefuse, self).form_valid(form)
 
 
 class DatingRating(DatingBase):

@@ -27,11 +27,7 @@ class SelfDatingCreate(SelfDatingBase, CreateView):
     template_name = "datings/self_dating/new.html"
     form_class = SelfDatingForm
 
-    def form_invalid(self, form):
-        print(form)
-
     def form_valid(self, form):
-        print(form)
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
