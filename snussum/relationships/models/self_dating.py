@@ -60,6 +60,12 @@ class SelfDatingApply(models.Model):
     user = models.ForeignKey(User)
 
     content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    
+    is_accepted = models.NullBooleanField()
+    accepted_at = models.DateTimeField(blank=True, null=True)
+    accepted_message = models.TextField(blank=True, null=True)
 
     class Meta:
         unique_together = (

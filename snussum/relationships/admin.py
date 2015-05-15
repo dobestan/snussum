@@ -17,6 +17,11 @@ class DatingAdmin(admin.ModelAdmin):
     )
 
 
+class SelfDatingApplyInline(admin.TabularInline):
+    model = SelfDatingApply
+    readonly_fields = ('created_at',)
+
+
 @admin.register(SelfDating)
 class SelfDatingAdmin(admin.ModelAdmin):
     list_display = admin.ModelAdmin.list_display + (
@@ -25,6 +30,7 @@ class SelfDatingAdmin(admin.ModelAdmin):
         '_is_in_progress',
         'created_at', 'ends_at',
     )
+    inlines = [SelfDatingApplyInline, ]
 
 
 @admin.register(Comment)
