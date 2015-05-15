@@ -53,6 +53,18 @@ class SelfDating(models.Model):
     _is_in_progress.boolean = True
     is_in_progress = property(_is_in_progress)
 
+    def _apply_count(self):
+        return self.selfdatingapply_set.count()
+    apply_count = property(_apply_count)
+
+    def _apply_is_accepted_count(self):
+        return self.selfdatingapply_set.filter(is_accepted=True).count()
+    apply_is_accepted_count = property(_apply_is_accepted_count)
+
+    def _apply_is_not_accepted_count(self):
+        return self.selfdatingapply_set.filter(is_accepted=False).count()
+    apply_is_not_accepted_count = property(_apply_is_not_accepted_count)
+
 
 
 class SelfDatingApply(models.Model):

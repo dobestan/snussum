@@ -29,6 +29,9 @@ class SelfDatingAdmin(admin.ModelAdmin):
         'title',
         '_is_in_progress',
         'created_at', 'ends_at',
+        'apply_count',
+        'apply_is_accepted_count',
+        'apply_is_not_accepted_count',
     )
     inlines = [SelfDatingApplyInline, ]
 
