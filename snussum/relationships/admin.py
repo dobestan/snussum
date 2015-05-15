@@ -19,7 +19,12 @@ class DatingAdmin(admin.ModelAdmin):
 
 @admin.register(SelfDating)
 class SelfDatingAdmin(admin.ModelAdmin):
-    pass
+    list_display = admin.ModelAdmin.list_display + (
+        'user', 'hash_id',
+        'title',
+        '_is_in_progress',
+        'created_at', 'ends_at',
+    )
 
 
 @admin.register(Comment)

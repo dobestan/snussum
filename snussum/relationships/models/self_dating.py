@@ -45,7 +45,14 @@ class SelfDating(models.Model):
 
     def _is_finished(self):
         return datetime.now() > self.ends_at
+    _is_finished.boolean = True
     is_finished = property(_is_finished)
+
+    def _is_in_progress(self):
+        return datetime.now() < self.ends_at
+    _is_in_progress.boolean = True
+    is_in_progress = property(_is_in_progress)
+
 
 
 class SelfDatingApply(models.Model):
