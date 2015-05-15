@@ -42,13 +42,26 @@
         </div>
       </section>
 
-      <section>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h2>지원자 현황</h2>
+        <section>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2>지원자 통계</h2>
+
+              <p class="danger">
+                <i class="fa fa-check"></i>
+                지원자 통계는 서울대학교 인증된 모든 학우들에게 공개됩니다.
+                상대방에게 전달된 메시지나 특정 개인에 대한 수락, 거절 여부는 확인하실 수 없습니다.
+              </p>
+
+              {% if self_dating.user == user %}
+                <p class="success">
+                  <i class="fa fa-check"></i>
+                  아래의 지원자 현황은 셀프소개팅 작성자( {{ user.userprofile.nickname }} )를 제외하고는 확인하실 수 없습니다.
+                </p>
+              {% endif %}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       <section id="self-dating-apply-section" class="visible-xs">
         <div class="panel panel-default border border-red">
