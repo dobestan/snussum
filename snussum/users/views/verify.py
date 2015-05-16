@@ -1,3 +1,5 @@
+from django.core.urlresolvers import reverse
+
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView
 
@@ -38,12 +40,15 @@ class VerifyProfile(UpdateView):
     template_name = "users/verify/profile.html"
     fields = ['nickname', 'is_boy', 'profile_introduce', 'age', 'height', ]
 
-    def get_object(self):
-        return self.request.user.userprofile
-
     @method_decorator(university_verified_required)
     def dispatch(self, *args, **kwargs):
         return super(VerifyProfile, self).dispatch(*args, **kwargs)
+
+    def get_object(self):
+        return self.request.user.userprofile
+
+    def get_success_url(self):
+        return reverse("users:profile")
 
 
 def university_verification(request, university_verification_token):
