@@ -11,7 +11,11 @@
         </div>
         <div class="media-body">
           <p>
-            {{ self_dating_apply.content }}
+            {% if self_dating.user == user or self_dating_apply.user == user %}
+              {{ self_dating_apply.content }}
+            {% else %}
+              {% lorem 3 p random %}
+            {% endif %}
           </p>
 
           {% if self_dating.user == user or self_dating_apply.user == user %}
