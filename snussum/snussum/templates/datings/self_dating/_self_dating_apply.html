@@ -1,5 +1,5 @@
 <li class="self-dating-apply {% if not self_dating.user == user and not self_dating_apply.user == user %}blur{% endif %}">
-  {% if not self_dating.user == user and self_dating_apply.user == user %}
+  {% if not self_dating.user == user and not self_dating_apply.user == user %}
     <div class="self-dating-apply-wrapper">
     </div>
   {% endif %}
@@ -20,38 +20,41 @@
                 <i class="fa fa-check"></i>
                 아직 확인하지 않았습니다.
               </p>
-              <div class="edited">
-                <div class="col-xs-6 col-no-padding">
-                  <button type="submit" class="text-center btn-snussum-red">
-                    <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수락하기
-                  </button>
-                </div>
-                <div class="col-xs-6 col-no-padding">
-                  <button type="submit" class="text-center btn-snussum-darkgrey">
-                    <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;거절하기
-                  </button>
-                </div>
-              </div>
-              <div class="editing">
-                <form action="{% url "self-dating-apply-accept" self_dating.hash_id self_dating_apply.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
-                  <div class="form-group">
-                    <textarea name="accepted_message" id="id_accepted_message" class="form-control" required></textarea>
+
+              {% if self_dating.user == user %}
+                <div class="edited">
+                  <div class="col-xs-6 col-no-padding">
                     <button type="submit" class="text-center btn-snussum-red">
                       <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수락하기
                     </button>
                   </div>
-                </form>
-              </div>
-              <div class="editing">
-                <form action="{% url "self-dating-apply-refuse" self_dating.hash_id self_dating_apply.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
-                  <div class="form-group">
-                    <textarea name="accepted_message" id="id_accepted_message" class="form-control" required></textarea>
-                    <button type="submit" class="text-center btn-snussum-red">
+                  <div class="col-xs-6 col-no-padding">
+                    <button type="submit" class="text-center btn-snussum-darkgrey">
                       <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;거절하기
                     </button>
                   </div>
-                </form>
-              </div>
+                </div>
+                <div class="editing">
+                  <form action="{% url "self-dating-apply-accept" self_dating.hash_id self_dating_apply.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+                    <div class="form-group">
+                      <textarea name="accepted_message" id="id_accepted_message" class="form-control" required></textarea>
+                      <button type="submit" class="text-center btn-snussum-red">
+                        <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수락하기
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div class="editing">
+                  <form action="{% url "self-dating-apply-refuse" self_dating.hash_id self_dating_apply.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+                    <div class="form-group">
+                      <textarea name="accepted_message" id="id_accepted_message" class="form-control" required></textarea>
+                      <button type="submit" class="text-center btn-snussum-red">
+                        <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;거절하기
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              {% endif %}
             {% elif self_dating_apply.is_accepted %}
               <p class="success">
                 <i class="fa fa-check"></i>
