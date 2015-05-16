@@ -21,6 +21,7 @@ class UserAdmin(UserAdmin):
         'username',
         'nickname',
         'hash_id',
+        'is_profile_verified',
         'is_dating_enabled',
         'email',
         'is_university_verified',
@@ -44,6 +45,10 @@ class UserAdmin(UserAdmin):
     def is_dating_enabled(self, obj):
         return obj.userprofile.is_dating_enabled
     is_dating_enabled.boolean = True
+
+    def is_profile_verified(self, obj):
+        return obj.userprofile.is_profile_verified
+    is_profile_verified.boolean = True
 
     def nickname(self, obj):
         return obj.userprofile.nickname

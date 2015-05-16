@@ -59,7 +59,7 @@ class UserProfile(models.Model):
     hash_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
 
     nickname = models.CharField(max_length=8, blank=True, null=True, unique=True)
-    is_boy = models.BooleanField(default=True)
+    is_boy = models.NullBooleanField()
 
     # University Validation ( Email Validation )
     university = models.ForeignKey(University, blank=True, null=True)
@@ -98,7 +98,8 @@ class UserProfile(models.Model):
     profile_image_url = property(_profile_image_url)
 
     def _is_profile_verified(self):
-        if self.nickname and \
+        if self.is_boy is not None and \
+                self.nickname and \
                 self.profile_introduce and len(self.profile_introduce) >= 50:
             return True
         return False
@@ -152,7 +153,9 @@ class UserProfile(models.Model):
         2. 나의 조건 - 상대방 프로필 검사
         3. 나의 프로필 - 상대방 조건 검사
         """
-        return not self.dating_matched_today() and \
+        return self.is_profile_verified and \
+            partner.userprofile.is_profile_verified and \
+            not self.dating_matched_today() and \
             not partner.userprofile.dating_matched_today() and \
             not self.dating_matched_with(partner) and \
             self.is_conditions_available_with(partner) and \
