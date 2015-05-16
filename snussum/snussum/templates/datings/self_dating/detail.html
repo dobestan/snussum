@@ -65,12 +65,16 @@
                 </div>
               </div>
 
-              {% if self_dating.user == user %}
-                <p class="success">
-                  <i class="fa fa-check"></i>
-                  아래의 지원자 현황은 셀프소개팅 작성자( {{ user.userprofile.nickname }} )를 제외하고는 확인하실 수 없습니다.
-                </p>
-              {% endif %}
+              <p class="success">
+                <i class="fa fa-check"></i>
+                아래의 지원자 현황은 셀프소개팅 작성자( {{ user.userprofile.nickname }} )를 제외하고는 확인하실 수 없습니다.
+              </p>
+
+              <ul class="self-dating-applies">
+                {% for self_dating_apply in self_dating.selfdatingapply_set.all %}
+                  {% include "datings/self_dating/_self_dating_apply.html" with self_dating_apply=self_dating_apply %}
+                {% endfor %}
+              </ul>
             </div>
           </div>
         </section>
@@ -120,4 +124,20 @@
   </div>
 </section>
   {% endwith %}
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+  var self_dating_applies_list = $("ul.self-dating-applies");
+
+  $(self_dating_applies_list).find(".btn-accept").click(function(){
+    $(this).closest("div.edited").hide();
+    $(this).closest("li.self-dating-apply").find(".editing-accept").show();
+  });
+
+  $(self_dating_applies_list).find(".btn-refuse").click(function(){
+    $(this).closest("div.edited").hide();
+    $(this).closest("li.self-dating-apply").find(".editing-refuse").show();
+  });
+});
+</script>
 {% endblock %}

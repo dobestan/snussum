@@ -229,6 +229,42 @@ section#dashboard {
   }
 }
 
+#self-dating-detail {
+  ul.self-dating-applies {
+    list-style-type: none;
+    padding-left: 0;
+
+    li.self-dating-apply {
+      position: relative; 
+
+      &.blur {
+        -webkit-filter: blur(5px);
+      }
+
+      .editing {
+        display: none;
+      }
+
+      div.self-dating-apply-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      img {
+        width: 60px;
+        height: 60px;
+
+        border-radius: 50%;
+        border: 1px solid $snussum-lightgrey;
+      }
+    }
+  }
+}
+
 
 // Fixed Layout
 
