@@ -236,7 +236,10 @@ section#dashboard {
 
     li.self-dating-apply {
       position: relative; 
-      -webkit-filter: blur(5px);
+
+      &.blur {
+        -webkit-filter: blur(5px);
+      }
 
       div.self-dating-apply-wrapper {
         position: absolute;
@@ -245,8 +248,6 @@ section#dashboard {
         width: 100%;
         height: 100%;
         z-index: 1;
-
-        background-color: rgba(lightgrey, 0.3);
       }
 
       img {
