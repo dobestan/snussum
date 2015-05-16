@@ -241,6 +241,10 @@ section#dashboard {
         -webkit-filter: blur(5px);
       }
 
+      .editing {
+        display: none;
+      }
+
       div.self-dating-apply-wrapper {
         position: absolute;
         top: 0;
