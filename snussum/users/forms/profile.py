@@ -6,6 +6,21 @@ from users.models.user_profile import UserProfile
 from django_summernote.widgets import SummernoteInplaceWidget
 
 
+class UserProfileVerificationForm(ModelForm):
+
+    class Meta:
+        model = UserProfile
+        fields = [
+            # Required Fields
+            'nickname',
+            'is_boy',
+            'profile_introduce',
+
+            # Optional Fields
+            'age',
+            'height',
+        ]
+
 class UserProfileInformationForm(ModelForm):
 
     class Meta:

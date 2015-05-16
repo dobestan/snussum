@@ -1,4 +1,5 @@
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import UpdateView
 
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
@@ -7,9 +8,12 @@ from django.utils.decorators import method_decorator
 from users.decorators import university_verified_required, university_not_verified_required
 
 from django.contrib.auth.models import User
+from users.models.user_profile import UserProfile
 from users.models.university import University
 
 from django.contrib import messages
+
+from users.forms.profile import UserProfileVerificationForm
 
 
 class VerifyUniversity(TemplateView):
@@ -29,8 +33,13 @@ class VerifyUniversitySNU(TemplateView):
         return super(VerifyUniversitySNU, self).dispatch(*args, **kwargs)
 
 
-class VerifyProfile(TemplateView):
+class VerifyProfile(UpdateView):
+    model = UserProfile
     template_name = "users/verify/profile.html"
+    fields = ['nickname', 'is_boy', 'profile_introduce', 'age', 'height', ]
+
+    def get_object(self):
+        return self.request.user.userprofile
 
     @method_decorator(university_verified_required)
     def dispatch(self, *args, **kwargs):
