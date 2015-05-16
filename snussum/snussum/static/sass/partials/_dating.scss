@@ -235,6 +235,20 @@ section#dashboard {
     padding-left: 0;
 
     li.self-dating-apply {
+      position: relative; 
+      -webkit-filter: blur(5px);
+
+      div.self-dating-apply-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+
+        background-color: rgba(lightgrey, 0.3);
+      }
+
       img {
         width: 60px;
         height: 60px;
