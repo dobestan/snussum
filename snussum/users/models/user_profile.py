@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.postgres.fields import IntegerRangeField
+from django.contrib.postgres.fields import IntegerRangeField, ArrayField
 
 from django.db.models.signals import post_save
 
@@ -59,7 +59,7 @@ class UserProfile(models.Model):
     hash_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
 
     nickname = models.CharField(max_length=8, blank=True, null=True, unique=True)
-    is_boy = models.BooleanField(default=True)
+    is_boy = models.NullBooleanField()
 
     # University Validation ( Email Validation )
     university = models.ForeignKey(University, blank=True, null=True)
@@ -82,10 +82,43 @@ class UserProfile(models.Model):
     height = models.IntegerField(blank=True, null=True)
     weight = models.IntegerField(blank=True, null=True)
 
+    REGION_CHOICES = (
+        # 국내
+        ('서울', '서울특별시'),
+        ('부산', '부산광역시'),
+        ('인천', '인천광역시'),
+        ('대구', '대구광역시'),
+        ('광주', '광주광역시'),
+        ('대전', '대전광역시'),
+        ('울산', '울산광역시'),
+        ('경기', '경기도'),
+        ('강원', '강원도'),
+        ('충북', '충청북도'),
+        ('충남', '충청남도'),
+        ('경북', '경상북도'),
+        ('경남', '경상남도'),
+        ('전북', '전라북도'),
+        ('전남', '전라남도'),
+        ('제주', '제주도'),
+
+        # 해외
+        ('미국', '미국'),
+        ('중국', '중국'),
+        ('일본', '일본'),
+
+        # 기타
+        ('절망', '절망의땅301동'),
+        ('멸망', '멸망의땅301동'),
+        ('슬픔', '슬픔의땅301동'),
+        ('좌절', '좌절의땅301동'),
+    )
+    region = models.CharField(max_length=2, choices=REGION_CHOICES, blank=True, null=True)
+
     # Condition
     age_condition = IntegerRangeField(blank=True, null=True)
     height_condition = IntegerRangeField(blank=True, null=True)
     weight_condition = IntegerRangeField(blank=True, null=True)
+    region_condition = ArrayField(models.CharField(max_length=2), blank=True, null=True)
 
     def _profile_image_url(self):
         if self.profile_image:
@@ -98,7 +131,8 @@ class UserProfile(models.Model):
     profile_image_url = property(_profile_image_url)
 
     def _is_profile_verified(self):
-        if self.nickname and \
+        if self.is_boy is not None and \
+                self.nickname and \
                 self.profile_introduce and len(self.profile_introduce) >= 50:
             return True
         return False
@@ -152,7 +186,9 @@ class UserProfile(models.Model):
         2. 나의 조건 - 상대방 프로필 검사
         3. 나의 프로필 - 상대방 조건 검사
         """
-        return not self.dating_matched_today() and \
+        return self.is_profile_verified and \
+            partner.userprofile.is_profile_verified and \
+            not self.dating_matched_today() and \
             not partner.userprofile.dating_matched_today() and \
             not self.dating_matched_with(partner) and \
             self.is_conditions_available_with(partner) and \
@@ -163,7 +199,8 @@ class UserProfile(models.Model):
         모든 조건에 부합하는지 검사한다.
         """
         return self.is_age_condition_available_with(partner) and \
-            self.is_height_condition_available_with(partner)
+            self.is_height_condition_available_with(partner) and \
+            self.is_region_condition_available_with(partner)
 
     def is_age_condition_available_with(self, partner):
         # 나이 조건에 상대방의 나이가 적합한지 확인한다.
@@ -196,6 +233,16 @@ class UserProfile(models.Model):
 
     def is_weight_condition_available_with(self, partner):
         pass
+
+    def is_region_condition_available_with(self, partner):
+        if not self.region_condition:
+            return True
+        elif self.region_condition and not partner.userprofile.region:
+            return False
+        elif partner.userprofile.region in self.region_condition:
+            return True
+        else:
+            return False
 
     def create_dating_with(self, partner):
         if self.is_boy:

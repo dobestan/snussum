@@ -42,7 +42,7 @@ class UpdateUserProfileBase(View):
 
 class UpdateUserProfileInformation(UpdateView, UpdateUserProfileBase):
     model = UserProfile
-    fields = ['nickname', 'profile_introduce', 'age', 'height']
+    fields = ['nickname', 'profile_introduce', 'age', 'height', 'region']
 
     def get_object(self):
         return self.request.user.userprofile
@@ -87,6 +87,26 @@ class UpdateUserProfileAccountPhonenumber(UpdateView, UpdateUserProfileBase):
                              '연락처가 성공적으로 업데이트 되었습니다. SMS로 발송된 인증 링크를 확인해주세요',
                              extra_tags="success")
         return super(UpdateUserProfileAccountPhonenumber, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse("users:profile")
+
+
+class UpdateUserProfileCondition(UpdateView, UpdateUserProfileBase):
+    model = UserProfile
+    fields = ['age_condition', 'height_condition', 'region_condition']
+
+    def get_object(self):
+        return self.request.user.userprofile
+
+    def form_valid(self, form):
+        self.object.region_condition = self.request.POST.getlist("region_condition")
+        self.object.save()
+
+        messages.add_message(self.request, messages.INFO,
+                             '매칭 조건이 성공적으로 업데이트 되었습니다. 감사합니다.',
+                             extra_tags="success")
+        return super(UpdateUserProfileCondition, self).form_valid(form)
 
     def get_success_url(self):
         return reverse("users:profile")
