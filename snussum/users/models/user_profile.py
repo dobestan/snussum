@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.postgres.fields import IntegerRangeField
+from django.contrib.postgres.fields import IntegerRangeField, ArrayField
 
 from django.db.models.signals import post_save
 
@@ -82,10 +82,40 @@ class UserProfile(models.Model):
     height = models.IntegerField(blank=True, null=True)
     weight = models.IntegerField(blank=True, null=True)
 
+    REGION_CHOICES = (
+        # 국내
+        ('서울', '서울특별시'),
+        ('부산', '서울특별시'),
+        ('인천', '서울특별시'),
+        ('대구', '서울특별시'),
+        ('광주', '서울특별시'),
+        ('대전', '서울특별시'),
+        ('울산', '서울특별시'),
+        ('경기', '서울특별시'),
+        ('강원', '서울특별시'),
+        ('충북', '서울특별시'),
+        ('충남', '서울특별시'),
+        ('경북', '서울특별시'),
+        ('경남', '서울특별시'),
+        ('전북', '서울특별시'),
+        ('전남', '서울특별시'),
+        ('제주', '서울특별시'),
+
+        # 해외
+        ('미국', '서울특별시'),
+        ('중국', '서울특별시'),
+        ('일본', '서울특별시'),
+
+        # 기타
+        ('절망', '절망의땅301동'),
+    )
+    region = models.CharField(max_length=2, choices=REGION_CHOICES, blank=True, null=True)
+
     # Condition
     age_condition = IntegerRangeField(blank=True, null=True)
     height_condition = IntegerRangeField(blank=True, null=True)
     weight_condition = IntegerRangeField(blank=True, null=True)
+    region_condition = ArrayField(models.CharField(max_length=2), blank=True, null=True)
 
     def _profile_image_url(self):
         if self.profile_image:
