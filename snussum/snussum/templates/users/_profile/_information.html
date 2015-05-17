@@ -19,9 +19,12 @@
       <tr>
         <th>고유태그</th>
         <td>
-          <span class="small danger">
-            <i class="fa fa-check"></i> 고유태그 ( "유저 식별자 ")는 블랙리스트 및 불량 이용자 관리를 위해서 사용됩니다.
-          </span><br/>
+          <div class="editing">
+            <span class="small danger">
+              <i class="fa fa-check"></i> 고유태그는 변경할 수 없습니다.
+              고유태그 ( "유저 식별자 ")는 블랙리스트 및 불량 이용자 관리를 위해서 사용됩니다.
+            </span><br/>
+          </div>
           #{{ user.userprofile.hash_id }}
         </td>
       </tr>
@@ -34,6 +37,21 @@
           <div class="editing">
             <textarea name="profile_introduce" id="id_profile_introduce" class="form-control" rows="10" required>{{ user.userprofile.profile_introduce }}</textarea>
           </div>
+        </td>
+      </tr>
+      <tr>
+        <th>성별</th>
+        <td>
+          <div class="editing">
+            <span class="small danger">
+              <i class="fa fa-check"></i> 성별은 변경할 수 없습니다.
+            </span><br/>
+          </div>
+          {% if user.userprofile.is_boy == True %}
+          <i class="fa fa-male"></i> 남자
+          {% else %}
+          <i class="fa fa-female"></i> 여자
+          {% endif %}
         </td>
       </tr>
       <tr>
