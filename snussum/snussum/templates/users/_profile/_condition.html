@@ -115,7 +115,9 @@
               <span class="small success">
                 <i class="fa fa-check"></i> 지역 조건이 설정되었습니다. 아래의 조건에 부합하는 상대방과 매칭됩니다.
               </span><br/>
-              {% for region in user.userprofile.region_condition %}{{ region }}{% endfor %}
+              {% for region in user.userprofile.region_condition %}
+                <span class="label label-default">{{ region }}</span>
+              {% endfor %}
             {% else %}
               <span class="small success">
                 <i class="fa fa-check"></i> 상대방 지역 조건이 설정되지 않았습니다.
@@ -126,7 +128,7 @@
           </div>
           <div class="editing">
             <div class="form-group">
-              <select name="region_condition" id="id_region_condition" class="form-control" multiple>
+              <select name="region_condition" id="id_region_condition" class="form-control" multiple="multiple">
                 {% for key, value in user.userprofile.REGION_CHOICES %}
                   <option value="{{ key }}">{{ value }}</option>
                 {% endfor %}

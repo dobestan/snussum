@@ -100,6 +100,9 @@ class UpdateUserProfileCondition(UpdateView, UpdateUserProfileBase):
         return self.request.user.userprofile
 
     def form_valid(self, form):
+        self.object.region_condition = self.request.POST.getlist("region_condition")
+        self.object.save()
+
         messages.add_message(self.request, messages.INFO,
                              '매칭 조건이 성공적으로 업데이트 되었습니다. 감사합니다.',
                              extra_tags="success")
