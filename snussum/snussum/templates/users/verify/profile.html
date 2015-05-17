@@ -18,6 +18,13 @@
       <section class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
+
+            <label for="">필수정보</label>
+            <span class="success small">
+              <i class="fa fa-check"></i>
+              서비스 이용을 위해서 필수적으로 입력 부탁드립니다.
+            </span>
+
             <section id="verify-profile-nickname">
               <div class="form-group border {% if user.userprofile.nickname %}border-success{% endif %}">
                 <label for="">닉네임 <span class="small">( 매칭 시 상대방에게 표시되는 이름 )</span></label>
@@ -29,17 +36,17 @@
               <div class="form-group border">
                 <label>성별 <span class="small">( 선택 후 변경이 불가합니다 )</span></label>
 
-                <div class="text-center">
-                  <div class="col-xs-6">
-                    <img id="boy" class="" src="{% static "img/profile/transparent/boy.png" %}" alt=""/>
-                    <img id="boy_makeup" class="makeup" src="{% static "img/profile/transparent/boy_makeup.png" %}" alt=""/>
-                  </div>
-
-                  <div class="col-xs-6">
-                    <img id="girl" src="{% static "img/profile/transparent/girl.png" %}" alt=""/>
-                    <img id="girl_makeup" class="makeup" src="{% static "img/profile/transparent/girl_makeup.png" %}" alt=""/>
-                  </div>
-                </div>
+                {# <div class="text-center"> #}
+                {#   <div class="col-xs-6"> #}
+                {#     <img id="boy" class="" src="{% static "img/profile/transparent/boy.png" %}" alt=""/> #}
+                {#     <img id="boy_makeup" class="makeup" src="{% static "img/profile/transparent/boy_makeup.png" %}" alt=""/> #}
+                {#   </div> #}
+                {#  #}
+                {#   <div class="col-xs-6"> #}
+                {#     <img id="girl" src="{% static "img/profile/transparent/girl.png" %}" alt=""/> #}
+                {#     <img id="girl_makeup" class="makeup" src="{% static "img/profile/transparent/girl_makeup.png" %}" alt=""/> #}
+                {#   </div> #}
+                {# </div> #}
               </div>
             </section>
 
@@ -54,11 +61,33 @@
                   * 성실한 자기소개를 작성해주셔서 진심으로 감사드립니다.
                 </p>
 
-                <textarea name="profile_introduce" id="id_profile_introduce" class="form-control" rows=10>{% if user.userprofile.profile_introduce %}{{ user.userprofile.profile_introduce }}{% endif %}</textarea>
+                <textarea name="profile_introduce" id="id_profile_introduce" class="form-control" rows=10 required>{% if user.userprofile.profile_introduce %}{{ user.userprofile.profile_introduce }}{% endif %}</textarea>
               </div>
             </section>
 
-            <button type="submit" class="text-center btn-snussum-darkgrey">
+            <hr/>
+              
+            <label for="">선택정보</label>
+            <span class="success small">
+              <i class="fa fa-check"></i>
+              선택적으로 입력하실 수 있는 정보입니다.
+            </span>
+
+            <section id="verify-profile-age">
+              <div class="form-group border {% if user.userprofile.age %}border-success{% endif %}">
+                <label for="">나이</label>
+                <input type="text" value="{% if user.userprofile.age %}{{ user.userprofile.age }}{% endif %}" placeholder="23" name="age" id="id_age" class="form-control" >
+              </div>
+            </section>
+
+            <section id="verify-profile-height">
+              <div class="form-group border {% if user.userprofile.height %}border-success{% endif %}">
+                <label for="">키 ( 신장 )</label>
+                <input type="text" value="{% if user.userprofile.height %}{{ user.userprofile.height }}{% endif %}" placeholder="168" name="height" id="id_height" class="form-control" >
+              </div>
+            </section>
+
+            <button type="submit" class="text-center btn-snussum-red">
               <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;프로필 업데이트
             </button>
           </div>
@@ -94,7 +123,7 @@ $(document).ready(function(){
     $(girl_makeup).addClass("active");
   });
 
-  $("section#verify-profile-introduce").find("textarea#introduce").on('input', function(){
+  $("section#verify-profile-introduce").find("textarea#id_profile_introduce").on('input', function(){
       var length = $(this).val().length;
       var form = $(this).parent(".form-group");
 

@@ -38,7 +38,7 @@ class VerifyUniversitySNU(TemplateView):
 class VerifyProfile(UpdateView):
     model = UserProfile
     template_name = "users/verify/profile.html"
-    fields = ['nickname', 'is_boy', 'profile_introduce', 'age', 'height', ]
+    fields = ['nickname', 'profile_introduce', 'age', 'height', ]
 
     @method_decorator(university_verified_required)
     def dispatch(self, *args, **kwargs):
