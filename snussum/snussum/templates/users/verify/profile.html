@@ -36,17 +36,19 @@
               <div class="form-group border">
                 <label>성별 <span class="small">( 선택 후 변경이 불가합니다 )</span></label>
 
-                {# <div class="text-center"> #}
-                {#   <div class="col-xs-6"> #}
-                {#     <img id="boy" class="" src="{% static "img/profile/transparent/boy.png" %}" alt=""/> #}
-                {#     <img id="boy_makeup" class="makeup" src="{% static "img/profile/transparent/boy_makeup.png" %}" alt=""/> #}
-                {#   </div> #}
-                {#  #}
-                {#   <div class="col-xs-6"> #}
-                {#     <img id="girl" src="{% static "img/profile/transparent/girl.png" %}" alt=""/> #}
-                {#     <img id="girl_makeup" class="makeup" src="{% static "img/profile/transparent/girl_makeup.png" %}" alt=""/> #}
-                {#   </div> #}
-                {# </div> #}
+                <input type="text" name="is_boy" id="id_is_boy" class="hide" required/>
+
+                <div class="text-center">
+                  <div class="col-xs-6">
+                    <img id="boy" class="" src="{% static "img/profile/transparent/boy.png" %}" alt=""/>
+                    <img id="boy_makeup" class="makeup" src="{% static "img/profile/transparent/boy_makeup.png" %}" alt=""/>
+                  </div>
+
+                  <div class="col-xs-6">
+                    <img id="girl" src="{% static "img/profile/transparent/girl.png" %}" alt=""/>
+                    <img id="girl_makeup" class="makeup" src="{% static "img/profile/transparent/girl_makeup.png" %}" alt=""/>
+                  </div>
+                </div>
               </div>
             </section>
 
@@ -105,6 +107,8 @@ $(document).ready(function(){
   var boy_makeup = $("section#verify-profile-gender").find("img#boy_makeup");
   var girl_makeup = $("section#verify-profile-gender").find("img#girl_makeup");
 
+  var input_is_boy = $("section#verify-profile-gender").find("input#id_is_boy");
+
   $(boy).click(function(){
     $(girl_makeup).hide();
     $(girl).show();
@@ -112,6 +116,8 @@ $(document).ready(function(){
     $(boy).hide();
     $(boy_makeup).show();
     $(boy_makeup).addClass("active");
+
+    $(input_is_boy).prop("value", "boy");
   });
 
   $(girl).click(function(){
@@ -121,6 +127,8 @@ $(document).ready(function(){
     $(girl).hide();
     $(girl_makeup).show();
     $(girl_makeup).addClass("active");
+
+    $(input_is_boy).prop("value", "girl");
   });
 
   $("section#verify-profile-introduce").find("textarea#id_profile_introduce").on('input', function(){

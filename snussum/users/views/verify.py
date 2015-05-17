@@ -47,6 +47,14 @@ class VerifyProfile(UpdateView):
     def get_object(self):
         return self.request.user.userprofile
 
+    def form_valid(self, form):
+        is_boy = self.request.POST.get("is_boy")
+        if is_boy == "boy":
+            self.object.is_boy = True
+        if is_boy == "girl":
+            self.object.is_boy = False
+        return super(VerifyProfile, self).form_valid(form)
+
     def get_success_url(self):
         return reverse("users:profile")
 
