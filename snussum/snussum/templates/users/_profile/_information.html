@@ -88,6 +88,36 @@
           </div>
         </td>
       </tr>
+      <tr>
+        <th>지역</th>
+        <td>
+          <div class="edited">
+            {% if user.userprofile.region %}
+              <span class="small success">
+                <i class="fa fa-check"></i> 
+                지역이 성공적으로 등록되었습니다.
+                상대방이 지역 조건을 설정해두지 않은 경우, 상대방의 지역 조건에 부합할 경우 모두 매칭됩니다.
+              </span></br>
+              {{ user.userprofile.get_region_display }}
+            {% else %}
+              <span class="small danger">
+                <i class="fa fa-close"></i> 
+                지역이 등록되지 않았습니다.
+                상대방이 지역 조건을 설정해둔 경우, 매칭되지 않습니다.
+              </span>
+            {% endif %}
+          </div>
+          <div class="editing">
+            <div class="form-group">
+              <select name="region" id="id_region">
+                {% for key, value in user.userprofile.REGION_CHOICES %}
+                  <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </td>
+      </tr>
     </tbody>
   </table>
 

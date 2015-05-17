@@ -30,6 +30,7 @@ class UserProfileInformationForm(ModelForm):
             'profile_introduce',
             'age',
             'height',
+            'region',
         ]
         widgets = {
             'profile_introduce': SummernoteInplaceWidget(),

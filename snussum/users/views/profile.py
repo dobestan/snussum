@@ -42,7 +42,7 @@ class UpdateUserProfileBase(View):
 
 class UpdateUserProfileInformation(UpdateView, UpdateUserProfileBase):
     model = UserProfile
-    fields = ['nickname', 'profile_introduce', 'age', 'height']
+    fields = ['nickname', 'profile_introduce', 'age', 'height', 'region']
 
     def get_object(self):
         return self.request.user.userprofile
