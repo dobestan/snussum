@@ -109,7 +109,7 @@
           </div>
           <div class="editing">
             <div class="form-group">
-              <select name="region" id="id_region">
+              <select name="region" id="id_region" class="form-control">
                 {% for key, value in user.userprofile.REGION_CHOICES %}
                   <option value="{{ key }}">{{ value }}</option>
                 {% endfor %}

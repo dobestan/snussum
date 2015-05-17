@@ -92,6 +92,23 @@ class UpdateUserProfileAccountPhonenumber(UpdateView, UpdateUserProfileBase):
         return reverse("users:profile")
 
 
+class UpdateUserProfileCondition(UpdateView, UpdateUserProfileBase):
+    model = UserProfile
+    fields = ['age_condition', 'height_condition', 'region_condition']
+
+    def get_object(self):
+        return self.request.user.userprofile
+
+    def form_valid(self, form):
+        messages.add_message(self.request, messages.INFO,
+                             '매칭 조건이 성공적으로 업데이트 되었습니다. 감사합니다.',
+                             extra_tags="success")
+        return super(UpdateUserProfileCondition, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse("users:profile")
+
+
 class Notification(TemplateView):
     template_name = "users/notification.html"
 
