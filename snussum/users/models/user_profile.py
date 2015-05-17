@@ -196,7 +196,8 @@ class UserProfile(models.Model):
         모든 조건에 부합하는지 검사한다.
         """
         return self.is_age_condition_available_with(partner) and \
-            self.is_height_condition_available_with(partner)
+            self.is_height_condition_available_with(partner) and \
+            self.is_region_condition_available_with(partner)
 
     def is_age_condition_available_with(self, partner):
         # 나이 조건에 상대방의 나이가 적합한지 확인한다.
@@ -229,6 +230,16 @@ class UserProfile(models.Model):
 
     def is_weight_condition_available_with(self, partner):
         pass
+
+    def is_region_condition_available_with(self, partner):
+        if not self.region_condition:
+            return True
+        elif self.region_condition and not partner.userprofile.region:
+            return False
+        elif partner.userprofile.region in self.region_condition:
+            return True
+        else:
+            return False
 
     def create_dating_with(self, partner):
         if self.is_boy:
