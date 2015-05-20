@@ -59,7 +59,7 @@ class UserProfile(models.Model):
     hash_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
 
     nickname = models.CharField(max_length=8, blank=True, null=True, unique=True)
-    is_boy = models.NullBooleanField()
+    is_boy = models.NullBooleanField(default=None, blank=True, null=True)
 
     # University Validation ( Email Validation )
     university = models.ForeignKey(University, blank=True, null=True)
