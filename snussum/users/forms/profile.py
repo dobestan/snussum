@@ -21,6 +21,7 @@ class UserProfileVerificationForm(ModelForm):
             'height',
         ]
 
+
 class UserProfileInformationForm(ModelForm):
 
     class Meta:

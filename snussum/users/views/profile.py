@@ -91,7 +91,7 @@ class UpdateUserProfileAccountPhonenumber(UpdateView, UpdateUserProfileBase):
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.INFO, "연락처가 업데이트되지 않았습니다. 이 문제가 지속적으로 발생할 경우 고객센터로 문의 부탁드립니다.",
-                extra_tags="danger")
+                             extra_tags="danger")
         return redirect(self.get_success_url())
 
     def get_success_url(self):
