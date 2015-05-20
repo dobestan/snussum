@@ -14,6 +14,7 @@ from users.forms.profile import UserProfileInformationForm, UserProfileAccountEm
     UserProfileAccountPhonenumberForm
 
 from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 from django.contrib import messages
 
 
@@ -87,6 +88,11 @@ class UpdateUserProfileAccountPhonenumber(UpdateView, UpdateUserProfileBase):
                              '연락처가 성공적으로 업데이트 되었습니다. SMS로 발송된 인증 링크를 확인해주세요',
                              extra_tags="success")
         return super(UpdateUserProfileAccountPhonenumber, self).form_valid(form)
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.INFO, "연락처가 업데이트되지 않았습니다. 이 문제가 지속적으로 발생할 경우 고객센터로 문의 부탁드립니다.",
+                             extra_tags="danger")
+        return redirect(self.get_success_url())
 
     def get_success_url(self):
         return reverse("users:profile")

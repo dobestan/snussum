@@ -16,8 +16,9 @@ $bootstrap-success: #5CB85C;
 $bootstrap-danger: #D9534F;
 
 .primary {color: $bootstrap-primary;}
-.info {color: $bootstrap-info;}
-.warning {color: $bootstrap-warning;}
+// Disabled - Not to override bootstrap-notify css
+// .info {color: $bootstrap-info;}
+// .warning {color: $bootstrap-warning;}
 .success {color: $bootstrap-success;}
 .danger {color: $bootstrap-danger;}
 
