@@ -24,6 +24,7 @@ class UserProfileManager(models.Manager):
 
     def profile_verified_users(self):
         return User.objects.filter(
+            userprofile__is_university_verified=True,
             userprofile__is_boy__isnull=False,
             userprofile__nickname__isnull=False,
             userprofile__profile_introduce__isnull=False,
