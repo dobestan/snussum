@@ -30,7 +30,7 @@ STATICFILES_FINDERS = (
 STATIC_ROOT = os.path.join(BASE_DIR, 'STATIC_ROOT')
 
 PIPELINE_JS = {
-    'main': {
+    'vendor': {
         'source_filenames': (
             # Jquery
             'js/jquery.min.js',
@@ -46,14 +46,16 @@ PIPELINE_JS = {
 
             # 3rd Party
             'js/highcharts.min.js',
-
+        ),
+        'output_filename': 'js/vendor.min.js'
+    },
+    'main': {
+        'source_filenames': (
             # Application
             'js/application.js',
             'js/datings/*.js',
         ),
-        'output_filename': (
-            'js/snussum.min.js'
-        )
+        'output_filename': 'js/snussum.min.js'
     }
 }
 
