@@ -30,6 +30,8 @@ class UserAdmin(UserAdmin):
         'is_phonenumber_verified',
         'age',
         'height',
+        'age_condition',
+        'height_condition',
     ]
 
     def add_view(self, *args, **kwargs):
@@ -74,6 +76,14 @@ class UserAdmin(UserAdmin):
 
     def height(self, obj):
         return obj.userprofile.height
+
+    def age_condition(self, obj):
+        if obj.userprofile.age_condition:
+            return "(%s, %s)" % (obj.userprofile.age_condition.lower, obj.userprofile.age_condition.upper)
+
+    def height_condition(self, obj):
+        if obj.userprofile.height_condition:
+            return "(%s, %s)" % (obj.userprofile.height_condition.lower, obj.userprofile.height_condition.upper)
 
 
 admin.site.unregister(User)
