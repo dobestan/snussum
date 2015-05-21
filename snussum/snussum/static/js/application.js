@@ -1,4 +1,5 @@
 (function(){
+  "use strict";
   $(document).ready(function(){
     // CSRF Authentication
     // https://docs.djangoproject.com/en/1.8/ref/csrf/
@@ -27,7 +28,7 @@
     var messages = $("body#body").data("messages").split(";");
     var tags = $("body#body").data("message-tags").split(";");
 
-    for (i=0; i<messages.length-1; i++){
+    for (var i=0; i<messages.length-1; i++){
       $.notify(
         {message: messages[i]}, {type: tags[i]}
       );
