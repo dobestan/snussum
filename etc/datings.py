@@ -11,7 +11,7 @@ user.userprofile.age = 23
 user.userprofile.height = 185
 user.userprofile.save()
 
-for x in range(9):
+for x in range(19):
     user = User.objects.create_user(username="boy%s" % x, password="dkstncks")
     user.userprofile.nickname = "boy%2s" % x
     user.userprofile.is_boy = True

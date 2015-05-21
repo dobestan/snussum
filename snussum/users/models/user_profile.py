@@ -22,28 +22,35 @@ from django.templatetags.static import static
 
 class UserProfileManager(models.Manager):
 
-    def boys(self):
-        return User.objects.filter(userprofile__is_boy=True)
+    def profile_verified_users(self):
+        return User.objects.filter(
+            userprofile__is_boy__isnull=False,
+            userprofile__nickname__isnull=False,
+            userprofile__profile_introduce__isnull=False,
+        )
 
-    def girls(self):
-        return User.objects.filter(userprofile__is_boy=False)
+    def profile_verified_boys(self):
+        return self.profile_verified_users().filter(userprofile__is_boy=True)
 
-    def randomized_boys(self):
-        return self.boys().order_by("?")
+    def profile_verified_girls(self):
+        return self.profile_verified_users().filter(userprofile__is_boy=False)
 
-    def randomized_girls(self):
-        return self.girls().order_by("?")
+    def randomized_profile_verified_boys(self):
+        return self.profile_verified_boys().order_by("?")
+
+    def randomized_profile_verified_girls(self):
+        return self.profile_verified_girls().order_by("?")
 
     def _is_boys_more_than_girls(self):
-        return self.boys().count() >= self.girls().count()
+        return self.profile_verified_boys().count() >= self.profile_verified_girls().count()
 
     def divide_groups(self):
         """
         return (Bigger, Smaller)
         """
         if self._is_boys_more_than_girls():
-            return (self.randomized_boys(), self.randomized_girls())
-        return (self.randomized_girls(), self.randomized_boys())
+            return (self.randomized_profile_verified_boys(), self.randomized_profile_verified_girls())
+        return (self.randomized_profile_verified_girls(), self.randomized_profile_verified_boys())
 
 
 def _profile_image_upload_to(instance, filename):
@@ -186,9 +193,7 @@ class UserProfile(models.Model):
         2. 나의 조건 - 상대방 프로필 검사
         3. 나의 프로필 - 상대방 조건 검사
         """
-        return self.is_profile_verified and \
-            partner.userprofile.is_profile_verified and \
-            not self.dating_matched_today() and \
+        return not self.dating_matched_today() and \
             not partner.userprofile.dating_matched_today() and \
             not self.dating_matched_with(partner) and \
             self.is_conditions_available_with(partner) and \
