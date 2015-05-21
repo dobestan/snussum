@@ -14,11 +14,11 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        for x in range(1, 10+1):
+        for x in range(1, 10 + 1):
             match_all()
             self.stdout.write(
-                'Day(%02d) > %03d datings matched, %03d datings total' %\
-                    (x, Dating.objects.filter(matched_at=datetime.today()).count(), Dating.objects.count())
+                'Day(%02d) > %03d datings matched, %03d datings total' %
+                (x, Dating.objects.filter(matched_at=datetime.today()).count(), Dating.objects.count())
             )
 
             for dating in Dating.objects.all():

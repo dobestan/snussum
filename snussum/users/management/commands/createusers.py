@@ -24,7 +24,7 @@ class Command(BaseCommand):
         self.stdout.write('Successfully created superuser ...')
 
         # Create Boys
-        for x in range(1, 19+1):
+        for x in range(1, 19 + 1):
             user = User.objects.create_user(username="boy%02d" % x, password="dkstncks")
             user.userprofile.is_university_verified = True
             user.userprofile.nickname = "boy%02d" % x
@@ -36,7 +36,7 @@ class Command(BaseCommand):
         self.stdout.write('Successfully created boys ...')
 
         # Create Girls
-        for y in range(1, 10+1):
+        for y in range(1, 10 + 1):
             user = User.objects.create_user(username="girl%02d" % y, password="dkstncks")
             user.userprofile.is_university_verified = True
             user.userprofile.nickname = "girl%02d" % y
