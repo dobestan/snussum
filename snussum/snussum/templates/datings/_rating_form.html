@@ -17,9 +17,9 @@
     <div class="form-group">
       <label>평점</label>
       <select id="id_score" name="score" class="form-control">
-        <option value="4.3">A+</option>
-        <option value="4.0">A0</option>
-        <option value="3.7">A-</option>
+        {% for key, value in RATING_SCORE_CHOICES %}
+          <option value="{{ key }}">{{ value }}</option>
+        {% endfor %}
       </select>
     </div>
 

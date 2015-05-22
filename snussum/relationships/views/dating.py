@@ -36,8 +36,9 @@ class DatingDetail(DatingBase, DetailView):
             partner = self.object.boy
 
         # Ratings
+        context['RATING_SCORE_CHOICES'] = Rating.SCORE_CHOICES
         context['recent_ratings'] = Rating.objects.filter(reviewee=partner).exclude(dating=self.object)
-        context['my_rating'] = Rating.objects.filter(dating=self.object, reviewer=self.request.user)[0]
+        context['my_rating'] = Rating.objects.filter(dating=self.object, reviewer=self.request.user).first()
 
         return context
 
