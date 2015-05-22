@@ -41,6 +41,13 @@ class UserProfileInformationForm(ModelForm):
         }
 
 
+class UserProfileImageForm(ModelForm):
+
+    class Meta:
+        model = UserProfile
+        fields = ['profile_image', ]
+
+
 class UserProfileAccountPhonenumberForm(ModelForm):
 
     class Meta:

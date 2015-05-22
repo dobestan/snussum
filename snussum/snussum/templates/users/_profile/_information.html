@@ -1,3 +1,35 @@
+<form action="{% url "users:update-profile-image" %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+  <div class="form-group">
+    <div class="edited">
+      <img src="{{ user.userprofile.profile_image_url }}" alt=""/>
+
+      {% if not user.userprofile.profile_image %}
+        <p class="small danger">
+          <i class="fa fa-close"></i>
+          프로필 이미지를 등록하지 않았습니다.
+          서울대학교 평균남/평균녀 사진이 기본으로 사용됩니다.
+        </p>
+      {% endif %}
+    </div>
+
+    <div class="editing">
+      <input type="file" name="profile_image" id="id_profile_image" class="form-control"/>
+    </div>
+  </div>
+
+  <button type="button" class="text-center btn-snussum-darkgrey edited">
+    <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;프로필 이미지 변경하기
+  </button>
+
+  <button type="submit" class="text-center btn-snussum-red editing">
+    <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;프로필 이미지 변경하기
+  </button>
+  
+</form>
+
+<hr />
+
 {{ information_form.media }}
 <form action="{% url "users:update-profile-information" %}" method="POST" accept-charset="utf-8">{% csrf_token %}
   <table class="table table-striped">

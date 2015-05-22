@@ -11,7 +11,7 @@ from users.models.user_profile import UserProfile
 from django.contrib.auth.models import User
 
 from users.forms.profile import UserProfileInformationForm, UserProfileAccountEmailForm, \
-    UserProfileAccountPhonenumberForm
+    UserProfileAccountPhonenumberForm, UserProfileImageForm
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
@@ -32,21 +32,31 @@ class Profile(TemplateView):
         return context
 
 
-class UpdateUserProfileBase(View):
-    model = UserProfile
+class UpdateUserBase(View):
+    model = User
 
     @method_decorator(require_POST)
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(UpdateUserProfileBase, self).dispatch(*args, **kwargs)
+        return super(UpdateUserBase, self).dispatch(*args, **kwargs)
+
+    def get_object(self):
+        return self.request.user
+
+    def get_success_url(self):
+        return reverse("users:profile")
 
 
-class UpdateUserProfileInformation(UpdateView, UpdateUserProfileBase):
+class UpdateUserProfileBase(UpdateUserBase):
     model = UserProfile
-    fields = ['nickname', 'profile_introduce', 'age', 'height', 'region']
 
     def get_object(self):
         return self.request.user.userprofile
+
+
+class UpdateUserProfileInformation(UpdateUserProfileBase, UpdateView):
+    model = UserProfile
+    fields = ['nickname', 'profile_introduce', 'age', 'height', 'region']
 
     def form_valid(self, form):
         messages.add_message(self.request, messages.INFO,
@@ -54,16 +64,19 @@ class UpdateUserProfileInformation(UpdateView, UpdateUserProfileBase):
                              extra_tags="success")
         return super(UpdateUserProfileInformation, self).form_valid(form)
 
-    def get_success_url(self):
-        return reverse("users:profile")
+
+class UpdateUserProfileImage(UpdateUserProfileBase, UpdateView):
+    form_class = UserProfileImageForm
+
+    def form_valid(self, form):
+        messages.add_message(self.request, messages.INFO,
+                             '프로필 사진이 성공적으로 업데이트 되었습니다.',
+                             extra_tags="success")
+        return super(UpdateUserProfileImage, self).form_valid(form)
 
 
-class UpdateUserProfileAccountEmail(UpdateView, UpdateUserProfileBase):
-    model = User
+class UpdateUserProfileAccountEmail(UpdateUserBase, UpdateView):
     fields = ['email']
-
-    def get_object(self):
-        return self.request.user
 
     def form_valid(self, form):
         messages.add_message(self.request, messages.INFO,
@@ -71,16 +84,9 @@ class UpdateUserProfileAccountEmail(UpdateView, UpdateUserProfileBase):
                              extra_tags="success")
         return super(UpdateUserProfileAccountEmail, self).form_valid(form)
 
-    def get_success_url(self):
-        return reverse("users:profile")
 
-
-class UpdateUserProfileAccountPhonenumber(UpdateView, UpdateUserProfileBase):
-    model = UserProfile
+class UpdateUserProfileAccountPhonenumber(UpdateUserProfileBase, UpdateView):
     fields = ['phonenumber']
-
-    def get_object(self):
-        return self.request.user.userprofile
 
     def form_valid(self, form):
         phonenumber = form.cleaned_data['phonenumber']
@@ -95,16 +101,9 @@ class UpdateUserProfileAccountPhonenumber(UpdateView, UpdateUserProfileBase):
                              extra_tags="danger")
         return redirect(self.get_success_url())
 
-    def get_success_url(self):
-        return reverse("users:profile")
 
-
-class UpdateUserProfileCondition(UpdateView, UpdateUserProfileBase):
-    model = UserProfile
+class UpdateUserProfileCondition(UpdateUserProfileBase, UpdateView):
     fields = ['age_condition', 'height_condition', 'region_condition']
-
-    def get_object(self):
-        return self.request.user.userprofile
 
     def form_valid(self, form):
         self.object.region_condition = self.request.POST.getlist("region_condition")
@@ -114,9 +113,6 @@ class UpdateUserProfileCondition(UpdateView, UpdateUserProfileBase):
                              '매칭 조건이 성공적으로 업데이트 되었습니다. 감사합니다.',
                              extra_tags="success")
         return super(UpdateUserProfileCondition, self).form_valid(form)
-
-    def get_success_url(self):
-        return reverse("users:profile")
 
 
 class Notification(TemplateView):
