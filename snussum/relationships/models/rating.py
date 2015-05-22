@@ -1,3 +1,5 @@
+from django.core.urlresolvers import reverse
+
 from django.db import models
 
 from django.contrib.auth.models import User
@@ -39,3 +41,6 @@ class Rating(models.Model):
             ("reviewer", "reviewee"),
             ("reviewee", "reviewer"),
         )
+
+    def get_absolute_url(self):
+        return reverse("dating-detail", kwargs={'slug': self.dating.hash_id})

@@ -1,10 +1,10 @@
-<form action="" method="POST" accept-charset="utf-8">{% csrf_token %}
+<form action="{% url "dating-rating" dating.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
   <div class="form-group">
     <label>평점</label>
-    <select id="" name="" class="form-control">
-      <option value="">A+</option>
-      <option value="">A0</option>
-      <option value="">A-</option>
+    <select id="id_score" name="score" class="form-control">
+      <option value="4.3">A+</option>
+      <option value="4.0">A0</option>
+      <option value="3.7">A-</option>
     </select>
   </div>
 

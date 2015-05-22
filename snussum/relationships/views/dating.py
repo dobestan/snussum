@@ -1,6 +1,6 @@
 from django.views.generic import View
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -75,4 +75,17 @@ class DatingRatingCreate(DatingBase, CreateView):
     fields = ['score', 'content', ]
 
     def form_valid(self, form):
+        dating = Dating.objects.get(hash_id=self.kwargs['slug'])
+
+        if self.request.user.userprofile.is_boy:
+            partner = dating.girl
+        else:
+            partner = dating.boy
+
+        self.object = form.save(commit=False)
+        self.object.dating = dating
+        self.object.reviewer = self.request.user
+        self.object.reviewee = partner
+        self.object.save()
+
         return super(DatingRatingCreate, self).form_valid(form)
