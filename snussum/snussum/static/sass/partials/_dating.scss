@@ -282,6 +282,14 @@ ul.dating-ratings {
       border-radius: 50%;
       border: 1px solid $snussum-lightgrey;
     }
+
+    .dating-rating-score {
+      padding: 10px;
+      border-radius: 3px;
+      background-color: $snussum-lightgrey;
+      color: $snussum-darkgrey;
+      font-weight: bold;
+    }
   }
 }
 

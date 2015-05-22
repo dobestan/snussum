@@ -1,4 +1,5 @@
 {% if recent_ratings %}
+<label>{{ partner.userprofile.nickname }}과 매칭된 다른 유저들이 남긴 평가입니다</label>
   <ul class="dating-ratings">
     {% for recent_rating in recent_ratings %}
       {% include "datings/_dating_rating.html" with rating=recent_rating %}
@@ -11,6 +12,7 @@
 <hr />
 
 {% if my_rating %}
+  <label>내가 남긴 평가입니다</label>
   <ul class="dating-ratings">
     {% include "datings/_dating_rating.html" with rating=my_rating %}
   </ul>

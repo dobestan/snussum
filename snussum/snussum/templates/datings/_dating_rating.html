@@ -14,6 +14,9 @@
           <p>
             {{ rating.content }}
           </p>
+          <p class="pull-right">
+            <span class="dating-rating-score">{{ rating.get_score_display }} ({{ rating.score }})</span>
+          </p>
         </div>
       </div>
     </div>
