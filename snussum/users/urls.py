@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 
 from users.views.verify import VerifyUniversity, VerifyUniversitySNU, VerifyProfile
 from users.views.profile import Profile, Notification, UpdateUserProfileInformation, UpdateUserProfileAccountEmail, \
-    UpdateUserProfileAccountPhonenumber, UpdateUserProfileCondition
+    UpdateUserProfileAccountPhonenumber, UpdateUserProfileCondition, UpdateUserProfileImage
 from users.views.auth import PasswordReset
 
 
@@ -20,6 +20,7 @@ urlpatterns = patterns(
 
     # Update UserProfile
     url(r'^profile/information/$', UpdateUserProfileInformation.as_view(), name='update-profile-information'),
+    url(r'^profile/image/$', UpdateUserProfileImage.as_view(), name='update-profile-image'),
     url(r'^profile/account/email/$', UpdateUserProfileAccountEmail.as_view(), name='update-profile-account-email'),
     url(r'^profile/account/phonenumber/$',
         UpdateUserProfileAccountPhonenumber.as_view(),
