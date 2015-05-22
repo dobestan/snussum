@@ -32,6 +32,10 @@
 
   background-color: $snussum-red;
   color: $snussum-lightgrey;
+
+  &:disabled {
+    background-color: rgba($snussum-red, 0.3);
+  }
 }
 
 .social-login {
