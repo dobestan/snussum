@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from users.decorators import university_verified_required, profile_verifed_required
 
 from relationships.models.dating import Dating
+from relationships.models.rating import Rating
 
 from datetime import datetime
 
@@ -69,5 +70,9 @@ class DatingRefuse(DatingBase, UpdateView):
         return super(DatingRefuse, self).form_valid(form)
 
 
-class DatingRating(DatingBase):
-    pass
+class DatingRatingCreate(DatingBase, CreateView):
+    model = Rating
+    fields = ['score', 'content', ]
+
+    def form_valid(self, form):
+        return super(DatingRatingCreate, self).form_valid(form)
