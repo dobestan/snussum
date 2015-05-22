@@ -18,8 +18,8 @@
       {% endfor %}
     </section>
 
-    <section class="col-xs-12 col-sm-4 visible-sm visible-md visible-lg">
-      <section id="self-dating-list-sidebar" data-spy="affix">
+    <section class="col-xs-12 col-sm-4">
+      <section id="self-dating-list-sidebar" data-spy="affix" class="visible-sm visible-md visible-lg">
         <div class="panel panel-default border border-red">
           <div class="panel-body">
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
@@ -28,6 +28,12 @@
             no sea takimata sanctus est Lorem ipsum dolor sit amet.
           </div>
         </div>
+      </section>
+
+      <section class="visible-xs">
+        <a id="btn-self-dating-new" href="{% url "self-dating-new" %}" target="_blank" class="text-center btn-snussum-darkgrey">
+          <i class="fa fa-sign-in"></i>&nbsp;나도 셀소하기
+        </a>
       </section>
     </section>
   </div>
