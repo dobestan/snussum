@@ -27,6 +27,16 @@ class DatingBase(View):
 class DatingDetail(DatingBase, DetailView):
     template_name = "datings/detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(DatingDetail, self).get_context_data(**kwargs)
+
+        # Ratings
+        context['recent_ratings'] = None
+        context['my_rating'] = Rating.objects.filter(dating=self.object, reviewer=self.request.user)[0]
+
+        return context
+
+
 
 class TodayDetail(DatingBase, DetailView):
 
