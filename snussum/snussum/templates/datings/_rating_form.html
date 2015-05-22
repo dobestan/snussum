@@ -1,3 +1,15 @@
+{% if recent_ratings %}
+  <ul>
+    {% for recent_rating in recent_ratings %}
+      <li>{{ recent_rating.get_score_display }} {{ recent_rating.content }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  최근 평가가 없습니다.
+{% endif %}
+
+<hr />
+
 {% if my_rating %}
   {{ my_rating }}
 {% else %}

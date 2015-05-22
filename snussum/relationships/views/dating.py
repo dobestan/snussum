@@ -30,8 +30,13 @@ class DatingDetail(DatingBase, DetailView):
     def get_context_data(self, **kwargs):
         context = super(DatingDetail, self).get_context_data(**kwargs)
 
+        if self.request.user.userprofile.is_boy:
+            partner = self.object.girl
+        else:
+            partner = self.object.boy
+
         # Ratings
-        context['recent_ratings'] = None
+        context['recent_ratings'] = Rating.objects.filter(reviewee=partner).exclude(dating=self.object)
         context['my_rating'] = Rating.objects.filter(dating=self.object, reviewer=self.request.user)[0]
 
         return context
