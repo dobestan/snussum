@@ -14,7 +14,7 @@ AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
 AWS_S3_CUSTOM_DOMAIN = 'cdn.snussum.com'
 AWS_S3_URL_PROTOCOL = 'https'
 
-# STATIC_URL = 'https://cdn.snussum.com/'
+STATIC_URL = 'https://cdn.snussum.com/'
 
 # django-pipeline
 # https://django-pipeline.readthedocs.org/en/latest/installation.html
@@ -29,6 +29,9 @@ STATICFILES_FINDERS = (
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'STATIC_ROOT')
 
+PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.closure.ClosureCompressor'
+PIPELINE_CLOSURE_BINARY = '/usr/local/bin/closure-compiler'
+
 PIPELINE_JS = {
     'vendor': {
         'source_filenames': (
@@ -42,12 +45,12 @@ PIPELINE_JS = {
             'js/bootstrap-notify.min.js',
             'js/bootstrap-switch.min.js',
             'js/bootstrap-tagsinput.min.js',
-            'js/bootstrap-datetimepicker.min.js',
+            # 'js/bootstrap-datetimepicker.min.js',
 
             # 3rd Party
             'js/highcharts.min.js',
         ),
-        'output_filename': 'js/vendor.min.js'
+        'output_filename': 'js/vendor.min.js',
     },
     'main': {
         'source_filenames': (
