@@ -1,0 +1,23 @@
+<form action="" method="POST" accept-charset="utf-8">{% csrf_token %}
+  <div class="form-group">
+    <label>평점</label>
+    <select id="" name="" class="form-control">
+      <option value="">A+</option>
+      <option value="">A0</option>
+      <option value="">A-</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>한줄 평가</label>
+    <span class="small success"><i class="fa fa-check"></i>
+      상대방은 당신이 남긴 평가를 볼 수 없습니다.
+      진솔하고 솔직하게 적어주시면 다른 이용자에게 큰 도움이 됩니다.
+    </span>
+    <textarea id="id_content" class="form-control" name="content" rows="3" placeholder="다른 이용자를 위해서 진솔한 평가를 남겨주세요. 상대방은 평가 내용에 대해서 확인할 수 없습니다."></textarea>
+  </div>
+
+  <button type="submit" class="text-center btn-snussum-red">
+    <i class="fa fa-ok"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;다른 사용자를 위해 평가 남기기
+  </button>
+</form>
