@@ -1,3 +1,5 @@
+from django.core.urlresolvers import reverse
+
 from django.db import models
 
 from django.contrib.auth.models import User
@@ -29,7 +31,7 @@ class Rating(models.Model):
 
         (0.0, "F"),
     )
-    score = models.IntegerField(choices=SCORE_CHOICES, default=None, blank=True, null=True)
+    score = models.FloatField(choices=SCORE_CHOICES, default=None, blank=True, null=True)
     content = models.TextField(default=None, blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -39,3 +41,6 @@ class Rating(models.Model):
             ("reviewer", "reviewee"),
             ("reviewee", "reviewer"),
         )
+
+    def get_absolute_url(self):
+        return reverse("dating-detail", kwargs={'slug': self.dating.hash_id})

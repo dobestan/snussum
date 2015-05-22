@@ -1,12 +1,13 @@
 from django.views.generic import View
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from users.decorators import university_verified_required, profile_verifed_required
 
 from relationships.models.dating import Dating
+from relationships.models.rating import Rating
 
 from datetime import datetime
 
@@ -25,6 +26,21 @@ class DatingBase(View):
 
 class DatingDetail(DatingBase, DetailView):
     template_name = "datings/detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(DatingDetail, self).get_context_data(**kwargs)
+
+        if self.request.user.userprofile.is_boy:
+            partner = self.object.girl
+        else:
+            partner = self.object.boy
+
+        # Ratings
+        context['RATING_SCORE_CHOICES'] = Rating.SCORE_CHOICES
+        context['recent_ratings'] = Rating.objects.filter(reviewee=partner).exclude(dating=self.object)
+        context['my_rating'] = Rating.objects.filter(dating=self.object, reviewer=self.request.user).first()
+
+        return context
 
 
 class TodayDetail(DatingBase, DetailView):
@@ -69,5 +85,22 @@ class DatingRefuse(DatingBase, UpdateView):
         return super(DatingRefuse, self).form_valid(form)
 
 
-class DatingRating(DatingBase):
-    pass
+class DatingRatingCreate(DatingBase, CreateView):
+    model = Rating
+    fields = ['score', 'content', ]
+
+    def form_valid(self, form):
+        dating = Dating.objects.get(hash_id=self.kwargs['slug'])
+
+        if self.request.user.userprofile.is_boy:
+            partner = dating.girl
+        else:
+            partner = dating.boy
+
+        self.object = form.save(commit=False)
+        self.object.dating = dating
+        self.object.reviewer = self.request.user
+        self.object.reviewee = partner
+        self.object.save()
+
+        return super(DatingRatingCreate, self).form_valid(form)

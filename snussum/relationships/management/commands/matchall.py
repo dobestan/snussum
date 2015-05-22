@@ -16,6 +16,6 @@ class Command(BaseCommand):
         new_datings_count = Dating.objects.count()
         self.stdout.write(
             'Match All | %03d -> %03d ( + %03d )' %
-            (old_datings_count, new_datings_count, new_datings_count-old_datings_count)
+            (old_datings_count, new_datings_count, new_datings_count - old_datings_count)
         )
         self.stdout.write('Successfully executed match_all...')

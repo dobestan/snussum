@@ -3,6 +3,7 @@ from django.contrib import admin
 from relationships.models.dating import Dating
 from relationships.models.self_dating import SelfDating, SelfDatingApply
 from relationships.models.comment import Comment
+from relationships.models.rating import Rating
 
 
 class CommentInline(admin.TabularInline):
@@ -26,6 +27,31 @@ class DatingAdmin(admin.ModelAdmin):
 class SelfDatingApplyInline(admin.TabularInline):
     model = SelfDatingApply
     readonly_fields = ('created_at',)
+
+
+@admin.register(Rating)
+class RatingAdmin(admin.ModelAdmin):
+    readonly_fields = ('created_at',)
+    list_display = admin.ModelAdmin.list_display + (
+        'dating',
+        'reviewer',
+        'reviewee',
+        'created_at',
+        'score',
+        'content',
+    )
+
+
+class RatingReviewerInline(admin.TabularInline):
+    model = Rating
+    readonly_fields = ('created_at', )
+    fk_name = 'reviewer'
+
+
+class RatingRevieweeInline(admin.TabularInline):
+    model = Rating
+    readonly_fields = ('created_at', )
+    fk_name = 'reviewee'
 
 
 @admin.register(SelfDating)

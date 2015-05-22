@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<li class="dating-rating">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="media">
+        <div class="media-left">
+          {% if user.userprofile.is_boy %}
+            <img src="{% static "img/profile/boy.jpg" %}" alt=""/>
+          {% else %}
+            <img src="{% static "img/profile/girl.jpg" %}" alt=""/>
+          {% endif %}
+        </div>
+        <div class="media-body">
+          <p>
+            {{ rating.content }}
+          </p>
+          <p class="pull-right">
+            <span class="dating-rating-score">{{ rating.get_score_display }} ({{ rating.score }})</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
