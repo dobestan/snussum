@@ -14,8 +14,6 @@ AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
 AWS_S3_CUSTOM_DOMAIN = 'cdn.snussum.com'
 AWS_S3_URL_PROTOCOL = 'https'
 
-STATIC_URL = 'https://cdn.snussum.com/'
-
 # django-pipeline
 # https://django-pipeline.readthedocs.org/en/latest/installation.html
 

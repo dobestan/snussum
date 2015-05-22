@@ -18,6 +18,8 @@ ALLOWED_HOSTS = [".snussum.com", ]
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATICFILES_STORAGE = 'snussum.storage.S3PipelineManifestStorage'
 
+STATIC_URL = 'https://cdn.snussum.com/'
+
 
 # Django Secure - ONLY Production
 # https://github.com/carljm/django-secure/
