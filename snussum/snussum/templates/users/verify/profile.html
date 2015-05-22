@@ -2,6 +2,7 @@
 {% load staticfiles %}
 
 {% block content %}
+  <div id="hello"></div>
   <section id="verify-profile">
     {{ form.media }}
     <form action="" method="POST" accept-charset="utf-8">{% csrf_token %}

@@ -31,23 +31,24 @@
       $(input_is_boy).prop("value", "girl");
     });
 
-    $("section#verify-profile-introduce").find("textarea#id_profile_introduce").on('input', function(){
-        var length = $(this).val().length;
-        var form = $(this).parent(".form-group");
+    $("section#verify-profile-introduce").find("#id_profile_introduce").on('summernote.change', function() {
+      var length = $(this).code().replace(/<(?:.|\n)*?>/gm, '').length;
+      console.log(length);
+      var form = $(this).parent(".form-group");
 
-        var success_msg = $(form).find("p.success");
-        var danger_msg = $(form).find("p.danger");
+      var success_msg = $(form).find("p.success");
+      var danger_msg = $(form).find("p.danger");
 
-        if (length > 50) {
-          $(form).removeClass("border-danger").addClass("border-success");
-          $(danger_msg).hide();
-          $(success_msg).show();
+      if (length > 50) {
+        $(form).removeClass("border-danger").addClass("border-success");
+        $(danger_msg).hide();
+        $(success_msg).show();
 
-        } else {
-          $(form).removeClass("border-success").addClass("border-danger");
-          $(success_msg).hide();
-          $(danger_msg).show();
-        }
+      } else {
+        $(form).removeClass("border-success").addClass("border-danger");
+        $(success_msg).hide();
+        $(danger_msg).show();
+      }
     });
   });
 })();
