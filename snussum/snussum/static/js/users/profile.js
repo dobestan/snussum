@@ -21,10 +21,10 @@
     var button_edited = $(information).find("button.edited");
     var button_editing = $(information).find("button.editing");
 
-    var edited_items = $(information).find(".edited");
-    var editing_items = $(information).find(".editing");
-
     $(button_edited).click(function(){
+      var edited_items = $(this).closest("form").find(".edited");
+      var editing_items = $(this).closest("form").find(".editing");
+
       $(edited_items).hide();
       $(editing_items).show();
     });

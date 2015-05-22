@@ -1,3 +1,17 @@
+<form action="" method="POST" accept-charset="utf-8">{% csrf_token %}
+
+  <button type="button" class="text-center btn-snussum-darkgrey edited">
+    <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;프로필 이미지 변경하기
+  </button>
+
+  <button type="submit" class="text-center btn-snussum-red editing">
+    <i class="fa fa-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;프로필 이미지 변경하기
+  </button>
+  
+</form>
+
+<hr />
+
 {{ information_form.media }}
 <form action="{% url "users:update-profile-information" %}" method="POST" accept-charset="utf-8">{% csrf_token %}
   <table class="table table-striped">
