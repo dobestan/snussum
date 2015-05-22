@@ -20,6 +20,9 @@ class UserProfileVerificationForm(ModelForm):
             'age',
             'height',
         ]
+        widgets = {
+            'profile_introduce': SummernoteInplaceWidget(),
+        }
 
 
 class UserProfileInformationForm(ModelForm):
