@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 
 from django.views.generic import View
+from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
@@ -91,3 +92,12 @@ class SelfDatingApplyRefuse(SelfDatingBase, UpdateView):
         self.object.accepted_at = datetime.now()
 
         return super(SelfDatingApplyRefuse, self).form_valid(form)
+
+
+class SelfDatingList(TemplateView):
+    template_name = "datings/self_dating/list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(SelfDatingList, self).get_context_data(**kwargs)
+        context['self_datings'] = SelfDating.objects.all()
+        return context

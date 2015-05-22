@@ -6,7 +6,8 @@ from snussum.views.rules import Privacy, Service
 
 from relationships.views.dating import DatingDetail, TodayDetail, DatingAccept, DatingRefuse, DatingRatingCreate
 from relationships.views.self_dating import SelfDatingCreate, SelfDatingDetail, \
-    SelfDatingApplyCreate, SelfDatingApplyAccept, SelfDatingApplyRefuse
+    SelfDatingApplyCreate, SelfDatingApplyAccept, SelfDatingApplyRefuse, \
+    SelfDatingList
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -36,6 +37,7 @@ urlpatterns = [
 
     url(r'^today/$', TodayDetail.as_view(), name='today'),
 
+    url(r'^wanted/$', SelfDatingList.as_view(), name='self-dating-list'),
     url(r'^wanted/new/$', SelfDatingCreate.as_view(), name='self-dating-new'),
     url(r'^wanted/(?P<slug>\w+)/$', SelfDatingDetail.as_view(), name='self-dating-detail'),
     url(r'^wanted/(?P<slug>\w+)/apply/$', SelfDatingApplyCreate.as_view(), name='self-dating-apply'),
