@@ -68,6 +68,12 @@ class UpdateUserProfileInformation(UpdateUserProfileBase, UpdateView):
 class UpdateUserProfileImage(UpdateUserProfileBase, UpdateView):
     form_class = UserProfileImageForm
 
+    def form_valid(self, form):
+        messages.add_message(self.request, messages.INFO,
+                             '프로필 사진이 성공적으로 업데이트 되었습니다.',
+                             extra_tags="success")
+        return super(UpdateUserProfileImage, self).form_valid(form)
+
 
 class UpdateUserProfileAccountEmail(UpdateUserBase, UpdateView):
     fields = ['email']
