@@ -1,7 +1,7 @@
 {% if recent_ratings %}
-  <ul>
+  <ul class="dating-ratings">
     {% for recent_rating in recent_ratings %}
-      <li>{{ recent_rating.get_score_display }} {{ recent_rating.content }}</li>
+      {% include "datings/_dating_rating.html" with rating=recent_rating %}
     {% endfor %}
   </ul>
 {% else %}
