@@ -28,6 +28,30 @@
       $(edited_items).hide();
       $(editing_items).show();
     });
+
+    $(information).find("#id_profile_introduce").on('summernote.change', function(){
+      var length = $(this).code().replace(/<(?:.|\n)*?>/gm, '').length;
+
+      var form = $(this).parent("div.editing");
+
+      var success_msg = $(form).find("p.success");
+      var danger_msg = $(form).find("p.danger");
+
+      var button = $("#information").find("button[type='submit']");
+
+      if (length > 50) {
+        $(danger_msg).addClass("hide");
+        $(success_msg).removeClass("hide");
+
+        $(button).prop("disabled", false);
+
+      } else {
+        $(success_msg).addClass("hide");
+        $(danger_msg).removeClass("hide");
+
+        $(button).prop("disabled", true);
+      }
+    });
   });
 
 
