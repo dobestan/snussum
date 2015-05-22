@@ -43,7 +43,6 @@ class DatingDetail(DatingBase, DetailView):
         return context
 
 
-
 class TodayDetail(DatingBase, DetailView):
 
     def get_object(self):
