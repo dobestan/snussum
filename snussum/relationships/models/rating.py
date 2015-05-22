@@ -29,7 +29,7 @@ class Rating(models.Model):
 
         (0.0, "F"),
     )
-    score = models.IntegerField(choices=SCORE_CHOICES, default=None, blank=True, null=True)
+    score = models.FloatField(choices=SCORE_CHOICES, default=None, blank=True, null=True)
     content = models.TextField(default=None, blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
