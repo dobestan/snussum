@@ -55,6 +55,7 @@ PIPELINE_JS = {
             # Application
             'js/application.js',
             'js/datings/*.js',
+            'js/users/*.js',
         ),
         'output_filename': 'js/snussum.min.js'
     }

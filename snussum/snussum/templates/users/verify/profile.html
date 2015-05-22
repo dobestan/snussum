@@ -5,6 +5,7 @@
 
 {% block content %}
   <section id="verify-profile">
+    {{ form.media }}
     <form action="" method="POST" accept-charset="utf-8">{% csrf_token %}
       <section class="container">
         <div class="row">
@@ -61,7 +62,7 @@
                   * 성실한 자기소개를 작성해주셔서 진심으로 감사드립니다.
                 </p>
 
-                <textarea name="profile_introduce" id="id_profile_introduce" class="form-control" rows=10 required>{% if user.userprofile.profile_introduce %}{{ user.userprofile.profile_introduce }}{% endif %}</textarea>
+                {{ form.profile_introduce }}
               </div>
             </section>
 
@@ -87,7 +88,7 @@
               </div>
             </section>
 
-            <button type="submit" class="text-center btn-snussum-red">
+            <button type="submit" class="text-center btn-snussum-red" disabled>
               <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;프로필 업데이트
             </button>
           </div>
@@ -96,59 +97,5 @@
 
     </form>
   </section>
-
-<script type="text/javascript" charset="utf-8">
-$(document).ready(function(){
-  var boy = $("section#verify-profile-gender").find("img#boy");
-  var girl = $("section#verify-profile-gender").find("img#girl");
-
-  var boy_makeup = $("section#verify-profile-gender").find("img#boy_makeup");
-  var girl_makeup = $("section#verify-profile-gender").find("img#girl_makeup");
-
-  var input_is_boy = $("section#verify-profile-gender").find("input#id_is_boy");
-
-  $(boy).click(function(){
-    $(girl_makeup).hide();
-    $(girl).show();
-
-    $(boy).hide();
-    $(boy_makeup).show();
-    $(boy_makeup).addClass("active");
-
-    $(input_is_boy).prop("value", "boy");
-  });
-
-  $(girl).click(function(){
-    $(boy_makeup).hide();
-    $(boy).show();
-
-    $(girl).hide();
-    $(girl_makeup).show();
-    $(girl_makeup).addClass("active");
-
-    $(input_is_boy).prop("value", "girl");
-  });
-
-  $("section#verify-profile-introduce").find("textarea#id_profile_introduce").on('input', function(){
-      var length = $(this).val().length;
-      var form = $(this).parent(".form-group");
-
-      var success_msg = $(form).find("p.success");
-      var danger_msg = $(form).find("p.danger");
-
-      if (length > 50) {
-        $(form).removeClass("border-danger").addClass("border-success");
-        $(danger_msg).hide();
-        $(success_msg).show();
-
-      } else {
-        $(form).removeClass("border-success").addClass("border-danger");
-        $(success_msg).hide();
-        $(danger_msg).show();
-      }
-  });
-});
-</script>
-
 {% endblock %}
 

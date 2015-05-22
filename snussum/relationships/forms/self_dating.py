@@ -9,9 +9,9 @@ class SelfDatingForm(ModelForm):
     class Meta:
         model = SelfDating
         fields = ['title', 'content', 'tags_myself', 'tags_partner']
-        # widgets = {
-        #     'content': SummernoteInplaceWidget(),
-        # }
+        widgets = {
+            'content': SummernoteInplaceWidget(),
+        }
 
 
 class SelfDatingApplyForm(ModelForm):

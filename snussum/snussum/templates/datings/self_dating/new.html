@@ -16,6 +16,7 @@
   <section class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        {{ form.media }}
         <form action="{% url "self-dating-new" %}" method="POST" accept-charset="utf-8">{% csrf_token %}
           {% if form.errors %}
             <p class="small danger">
@@ -30,7 +31,7 @@
 
           <div class="form-group">
             <label>본문</label>
-            <textarea name="content" id="id_content" rows="10" class="form-control"></textarea>
+            {{ form.content }}
           </div>
 
           <hr/>

@@ -149,20 +149,3 @@
   </button>
 
 </form>
-
-
-<script type="text/javascript" charset="utf-8">
-$(document).ready(function(){
-  var condition = $("section#profile").find("#condition");
-  var button_edited = $(condition).find("button.edited");
-  var button_editing = $(condition).find("button.editing");
-
-  var edited_items = $(condition).find(".edited");
-  var editing_items = $(condition).find(".editing");
-
-  $(button_edited).click(function(){
-    $(edited_items).hide();
-    $(editing_items).show();
-  });
-});
-</script>

@@ -21,7 +21,7 @@
     data-message-tags="{% for message in messages %}{{ message.tags }};{% endfor %}"
   >
     {% include "_partials/_header.html" %}
-    <div id="content">{% block content %}{% endblock %}</div>
+    <div>{% block content %}{% endblock %}</div>
     {% include "_partials/_footer.html" %}
     {% include "_partials/_contact.html" %}
     {% include "_partials/_loading.html" %}

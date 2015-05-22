@@ -116,17 +116,3 @@
     </tr>
   </tbody>
 </table>
-
-<script type="text/javascript" charset="utf-8">
-$(document).ready(function(){
-  var account = $("section#profile").find("#account");
-
-  var button_edited = $(account).find("button.edited");
-  var button_editing = $(account).find("button.editing");
-
-  $(button_edited).click(function(){
-    $(this).parent("td").find(".edited").hide();
-    $(this).parent("td").find(".editing").show();
-  });
-});
-</script>
