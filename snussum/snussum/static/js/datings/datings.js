@@ -1,3 +1,4 @@
+/*jshint multistr: true */
 (function(){
   "use strict";
   $(document).ready(function(){
@@ -25,7 +26,7 @@
 
         $(comments).find("div.kakaotalk").append(html);
         $(comments).find("textarea").val("");
-      };
+      }
       
       $.ajax({
         url: '/api/ssum/' + dating_hash_id + '/comment/',
