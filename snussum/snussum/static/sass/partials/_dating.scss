@@ -266,6 +266,26 @@ section#dashboard {
 }
 
 
+// Ratings
+
+ul.dating-ratings {
+  list-style-type: none;
+  padding-left: 0;
+
+  li.dating-rating {
+    position: relative;
+
+    img {
+      width: 60px;
+      height: 60px;
+
+      border-radius: 50%;
+      border: 1px solid $snussum-lightgrey;
+    }
+  }
+}
+
+
 // Fixed Layout
 
 // DatingAccept ( fixed sidebar )

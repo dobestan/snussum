@@ -11,7 +11,9 @@
 <hr />
 
 {% if my_rating %}
-  {{ my_rating }}
+  <ul class="dating-ratings">
+    {% include "datings/_dating_rating.html" with rating=my_rating %}
+  </ul>
 {% else %}
   <form action="{% url "dating-rating" dating.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
     <div class="form-group">
