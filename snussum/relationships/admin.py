@@ -42,6 +42,18 @@ class RatingAdmin(admin.ModelAdmin):
     )
 
 
+class RatingReviewerInline(admin.TabularInline):
+    model = Rating
+    readonly_fields = ('created_at', )
+    fk_name = 'reviewer'
+
+
+class RatingRevieweeInline(admin.TabularInline):
+    model = Rating
+    readonly_fields = ('created_at', )
+    fk_name = 'reviewee'
+
+
 @admin.register(SelfDating)
 class SelfDatingAdmin(admin.ModelAdmin):
     list_display = admin.ModelAdmin.list_display + (
