@@ -1,6 +1,8 @@
 {% extends "_base.html" %}
 {% load self_datings %}
 
+{% block title %}셀프소개팅 "{{self_dating.title}}" - 썸타는 서울대학교 :: 스누썸{% endblock %}
+
 {% block content %}
   {% with myself_dating_apply=self_dating|myself_dating_apply:user %}
 <section id="self-dating-detail">

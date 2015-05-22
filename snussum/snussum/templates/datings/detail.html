@@ -1,6 +1,8 @@
 {% extends "_base.html" %}
 {% load datings %}
 
+{% block title %}{{ dating|partner:user }} 님과의 매칭 - 썸타는 서울대학교 :: 스누썸{% endblock %}
+
 {% block content %}
   {% with partner=dating|partner:user partner_is_accepted=dating|partner_is_accepted:user myself_is_accepted=dating|myself_is_accepted:user %}
     <div class="container">
