@@ -2,7 +2,6 @@
 {% load staticfiles %}
 
 {% block content %}
-  <div id="hello"></div>
   <section id="verify-profile">
     {{ form.media }}
     <form action="" method="POST" accept-charset="utf-8">{% csrf_token %}
@@ -87,7 +86,7 @@
               </div>
             </section>
 
-            <button type="submit" class="text-center btn-snussum-red">
+            <button type="submit" class="text-center btn-snussum-red" disabled>
               <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;프로필 업데이트
             </button>
           </div>

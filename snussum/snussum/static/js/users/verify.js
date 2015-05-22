@@ -33,21 +33,26 @@
 
     $("section#verify-profile-introduce").find("#id_profile_introduce").on('summernote.change', function() {
       var length = $(this).code().replace(/<(?:.|\n)*?>/gm, '').length;
-      console.log(length);
       var form = $(this).parent(".form-group");
 
       var success_msg = $(form).find("p.success");
       var danger_msg = $(form).find("p.danger");
+
+      var button = $("#verify-profile").find("button[type='submit']");
 
       if (length > 50) {
         $(form).removeClass("border-danger").addClass("border-success");
         $(danger_msg).hide();
         $(success_msg).show();
 
+        $(button).prop("disabled", false);
+
       } else {
         $(form).removeClass("border-success").addClass("border-danger");
         $(success_msg).hide();
         $(danger_msg).show();
+
+        $(button).prop("disabled", true);
       }
     });
   });
