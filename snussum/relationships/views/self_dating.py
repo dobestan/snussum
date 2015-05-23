@@ -4,6 +4,7 @@ from django.views.generic import View
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.list import ListView
 
 from relationships.forms.self_dating import SelfDatingForm, SelfDatingApplyForm
 
@@ -94,10 +95,13 @@ class SelfDatingApplyRefuse(SelfDatingBase, UpdateView):
         return super(SelfDatingApplyRefuse, self).form_valid(form)
 
 
-class SelfDatingList(TemplateView):
+class SelfDatingList(ListView):
     template_name = "datings/self_dating/list.html"
+    context_object_name = 'self_datings'
+
+    def get_queryset(self):
+        return SelfDating.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super(SelfDatingList, self).get_context_data(**kwargs)
-        context['self_datings'] = SelfDating.objects.all()
         return context
