@@ -30,13 +30,11 @@ urlpatterns = [
     url(r'^rules/service/$', Service.as_view(), name='rule-service'),
     url(r'^rules/privacy/$', Privacy.as_view(), name='rule-privacy'),
 
-    url(r'^ssum/$', Dashboard.as_view(), name='dashboard'),
+    url(r'^today/$', Dashboard.as_view(), name='dashboard'),
     url(r'^ssum/(?P<slug>\w+)/$', DatingDetail.as_view(), name='dating-detail'),
     url(r'^ssum/(?P<slug>\w+)/accept/$', DatingAccept.as_view(), name='dating-accept'),
     url(r'^ssum/(?P<slug>\w+)/refuse/$', DatingRefuse.as_view(), name='dating-refuse'),
     url(r'^ssum/(?P<slug>\w+)/rating/$', DatingRatingCreate.as_view(), name='dating-rating'),
-
-    url(r'^today/$', TodayDetail.as_view(), name='today'),
 
     url(r'^wanted/$', SelfDatingList.as_view(), name='self-dating-list'),
     url(r'^wanted/new/$', SelfDatingCreate.as_view(), name='self-dating-new'),
