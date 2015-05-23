@@ -3,4 +3,15 @@
 {% block title %}매칭 전체보기 - 썸타는 서울대학교 :: 스누썸{% endblock %}
 
 {% block content %}
+  <section id="dating-list">
+    <div class="container">
+      <div class="row">
+        <div class="datings text-center">
+          {% for dating in datings %}
+            {% include "_partials/_datings/_recently/_dating.html" with dating=dating %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}

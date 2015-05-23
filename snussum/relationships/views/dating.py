@@ -32,7 +32,12 @@ class DatingList(DatingBase, ListView):
     context_object_name = 'datings'
 
     def get_queryset(self):
-        return Dating.objects.all()
+        if self.request.user.userprofile.is_boy:
+            datings = Dating.objects.filter(boy=self.request.user)
+        else:
+            datings = Dating.objects.filter(girl=self.request.user)
+
+        return datings
 
 
 class DatingDetail(DatingBase, DetailView):
