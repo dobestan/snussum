@@ -1,11 +1,18 @@
 <li class="notification {% if notification.unread %}unread{% endif %}">
-  {% if notification.action_object_content_type.name == "dating" %}
-    {% include "users/_notifications/_base.html" with DEST_URL=notification.action_object.get_absolute_url IMG_URL=notification.actor.userprofile.profile_image_url %}
-  {% elif notification.action_object_content_type.name == "self dating" %}
-    {% include "users/_notifications/_base.html" with DEST_URL=notification.action_object.get_absolute_url IMG_URL=notification.actor.userprofile.profile_image_url %}
-  {% elif notification.action_object_content_type.name == "self dating apply" %}
-    {% include "users/_notifications/_base.html" with DEST_URL=notification.action_object.get_absolute_url IMG_URL=notification.actor.userprofile.profile_image_url %}
-  {% elif notification.action_object_content_type.name == "comment" %}
-    {% include "users/_notifications/_base.html" with DEST_URL=notification.action_object.get_absolute_url IMG_URL=notification.actor.userprofile.profile_image_url %}
-  {% endif %}
+  <a href="{{ notification.action_object.get_absolute_url }}">
+    <div class="media">
+      <div class="media-left">
+        <img src="{{ notification.actor.userprofile.profile_image_url }}" alt=""/>
+      </div>
+      <div class="media-body">
+        <p>
+          {{ MSG }}
+        </p>
+        <p class="small pull-right darkgrey">
+          <i class="fa fa-clock-o"></i>
+          {{ notification.timesince }}
+        </p>
+      </div>
+    </div>
+  </a>
 </li>
