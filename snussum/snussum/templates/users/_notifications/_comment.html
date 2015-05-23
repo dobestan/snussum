@@ -1,4 +1,4 @@
-<a href="{% url "dating-detail" notification.action_object.dating.hash_id %}#{{ notification.action_object.hash_id }}">
+<a href="{{ notification.action_object.get_absolute_url }}">
   <div class="media">
     <div class="media-left">
       <img src="{{ notification.actor.userprofile.profile_image_url }}" alt=""/>
