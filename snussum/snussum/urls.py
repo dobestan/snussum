@@ -4,7 +4,7 @@ from django.contrib import admin
 from snussum.views import Home, Dashboard, About
 from snussum.views.rules import Privacy, Service
 
-from relationships.views.dating import DatingDetail, TodayDetail, DatingAccept, DatingRefuse, DatingRatingCreate
+from relationships.views.dating import DatingList, DatingDetail, DatingAccept, DatingRefuse, DatingRatingCreate
 from relationships.views.self_dating import SelfDatingCreate, SelfDatingDetail, \
     SelfDatingApplyCreate, SelfDatingApplyAccept, SelfDatingApplyRefuse, \
     SelfDatingList
@@ -31,6 +31,8 @@ urlpatterns = [
     url(r'^rules/privacy/$', Privacy.as_view(), name='rule-privacy'),
 
     url(r'^today/$', Dashboard.as_view(), name='dashboard'),
+
+    url(r'^ssum/$', DatingList.as_view(), name='dating-list'),
     url(r'^ssum/(?P<slug>\w+)/$', DatingDetail.as_view(), name='dating-detail'),
     url(r'^ssum/(?P<slug>\w+)/accept/$', DatingAccept.as_view(), name='dating-accept'),
     url(r'^ssum/(?P<slug>\w+)/refuse/$', DatingRefuse.as_view(), name='dating-refuse'),

@@ -1,6 +1,7 @@
 from django.views.generic import View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView
+from django.views.generic.list import ListView
 
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -24,6 +25,14 @@ class DatingBase(View):
     @method_decorator(profile_verifed_required)
     def dispatch(self, *args, **kwargs):
         return super(DatingBase, self).dispatch(*args, **kwargs)
+
+
+class DatingList(DatingBase, ListView):
+    template_name = "datings/list.html"
+    context_object_name = 'datings'
+
+    def get_queryset(self):
+        return Dating.objects.all()
 
 
 class DatingDetail(DatingBase, DetailView):
