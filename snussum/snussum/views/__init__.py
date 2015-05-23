@@ -1,2 +1,2 @@
-from .home import Home
+from .home import Home, About
 from .dashboard import Dashboard

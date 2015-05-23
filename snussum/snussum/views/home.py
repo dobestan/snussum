@@ -10,3 +10,7 @@ class Home(TemplateView):
         context = super(Home, self).get_context_data(**kwargs)
         context['self_datings'] = SelfDating.objects.order_by('-ends_at')[:3]
         return context
+
+
+class About(TemplateView):
+    template_name = "about.html"
