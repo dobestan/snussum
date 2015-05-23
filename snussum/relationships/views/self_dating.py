@@ -1,8 +1,10 @@
 from django.shortcuts import get_object_or_404
 
 from django.views.generic import View
+from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.list import ListView
 
 from relationships.forms.self_dating import SelfDatingForm, SelfDatingApplyForm
 
@@ -13,6 +15,8 @@ from django.contrib.auth.decorators import login_required
 from relationships.models.self_dating import SelfDating, SelfDatingApply
 
 from datetime import datetime
+
+from django.db.models import Q
 
 
 class SelfDatingBase(View):
@@ -91,3 +95,20 @@ class SelfDatingApplyRefuse(SelfDatingBase, UpdateView):
         self.object.accepted_at = datetime.now()
 
         return super(SelfDatingApplyRefuse, self).form_valid(form)
+
+
+class SelfDatingList(ListView):
+    template_name = "datings/self_dating/list.html"
+    context_object_name = 'self_datings'
+    paginate_by = 10
+
+    def get_queryset(self):
+        search_query = self.request.GET.get('search') or str()
+        return SelfDating.objects.filter(
+            Q(title__contains=search_query) |\
+            Q(content__contains=search_query)
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super(SelfDatingList, self).get_context_data(**kwargs)
+        return context
