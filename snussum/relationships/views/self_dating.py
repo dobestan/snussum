@@ -18,6 +18,8 @@ from datetime import datetime
 
 from django.db.models import Q
 
+from notifications import notify
+
 
 class SelfDatingBase(View):
     model = SelfDating
@@ -80,6 +82,11 @@ class SelfDatingApplyAccept(SelfDatingBase, UpdateView):
         self.object.is_accepted = True
         self.object.accepted_at = datetime.now()
 
+        # 셀프소개팅 지원자에게 알림 전달
+        notify.send(self.object.self_dating.user, recipient=self.object.user,
+                    action_object=self.object, verb="accepted",
+                    description=self.object.accepted_message)
+
         return super(SelfDatingApplyAccept, self).form_valid(form)
 
 
@@ -93,6 +100,11 @@ class SelfDatingApplyRefuse(SelfDatingBase, UpdateView):
     def form_valid(self, form):
         self.object.is_accepted = False
         self.object.accepted_at = datetime.now()
+
+        # 셀프소개팅 지원자에게 알림 전달
+        notify.send(self.object.self_dating.user, recipient=self.object.user,
+                    action_object=self.object, verb="refused",
+                    description=self.object.accepted_message)
 
         return super(SelfDatingApplyRefuse, self).form_valid(form)
 

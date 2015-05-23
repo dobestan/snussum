@@ -1,16 +1,53 @@
-<a href="{% url "self-dating-detail" notification.action_object.self_dating.hash_id %}">
-  <div class="media">
-    <div class="media-left">
-      <img src="{{ notification.actor.userprofile.profile_image_url }}" alt=""/>
+{% if notification.verb == "created" %}
+  <a href="{% url "self-dating-detail" notification.action_object.self_dating.hash_id %}">
+    <div class="media">
+      <div class="media-left">
+        <img src="{{ notification.actor.userprofile.profile_image_url }}" alt=""/>
+      </div>
+      <div class="media-body">
+        <p>
+        <strong>{{ notification.actor.userprofile.nickname }}</strong> 님이 셀프소개팅에 지원하였습니다: "{{ notification.description }}"
+        </p>
+        <p class="small pull-right darkgrey">
+          <i class="fa fa-clock-o"></i>
+          {{ notification.timesince }}
+        </p>
+      </div>
     </div>
-    <div class="media-body">
-      <p>
-      <strong>{{ notification.actor.userprofile.nickname }}</strong> 님이 셀프소개팅에 지원하였습니다: "{{ notification.description }}"
-      </p>
-      <p class="small pull-right darkgrey">
-        <i class="fa fa-clock-o"></i>
-        {{ notification.timesince }}
-      </p>
+  </a>
+{% elif notification.verb == "accepted" %}
+  <a href="{% url "self-dating-detail" notification.action_object.self_dating.hash_id %}">
+    <div class="media">
+      <div class="media-left">
+        <img src="{{ notification.actor.userprofile.profile_image_url }}" alt=""/>
+      </div>
+      <div class="media-body">
+        <p>
+        <strong>{{ notification.actor.userprofile.nickname }}</strong> 님이 수락하였습니다: "{{ notification.description }}"
+        </p>
+        <p class="small pull-right darkgrey">
+          <i class="fa fa-clock-o"></i>
+          {{ notification.timesince }}
+        </p>
+      </div>
     </div>
-  </div>
-</a>
+  </a>
+{% elif notification.verb == "refused" %}
+  <a href="{% url "self-dating-detail" notification.action_object.self_dating.hash_id %}">
+    <div class="media">
+      <div class="media-left">
+        <img src="{{ notification.actor.userprofile.profile_image_url }}" alt=""/>
+      </div>
+      <div class="media-body">
+        <p>
+        <strong>{{ notification.actor.userprofile.nickname }}</strong> 님이 거절하였습니다: "{{ notification.description }}"
+        </p>
+        <p class="small pull-right darkgrey">
+          <i class="fa fa-clock-o"></i>
+          {{ notification.timesince }}
+        </p>
+      </div>
+    </div>
+  </a>
+{% endif %}
+
