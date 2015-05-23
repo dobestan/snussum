@@ -100,7 +100,7 @@ class SelfDatingList(ListView):
     context_object_name = 'self_datings'
 
     def get_queryset(self):
-        search_query = self.request.GET.get('search', None)
+        search_query = self.request.GET.get('search') or str()
         return SelfDating.objects.filter(
             title__contains=search_query,
         )
