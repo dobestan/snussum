@@ -11,6 +11,8 @@ from relationships.models.rating import Rating
 
 from datetime import datetime
 
+from notifications import notify
+
 
 class DatingBase(View):
     model = Dating
@@ -57,14 +59,21 @@ class DatingAccept(DatingBase, UpdateView):
         content = self.request.POST.get("content", None)
 
         if self.request.user.userprofile.is_boy:
+            partner = self.object.girl
             self.object.is_boy_accepted = True
             self.object.boy_accepted_at = datetime.now()
             self.object.boy_accepted_message = content
         else:
+            partner = self.object.boy
             self.object.is_girl_accepted = True
             self.object.girl_accepted_at = datetime.now()
             self.object.girl_accepted_message = content
         self.object.save()
+
+        # 데이트 상대방에게 알림 전달
+        notify.send(self.request.user, recipient=partner,
+                    action_object=self.object, verb="accepted",
+                    description=content)
 
         return super(DatingAccept, self).form_valid(form)
 
@@ -75,12 +84,18 @@ class DatingRefuse(DatingBase, UpdateView):
 
     def form_valid(self, form):
         if self.request.user.userprofile.is_boy:
+            partner = self.object.girl
             self.object.is_boy_accepted = False
             self.object.boy_accepted_at = datetime.now()
         else:
+            partner = self.object.boy
             self.object.is_girl_accepted = False
             self.object.girl_accepted_at = datetime.now()
         self.object.save()
+
+        # 데이트 상대방에게 알림 전달
+        notify.send(self.request.user, recipient=partner,
+                    action_object=self.object, verb="refused")
 
         return super(DatingRefuse, self).form_valid(form)
 
