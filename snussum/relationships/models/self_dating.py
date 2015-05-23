@@ -131,6 +131,10 @@ def _update_self_dating(sender, instance, created, **kwargs):
             instance.ends_at = instance.created_at + timedelta(3)
 
         instance.save()
+        
+        notify.send(instance.user, recipient=instance.user,
+                    action_object=instance, verb="created",
+                    description=instance.title)
 
 
 @receiver(post_save, sender=SelfDatingApply)
