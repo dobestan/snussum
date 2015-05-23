@@ -46,3 +46,16 @@ $bootstrap-danger: #D9534F;
   &.border-blue {border-color: $snussum-blue;}
   &.border-orange {border-color: $snussum-orange;}
 }
+
+@mixin profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid $snussum-lightgrey;
+
+  margin-bottom: 20px;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

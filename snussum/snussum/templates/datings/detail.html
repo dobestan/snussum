@@ -5,24 +5,14 @@
 
 {% block content %}
   {% with partner=dating|partner:user partner_is_accepted=dating|partner_is_accepted:user myself_is_accepted=dating|myself_is_accepted:user %}
-    <div class="container">
+    <div id="dating-detail" class="container">
       <div class="col-xs-12 col-sm-8">
-        <section id="profile">
-        </section>
 
-        <section id="introduce">
+        <section id="dating-detail-profile">
           <div class="panel panel-default">
             <div class="panel-body">
               <h2>자기소개</h2>
-              {{ partner.userprofile.profile_introduce|safe }}
-            </div>
-          </div>
-        </section>
-
-        <section id="analytics">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <h2>통계</h2>
+              {% include "datings/_profile_introduce.html" %}
             </div>
           </div>
         </section>

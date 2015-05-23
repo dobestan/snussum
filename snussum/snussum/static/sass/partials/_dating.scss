@@ -1,3 +1,11 @@
+#dating-detail {
+  #dating-detail-profile {
+    img {
+      @include profile-image;
+    }
+  }
+}
+
 section#comments {
   section#comments-input {
     $textarea-height: 100px;
