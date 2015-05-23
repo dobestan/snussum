@@ -16,6 +16,8 @@ from relationships.models.self_dating import SelfDating, SelfDatingApply
 
 from datetime import datetime
 
+from django.db.models import Q
+
 
 class SelfDatingBase(View):
     model = SelfDating
@@ -102,7 +104,8 @@ class SelfDatingList(ListView):
     def get_queryset(self):
         search_query = self.request.GET.get('search') or str()
         return SelfDating.objects.filter(
-            title__contains=search_query,
+            Q(title__contains=search_query) |\
+            Q(content__contains=search_query)
         )
 
     def get_context_data(self, **kwargs):
