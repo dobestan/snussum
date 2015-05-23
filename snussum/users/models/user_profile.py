@@ -75,7 +75,7 @@ class UserProfile(models.Model):
     university_verification_token = models.CharField(max_length=32, null=True, blank=True)
 
     # PhoneNumber Validation
-    phonenumber = models.CharField(max_length=13, blank=True, null=True, unique=True)
+    phonenumber = models.CharField(max_length=13, default=None, blank=True, null=True, unique=True)
     is_phonenumber_verified = models.BooleanField(default=False)
     phonenumber_verification_token = models.CharField(max_length=32, null=True, blank=True)
 

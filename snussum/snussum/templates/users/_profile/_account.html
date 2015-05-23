@@ -50,21 +50,24 @@
       <th>연락처</th>
       <td>
         <div class="edited">
-          {% if user.userprofile.phonenumber %}
+          {% if user.userprofile.is_phonenumber_verified %}
             {{ user.userprofile.phonenumber }}
+            <span class="small success">
+              <i class="fa fa-check"></i>
+              연락처가 인증되었습니다.<br/>
+            </span>
           {% else %}
             <span class="small danger">
               <i class="fa fa-close"></i>
-              연락처가 등록되지 않았습니다.<br/>
-              연락처가 등록되지 않은 경우 비밀번호 찾기 및 SMS 알림 기능을
-              이용할 수 없습니다.
+              연락처가 인증되지 않았습니다.<br/>
+              연락처가 인증되지 않은 경우, 셀프소개팅, 매칭 수락/거절 등 일부 서비스가 제한됩니다.
             </span><br/>
           {% endif %}
         </div>
         <div class="editing">
           <form action="{% url "users:update-profile-account-phonenumber" %}" method="POST" accept-charset="utf-8">{% csrf_token %}
             <div class="form-group">
-              <input type="tel" value="{{ user.userprofile.phonenumber }}" name="phonenumber" id="id_phonenumber" class="form-control"/>
+              <input type="tel" value="" name="phonenumber" id="id_phonenumber" class="form-control" placeholder="010-1234-5678"/>
             </div>
           
             <button id="btn-phonenumber-editing" type="submit" class="text-center btn-snussum-red editing">
