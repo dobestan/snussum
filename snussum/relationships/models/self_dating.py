@@ -119,7 +119,7 @@ class SelfDatingApply(models.Model):
         )
 
     def get_absolute_url(self):
-        return reverse("self-dating-detail", kwargs={'slug': self.self_dating.hash_id})
+        return reverse("self-dating-detail", kwargs={'slug': self.self_dating.hash_id}) + "#" + self.hash_id
 
 
 @receiver(post_save, sender=SelfDating)

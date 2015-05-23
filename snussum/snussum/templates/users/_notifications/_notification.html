@@ -1,11 +1,11 @@
 <li class="notification {% if notification.unread %}unread{% endif %}">
   {% if notification.action_object_content_type.name == "dating" %}
-    {% include "users/_notifications/_dating.html" %}
+    {% include "users/_notifications/_base.html" with DEST_URL=notification.action_object.get_absolute_url IMG_URL=notification.actor.userprofile.profile_image_url %}
   {% elif notification.action_object_content_type.name == "self dating" %}
-    {% include "users/_notifications/_self_dating.html" %}
+    {% include "users/_notifications/_base.html" with DEST_URL=notification.action_object.get_absolute_url IMG_URL=notification.actor.userprofile.profile_image_url %}
   {% elif notification.action_object_content_type.name == "self dating apply" %}
-    {% include "users/_notifications/_self_dating_apply.html" %}
+    {% include "users/_notifications/_base.html" with DEST_URL=notification.action_object.get_absolute_url IMG_URL=notification.actor.userprofile.profile_image_url %}
   {% elif notification.action_object_content_type.name == "comment" %}
-    {% include "users/_notifications/_comment.html" %}
+    {% include "users/_notifications/_base.html" with DEST_URL=notification.action_object.get_absolute_url IMG_URL=notification.actor.userprofile.profile_image_url %}
   {% endif %}
 </li>
