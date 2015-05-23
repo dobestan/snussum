@@ -5,16 +5,77 @@
 
 {% block content %}
   {% with partner=dating|partner:user partner_is_accepted=dating|partner_is_accepted:user myself_is_accepted=dating|myself_is_accepted:user %}
-    <div class="container">
+    <div id="dating-detail" class="container">
       <div class="col-xs-12 col-sm-8">
-        <section id="profile">
-        </section>
-
-        <section id="introduce">
+        <section id="dating-detail-profile">
           <div class="panel panel-default">
             <div class="panel-body">
               <h2>자기소개</h2>
-              {{ partner.userprofile.profile_introduce|safe }}
+              <div class="col-xs-12">
+                <div class="col-md-4">
+                  <img src="{{ partner.userprofile.profile_image_url }}" alt=""/>
+                </div>
+                <div class="col-md-8">
+                  <table class="table table-hover table-striped">
+                    <thead>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>닉네임</th>
+                        <td>{{ partner.userprofile.nickname }} ( #{{partner.userprofile.hash_id }} )</td>
+                      </tr>
+                      <tr>
+                        <th>연락처</th>
+                        <td>
+                          연락처는 매칭 후 공개됩니다
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>나이</th>
+                        <td>
+                          {% if partner.userprofile.age %}
+                            {{ partner.userprofile.age }}
+                          {% else %}
+                            <span class="small success">
+                              <i class="fa fa-check"></i>
+                              상대방이 나이를 입력하지 않았습니다.<br/>
+                              상대방도 회원님의 나이를 확인할 수 없습니다.
+                            </span>
+                          {% endif %}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>키(신장)</th>
+                        <td>
+                          {% if partner.userprofile.height %}
+                            {{ partner.userprofile.height }} cm
+                          {% else %}
+                            <span class="small success">
+                              <i class="fa fa-check"></i>
+                              상대방이 키(신장)를 입력하지 않았습니다.<br/>
+                              상대방도 회원님의 나이를 확인할 수 없습니다.
+                            </span>
+                          {% endif %}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>지역</th>
+                        <td>
+                          {% if partner.userprofile.region %}
+                            {{ partner.userprofile.get_region_display }}
+                          {% else %}
+                            선택한 지역이 없습니다
+                          {% endif %}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="col-xs-12">
+                {{ partner.userprofile.profile_introduce|safe }}
+              </div>
             </div>
           </div>
         </section>
