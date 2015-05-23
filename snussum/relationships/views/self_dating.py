@@ -26,9 +26,9 @@ class SelfDatingBase(View):
     slug_field = "hash_id"
     context_object_name = "self_dating"
 
+    @method_decorator(login_required)
     @method_decorator(university_verified_required)
     @method_decorator(profile_verifed_required)
-    @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(SelfDatingBase, self).dispatch(*args, **kwargs)
 
