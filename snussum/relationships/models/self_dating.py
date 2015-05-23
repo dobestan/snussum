@@ -119,7 +119,7 @@ class SelfDatingApply(models.Model):
         )
 
     def get_absolute_url(self):
-        return reverse("self-dating-detail", kwargs={'slug': self.self_dating.hash_id})
+        return reverse("self-dating-detail", kwargs={'slug': self.self_dating.hash_id}) + "#" + self.hash_id
 
 
 @receiver(post_save, sender=SelfDating)
@@ -131,6 +131,11 @@ def _update_self_dating(sender, instance, created, **kwargs):
             instance.ends_at = instance.created_at + timedelta(3)
 
         instance.save()
+        
+        # 셀프소개팅 주인에게 알림 전달
+        notify.send(instance.user, recipient=instance.user,
+                    action_object=instance, verb="created",
+                    description=instance.title)
 
 
 @receiver(post_save, sender=SelfDatingApply)
@@ -138,3 +143,8 @@ def _update_self_dating_apply(sender, instance, created, **kwargs):
     if created:
         instance.hash_id = get_encoded_self_dating_apply_hashid(instance.id)
         instance.save()
+
+        # 셀프소개팅 주인에게 알림 전달
+        notify.send(instance.user, recipient=instance.self_dating.user,
+                    action_object=instance, verb="created",
+                    description=instance.content)

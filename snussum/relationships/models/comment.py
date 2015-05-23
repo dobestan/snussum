@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from django.contrib.auth.models import User
@@ -19,6 +20,9 @@ class Comment(models.Model):
     content = models.TextField()
 
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def get_absolute_url(self):
+        return reverse("dating-detail", kwargs={'slug': self.dating.hash_id}) + "#" + self.hash_id
 
 
 @receiver(post_save, sender=Comment)
