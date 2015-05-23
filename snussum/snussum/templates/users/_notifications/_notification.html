@@ -3,6 +3,8 @@
     {% include "users/_notifications/_dating.html" %}
   {% elif notification.action_object_content_type.name == "self dating" %}
     {% include "users/_notifications/_self_dating.html" %}
+  {% elif notification.action_object_content_type.name == "self dating apply" %}
+    {% include "users/_notifications/_self_dating_apply.html" %}
   {% elif notification.action_object_content_type.name == "comment" %}
     {% include "users/_notifications/_comment.html" %}
   {% endif %}

@@ -1,0 +1,16 @@
+<a href="{% url "self-dating-detail" notification.action_object.self_dating.hash_id %}">
+  <div class="media">
+    <div class="media-left">
+      <img src="{{ notification.actor.userprofile.profile_image_url }}" alt=""/>
+    </div>
+    <div class="media-body">
+      <p>
+      <strong>{{ notification.actor.userprofile.nickname }}</strong> 님이 셀프소개팅에 지원하였습니다: "{{ notification.description }}"
+      </p>
+      <p class="small pull-right darkgrey">
+        <i class="fa fa-clock-o"></i>
+        {{ notification.timesince }}
+      </p>
+    </div>
+  </div>
+</a>

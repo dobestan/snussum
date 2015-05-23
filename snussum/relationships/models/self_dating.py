@@ -142,3 +142,10 @@ def _update_self_dating_apply(sender, instance, created, **kwargs):
     if created:
         instance.hash_id = get_encoded_self_dating_apply_hashid(instance.id)
         instance.save()
+
+        # 셀프소개팅 지원자에게 알림 전달
+
+        # 셀프소개팅 주인에게 알림 전달
+        notify.send(instance.user, recipient=instance.self_dating.user,
+                    action_object=instance, verb="created",
+                    description=instance.content)
