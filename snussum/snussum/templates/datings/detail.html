@@ -27,7 +27,11 @@
                       <tr>
                         <th>연락처</th>
                         <td>
-                          연락처는 매칭 후 공개됩니다
+                          {% if dating.is_accepted %}
+                            {{ partner.userprofile.phonenumber }}
+                          {% else %}
+                            연락처는 매칭 후 공개됩니다
+                          {% endif %}
                         </td>
                       </tr>
                       <tr>
