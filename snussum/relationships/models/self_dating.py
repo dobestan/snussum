@@ -131,7 +131,7 @@ def _update_self_dating(sender, instance, created, **kwargs):
             instance.ends_at = instance.created_at + timedelta(3)
 
         instance.save()
-        
+
         # 셀프소개팅 주인에게 알림 전달
         notify.send(instance.user, recipient=instance.user,
                     action_object=instance, verb="created",
