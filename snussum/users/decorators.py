@@ -99,3 +99,27 @@ def profile_verifed_required(function=None):
         return _dec
     else:
         return _dec(function)
+
+
+def phonenumber_verifed_required(function=None):
+    def _dec(view_func):
+        def _view(request, *arg, **kwargs):
+            if request.user.userprofile.is_phonenumber_verified:
+                return view_func(request, *arg, **kwargs)
+            else:
+                messages.add_message(request, messages.INFO,
+                                     '신뢰할 수 있는 소개팅 서비스의 운영을 위하여, \
+                                        셀프소개팅 등 스누썸의 특정 서비스 이용을 위해서는 휴대폰번호 인증이 필요합니다.',
+                                     extra_tags="danger")
+                return redirect('users:profile')
+
+        _view.__name__ = view_func.__name__
+        _view.__dict__ = view_func.__dict__
+        _view.__doc__ = view_func.__doc__
+
+        return _view
+
+    if function is None:
+        return _dec
+    else:
+        return _dec(function)

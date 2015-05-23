@@ -9,7 +9,7 @@ from django.views.generic.list import ListView
 from relationships.forms.self_dating import SelfDatingForm, SelfDatingApplyForm
 
 from django.utils.decorators import method_decorator
-from users.decorators import university_verified_required, profile_verifed_required
+from users.decorators import university_verified_required, profile_verifed_required, phonenumber_verifed_required
 from django.contrib.auth.decorators import login_required
 
 from relationships.models.self_dating import SelfDating, SelfDatingApply
@@ -29,6 +29,7 @@ class SelfDatingBase(View):
     @method_decorator(login_required)
     @method_decorator(university_verified_required)
     @method_decorator(profile_verifed_required)
+    @method_decorator(phonenumber_verifed_required)
     def dispatch(self, *args, **kwargs):
         return super(SelfDatingBase, self).dispatch(*args, **kwargs)
 
