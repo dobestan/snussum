@@ -100,6 +100,7 @@ class SelfDatingApplyRefuse(SelfDatingBase, UpdateView):
 class SelfDatingList(ListView):
     template_name = "datings/self_dating/list.html"
     context_object_name = 'self_datings'
+    paginate_by = 10
 
     def get_queryset(self):
         search_query = self.request.GET.get('search') or str()
