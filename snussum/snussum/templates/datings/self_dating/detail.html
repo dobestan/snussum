@@ -8,12 +8,18 @@
 <section id="self-dating-detail">
   <div class="container">
     <div class="col-xs-12 col-sm-8">
+
+      <section>
+        <div class="page-header text-center">
+          <h1 class="jua">{{ self_dating.title }}
+            <small class="jua">- {{ self_dating.user.userprofile.nickname }}</small>
+          </h1>
+        </div>
+      </section>
+
       <section class="self-dating">
         <div class="panel panel-default">
           <div class="panel-body">
-            <h1>{{ self_dating.title }}</h1>
-
-            <hr />
 
             {{ self_dating.content|safe }}
 
@@ -47,7 +53,7 @@
         <section>
           <div class="panel panel-default">
             <div class="panel-body">
-              <h2>지원자 통계</h2>
+              <h2 class="jua">지원자 현황</h2>
 
               <p class="danger">
                 <i class="fa fa-check"></i>
@@ -84,7 +90,7 @@
       <section id="self-dating-apply-section" class="visible-xs">
         <div class="panel panel-default border border-red">
           <div class="panel-body">
-            <h2>셀프소개팅 지원하기</h2>
+            <h2 class="jua">셀프소개팅 지원하기</h2>
             {% include "datings/self_dating/_apply_form.html" %}
           </div>
         </div>
@@ -93,11 +99,18 @@
       <section>
         <div class="panel panel-default">
           <div class="panel-body">
-            <h2>다른 셀프소개팅</h2>
+            <h2 class="jua">다른 셀프소개팅</h2>
 
             {% for self_dating in recent_self_datings %}
               {% include "datings/self_dating/_dating.html" with self_dating=self_dating %}
             {% endfor %}
+
+            <div class="pull-right">
+              <p class="small">
+                다른 셀프소개팅도 궁금하세요?
+                <a href="{% url "self-dating-list" %}">셀프소개팅 전체보기</a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -107,7 +120,7 @@
       <section id="self-dating-apply-sidebar" data-spy="affix">
         <div class="panel panel-default border border-red">
           <div class="panel-body">
-            <h2>셀프소개팅 지원하기</h2>
+            <h2 class="jua">셀프소개팅 지원하기</h2>
             {% include "datings/self_dating/_apply_form.html" %}
           </div>
         </div>
