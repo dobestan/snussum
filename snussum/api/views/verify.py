@@ -23,7 +23,10 @@ class VerifySNUSnulifeLogin(VerifySNUBase):
 
         result = snulife_login(username, password)
         if result:
+            university = University.objects.get(slug="snu")
+            self.request.user.userprofile.university = university
             self.request.user.userprofile.is_university_verified = True
+            self.request.user.userprofile.snulife_username = username
             self.request.user.userprofile.save()
             return Response(status=status.HTTP_200_OK)
         else:
@@ -38,8 +41,15 @@ class VerifySNUMysnuLogin(VerifySNUBase):
 
         result = mysnu_login(username, password)
         if result:
+            university = University.objects.get(slug="snu")
+            self.request.user.userprofile.university = university
             self.request.user.userprofile.is_university_verified = True
+            self.request.user.userprofile.mysnu_username = username
             self.request.user.userprofile.save()
+
+            self.request.user.email = username + "@snu.ac.kr"
+            self.request.user.save()
+
             return Response(status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)

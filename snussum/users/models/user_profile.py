@@ -9,7 +9,8 @@ from users.models.university import University
 
 from users.tasks.password import send_password_reset_sms, \
     send_password_reset_email
-from users.tasks.verification import send_phonenumber_verification_sms
+from users.tasks.verification import send_phonenumber_verification_sms, \
+    send_university_verification_email
 
 from users.utils.hashids import get_encoded_user_profile_hashid
 
@@ -73,6 +74,10 @@ class UserProfile(models.Model):
     university = models.ForeignKey(University, blank=True, null=True)
     is_university_verified = models.BooleanField(default=False)
     university_verification_token = models.CharField(max_length=32, null=True, blank=True)
+
+    # MySNU Username, SNULife Username - 멀티계정 방지
+    mysnu_username = models.CharField(max_length=16, blank=True, null=True, unique=True)
+    snulife_username = models.CharField(max_length=16, blank=True, null=True, unique=True)
 
     # PhoneNumber Validation
     phonenumber = models.CharField(max_length=13, default=None, blank=True, null=True, unique=True)
@@ -288,12 +293,6 @@ class UserProfile(models.Model):
         send_phonenumber_verification_sms.delay(self.pk)
 
     def update_university(self, email_username, university):
-        """
-        1. Update University
-        2. Update Email ( with university public email address )
-        3. Reset University Verified to False
-        4. Send Verification Email
-        """
         self.university = university
         self.user.email = email_username + "@" + university.email
 
@@ -302,6 +301,8 @@ class UserProfile(models.Model):
 
         self.user.save()
         self.save()
+
+        send_university_verification_email(self.user.id)
 
 
 def create_user_profile(sender, instance, created, **kwargs):

@@ -56,6 +56,8 @@
         type: 'POST',
         data: data,
         success: function(result){
+          window.location.href = "/verify/profile/";
+
           $.notify(
             {message: "마이스누 로그인 인증에 성공하였습니다."},
             {type: 'success'}
@@ -98,6 +100,8 @@
         type: 'POST',
         data: data,
         success: function(result){
+          window.location.href = "/verify/profile/";
+
           $.notify(
             {message: "스누라이프 로그인 인증에 성공하였습니다."},
             {type: 'success'}
