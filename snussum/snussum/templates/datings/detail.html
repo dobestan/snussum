@@ -22,7 +22,6 @@
         <section id="dating-detail-profile">
           <div class="panel panel-default">
             <div class="panel-body">
-              <h2>자기소개</h2>
               {% include "datings/_profile_introduce.html" %}
             </div>
           </div>
@@ -31,7 +30,11 @@
         <section id="ratings">
           <div class="panel panel-default">
             <div class="panel-body">
-              <h2>평가 남기기</h2>
+              <h2 class="jua">평점
+                <small class="jua">
+                  상대방의 최근 평점
+                </small>
+              </h2>
               {% include "datings/_rating_form.html" %}
             </div>
           </div>
@@ -40,7 +43,11 @@
         <section id="dating-accept-section" class="visible-xs">
           <div class="panel panel-default border border-red">
             <div class="panel-body">
-              <h2>수락하기</h2>
+              <h2 class="jua">오케이
+                <small class="jua">
+                  하고 연락처 공개하기
+                </small>
+              </h2>
               {% include "datings/_accept_form.html" %}
             </div>
           </div>
@@ -74,7 +81,11 @@
         <section id="dating-accept-sidebar" data-spy="affix">
           <div class="panel panel-default border border-red">
             <div class="panel-body">
-              <h2>수락하기</h2>
+              <h2 class="jua">오케이
+                <small class="jua">
+                  하고 연락처 공개하기
+                </small>
+              </h2>
               {% include "datings/_accept_form.html" %}
             </div>
           </div>
