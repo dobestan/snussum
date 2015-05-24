@@ -53,7 +53,7 @@
         <section>
           <div class="panel panel-default">
             <div class="panel-body">
-              <h2>지원자 통계</h2>
+              <h2 class="jua">지원자 현황</h2>
 
               <p class="danger">
                 <i class="fa fa-check"></i>
@@ -90,7 +90,7 @@
       <section id="self-dating-apply-section" class="visible-xs">
         <div class="panel panel-default border border-red">
           <div class="panel-body">
-            <h2>셀프소개팅 지원하기</h2>
+            <h2 class="jua">셀프소개팅 지원하기</h2>
             {% include "datings/self_dating/_apply_form.html" %}
           </div>
         </div>
@@ -99,7 +99,7 @@
       <section>
         <div class="panel panel-default">
           <div class="panel-body">
-            <h2>다른 셀프소개팅</h2>
+            <h2 class="jua">다른 셀프소개팅</h2>
 
             {% for self_dating in recent_self_datings %}
               {% include "datings/self_dating/_dating.html" with self_dating=self_dating %}
@@ -113,7 +113,7 @@
       <section id="self-dating-apply-sidebar" data-spy="affix">
         <div class="panel panel-default border border-red">
           <div class="panel-body">
-            <h2>셀프소개팅 지원하기</h2>
+            <h2 class="jua">셀프소개팅 지원하기</h2>
             {% include "datings/self_dating/_apply_form.html" %}
           </div>
         </div>
