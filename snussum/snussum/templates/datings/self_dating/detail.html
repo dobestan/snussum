@@ -8,12 +8,18 @@
 <section id="self-dating-detail">
   <div class="container">
     <div class="col-xs-12 col-sm-8">
+
+      <section>
+        <div class="page-header text-center">
+          <h1 class="jua">{{ self_dating.title }}
+            <small class="jua">- {{ self_dating.user.userprofile.nickname }}</small>
+          </h1>
+        </div>
+      </section>
+
       <section class="self-dating">
         <div class="panel panel-default">
           <div class="panel-body">
-            <h1>{{ self_dating.title }}</h1>
-
-            <hr />
 
             {{ self_dating.content|safe }}
 
