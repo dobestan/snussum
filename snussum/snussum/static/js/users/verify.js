@@ -5,7 +5,7 @@
   // Verify SNU
   // 1. MySNU Email Verification
   $(document).ready(function(){
-    $("input#mysnu-email-button").click(function(){
+    $("button#mysnu-email-button").click(function(){
       var username = $("input#mysnu-email-username").val();
       var data = {'username': username};
 
@@ -36,7 +36,7 @@
 
   // 2. MySNU Login Verification
   $(document).ready(function(){
-    $("input#mysnu-login-button").click(function(){
+    $("button#mysnu-login-button").click(function(){
       $.notify(
         {icon: "fa fa-lock" ,message: "마이스누 로그인 인증이 시작되었습니다. \
         입력하신 아이디, 비밀번호는 공인 인증서(SSL)을 통해서 암호화됩니다."},
@@ -78,7 +78,7 @@
 
   // 3. Snulife Login Verification
   $(document).ready(function(){
-    $("input#snulife-login-button").click(function(){
+    $("button#snulife-login-button").click(function(){
       $.notify(
         {icon: "fa fa-lock" ,message: "스누라이프 로그인 인증이 시작되었습니다. \
         입력하신 아이디, 비밀번호는 공인 인증서(SSL)을 통해서 암호화됩니다."},
