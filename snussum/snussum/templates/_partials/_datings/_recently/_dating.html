@@ -1,6 +1,6 @@
 {% load datings %}
 
-<div class="dating">
+<li class="dating">
   {% with partner=dating|partner:user %}
     <div class="col-xs-12 col-sm-4">
       <div class="dating-background" style="background-image: url({{ partner.userprofile.profile_image_url }});">
@@ -15,4 +15,4 @@
       </div>
     </div>
   {% endwith %}
-</div>
+</li>

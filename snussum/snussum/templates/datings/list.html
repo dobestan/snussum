@@ -6,11 +6,11 @@
   <section id="dating-list">
     <div class="container">
       <div class="row">
-        <div class="datings text-center">
+        <ul class="datings text-center">
           {% for dating in datings %}
             {% include "_partials/_datings/_recently/_dating.html" with dating=dating %}
           {% endfor %}
-        </div>
+        </ul>
       </div>
     </div>
   </section>

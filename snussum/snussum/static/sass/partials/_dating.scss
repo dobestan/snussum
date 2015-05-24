@@ -85,87 +85,93 @@ section#comments {
   }
 }
 
-div.dating {
-  $border-radius-size: 15px;
+ul.datings {
+  list-style-type: none;
+  padding-left: 0;
 
-  div.dating-background {
-    background-position: 50%;
-    background-size: cover;
-    height: 400px;
-    position: relative;
+  li.dating {
 
-    border-radius: $border-radius-size;
+    $border-radius-size: 15px;
 
-    div.dating-background-layer {
-      background-color: rgba(black, 0.4);
-      width: 100%;
-      height: 100%;
-    
+    div.dating-background {
+      background-position: 50%;
+      background-size: cover;
+      height: 400px;
+      position: relative;
+
       border-radius: $border-radius-size;
+
+      div.dating-background-layer {
+        background-color: rgba(black, 0.4);
+        width: 100%;
+        height: 100%;
+      
+        border-radius: $border-radius-size;
+      }
+
+      div.dating-background-half-layer {
+        background-color: $snussum-lightgrey;
+        width: 100%;
+        height: 50%;
+
+        position: absolute;
+        top: 50%;
+
+        @include border-bottom-radius($border-radius-size);
+      }
+
+      div.dating-background-top-layer {
+        background-color: rgba(black, 0.4);
+        width: 100%;
+        height: 7%;
+
+        position: absolute;
+        top: 0;
+
+        @include border-top-radius($border-radius-size);
+      }
+
     }
 
-    div.dating-background-half-layer {
-      background-color: $snussum-lightgrey;
-      width: 100%;
-      height: 50%;
+    div.dating-profile-image {
+      background-repeat: no-repeat;
+      background-position: 50%;
+      border-radius: 50%;
+      background-size: cover;
+
+      width: 40%;
+      height: 40%;
+
+      border: 4px solid rgba(black, 0.3);
 
       position: absolute;
-      top: 50%;
-
-      @include border-bottom-radius($border-radius-size);
+      left: 30%;
+      bottom: 30%;
     }
 
-    div.dating-background-top-layer {
-      background-color: rgba(black, 0.4);
-      width: 100%;
-      height: 7%;
+    div.dating-information {
+      div.dating-information-username {
+        position: absolute;
+        bottom: 15%;
 
-      position: absolute;
-      top: 0;
+        // How to center a “position: absolute” element
+        // http://stackoverflow.com/questions/8508275/how-to-center-a-position-absolute-element
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
 
-      @include border-top-radius($border-radius-size);
-    }
+        font-weight: bold;
+      }
 
-  }
+      div.dating-information-date {
+        font-size: 12px;
 
-  div.dating-profile-image {
-    background-repeat: no-repeat;
-    background-position: 50%;
-    border-radius: 50%;
-    background-size: cover;
-
-    width: 40%;
-    height: 40%;
-
-    border: 4px solid rgba(black, 0.3);
-
-    position: absolute;
-    left: 30%;
-    bottom: 30%;
-  }
-
-  div.dating-information {
-    div.dating-information-username {
-      position: absolute;
-      bottom: 15%;
-
-      // How to center a “position: absolute” element
-      // http://stackoverflow.com/questions/8508275/how-to-center-a-position-absolute-element
-      margin-left: auto;
-      margin-right: auto;
-      left: 0;
-      right: 0;
-
-      font-weight: bold;
-    }
-
-    div.dating-information-date {
-      font-size: 12px;
-
-      position: absolute;
-      top: 8px;
-      left: 32px;
-      color: white;
+        position: absolute;
+        top: 8px;
+        left: 32px;
+        color: white;
+      }
     }
   }
 }

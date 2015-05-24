@@ -6,11 +6,11 @@
         <p>지나간 매칭 또한 수락하거나 연락할 수 있습니다</p>
       </div>
 
-      <div class="datings text-center">
+      <ul class="datings text-center">
         {% for dating in datings %}
           {% include "_partials/_datings/_recently/_dating.html" with dating=dating %}
         {% endfor %}
-      </div>
+      </ul>
     </div>
   </div>
 </section>
