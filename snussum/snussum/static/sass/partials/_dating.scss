@@ -90,10 +90,11 @@ ul.datings {
   padding-left: 0;
 
   li.dating {
-
     $border-radius-size: 15px;
 
     div.dating-background {
+      margin-bottom: 30px;
+
       background-position: 50%;
       background-size: cover;
       height: 400px;
