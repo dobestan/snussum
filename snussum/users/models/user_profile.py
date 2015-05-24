@@ -74,6 +74,10 @@ class UserProfile(models.Model):
     is_university_verified = models.BooleanField(default=False)
     university_verification_token = models.CharField(max_length=32, null=True, blank=True)
 
+    # MySNU Username, SNULife Username - 멀티계정 방지
+    mysnu_username = models.CharField(max_length=16, blank=True, null=True, unique=True)
+    snulife_username = models.CharField(max_length=16, blank=True, null=True, unique=True)
+
     # PhoneNumber Validation
     phonenumber = models.CharField(max_length=13, default=None, blank=True, null=True, unique=True)
     is_phonenumber_verified = models.BooleanField(default=False)
