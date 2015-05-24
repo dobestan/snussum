@@ -67,7 +67,7 @@ def snulife_login(username, password):
     LOGIN_URL = "https://snulife.com/?act=dispMemberLoginForm"
     MYPAGE_URL = "https://snulife.com/index.php?&act=dispMemberInfo"
 
-    driver = webdriver.Firefox()
+    driver = webdriver.PhantomJS()
 
     # 로그인 진행
     driver.get(LOGIN_URL)
@@ -109,7 +109,7 @@ def mysnu_login(username, password):
 
     BASE_URL = "http://my.snu.ac.kr/mysnu/portal/"
 
-    driver = webdriver.Firefox()
+    driver = webdriver.PhantomJS()
 
     # 로그인 진행
     # 마이스누의 경우에는 별도의 로그인 페이지 없이 메인페이지에서 바로 접속
