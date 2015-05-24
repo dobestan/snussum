@@ -55,10 +55,23 @@ def send_university_verification_email(user_id):
 
 
 def snulife_login(username, password):
-    BASE_URL = "https://snulife.com/?act=dispMemberLoginForm"
+    """
+    서울대학교 커뮤니티, 스누라이프에 접속해서 이용자가 입력한 아이디, 비밀번호로
+    실제로 로그인이 되는지 체크하고 결과를 Boolean으로 리턴한다.
+
+    - 스누라이프 : http://snulife.com/
+    - 스누라이프 로그인 : https://snulife.com/?act=dispMemberLoginForm
+    - 스누라이프 마이페이지 : https://snulife.com/index.php?&act=dispMemberInfo
+    """
+    BASE_URL = "https://snulife.com"
+    LOGIN_URL = "https://snulife.com/?act=dispMemberLoginForm"
+    MYPAGE_URL = "https://snulife.com/index.php?&act=dispMemberInfo"
 
     driver = webdriver.Chrome()
-    driver.get(BASE_URL)
+
+
+    # 로그인 진행
+    driver.get(LOGIN_URL)
 
     input_username = driver.find_element_by_id("uid")
     input_username.send_keys(username)
@@ -69,7 +82,19 @@ def snulife_login(username, password):
     login_button = driver.find_element_by_css_selector("div#content div.btnArea span.btn input")
     login_button.click()
 
-    if driver.find_elements_by_css_selector("div.userNickName"):
+    # 마이페이지 검증
+    # 스누라이프의 경우에는 마이페이지에서 검증하지 않고,
+    # 메인 페이지에서 닉네임이 있는지 살펴보고 검증한다
+    
+    driver.get(BASE_URL)
+    username_element = driver.find_elements_by_css_selector("div.default_login div.userNickName span")
+    username = username_element[0] if username_element else None
+
+    # snulife_username.get_attribute('innerHTML'))
+
+    driver.quit()
+
+    if username:
         return True
     return False
 
