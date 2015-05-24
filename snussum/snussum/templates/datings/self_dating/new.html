@@ -26,7 +26,7 @@
           
           <div class="form-group">
             <label>제목</label>
-            <input type="text" value="" name="title" id="id_title" class="form-control"/>
+            <input type="text" value="" name="title" id="id_title" class="form-control" placeholder="셀프소개팅 제목" required/>
           </div>
 
           <div class="form-group">
@@ -46,7 +46,7 @@
             <span class="small success">
               <i class="fa fa-check"></i> 저는 이런 <strong>{% if user.userprofile.is_boy %}남자{% else %}여자{% endif %}</strong>입니다
             </span>
-            <input type="text" value="" name="tags_myself" id="id_tags_myself" class="form-control" data-role="tagsinput"/>
+            <input type="text" value="" name="tags_myself" id="id_tags_myself" class="form-control" data-role="tagsinput" placeholder="저는 이런 사람입니다"/>
           </div>
 
           <div class="form-group">
@@ -54,7 +54,7 @@
             <span class="small success">
               <i class="fa fa-check"></i>저는 이런 <strong>{% if user.userprofile.is_boy %}여자{% else %}남자{% endif %}</strong>를 원합니다
             </span>
-            <input type="text" value="" name="tags_partner" id="id_tags_partner" class="form-control" data-role="tagsinput"/>
+            <input type="text" value="" name="tags_partner" id="id_tags_partner" class="form-control" data-role="tagsinput" placeholder="이런 상대방을 원합니다" required/>
           </div>
 
           <div class="form-group">
@@ -69,6 +69,11 @@
             <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셀프 소개팅 등록하기
           </button>
         </form>
+
+        <p class="pull-right small">
+          셀프소개팅 진행 과정이 궁금하세요?
+          <a href="{% url "about" %}" target="_blank">스누썸 서비스 소개 바로가기</a>
+        </p>
       </div>
     </div>
   </section>
