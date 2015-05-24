@@ -53,29 +53,4 @@
   </section>
 
 </section>
-
-<script type="text/javascript" charset="utf-8">
-$(document).ready(function(){
-  var input_username = $("section#login").find("input#id_username");
-  var input_password = $("section#login").find("input#id_password");
-
-  $(input_username).on('input', function(){
-    var danger_msg = $(this).parent(".form-group").find(".danger");
-    if ($(this).val().length == 0){
-      danger_msg.show();
-    } else {
-      danger_msg.hide();
-    }
-  });
-
-  $(input_password).on('input', function(){
-    var danger_msg = $(this).parent(".form-group").find(".danger");
-    if ($(this).val().length == 0){
-      danger_msg.show();
-    } else {
-      danger_msg.hide();
-    }
-  });
-});
-</script>
 {% endblock %}
