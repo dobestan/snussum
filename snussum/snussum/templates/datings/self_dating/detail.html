@@ -104,6 +104,13 @@
             {% for self_dating in recent_self_datings %}
               {% include "datings/self_dating/_dating.html" with self_dating=self_dating %}
             {% endfor %}
+
+            <div class="pull-right">
+              <p class="small">
+                다른 셀프소개팅도 궁금하세요?
+                <a href="{% url "self-dating-list" %}">셀프소개팅 전체보기</a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
