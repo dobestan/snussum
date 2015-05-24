@@ -26,6 +26,8 @@ class UserAdmin(UserAdmin):
         'is_dating_enabled',
         'email',
         'is_university_verified',
+        'mysnu_username',
+        'snulife_username',
         'phonenumber',
         'is_phonenumber_verified',
         'age',
@@ -70,6 +72,12 @@ class UserAdmin(UserAdmin):
     def is_university_verified(self, obj):
         return obj.userprofile.is_university_verified
     is_university_verified.boolean = True
+
+    def mysnu_username(self, obj):
+        return obj.userprofile.mysnu_username
+
+    def snulife_username(self, obj):
+        return obj.userprofile.snulife_username
 
     def age(self, obj):
         return obj.userprofile.age
