@@ -100,9 +100,21 @@ def snulife_login(username, password):
 
 
 def mysnu_login(username, password):
+    """
+    서울대학교 공식 포털, 마이스누에 접속해서 이용자가 입력한 아이디, 비밀번호로
+    실제로 로그인이 되는지 체크하고 결과를 Boolean으로 리턴한다.
+
+    - 마이스누 : http://my.snu.ac.kr/mysnu/portal/
+    - 마이스누 마이페이지 : 
+    """
+
     BASE_URL = "http://my.snu.ac.kr/mysnu/portal/"
 
     driver = webdriver.Chrome()
+
+    # 로그인 진행
+    # 마이스누의 경우에는 별도의 로그인 페이지 없이 메인페이지에서 바로 접속
+
     driver.get(BASE_URL)
 
     input_username = driver.find_element_by_id("si_id")
@@ -114,9 +126,16 @@ def mysnu_login(username, password):
     login_button = driver.find_element_by_id("btn_login")
     login_button.click()
 
+    # 로그인 검증
+    # 마이스누의 경우에는 iFrame, Frameset을 이용한 방식을 차용하고 있어
+    # Selenium으로 특정 Element를 가져오는 것이 힘들다.
+    
     # if Login fails
     # - https://sso.snu.ac.kr/nls3/error.jsp?errorCode=5401
 
-    if "nls" in driver.current_url:
+    current_url = driver.current_url
+    driver.quit()
+
+    if "nls" in current_url:
         return False
     return True
