@@ -71,6 +71,10 @@ def university_verification(request, university_verification_token):
     user.userprofile.is_university_verified = True
     user.userprofile.save()
 
+    messages.add_message(request, messages.INFO,
+                         '마이스누 이메일이 성공적으로 인증되었습니다. 감사합니다.',
+                         extra_tags="success")
+
     return redirect("home")
 
 
@@ -80,6 +84,6 @@ def phonenumber_verification(request, phonenumber_verification_token):
     user.userprofile.save()
 
     messages.add_message(request, messages.INFO,
-                         '연락처가 인증되었습니다. 감사합니다.',
+                         '연락처가 성공적으로  인증되었습니다. 감사합니다.',
                          extra_tags="success")
     return redirect("home")
