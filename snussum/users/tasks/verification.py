@@ -69,7 +69,6 @@ def snulife_login(username, password):
 
     driver = webdriver.Chrome()
 
-
     # 로그인 진행
     driver.get(LOGIN_URL)
 
@@ -85,7 +84,7 @@ def snulife_login(username, password):
     # 마이페이지 검증
     # 스누라이프의 경우에는 마이페이지에서 검증하지 않고,
     # 메인 페이지에서 닉네임이 있는지 살펴보고 검증한다
-    
+
     driver.get(BASE_URL)
     username_element = driver.find_elements_by_css_selector("div.default_login div.userNickName span")
     username = username_element[0] if username_element else None
@@ -105,7 +104,7 @@ def mysnu_login(username, password):
     실제로 로그인이 되는지 체크하고 결과를 Boolean으로 리턴한다.
 
     - 마이스누 : http://my.snu.ac.kr/mysnu/portal/
-    - 마이스누 마이페이지 : 
+    - 마이스누 마이페이지 :
     """
 
     BASE_URL = "http://my.snu.ac.kr/mysnu/portal/"
@@ -129,7 +128,7 @@ def mysnu_login(username, password):
     # 로그인 검증
     # 마이스누의 경우에는 iFrame, Frameset을 이용한 방식을 차용하고 있어
     # Selenium으로 특정 Element를 가져오는 것이 힘들다.
-    
+
     # if Login fails
     # - https://sso.snu.ac.kr/nls3/error.jsp?errorCode=5401
 
