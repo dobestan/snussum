@@ -77,7 +77,10 @@ def _update_dating_hash_id(sender, instance, created, **kwargs):
         instance.hash_id = get_encoded_dating_hashid(instance.id)
         instance.save()
 
+        # Notification
         notify.send(instance.girl, recipient=instance.boy,
                     action_object=instance, verb="created")
         notify.send(instance.boy, recipient=instance.girl,
                     action_object=instance, verb="created")
+
+        # SMS
