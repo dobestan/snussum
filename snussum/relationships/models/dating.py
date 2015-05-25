@@ -10,10 +10,23 @@ from notifications import notify
 
 from relationships.utils.hashids import get_encoded_dating_hashid
 
-from datetime import date
+import datetime
+
+
+class DatingManager(models.Manager):
+    def datings(self):
+        return Dating.objects.all()
+
+    def datings_matched_today(self):
+        return self.datings().filter(matched_at=datetime.date.today())
+
+    def datings_matched_yesterday(self):
+        return self.datings().filter(matched_at=datetime.date.today()-datetime.timedelta(1))
 
 
 class Dating(models.Model):
+    objects = DatingManager()
+
     hash_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
 
     boy = models.ForeignKey(User, related_name="dating_girls")
@@ -40,7 +53,7 @@ class Dating(models.Model):
     is_accepted = property(_is_accepted)
 
     def pretty_date(self):
-        if self.matched_at == date.today():
+        if self.matched_at == datetime.date.today():
             return "오늘의 매칭"
         else:
             return "%s월 %s일" % (self.matched_at.month, self.matched_at.day)

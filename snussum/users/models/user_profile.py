@@ -17,34 +17,88 @@ from users.utils.hashids import get_encoded_user_profile_hashid
 from datetime import date
 from hashlib import sha1
 from random import random
+import datetime
 
 from django.templatetags.static import static
 
 
 class UserProfileManager(models.Manager):
 
-    def profile_verified_users(self):
-        return User.objects.filter(
-            userprofile__is_university_verified=True,
+    def users(self):
+        return User.objects.all()
+
+    def boys(self):
+        return self.users().filter(userprofile__is_boy=True)
+
+    def girls(self):
+        return self.users().filter(userprofile__is_boy=False)
+
+    def users_university_verified(self):
+        return self.users().filter(userprofile__is_university_verified=True)
+
+    def boys_university_verified(self):
+        return self.boys().filter(userprofile__is_university_verified=True)
+
+    def girls_university_verified(self):
+        return self.girls().filter(userprofile__is_university_verified=True)
+
+    def users_profile_verified(self):
+        return self.users_university_verified().filter(
             userprofile__is_boy__isnull=False,
             userprofile__nickname__isnull=False,
             userprofile__profile_introduce__isnull=False,
         )
 
-    def profile_verified_boys(self):
-        return self.profile_verified_users().filter(userprofile__is_boy=True)
+    def boys_profile_verified(self):
+        return self.boys_university_verified().filter(
+            userprofile__nickname__isnull=False,
+            userprofile__profile_introduce__isnull=False,
+        )
 
-    def profile_verified_girls(self):
-        return self.profile_verified_users().filter(userprofile__is_boy=False)
+    def girls_profile_verified(self):
+        return self.girls_university_verified().filter(
+            userprofile__nickname__isnull=False,
+            userprofile__profile_introduce__isnull=False,
+        )
+
+    def users_joined_today(self):
+        return self.users().filter(
+            date_joined__range=(datetime.date.today(), datetime.date.today()+datetime.timedelta(1))
+        )
+
+    def boys_joined_today(self):
+        return self.boys().filter(
+            date_joined__range=(datetime.date.today(), datetime.date.today()+datetime.timedelta(1))
+        )
+
+    def girls_joined_today(self):
+        return self.girls().filter(
+            date_joined__range=(datetime.date.today(), datetime.date.today()+datetime.timedelta(1))
+        )
+
+    def users_joined_yesterday(self):
+        return self.users().filter(
+            date_joined__range=(datetime.date.today()-datetime.timedelta(1), datetime.date.today())
+        )
+
+    def boys_joined_yesterday(self):
+        return self.boys().filter(
+            date_joined__range=(datetime.date.today()-datetime.timedelta(1), datetime.date.today())
+        )
+
+    def girls_joined_yesterday(self):
+        return self.girls().filter(
+            date_joined__range=(datetime.date.today()-datetime.timedelta(1), datetime.date.today())
+        )
 
     def randomized_profile_verified_boys(self):
-        return self.profile_verified_boys().order_by("?")
+        return self.boys_profile_verified().order_by("?")
 
     def randomized_profile_verified_girls(self):
-        return self.profile_verified_girls().order_by("?")
+        return self.girls_profile_verified().order_by("?")
 
     def _is_boys_more_than_girls(self):
-        return self.profile_verified_boys().count() >= self.profile_verified_girls().count()
+        return self.boys_profile_verified().count() >= self.girls_profile_verified().count()
 
     def divide_groups(self):
         """
