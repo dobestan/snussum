@@ -8,6 +8,7 @@ from analytics.models.base import AnalyticsManagerBase, AnalyticsModelBase
 import datetime
 
 from users.models.user_profile import UserProfile
+from relationships.models.dating import Dating
 
 
 class DemographicManager(AnalyticsManagerBase):
@@ -43,8 +44,6 @@ class Demographic(AnalyticsModelBase):
 
     # Datings Matched Demographics
     users_dating_matched_today = models.IntegerField(blank=True, null=True)
-    boys_dating_matched_today = models.IntegerField(blank=True, null=True)
-    girls_dating_matched_today = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return str(self.date)
@@ -68,5 +67,7 @@ def _calculate_demographic(sender, instance, created, **kwargs):
         instance.users_joined_today = UserProfile.objects.users_joined_yesterday().count()
         instance.boys_joined_today = UserProfile.objects.boys_joined_yesterday().count()
         instance.girls_joined_today = UserProfile.objects.girls_joined_yesterday().count()
+
+        instance.users_dating_matched_today = Dating.objects.datings_matched_yesterday().count()
 
         instance.save()
