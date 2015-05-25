@@ -10,18 +10,52 @@
         {% for self_dating in self_datings %}
           {% include "datings/self_dating/_dating.html" with self_dating=self_dating %}
         {% endfor %}
+        <div class="pull-right">
+          <p class="small">
+            다른 셀프소개팅도 궁금하세요?
+            <a href="{% url "self-dating-list" %}">셀프소개팅 전체보기</a>
+          </p>
+        </div>
       </section>
     </section>
 
     <section class="col-xs-12 col-sm-12 col-md-4">
-      <h1 class="jua">명예의 전당 <small></small></h1>
-
+      <h1 class="jua">오늘의 통계<small></small></h1>
       <div class="panel panel-default">
         <div class="panel-body">
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-          tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-          vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-          no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          <span class="small">
+            현재 오늘의 통계를 보기에 데이터가 충분하지 않습니다. <br/>
+            이 부분은 6월 두번째 주 까지 업데이트하여 제공하도록 하겠습니다. 감사합니다.
+          </span>
+        </div>
+      </div>
+
+      <h1 class="jua">명예의 전당 <small></small></h1>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <span class="small">
+            매칭 이후 커플 신청을 해주시면 명예의 전당에 올라가게 됩니다.
+            첫번째 100일 달성 커플에게 5만원 아웃백 상품권 쏩니다.
+          </span><br/><br/>
+          <span class="small danger">
+            <i class="fa fa-check"></i>
+            앗! 커플이 하나도 없습니다! 여러분 분발해주세요!
+          </span>
+        </div>
+      </div>
+
+      <h1 class="jua">학사경고 대상자<small></small></h1>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <span class="small">
+            스누썸은 상대방에 대한 평점 기능이 포함되어 있습니다. <br/>
+            최근 7회의 매칭을 기준으로 평점이 C(2.0) 미만이거나,
+            F가 3회 이상일 경우, 학사경고 대상자에 올라갑니다.
+          </span> <br/><br/>
+          <span class="small success">
+            <i class="fa fa-check"></i>
+            학사경고 대상자가 없습니다. 더 나은 서비스를 위해서 노력하겠습니다. 감사합니다.
+          </span>
         </div>
       </div>
     </section>
