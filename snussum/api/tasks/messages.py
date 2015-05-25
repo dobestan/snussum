@@ -5,7 +5,6 @@ from snussum.settings import API_STORE_SMS_KEY, API_STORE_SMS_BASE_URL
 from snussum.settings import API_STORE_SMS_SEND_NAME, API_STORE_SMS_SUBJECT
 
 from snussum.settings import DEBUG
-import logging
 
 import requests
 
@@ -30,8 +29,6 @@ def send_sms(data):
     data['subject'] = API_STORE_SMS_SUBJECT
 
     if DEBUG:
-        logger = logging.getLogger(__name__)
-        logger.debug('Send SMS | %s' % (data))
         return True
 
     request = requests.post(
