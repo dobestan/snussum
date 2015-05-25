@@ -17,6 +17,7 @@ from users.utils.hashids import get_encoded_user_profile_hashid
 from datetime import date
 from hashlib import sha1
 from random import random
+import datetime
 
 from django.templatetags.static import static
 
@@ -58,6 +59,36 @@ class UserProfileManager(models.Manager):
         return self.girls_university_verified().filter(
             userprofile__nickname__isnull=False,
             userprofile__profile_introduce__isnull=False,
+        )
+
+    def users_joined_today(self):
+        return self.users().filter(
+            date_joined__range=(datetime.date.today(), datetime.date.today()+datetime.timedelta(1))
+        )
+
+    def boys_joined_today(self):
+        return self.boys().filter(
+            date_joined__range=(datetime.date.today(), datetime.date.today()+datetime.timedelta(1))
+        )
+
+    def girls_joined_today(self):
+        return self.girls().filter(
+            date_joined__range=(datetime.date.today(), datetime.date.today()+datetime.timedelta(1))
+        )
+
+    def users_joined_yesterday(self):
+        return self.users().filter(
+            date_joined__range=(datetime.date.today()-datetime.timedelta(1), datetime.date.today())
+        )
+
+    def boys_joined_yesterday(self):
+        return self.boys().filter(
+            date_joined__range=(datetime.date.today()-datetime.timedelta(1), datetime.date.today())
+        )
+
+    def girls_joined_yesterday(self):
+        return self.girls().filter(
+            date_joined__range=(datetime.date.today()-datetime.timedelta(1), datetime.date.today())
         )
 
     def randomized_profile_verified_boys(self):

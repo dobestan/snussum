@@ -65,4 +65,8 @@ def _calculate_demographics(sender, instance, created, **kwargs):
         instance.boys_profile_verified = UserProfile.objects.boys_profile_verified().count()
         instance.girls_profile_verified = UserProfile.objects.girls_profile_verified().count()
 
+        instance.users_joined_today = UserProfile.objects.users_joined_yesterday().count()
+        instance.boys_joined_today = UserProfile.objects.boys_joined_yesterday().count()
+        instance.girls_joined_today = UserProfile.objects.girls_joined_yesterday().count()
+
         instance.save()
