@@ -4,6 +4,9 @@ from snussum.settings import MAILGUN_SERVER_NAME, MAILGUN_ACCESS_KEY
 from snussum.settings import API_STORE_SMS_KEY, API_STORE_SMS_BASE_URL
 from snussum.settings import API_STORE_SMS_SEND_NAME, API_STORE_SMS_SUBJECT
 
+from snussum.settings import DEBUG
+import logging
+
 import requests
 
 
@@ -25,6 +28,11 @@ def send_sms(data):
     data['send_phone'] = data['dest_phone']
     data['send_name'] = API_STORE_SMS_SEND_NAME
     data['subject'] = API_STORE_SMS_SUBJECT
+
+    if DEBUG:
+        logger = logging.getLogger(__name__)
+        logger.debug('Send SMS | %s' % (data))
+        return True
 
     request = requests.post(
         API_STORE_SMS_BASE_URL,
