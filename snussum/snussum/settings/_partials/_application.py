@@ -32,6 +32,7 @@ INSTALLED_APPS = (
     'relationships',
     'api',
     'analytics',
+    'snuanal',
     'snusex',
 )
 
