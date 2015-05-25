@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 
-from analytics.models.demographics import Demographics
+from analytics.models.demographic import Demographic
 
 
 class Command(BaseCommand):
@@ -10,5 +10,5 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        demograhics = Demographics.objects.create_analytics()
-        self.stdout.write('Successfully created demograhics analytics data ...')
+        demograhic = Demographic.objects.create_analytics()
+        self.stdout.write('Successfully created demograhic analytics data ...')

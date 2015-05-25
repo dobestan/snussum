@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from analytics.models.demographics import Demographics
+from analytics.models.demographic import Demographic
 
 
-@admin.register(Demographics)
-class DemographicsAdmin(admin.ModelAdmin):
+@admin.register(Demographic)
+class DemographicAdmin(admin.ModelAdmin):
     readonly_fields = ('date', 'created_at')
     list_display = admin.ModelAdmin.list_display + (
         'users', 'boys', 'girls',

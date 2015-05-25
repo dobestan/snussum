@@ -10,12 +10,12 @@ import datetime
 from users.models.user_profile import UserProfile
 
 
-class DemographicsManager(AnalyticsManagerBase):
+class DemographicManager(AnalyticsManagerBase):
     pass
 
 
-class Demographics(AnalyticsModelBase):
-    objects = DemographicsManager()
+class Demographic(AnalyticsModelBase):
+    objects = DemographicManager()
 
     # Date - 날짜의 경우에는 24시를 기준으로 새롭계 계산하므로 어제의 날짜로 생성
     date = models.DateField(default=datetime.date.today() - datetime.timedelta(1))
@@ -50,8 +50,8 @@ class Demographics(AnalyticsModelBase):
         return str(self.date)
 
 
-@receiver(post_save, sender=Demographics)
-def _calculate_demographics(sender, instance, created, **kwargs):
+@receiver(post_save, sender=Demographic)
+def _calculate_demographic(sender, instance, created, **kwargs):
     if created:
         instance.users = UserProfile.objects.users().count()
         instance.boys = UserProfile.objects.boys().count()

@@ -1,1 +1,1 @@
-from .demographics import Demographics
+from .demographic import Demographic
