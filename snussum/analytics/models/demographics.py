@@ -3,14 +3,13 @@ from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+from analytics.models.base import AnalyticsManagerBase
+
 import datetime
 
 
-class DemographicsManager(models.Manager):
-    def create_demographics(self):
-        demographics = self.model()
-        demographics.save()
-        return demographics
+class DemographicsManager(AnalyticsManagerBase):
+    pass
 
 
 class Demographics(models.Model):
