@@ -10,4 +10,5 @@ class DemographicsAdmin(admin.ModelAdmin):
         'users', 'boys', 'girls',
         'users_university_verified', 'boys_university_verified', 'girls_university_verified',
         'users_profile_verified', 'boys_profile_verified', 'girls_profile_verified',
+        'users_joined_today', 'boys_joined_today', 'girls_joined_today',
     )
