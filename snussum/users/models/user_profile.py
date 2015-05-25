@@ -32,8 +32,17 @@ class UserProfileManager(models.Manager):
     def girls(self):
         return self.users().filter(userprofile__is_boy=False)
 
+    def users_university_verified(self):
+        return self.users().filter(userprofile__is_university_verified=True)
+
+    def boys_university_verified(self):
+        return self.boys().filter(userprofile__is_university_verified=True)
+
+    def girls_university_verified(self):
+        return self.girls().filter(userprofile__is_university_verified=True)
+
     def users_profile_verified(self):
-        return User.objects.filter(
+        return self.users().filter(
             userprofile__is_university_verified=True,
             userprofile__is_boy__isnull=False,
             userprofile__nickname__isnull=False,
