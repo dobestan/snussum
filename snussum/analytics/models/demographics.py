@@ -3,7 +3,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
-from analytics.models.base import AnalyticsManagerBase
+from analytics.models.base import AnalyticsManagerBase, AnalyticsModelBase
 
 import datetime
 
@@ -12,7 +12,7 @@ class DemographicsManager(AnalyticsManagerBase):
     pass
 
 
-class Demographics(models.Model):
+class Demographics(AnalyticsModelBase):
     objects = DemographicsManager()
 
     # Date - 날짜의 경우에는 24시를 기준으로 새롭계 계산하므로 어제의 날짜로 생성

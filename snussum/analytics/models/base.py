@@ -10,3 +10,11 @@ class AnalyticsManagerBase(models.Manager):
 
     class Meta:
         abstract = True
+
+
+class AnalyticsModelBase(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+    class Meta:
+        abstract = True
