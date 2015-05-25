@@ -4,7 +4,9 @@ import datetime
 
 
 class DemographicsManager(models.Manager):
-    pass
+    def create_demographics(self):
+        demographics = self.model()
+        return demographics
 
 
 class Demographics(models.Model):
