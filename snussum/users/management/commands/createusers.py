@@ -18,6 +18,8 @@ class Command(BaseCommand):
         user.userprofile.nickname = "dobestan"
         user.userprofile.is_boy = True
         user.userprofile.profile_introduce = "a" * 51
+        user.userprofile.phonenumber="01022205736"
+        user.userprofile.is_phonenumber_verified=True
         user.userprofile.age = 23
         user.userprofile.height = 185
         user.userprofile.save()
@@ -27,7 +29,7 @@ class Command(BaseCommand):
         for x in range(1, 19 + 1):
             user = User.objects.create_user(username="boy%02d" % x, password="dkstncks")
             user.userprofile.is_university_verified = True
-            user.userprofile.nickname = "boy%02d" % x
+            user.userprofile.nickname = "남자%02d" % x
             user.userprofile.is_boy = True
             user.userprofile.profile_introduce = "a" * 51
             user.userprofile.age = randint(20, 30)
@@ -39,7 +41,7 @@ class Command(BaseCommand):
         for y in range(1, 10 + 1):
             user = User.objects.create_user(username="girl%02d" % y, password="dkstncks")
             user.userprofile.is_university_verified = True
-            user.userprofile.nickname = "girl%02d" % y
+            user.userprofile.nickname = "여자%02d" % y
             user.userprofile.is_boy = False
             user.userprofile.profile_introduce = "a" * 51
             user.userprofile.age = randint(20, 30)

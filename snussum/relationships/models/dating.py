@@ -12,6 +12,8 @@ from relationships.utils.hashids import get_encoded_dating_hashid
 
 import datetime
 
+from users.tasks.dating import send_dating_matched_sms
+
 
 class DatingManager(models.Manager):
     def datings(self):
@@ -84,3 +86,5 @@ def _update_dating_hash_id(sender, instance, created, **kwargs):
                     action_object=instance, verb="created")
 
         # SMS
+        send_dating_matched_sms(instance.boy, instance.girl, instance)
+        send_dating_matched_sms(instance.girl, instance.boy, instance)
