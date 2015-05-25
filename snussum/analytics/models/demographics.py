@@ -20,3 +20,7 @@ class Demographics(models.Model):
 
     # Date
     date = models.DateField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self.date
