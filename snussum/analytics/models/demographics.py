@@ -7,6 +7,8 @@ from analytics.models.base import AnalyticsManagerBase, AnalyticsModelBase
 
 import datetime
 
+from users.models.user_profile import UserProfile
+
 
 class DemographicsManager(AnalyticsManagerBase):
     pass
@@ -51,4 +53,8 @@ class Demographics(AnalyticsModelBase):
 @receiver(post_save, sender=Demographics)
 def _calculate_demographics(sender, instance, created, **kwargs):
     if created:
+        instance.users = UserProfile.objects.users().count()
+        instance.boys = UserProfile.objects.boys().count()
+        instance.girls = UserProfile.objects.girls().count()
+
         instance.save()

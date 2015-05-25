@@ -23,6 +23,15 @@ from django.templatetags.static import static
 
 class UserProfileManager(models.Manager):
 
+    def users(self):
+        return User.objects.all()
+
+    def boys(self):
+        return self.users().filter(userprofile__is_boy=True)
+
+    def girls(self):
+        return self.users().filter(userprofile__is_boy=False)
+
     def profile_verified_users(self):
         return User.objects.filter(
             userprofile__is_university_verified=True,
