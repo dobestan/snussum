@@ -1,11 +1,15 @@
 from django.db import models
 
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+
 import datetime
 
 
 class DemographicsManager(models.Manager):
     def create_demographics(self):
         demographics = self.model()
+        demographics.save()
         return demographics
 
 
@@ -47,3 +51,9 @@ class Demographics(models.Model):
 
     def __str__(self):
         return str(self.date)
+
+
+@receiver(post_save, sender=Demographics)
+def _calculate_demographics(sender, instance, created, **kwargs):
+    if created:
+        instance.save()
