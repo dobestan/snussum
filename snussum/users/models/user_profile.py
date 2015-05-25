@@ -42,18 +42,23 @@ class UserProfileManager(models.Manager):
         return self.girls().filter(userprofile__is_university_verified=True)
 
     def users_profile_verified(self):
-        return self.users().filter(
-            userprofile__is_university_verified=True,
+        return self.users_university_verified().filter(
             userprofile__is_boy__isnull=False,
             userprofile__nickname__isnull=False,
             userprofile__profile_introduce__isnull=False,
         )
 
     def boys_profile_verified(self):
-        return self.users_profile_verified().filter(userprofile__is_boy=True)
+        return self.boys_university_verified().filter(
+            userprofile__nickname__isnull=False,
+            userprofile__profile_introduce__isnull=False,
+        )
 
     def girls_profile_verified(self):
-        return self.users_profile_verified().filter(userprofile__is_boy=False)
+        return self.girls_university_verified().filter(
+            userprofile__nickname__isnull=False,
+            userprofile__profile_introduce__isnull=False,
+        )
 
     def randomized_profile_verified_boys(self):
         return self.boys_profile_verified().order_by("?")
