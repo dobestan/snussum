@@ -32,7 +32,7 @@ class UserProfileManager(models.Manager):
     def girls(self):
         return self.users().filter(userprofile__is_boy=False)
 
-    def profile_verified_users(self):
+    def users_profile_verified(self):
         return User.objects.filter(
             userprofile__is_university_verified=True,
             userprofile__is_boy__isnull=False,
@@ -40,20 +40,20 @@ class UserProfileManager(models.Manager):
             userprofile__profile_introduce__isnull=False,
         )
 
-    def profile_verified_boys(self):
-        return self.profile_verified_users().filter(userprofile__is_boy=True)
+    def boys_profile_verified(self):
+        return self.users_profile_verified().filter(userprofile__is_boy=True)
 
-    def profile_verified_girls(self):
-        return self.profile_verified_users().filter(userprofile__is_boy=False)
+    def girls_profile_verified(self):
+        return self.users_profile_verified().filter(userprofile__is_boy=False)
 
     def randomized_profile_verified_boys(self):
-        return self.profile_verified_boys().order_by("?")
+        return self.boys_profile_verified().order_by("?")
 
     def randomized_profile_verified_girls(self):
-        return self.profile_verified_girls().order_by("?")
+        return self.girls_profile_verified().order_by("?")
 
     def _is_boys_more_than_girls(self):
-        return self.profile_verified_boys().count() >= self.profile_verified_girls().count()
+        return self.boys_profile_verified().count() >= self.girls_profile_verified().count()
 
     def divide_groups(self):
         """
