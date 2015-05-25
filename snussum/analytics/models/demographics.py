@@ -3,7 +3,13 @@ from django.db import models
 import datetime
 
 
+class DemographicsManager(models.Manager):
+    pass
+
+
 class Demographics(models.Model):
+    objects = DemographicsManager()
+
     # Date - 날짜의 경우에는 24시를 기준으로 새롭계 계산하므로 어제의 날짜로 생성
     date = models.DateField(default=datetime.date.today()-datetime.timedelta(1))
 
