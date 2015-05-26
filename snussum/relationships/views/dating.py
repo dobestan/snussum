@@ -14,7 +14,7 @@ from datetime import datetime
 
 from notifications import notify
 
-from users.tasks.dating import send_dating_accepted_sms
+from users.tasks.dating import send_dating_accepted_sms, send_dating_both_accepted_sms
 
 
 class DatingBase(View):
@@ -93,6 +93,10 @@ class DatingAccept(DatingBase, UpdateView):
 
         # SMS
         send_dating_accepted_sms(partner, self.request.user, self.object)
+
+        if self.object.is_accepted:
+            send_dating_both_accepted_sms(self.request.user, partner, self.object)
+            send_dating_both_accepted_sms(partner, self.request.user, self.object)
 
         return super(DatingAccept, self).form_valid(form)
 
