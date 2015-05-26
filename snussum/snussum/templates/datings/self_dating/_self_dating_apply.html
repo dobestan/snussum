@@ -20,10 +20,12 @@
 
           {% if self_dating.user == user or self_dating_apply.user == user %}
             {% if self_dating_apply.is_accepted == None %}
-              <p class="warning">
+              {% if self_dating_apply.user == user %}
+              <p class="success small">
                 <i class="fa fa-check"></i>
-                아직 확인하지 않았습니다.
+                상대방의 의사를 기다리고 있습니다. 잠시만 기다려주세요.
               </p>
+              {% endif %}
 
               {% if self_dating.user == user %}
                 <div class="edited">
@@ -60,16 +62,22 @@
                 </div>
               {% endif %}
             {% elif self_dating_apply.is_accepted %}
-              <p class="success">
+              <p class="success small">
                 <i class="fa fa-check"></i>
-                상대방을 수락하였습니다.
+                상대방이 셀프소개팅 지원을 수락하였습니다.
               </p>
             {% else %}
-              <p class="danger">
+              <p class="danger small">
                 <i class="fa fa-close"></i>
-                상대방을 거절하였습니다.
+                상대방이 셀프소개팅 지원을 거절하였습니다.
               </p>
             {% endif %}
+
+            <div class="pull-right">
+              <p>
+                {{ self_dating_apply.accepted_message }}
+              </p>
+            </div>
           {% endif %}
         </div>
       </div>
