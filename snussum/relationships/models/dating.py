@@ -12,6 +12,10 @@ from relationships.utils.hashids import get_encoded_dating_hashid
 
 import datetime
 
+from users.tasks.dating import send_dating_matched_sms
+
+from snussum.settings import SNUSSUM_URL
+
 
 class DatingManager(models.Manager):
     def datings(self):
@@ -70,6 +74,9 @@ class Dating(models.Model):
     def get_absolute_url(self):
         return reverse("dating-detail", kwargs={'slug': self.hash_id})
 
+    def get_full_absolute_url(self):
+        return SNUSSUM_URL + self.get_absolute_url()
+
 
 @receiver(post_save, sender=Dating)
 def _update_dating_hash_id(sender, instance, created, **kwargs):
@@ -77,7 +84,12 @@ def _update_dating_hash_id(sender, instance, created, **kwargs):
         instance.hash_id = get_encoded_dating_hashid(instance.id)
         instance.save()
 
+        # Notification
         notify.send(instance.girl, recipient=instance.boy,
                     action_object=instance, verb="created")
         notify.send(instance.boy, recipient=instance.girl,
                     action_object=instance, verb="created")
+
+        # SMS
+        send_dating_matched_sms(instance.boy, instance.girl, instance)
+        send_dating_matched_sms(instance.girl, instance.boy, instance)

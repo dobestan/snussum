@@ -1,5 +1,6 @@
 from snussum.settings import *
 
+SNUSSUM_URL = "https://snussum.com"
 
 INSTALLED_APPS += (
     # Django Libraries

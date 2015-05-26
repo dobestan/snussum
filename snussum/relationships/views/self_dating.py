@@ -69,6 +69,8 @@ class SelfDatingApplyCreate(SelfDatingBase, CreateView):
         self_dating_apply_object.self_dating = self_dating
         self_dating_apply_object.save()
 
+        send_self_dating_applied_sms(self.object.self_dating.user, self.object.user, self.object)
+
         return super(SelfDatingApplyCreate, self).form_valid(form)
 
 
@@ -87,6 +89,9 @@ class SelfDatingApplyAccept(SelfDatingBase, UpdateView):
         notify.send(self.object.self_dating.user, recipient=self.object.user,
                     action_object=self.object, verb="accepted",
                     description=self.object.accepted_message)
+
+        send_self_dating_accepted_sms(self.object.self_dating.user, self.object.user, self.object.self_dating)
+        send_self_dating_accepted_sms(self.object.user, self.object.self_dating.user, self.object.self_dating)
 
         return super(SelfDatingApplyAccept, self).form_valid(form)
 
