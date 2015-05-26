@@ -4,6 +4,11 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from users.decorators import university_verified_required, profile_verifed_required
 
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 
 class Dashboard(TemplateView):
     template_name = "dashboard.html"
@@ -18,4 +23,5 @@ class Dashboard(TemplateView):
     @method_decorator(university_verified_required)
     @method_decorator(profile_verifed_required)
     def dispatch(self, *args, **kwargs):
+        logger.info("Request | Dashboard")
         return super(Dashboard, self).dispatch(*args, **kwargs)
