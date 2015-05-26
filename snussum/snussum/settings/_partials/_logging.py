@@ -12,7 +12,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        'snussum.views.dashboard': {
+        'api.tasks.messages': {
             'handlers': ['file'],
             'level': 'DEBUG',
             'propagate': True,

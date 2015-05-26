@@ -9,6 +9,11 @@ from snussum.settings import DEBUG
 from api.tasks.shortener import shorten_url
 import requests
 
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 
 @shared_task
 def send_sms(data, url=None):
@@ -35,6 +40,7 @@ def send_sms(data, url=None):
     data['subject'] = API_STORE_SMS_SUBJECT
 
     if DEBUG:
+        logger.debug('Send SMS | %s' % (data))
         return True
 
     request = requests.post(
