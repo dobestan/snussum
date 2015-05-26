@@ -47,7 +47,9 @@ def send_dating_both_accepted_sms(user, partner, dating):
 
         data = {
             'to': user.userprofile.phonenumber,
-            'body': "[스누썸] %s님과 서로 수락하여 연락처가 공개됩니다. ( %s )" % (partner.userprofile.nickname, partner.userprofile.phonenumber),
+            'body': "[스누썸] %s님과 서로 수락하여 연락처가 공개됩니다. ( %s )" %
+            (partner.userprofile.nickname,
+             partner.userprofile.phonenumber),
         }
 
         send_sms.delay(data, url)

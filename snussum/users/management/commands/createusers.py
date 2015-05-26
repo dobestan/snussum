@@ -18,8 +18,8 @@ class Command(BaseCommand):
         user.userprofile.nickname = "dobestan"
         user.userprofile.is_boy = True
         user.userprofile.profile_introduce = "a" * 51
-        user.userprofile.phonenumber="01022205736"
-        user.userprofile.is_phonenumber_verified=True
+        user.userprofile.phonenumber = "01022205736"
+        user.userprofile.is_phonenumber_verified = True
         user.userprofile.age = 23
         user.userprofile.height = 185
         user.userprofile.save()

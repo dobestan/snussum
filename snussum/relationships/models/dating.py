@@ -18,6 +18,7 @@ from snussum.settings import SNUSSUM_URL
 
 
 class DatingManager(models.Manager):
+
     def datings(self):
         return Dating.objects.all()
 
@@ -25,7 +26,7 @@ class DatingManager(models.Manager):
         return self.datings().filter(matched_at=datetime.date.today())
 
     def datings_matched_yesterday(self):
-        return self.datings().filter(matched_at=datetime.date.today()-datetime.timedelta(1))
+        return self.datings().filter(matched_at=datetime.date.today() - datetime.timedelta(1))
 
 
 class Dating(models.Model):
