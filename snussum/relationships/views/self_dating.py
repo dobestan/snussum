@@ -88,6 +88,8 @@ class SelfDatingApplyAccept(SelfDatingBase, UpdateView):
                     action_object=self.object, verb="accepted",
                     description=self.object.accepted_message)
 
+        send_self_dating_applied_sms(self.object.self_dating.user, self.object.user, self.object)
+
         return super(SelfDatingApplyAccept, self).form_valid(form)
 
 
