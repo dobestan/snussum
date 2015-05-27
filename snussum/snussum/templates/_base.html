@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 {% include "_partials/_comments.html" %}
-<html>
+<html id="snussum">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="썸타는 서울대학교 스누썸은 서울대학생의 서울대학생에 의한 서울대학생을 위한 서울대학교 동문 매칭 서비스입니다.">
+    <meta name="keywords" content="snussum,스누썸,소개팅,서울대소개팅,썸타는서울대,서울대,서울대학교,썸타는서울대학교">
+
+    <meta name="naver-site-verification" content="0d921114eb160931f493692c8ddb661ad208e193"/>
 
     <title>{% block title %}썸타는 서울대학교 :: 스누썸{% endblock %}</title>
 
@@ -14,7 +19,7 @@
     {% stylesheet 'main' %}
     {% javascript 'vendor' %}
     {% javascript 'main' %}
-    {% include "_partials/_google-analytics.html" %}
+    {% include "_partials/_analytics.html" %}
   </head>
   <body id="body"
     data-messages="{% for message in messages %}{{message}};{% endfor %}"
