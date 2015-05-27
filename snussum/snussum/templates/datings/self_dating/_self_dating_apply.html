@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <li id="{{ self_dating_apply.hash_id }}" class="self-dating-apply {% if not self_dating.user == user and not self_dating_apply.user == user %}blur{% endif %}">
   {% if not self_dating.user == user and not self_dating_apply.user == user %}
     <div class="self-dating-apply-wrapper">
@@ -7,7 +8,11 @@
     <div class="panel-body">
       <div class="media">
         <div class="media-left">
-          <img src="{{ self_dating_apply.user.userprofile.profile_image_url }}" alt=""/>
+          {% if self_dating_apply.user.userprofile.is_boy %}
+            <img src="{% static "img/profile/boy.jpg" %}" alt="">
+          {% else %}
+            <img src="{% static "img/profile/girl.jpg" %}" alt="">
+          {% endif %}
         </div>
         <div class="media-body">
           <p>
@@ -79,7 +84,9 @@
 
             <div class="pull-right">
               <p>
-                {{ self_dating_apply.accepted_message }}
+                {% if self_dating_apply.accepted_message %}
+                  {{ self_dating_apply.accepted_message }}
+                {% endif  %}
               </p>
             </div>
           {% endif %}
