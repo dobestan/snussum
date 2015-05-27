@@ -71,7 +71,10 @@ class SelfDatingApplyCreate(SelfDatingBase, CreateView):
         self_dating_apply_object.self_dating = self_dating
         self_dating_apply_object.save()
 
-        send_self_dating_applied_sms(self_dating_apply_object.self_dating.user, self_dating_apply_object.user, self_dating_apply_object)
+        send_self_dating_applied_sms(
+            self_dating_apply_object.self_dating.user,
+            self_dating_apply_object.user,
+            self_dating_apply_object)
 
         return super(SelfDatingApplyCreate, self).form_valid(form)
 

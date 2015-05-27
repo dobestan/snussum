@@ -25,7 +25,9 @@ def send_self_dating_accepted_sms(user, partner, self_dating):
 
     data = {
         'to': user.userprofile.phonenumber,
-        'body': "[스누썸:셀소] %s님과 매칭되어 연락처가 공개됩니다. ( %s )" % (partner.userprofile.nickname, partner.userprofile.phonenumber),
+        'body': "[스누썸:셀소] %s님과 매칭되어 연락처가 공개됩니다. ( %s )" %
+        (partner.userprofile.nickname,
+         partner.userprofile.phonenumber),
     }
 
     send_sms.delay(data, url)
