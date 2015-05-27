@@ -250,7 +250,8 @@ ul.datings {
       position: relative; 
 
       &.blur {
-        -webkit-filter: blur(5px);
+        @include filter(blur(5px));
+        // IE Issue
       }
 
       .editing {
