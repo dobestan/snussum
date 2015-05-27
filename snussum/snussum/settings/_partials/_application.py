@@ -28,6 +28,7 @@ INSTALLED_APPS = (
     'notifications',
     'django_summernote',
     'pipeline',
+    'robots',
 
     # Snussum Apps
     'users',
