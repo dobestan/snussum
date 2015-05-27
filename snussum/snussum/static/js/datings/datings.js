@@ -3,17 +3,7 @@
   "use strict";
   $(document).ready(function(){
     function kakaotalk(content){
-      var html = '<div class="row">\
-        <div class="comment comment-by-me col-xs-9 col-xs-offset-3">\
-          <div class="media">\
-            <div class="media-body">\
-              <p>\
-              CONTENT\
-              </p>\
-            </div>\
-          </div>\
-        </div>\
-      </div>'.replace('CONTENT', content);
+      var html = '<div class="row"><div class="comment comment-by-me col-xs-9 col-xs-offset-3"><div class="media"><div class="media-body"><p>CONTENT</p></div></div></div></div>'.replace('CONTENT', content);
 
       $(comments).find("div.kakaotalk").append(html);
       $(comments).find("textarea").val("");
