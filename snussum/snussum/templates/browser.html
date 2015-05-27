@@ -1,0 +1,43 @@
+{% extends "_base.html" %}
+{% load staticfiles %}
+
+{% block title %}웹 브라우저 업그레이드 안내 - 썸타는 서울대학교 :: 스누썸{% endblock %}
+
+{% block content %}
+<section id="browsers">
+  <div class="container">
+    <div class="row">
+      <div class="page-header text-center">
+        <h1 class="jua">웹 브라우저 업그레이드 안내</h1>
+        <p>서비스 이용을 위해서 사용하고 계신 웹 브라우저 업그레이드가 필요합니다</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <p>
+            현재 사용하고 계신 브라우저는 인터넷 익스플로러 9 ( IE9 ) 이전의 버전으로
+            일부 기능이 동작하지 않아 서비스 이용이 불편할 뿐만 아니라,
+            보안취약점이 고쳐지지 않아 
+            <span class="danger">안전하지 않습니다.</span>
+          </p>
+          <p>
+            썸타는 서울대학교 :: 스누썸 서비스를 이용하시기 위해서는 기존에 이용하시는
+            <a href="http://windows.microsoft.com/ko-kr/internet-explorer/ie-11-worldwide-languages" target="_blank">IE 를 최신 버전으로 업데이트</a> 하시거나
+            <a href="https://www.google.co.kr/intl/ko/chrome/browser/" target="_blank">구글 크롬을 이용</a>해주시면 감사하겠습니다.
+          </p>
+
+          <a href="https://www.google.co.kr/intl/ko/chrome/browser/" target="_blank" class="btn-default btn-snussum-darkgrey text-center">
+            구글 크롬 다운로드
+          </a>
+
+          <a href="http://windows.microsoft.com/ko-kr/internet-explorer/ie-11-worldwide-languages" target="_blank" class="btn-default btn-snussum-darkgrey text-center">
+            인터넷 익스플로러 다운로드
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

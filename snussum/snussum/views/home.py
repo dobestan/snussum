@@ -14,3 +14,7 @@ class Home(TemplateView):
 
 class About(TemplateView):
     template_name = "about.html"
+
+
+class Browser(TemplateView):
+    template_name = "browser.html"

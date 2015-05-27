@@ -43,7 +43,6 @@ section#comments {
   .kakaotalk {
     padding: 0 15px;
 
-    background-image: url(http://local.snussum.com:9000/static/img/kakaotalk.jpg);
     min-height: 300px;
   }
 
@@ -251,7 +250,8 @@ ul.datings {
       position: relative; 
 
       &.blur {
-        -webkit-filter: blur(5px);
+        @include filter(blur(5px));
+        // IE Issue
       }
 
       .editing {
