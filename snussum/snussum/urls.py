@@ -19,6 +19,8 @@ urlpatterns = [
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     url(r'^%s/' % settings.ADMIN_URL, include(admin.site.urls)),
 
+    url(r'^robots\.txt$', include('robots.urls')),
+
     # Project Libraries
     url('', include('social.apps.django_app.urls', namespace='social')),
     url(r'^summernote/', include('django_summernote.urls')),
