@@ -1,6 +1,30 @@
 {% extends "_base.html" %}
+{% load staticfiles %}
 
 {% block title %}서비스 소개 - 썸타는 서울대학교 :: 스누썸{% endblock %}
 
 {% block content %}
+<section id="about">
+  <div class="container">
+    <div class="row">
+      <div class="page-header text-center">
+        <h1 class="jua">서비스 이용안내 <small class="jua hidden-xs hidden-sm">썸타는 서울대학교 :: 스누썸</small></h1>
+        <p>서울대학생의, 서울대학생에 의한, 서울대학생을 위한 소개팅</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <script async class="speakerdeck-embed" data-id="64addf86c9ef4fb9a902cb489e7fd504" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+    </div>
+
+    <div class="row">
+      <div class="pull-right">
+        <p class="small">
+          <i class="fa fa-question-circle"></i>
+          <a href="{% static "pdf/snussum.pdf" %}" target="_blank">썸타는 서울대, 스누썸 - 서비스 소개자료 다운로드</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
