@@ -12,6 +12,9 @@ from relationships.views.self_dating import SelfDatingCreate, SelfDatingDetail, 
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.sitemaps.views import sitemap
+from snussum.sitemaps import sitemaps
+
 
 urlpatterns = [
     # Django Default
@@ -20,6 +23,7 @@ urlpatterns = [
     url(r'^%s/' % settings.ADMIN_URL, include(admin.site.urls)),
 
     url(r'^robots\.txt$', include('robots.urls')),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
     # Project Libraries
     url('', include('social.apps.django_app.urls', namespace='social')),
