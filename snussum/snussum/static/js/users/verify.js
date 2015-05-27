@@ -23,9 +23,7 @@
           $.notify(
             {
               icon: "fa fa-exclamation-triangle",
-              message: "현재 서버와의 통신에 문제가 있습니다.\
-              지속적으로 동일한 문제가 발생하는 경우 다른 인증 방법을 통해서\
-              인증해주시면 감사하겠습니다."
+              message: "현재 서버와의 통신에 문제가 있습니다. 지속적으로 동일한 문제가 발생하는 경우 다른 인증 방법을 통해서 인증해주시면 감사하겠습니다."
             },
             {type: 'danger'}
           );
@@ -38,8 +36,7 @@
   $(document).ready(function(){
     $("button#mysnu-login-button").click(function(){
       $.notify(
-        {icon: "fa fa-lock" ,message: "마이스누 로그인 인증이 시작되었습니다. \
-        입력하신 아이디, 비밀번호는 공인 인증서(SSL)을 통해서 암호화됩니다."},
+        {icon: "fa fa-lock" ,message: "마이스누 로그인 인증이 시작되었습니다. 입력하신 아이디, 비밀번호는 공인 인증서(SSL)을 통해서 암호화됩니다."},
         {type: 'success'}
       );
 
@@ -67,9 +64,7 @@
           $.notify(
             {
               icon: "fa fa-exclamation-triangle",
-              message: "마이스누 로그인 인증에 실패하였습니다.\
-              지속적으로 동일한 문제가 발생하는 경우 다른 인증 방법을 통해서\
-              인증해주시면 감사하겠습니다."
+              message: "마이스누 로그인 인증에 실패하였습니다. 지속적으로 동일한 문제가 발생하는 경우 다른 인증 방법을 통해서 인증해주시면 감사하겠습니다."
             },
             {type: 'danger'}
           );
@@ -82,8 +77,10 @@
   $(document).ready(function(){
     $("button#snulife-login-button").click(function(){
       $.notify(
-        {icon: "fa fa-lock" ,message: "스누라이프 로그인 인증이 시작되었습니다. \
-        입력하신 아이디, 비밀번호는 공인 인증서(SSL)을 통해서 암호화됩니다."},
+        {
+          icon: "fa fa-lock", 
+          message: "스누라이프 로그인 인증이 시작되었습니다. 입력하신 아이디, 비밀번호는 공인 인증서(SSL)을 통해서 암호화됩니다."
+        },
         {type: 'success'}
       );
 
@@ -111,9 +108,7 @@
           $.notify(
             {
               icon: "fa fa-exclamation-triangle",
-              message: "스누라이프 로그인 인증에 실패하였습니다.\
-              지속적으로 동일한 문제가 발생하는 경우 다른 인증 방법을 통해서\
-              인증해주시면 감사하겠습니다."
+              message: "스누라이프 로그인 인증에 실패하였습니다. 지속적으로 동일한 문제가 발생하는 경우 다른 인증 방법을 통해서 인증해주시면 감사하겠습니다."
             },
             {type: 'danger'}
           );
