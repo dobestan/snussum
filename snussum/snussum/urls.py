@@ -1,7 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from snussum.views import Home, Dashboard, About
+from snussum.views import Home, Dashboard, About, Browser
 from snussum.views.rules import Privacy, Service
 
 from relationships.views.dating import DatingList, DatingDetail, DatingAccept, DatingRefuse, DatingRatingCreate
@@ -32,6 +32,7 @@ urlpatterns = [
     # Project Urls
     url(r'^$', Home.as_view(), name='home'),
     url(r'^about/$', About.as_view(), name='about'),
+    url(r'^browsers/$', Browser.as_view(), name='browsers'),
 
     url(r'^rules/service/$', Service.as_view(), name='rule-service'),
     url(r'^rules/privacy/$', Privacy.as_view(), name='rule-privacy'),

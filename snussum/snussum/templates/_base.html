@@ -67,7 +67,19 @@
     data-messages="{% for message in messages %}{{message}};{% endfor %}"
     data-message-tags="{% for message in messages %}{{ message.tags }};{% endfor %}"
   >
+
     {% include "_partials/_header.html" %}
+
+    <!--[if lte IE 9]>
+      <div class="container">
+        <p class="alert alert-danger text-center">
+          <i class="fa fa-warning"></i>
+          웹 브라우저(인터넷 익스플로러)를 업그레이드 하세요.
+          <a href="{% url "browsers" %}">자세히 알아보기</a>
+        </p>
+      </div>
+    <![endif]-->
+
     <div>{% block content %}{% endblock %}</div>
     {% include "_partials/_footer.html" %}
     {% include "_partials/_contact.html" %}
