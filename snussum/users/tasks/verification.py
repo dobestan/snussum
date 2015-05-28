@@ -11,42 +11,47 @@ from api.tasks.shortener import shorten_url, url_builder
 from selenium import webdriver
 
 from snussum.settings import SNUSSUM_URL
+from api.tasks.shortener import url_builder
 
 
 def send_phonenumber_verification_sms(user):
+    UTM_SOURCE = "sms"
+    UTM_MEDIUM = "phonenumber_verification"
+
     url = reverse(
         "users:phonenumber-verification",
         kwargs={
             'phonenumber_verification_token': user.userprofile.phonenumber_verification_token})
 
-    url = SNUSSUM_URL + url
+    url = url_builder(SNUSSUM_URL + url, utm_source=UTM_SOURCE, utm_medium=UTM_MEDIUM)
 
     data = {
         'to': user.userprofile.phonenumber,
-        'body': "[스누썸] 링크를 클릭하시면 인증이 완료됩니다.",
+        'body': "[스누썸] 링크를 클릭하시면 휴대폰 인증이 완료됩니다.",
     }
 
     send_sms.delay(data, url)
 
 
-def send_university_verification_email(user_id):
-    user = User.objects.get(pk=user_id)
+def send_university_verification_email(user):
+    UTM_SOURCE = "email"
+    UTM_MEDIUM = "mysnu_verification"
 
     email_template = get_template("users/email/university_verification.html")
     email_context = Context({
         'username': user.username,
-        'verify': reverse('users:university-verification', kwargs={
-            'university_verification_token': user.userprofile.university_verification_token,
-        })
     })
+
+    url = SNUSSUM_URL + reverse('users:university-verification', kwargs={ 'university_verification_token': user.userprofile.university_verification_token, })
+    url = url_builder(url, utm_source=UTM_SOURCE, utm_medium=UTM_MEDIUM)
 
     data = {
         'to': "dobestan@gmail.com",
-        'subject': "[스누썸] 서울대학교 학생 인증을 위한 이메일입니다.",
+        'subject': "[스누썸] 서울대학교 동문 인증 이메일",
         'body': email_template.render(email_context),
     }
 
-    send_email.delay(data)
+    send_email.delay(data, url)
 
 
 def snulife_login(username, password):

@@ -356,7 +356,7 @@ class UserProfile(models.Model):
         self.user.save()
         self.save()
 
-        send_university_verification_email(self.user.id)
+        send_university_verification_email(self.user)
 
 
 def create_user_profile(sender, instance, created, **kwargs):

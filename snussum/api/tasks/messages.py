@@ -52,7 +52,7 @@ def send_sms(data, url=None):
 
 
 @shared_task
-def send_email(data):
+def send_email(data, url=None):
     """
     data = {
         'to': "...", ( * required )
@@ -67,6 +67,10 @@ def send_email(data):
     data['from'] = '스누썸 <contact@snussum.com>'
     data['to'] = 'dobestan@gmail.com'
     data['text'] = data['body']
+
+    if url:
+        url = shorten_url(url)
+        data['text'] = data['body'] + " " + url
 
     request = requests.post(
         MAILGUN_EMAIL_BASE_URL,
