@@ -13,6 +13,11 @@ CELERYBEAT_SCHEDULE = {
         # Execute daily at midnight.
         'schedule': crontab(minute=0, hour=0),
     },
+
+    'Analytics | Demographics': {
+        'task': 'analytics.tasks.analytics.calculate_analytics_demographic',
+        'schedule': crontab(minute=0, hour=0),
+    }
 }
 
 CELERY_TIMEZONE = 'Asia/Seoul'
