@@ -1,0 +1,5 @@
+- name: Deploy Application
+  hosts: all
+
+  roles:
+    - application

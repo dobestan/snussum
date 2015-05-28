@@ -1,0 +1,27 @@
+{% extends "_base.html" %}
+
+{% block title %}매칭 전체보기 - 썸타는 서울대학교 :: 스누썸{% endblock %}
+
+{% block content %}
+  <section id="dating-list">
+
+    <section class="container">
+      <div class="row">
+        <div class="page-header text-center">
+          <h1 class="jua">매칭 전체보기</h1>
+          <p>서울대학생의, 서울대학생에 의한, 서울대학생을 위한 소개팅</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="row">
+        <ul class="datings text-center">
+          {% for dating in datings %}
+            {% include "_partials/_datings/_recently/_dating.html" with dating=dating %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+{% endblock %}

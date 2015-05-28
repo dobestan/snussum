@@ -1,0 +1,55 @@
+- name: Install Python Dependencies
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "libssl-dev"
+    - "zlib1g-dev"
+    - "libbz2-dev"
+    - "libreadline-dev"
+    - "libsqlite3-dev"
+
+- name: Check if pyenv is already installed
+  stat: path=/root/.pyenv/bin/pyenv
+  register: pyenv
+
+- name: Download pyenv installer
+  get_url: 
+    url: "https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer"
+    dest: /root/pyenv-installer
+    mode: 0755
+  when: pyenv.stat.exists == False
+
+- name: Install pyenv, virtualenv, etc
+  shell: /root/pyenv-installer
+  when: pyenv.stat.exists == False
+
+- name: Ensure presence of bash_profile
+  file: state=touch path=~/.bash_profile
+
+- name: Update bash_profile for pyenv, virtualenv
+  lineinfile:
+    dest: ~/.bash_profile
+    line: "{{ item }}"
+    state: present
+  with_items:
+    - export PATH="$HOME/.pyenv/bin:$PATH"
+    - eval "$(pyenv init -)"
+    - eval "$(pyenv virtualenv-init -)"
+
+- name: Install Python
+  shell: . ~/.bash_profile && pyenv install {{ python_version }} --skip-existing
+
+- name: Check if virtualenv is already installed
+  stat: path=/root/.pyenv/versions/{{ virtualenv_name }}/bin/python
+  register: virtualenv
+
+- name: Init Virtualenv
+  shell: . ~/.bash_profile && pyenv virtualenv {{ python_version }} {{ virtualenv_name }}
+  when: virtualenv.stat.exists == False
+
+- name: Update bash_profile for virtualenv
+  lineinfile:
+    dest: ~/.bash_profile
+    line: pyenv activate {{ virtualenv_name }}
+    state: present

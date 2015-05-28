@@ -1,0 +1,111 @@
+{% extends "_base.html" %}
+{% load datings %}
+{% load staticfiles %}
+
+{% block title %}{% with partner=dating|partner:user%}{{ partner.userprofile.nickname }}{% endwith %} 님과의 매칭 - 썸타는 서울대학교 :: 스누썸{% endblock %}
+
+{% block content %}
+  {% with partner=dating|partner:user partner_is_accepted=dating|partner_is_accepted:user myself_is_accepted=dating|myself_is_accepted:user %}
+    <div id="dating-detail" class="container">
+      <div class="col-xs-12 col-sm-8">
+
+        <section>
+          <div class="page-header text-center">
+            <h1 class="jua">
+              {{ partner.userprofile.nickname }} 님과의 매칭
+              <small class="jua hidden-xs hidden-sm">
+                ( {{ dating.matched_at }} )
+              </small>
+            </h1>
+          </div>
+        </section>
+
+        <section id="dating-detail-profile">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              {% include "datings/_profile_introduce.html" %}
+            </div>
+          </div>
+        </section>
+
+        <section id="ratings">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2 class="jua">평점
+                <small class="jua">
+                  상대방의 최근 평점
+                </small>
+              </h2>
+              {% include "datings/_rating_form.html" %}
+            </div>
+          </div>
+        </section>
+
+        <section id="dating-accept-section" class="visible-xs">
+          <div class="panel panel-default border border-red">
+            <div class="panel-body">
+              <h2 class="jua">오케이
+                <small class="jua">
+                  하고 연락처 공개하기
+                </small>
+              </h2>
+              {% include "datings/_accept_form.html" %}
+            </div>
+          </div>
+        </section>
+
+        <section id="comments" data-hash-id="{{ dating.hash_id }}">
+          <div class="kakaotalk" style="background-image:url({% static "img/kakaotalk.jpg" %})">
+            {% for comment in dating.comment_set.all %}
+              {% if comment.user == user %}
+                {% include "datings/_comments/_me.html" with content=comment.content %} 
+              {% else %}
+                {% include "datings/_comments/_partner.html" with content=comment.content %} 
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <section id="comments-input">
+            <div class="row">
+              <div class="col-xs-10 col-no-padding">
+                <textarea name="" id="" rows="4" class="form-control"></textarea>
+              </div>
+              <div class="col-xs-2 col-no-padding">
+                <button>전송</button>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <section id="dating-accept-sidebar" data-spy="affix">
+          <div class="panel panel-default border border-red">
+            <div class="panel-body">
+              <h2 class="jua">오케이
+                <small class="jua">
+                  하고 연락처 공개하기
+                </small>
+              </h2>
+              {% include "datings/_accept_form.html" %}
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {% if not dating.is_accepted and myself_is_accepted == None %}
+        <section class="visible-xs">
+          <a id="btn-dating-accept" href="#dating-accept-section" class="text-center btn-snussum-red">
+            <i class="fa fa-thumbs-o-up"></i>&nbsp;수락하기
+          </a>
+        </section>
+        <section class="visible-xs">
+          <a id="btn-dating-refuse" href="#dating-accept-section" class="text-center btn-snussum-darkgrey">
+            <i class="fa fa-thumbs-o-down"></i>&nbsp;거절하기
+          </a>
+        </section>
+      {% endif %}
+
+    </div>
+  {% endwith %}
+{% endblock %}

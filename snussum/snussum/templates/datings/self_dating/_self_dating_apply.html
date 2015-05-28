@@ -1,0 +1,97 @@
+{% load staticfiles %}
+<li id="{{ self_dating_apply.hash_id }}" class="self-dating-apply {% if not self_dating.user == user and not self_dating_apply.user == user %}blur{% endif %}">
+  {% if not self_dating.user == user and not self_dating_apply.user == user %}
+    <div class="self-dating-apply-wrapper">
+    </div>
+  {% endif %}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="media">
+        <div class="media-left">
+          {% if self_dating_apply.user.userprofile.is_boy %}
+            <img src="{% static "img/profile/boy.jpg" %}" alt="">
+          {% else %}
+            <img src="{% static "img/profile/girl.jpg" %}" alt="">
+          {% endif %}
+        </div>
+        <div class="media-body">
+          <p>
+            {% if self_dating.user == user or self_dating_apply.user == user %}
+              {{ self_dating_apply.content }}
+            {% else %}
+              <p class="small">
+                <i class="fa fa-warning"></i>
+                타 지원자의 내용을 열람할 수 없습니다.
+              </p>
+              {% lorem 3 p random %}
+            {% endif %}
+          </p>
+
+          {% if self_dating.user == user or self_dating_apply.user == user %}
+            {% if self_dating_apply.is_accepted == None %}
+              {% if self_dating_apply.user == user %}
+              <p class="success small">
+                <i class="fa fa-check"></i>
+                상대방의 의사를 기다리고 있습니다. 잠시만 기다려주세요.
+              </p>
+              {% endif %}
+
+              {% if self_dating.user == user %}
+                <div class="edited">
+                  <div class="col-xs-6 col-no-padding">
+                    <button type="submit" class="text-center btn-snussum-red btn-accept">
+                      <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수락하기
+                    </button>
+                  </div>
+                  <div class="col-xs-6 col-no-padding">
+                    <button type="submit" class="text-center btn-snussum-darkgrey btn-refuse">
+                      <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;거절하기
+                    </button>
+                  </div>
+                </div>
+                <div class="editing editing-accept">
+                  <form action="{% url "self-dating-apply-accept" self_dating.hash_id self_dating_apply.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+                    <div class="form-group">
+                      <textarea name="accepted_message" id="id_accepted_message" class="form-control" required></textarea>
+                      <button type="submit" class="text-center btn-snussum-red">
+                        <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수락하기
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div class="editing editing-refuse">
+                  <form action="{% url "self-dating-apply-refuse" self_dating.hash_id self_dating_apply.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+                    <div class="form-group">
+                      <textarea name="accepted_message" id="id_accepted_message" class="form-control" required></textarea>
+                      <button type="submit" class="text-center btn-snussum-red">
+                        <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;거절하기
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              {% endif %}
+            {% elif self_dating_apply.is_accepted %}
+              <p class="success small">
+                <i class="fa fa-check"></i>
+                상대방이 셀프소개팅 지원을 수락하였습니다.
+              </p>
+            {% else %}
+              <p class="danger small">
+                <i class="fa fa-close"></i>
+                상대방이 셀프소개팅 지원을 거절하였습니다.
+              </p>
+            {% endif %}
+
+            <div class="pull-right">
+              <p>
+                {% if self_dating_apply.accepted_message %}
+                  {{ self_dating_apply.accepted_message }}
+                {% endif  %}
+              </p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

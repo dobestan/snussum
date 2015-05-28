@@ -1,0 +1,30 @@
+# Application
+application_name: "snussum"
+
+# Nginx
+server_name: "staging.snussum.com"
+proxy_pass_port: 8000
+
+ssl_certificate_src_path: "~/.ssh/snussum.com/ssl-bundle.crt"
+ssl_certificate_key_src_path: "~/.ssh/snussum.com/private.key"
+
+ssl_certificate_dest_path: "/root/.ssh/ssl-bundle.crt"
+ssl_certificate_key_dest_path: "/root/.ssh/private.key"
+
+# Postgresql
+postgresql_version: 9.3
+
+postgresql_database_name: "snussum"
+postgresql_user: "snussum"
+postgresql_password: lookup('env', 'POSTGRESQL_PASSWORD')
+
+# Gunicorn Settings
+gunicorn_user: "snussum"
+gunicorn_group: webapps
+
+# Git Repo
+git_repo: "https://github.com/dobestan/snussum"
+git_branch: "develop"
+
+python_version: "3.4.3"
+virtualenv_name: "snussum"

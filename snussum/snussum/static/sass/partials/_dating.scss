@@ -1,0 +1,355 @@
+#dating-detail {
+  #dating-detail-profile {
+    img {
+      @include profile-image;
+    }
+  }
+}
+
+section#comments {
+  section#comments-input {
+    $textarea-height: 100px;
+    $border-radius-size: 15px;
+
+    background-color: lightgrey;
+
+    .row {
+      padding: 10px 20px;
+
+      textarea {
+        @include border-left-radius($border-radius-size);
+        height: $textarea-height;
+      }
+
+      button {
+        // Remove default style
+        border: 0;
+
+        background-color: yellow;
+
+        display: block;
+        width: 100%;
+        height: $textarea-height;
+
+        @include border-right-radius($border-radius-size);
+
+        &:active {
+          background: grey;
+        }
+      }
+    }
+  }
+
+  .kakaotalk {
+    padding: 0 15px;
+
+    min-height: 300px;
+  }
+
+  .comment {
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    p {
+      margin: 0px;
+    }
+
+    .media-body {
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    &.comment-by-me {
+      text-align: right;
+
+
+      .media-body {
+        background-color: yellow;
+      }
+    }
+
+    &.comment-by-partner {
+      text-align: left;
+
+      .media-body {
+        background-color: white;
+      }
+    }
+  }
+}
+
+ul.datings {
+  list-style-type: none;
+  padding-left: 0;
+
+  li.dating {
+    $border-radius-size: 15px;
+
+    div.dating-background {
+      margin-bottom: 30px;
+
+      background-position: 50%;
+      background-size: cover;
+      height: 370px;
+      position: relative;
+
+      border-radius: $border-radius-size;
+
+      div.dating-background-layer {
+        background-color: rgba(black, 0.4);
+        width: 100%;
+        height: 100%;
+      
+        border-radius: $border-radius-size;
+      }
+
+      div.dating-background-half-layer {
+        background-color: $snussum-lightgrey;
+        width: 100%;
+        height: 50%;
+
+        position: absolute;
+        top: 50%;
+
+        @include border-bottom-radius($border-radius-size);
+      }
+
+      div.dating-background-top-layer {
+        background-color: rgba(black, 0.4);
+        width: 100%;
+        height: 7%;
+
+        position: absolute;
+        top: 0;
+
+        @include border-top-radius($border-radius-size);
+      }
+
+    }
+
+    div.dating-profile-image {
+      background-repeat: no-repeat;
+      background-position: 50%;
+      border-radius: 50%;
+      background-size: cover;
+
+      width: 40%;
+      height: 40%;
+
+      border: 4px solid rgba(black, 0.3);
+
+      position: absolute;
+      left: 30%;
+      bottom: 35%;
+    }
+
+    div.dating-information {
+      div.dating-information-username {
+        position: absolute;
+        bottom: 15%;
+
+        // How to center a “position: absolute” element
+        // http://stackoverflow.com/questions/8508275/how-to-center-a-position-absolute-element
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+
+        font-weight: bold;
+      }
+
+      div.dating-information-date {
+        font-size: 12px;
+
+        position: absolute;
+        top: 8px;
+        left: 32px;
+        color: white;
+      }
+    }
+  }
+}
+
+.self-dating {
+  .panel-body {
+    padding: 20px;
+  }
+
+  h3 {
+    margin-top: 5px;
+    font-weight: bold;
+
+    a {
+      text-decoration: none;
+      color: $snussum-darkgrey;
+
+      &:hover {
+        color: $snussum-red;
+      }
+    }
+  }
+
+  p {
+    font-weight: lighter;
+  }
+
+  ul {
+    display: inline;
+    list-style-type: none;
+    padding-left: 0;
+
+    li {
+    }
+  }
+
+  .self-dating-summary {
+    ul {
+      li {
+        border-bottom: 1px solid $snussum-lightgrey;
+        padding-bottom: 7px;
+      }
+    }
+  }
+
+  .self-dating-preferences {
+    div {
+      padding: 3px 0;
+    }
+
+    ul {
+      li {
+        display: inline;
+      }
+    }
+  }
+  
+  .progress {
+    margin-bottom: 0;
+  }
+}
+
+#self-dating-new {
+  .bootstrap-tagsinput {
+    display: block;
+    width: 100% !important;
+  }
+}
+
+#self-dating-detail {
+  ul.self-dating-applies {
+    list-style-type: none;
+    padding-left: 0;
+
+    li.self-dating-apply {
+      position: relative; 
+
+      &.blur {
+        @include filter(blur(5px));
+        // IE Issue
+      }
+
+      .editing {
+        display: none;
+      }
+
+      div.self-dating-apply-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      img {
+        width: 60px;
+        height: 60px;
+
+        border-radius: 50%;
+        border: 1px solid $snussum-lightgrey;
+      }
+    }
+  }
+}
+
+
+// Ratings
+
+ul.dating-ratings {
+  list-style-type: none;
+  padding-left: 0;
+
+  li.dating-rating {
+    position: relative;
+
+    img {
+      width: 60px;
+      height: 60px;
+
+      border-radius: 50%;
+      border: 1px solid $snussum-lightgrey;
+    }
+
+    .dating-rating-score {
+      padding: 10px;
+      border-radius: 3px;
+      background-color: $snussum-lightgrey;
+      color: $snussum-darkgrey;
+      font-weight: bold;
+    }
+  }
+}
+
+
+// Fixed Layout
+
+// DatingAccept ( fixed sidebar )
+
+#dating-accept-sidebar {
+  width: 290px;
+  z-index: 1000;
+}
+
+// SelfDating List Sidebar ( fixed sidebar )
+
+#self-dating-list-sidebar {
+  width: 290px;
+  z-index: 1000;
+}
+
+// SelfDatingApply Form ( fixed sidebar )
+
+#self-dating-apply-sidebar {
+  width: 290px;
+  z-index: 1000;
+}
+
+// SelfDatingApply Button ( fixed button on mobile )
+
+@mixin btn-fixed-bottom-left {
+  position: fixed;
+  left: 5%;
+  width: 45%;
+  z-index: 1000;
+}
+
+@mixin btn-fixed-bottom-left-first {
+  @include btn-fixed-bottom-left;
+  bottom: 10px;
+}
+
+@mixin btn-fixed-bottom-left-second {
+  @include btn-fixed-bottom-left;
+  bottom: 55px;
+}
+
+#btn-self-dating-apply { @include btn-fixed-bottom-left-second; }
+#btn-self-dating-new { @include btn-fixed-bottom-left-first; } 
+#btn-dating-accept { @include btn-fixed-bottom-left-second; }
+#btn-dating-refuse { @include btn-fixed-bottom-left-first; }

@@ -1,0 +1,142 @@
+{% extends "_base.html" %}
+{% load self_datings %}
+
+{% block title %}셀프소개팅 "{{self_dating.title}}" - 썸타는 서울대학교 :: 스누썸{% endblock %}
+
+{% block content %}
+  {% with myself_dating_apply=self_dating|myself_dating_apply:user %}
+<section id="self-dating-detail">
+  <div class="container">
+    <div class="col-xs-12 col-sm-8">
+
+      <section>
+        <div class="page-header text-center">
+          <h1 class="jua">{{ self_dating.title }}
+            <small class="jua">- {{ self_dating.user.userprofile.nickname }}</small>
+          </h1>
+        </div>
+      </section>
+
+      <section class="self-dating">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+            {{ self_dating.content|safe }}
+
+            <hr />
+
+            <div class="self-dating-preferences">
+              <div>
+                <span>저는</span>
+                <ul>
+                  {% for tag in self_dating.tags_myself %}
+                    <li><span class="label label-info">{{ tag }}</span></li>
+                  {% endfor %}
+                </ul>
+                <span><strong>{% if self_dating.user.userprofile.is_boy %}남자{% else %}여자{% endif %}</strong> 입니다</span>
+              </div>
+              <div>
+                <span>저는</span>
+                <ul>
+                  {% for tag in self_dating.tags_partner %}
+                    <li><span class="label label-success">{{ tag }}</span></li>
+                  {% endfor %}
+                </ul>
+                <span><strong>{% if self_dating.user.userprofile.is_boy %}여자{% else %}남성{% endif %}</strong> 을 원합니다</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+        <section>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2 class="jua">지원자 현황</h2>
+
+              <p class="danger">
+                <i class="fa fa-check"></i>
+                지원자 통계는 서울대학교 인증된 모든 학우들에게 공개됩니다.
+                상대방에게 전달된 메시지나 특정 개인에 대한 수락, 거절 여부는 확인하실 수 없습니다.
+              </p>
+
+              <div class="progress">
+                <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: {{ self_dating.apply_is_accepted_percentage }}%;">
+                  {{ self_dating.apply_is_accepted_percentage|floatformat:-1 }}%
+                </div>
+                <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: {{ self_dating.apply_is_not_accepted_percentage }}%;">
+                  {{ self_dating.apply_is_not_accepted_percentage|floatformat:-1 }}%
+                </div>
+                <div class="progress-bar progress-bar-striped active" style="width: {{ self_dating.apply_is_not_checked_percentage }}%;">
+                  {{ self_dating.apply_is_not_checked_percentage|floatformat:-1 }}%
+                </div>
+              </div>
+
+              <p class="success">
+                <i class="fa fa-check"></i>
+                아래의 지원자 현황은 셀프소개팅 작성자( {{ user.userprofile.nickname }} )를 제외하고는 확인하실 수 없습니다.
+              </p>
+
+              <ul class="self-dating-applies">
+                {% for self_dating_apply in self_dating.selfdatingapply_set.all %}
+                  {% include "datings/self_dating/_self_dating_apply.html" with self_dating_apply=self_dating_apply %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      <section id="self-dating-apply-section" class="visible-xs">
+        <div class="panel panel-default border border-red">
+          <div class="panel-body">
+            <h2 class="jua">셀프소개팅 지원하기</h2>
+            {% include "datings/self_dating/_apply_form.html" %}
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h2 class="jua">다른 셀프소개팅</h2>
+
+            {% for self_dating in recent_self_datings %}
+              {% include "datings/self_dating/_dating.html" with self_dating=self_dating %}
+            {% endfor %}
+
+            <div class="pull-right">
+              <p class="small">
+                다른 셀프소개팅도 궁금하세요?
+                <a href="{% url "self-dating-list" %}">셀프소개팅 전체보기</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
+      <section id="self-dating-apply-sidebar" data-spy="affix">
+        <div class="panel panel-default border border-red">
+          <div class="panel-body">
+            <h2 class="jua">셀프소개팅 지원하기</h2>
+            {% include "datings/self_dating/_apply_form.html" %}
+          </div>
+        </div>
+      </section>
+
+      <section class="visible-xs">
+        <a id="btn-self-dating-apply" href="#self-dating-apply-section" class="text-center btn-snussum-red">
+          <i class="fa fa-sign-in"></i>&nbsp;셀소 지원하기
+        </a>
+
+        <a id="btn-self-dating-new" href="{% url "self-dating-new" %}" target="_blank" class="text-center btn-snussum-darkgrey">
+          <i class="fa fa-sign-in"></i>&nbsp;나도 셀소하기
+        </a>
+      </section>
+    </div>
+  </div>
+</section>
+  {% endwith %}
+{% endblock %}

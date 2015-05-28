@@ -1,0 +1,23 @@
+- name: Install nginx
+  apt: pkg=nginx state=installed update_cache=yes
+
+- name: Create the directories for site specific configurations
+  file: path=/etc/nginx/{{ item }} state=directory owner=root group=root mode=0755
+  with_items:
+    - "sites-available"
+    - "sites-enabled"
+
+- name: Copy SSL Certificate
+  copy: src=~/.ssh/snussum.com/ssl-bundle.crt dest=~/.ssh/ssl-bundle.crt mode=0600
+
+- name: Copy SSL Certificate Key
+  copy: src=~/.ssh/snussum.com/private.key dest=~/.ssh/private.key mode=0600
+
+- name: Copy the nginx default site configuration file
+  template: src=default.j2 dest=/etc/nginx/sites-available/default
+
+- name: Create the link for site enabled configuration file
+  file: path=/etc/nginx/sites-enabled/default state=link src=/etc/nginx/sites-available/default
+
+- name: Restart the nginx service
+  service: name=nginx state=restarted enabled=yes

@@ -1,0 +1,59 @@
+{% extends "_base.html" %}
+
+{% block title %}서울대학교 인증 - 썸타는 서울대학교 :: 스누썸{% endblock %}
+
+{% block content %}
+<section id="verify-snu">
+  <section class="container">
+    <div class="row">
+      <div class="page-header text-center">
+        <h1 class="jua">서울대학교 인증
+          <small class="jua hidden-xs hidden-sm">하고 빨리 소개팅받기</small>
+        </h1>
+        <p>썸타는 서울대, 스누썸은 다양한 인증 방법을 지원하고 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="row snu-verification-lists text-center">
+      <ul>
+        <li class="col-sm-4 active snu-verification-list">
+          <div>
+            <a href="#mysnu-email" data-toggle="tab" aria-controls="mysnu-email">
+              마이스누 x 이메일
+            </a>
+          </div>
+        </li>
+        <li class="col-sm-4 snu-verification-list">
+          <div>
+            <a href="#mysnu-login" data-toggle="tab" aria-controls="mysnu-login">
+              마이스누 x 로그인
+            </a>
+          </div>
+        </li>
+        <li class="col-sm-4 snu-verification-list">
+          <div>
+            <a href="#snulife-login" data-toggle="tab" aria-controls="snulife-login">
+              스누라이프 x 로그인
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="row snu-verification-details">
+      <div role="tabpanel" id="mysnu-email" class="snu-verification-detail animated fadeIn active">
+        {% include "users/verify/_snu/_mysnu_email.html" %}
+      </div>
+      <div role="tabpanel" id="mysnu-login" class="snu-verification-detail animated fadeIn">
+        {% include "users/verify/_snu/_mysnu_login.html" %}
+      </div>
+      <div role="tabpanel" id="snulife-login" class="snu-verification-detail animated fadeIn">
+        {% include "users/verify/_snu/_snulife_login.html" %}
+      </div>
+    </div>
+  </section>
+  
+</section>
+{% endblock %}

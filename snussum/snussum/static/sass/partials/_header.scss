@@ -1,0 +1,71 @@
+header#header {
+  z-index: 1001;
+
+  background-color: $snussum-darkgrey;
+  color: white;
+
+  a.navbar-brand {
+    color: inherit;
+  }
+
+  span.icon-bar {
+    background-color: white;
+  }
+
+  li {
+    color: white;
+
+    &:hover {background-color: $snussum-red;}
+
+    a {
+      color: inherit;
+
+      &:hover {
+        background-color: inherit;
+        color: white;
+      }
+
+      // Notification Message Count
+      i.fa.fa-bell {
+      }
+
+      span.label {
+        font-size: 8px;
+        position: relative;
+        bottom: 10px;
+        right: 5px;
+
+        background-color: $snussum-orange;
+      }
+    }
+  }
+
+  button {
+    color: white;
+  }
+
+  // Notifications Style
+  ul.notifications {
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    background-color: $snussum-lightgrey;
+
+    li.notification {
+      color: black;
+
+      &:hover{
+        background-color: $snussum-orange;
+      }
+    }
+    
+    li.notification-center {
+      color: white;
+      background-color: $snussum-darkgrey;
+
+      &:hover {
+        background-color: $snussum-red;
+      }
+    }
+  }
+}

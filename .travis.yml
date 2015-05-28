@@ -1,0 +1,17 @@
+language: python
+python:
+- '3.4'
+addons:
+  postgresql: '9.3'
+services:
+    - redis-server
+install:
+    - pip install -r requirements/development.txt
+    - npm install -g grunt-cli bower
+    - npm install
+before_script:
+    - psql -c 'CREATE DATABASE snussum;' -U postgres
+script:
+    - pep8
+    - python snussum/manage.py makemigrations users relationships
+    - python snussum/manage.py migrate

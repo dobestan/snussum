@@ -1,0 +1,93 @@
+{% extends "_base.html" %}
+
+{% block title %}셀프소개팅 등록하기 - 썸타는 서울대학교 :: 스누썸{% endblock %}
+
+{% block content %}
+<section id="self-dating-new">
+  <section class="container">
+    <div class="row">
+      <div class="page-header text-center">
+        <h1 class="jua">셀소 등록하기 <small class="jua">셀프소개팅</small></h1>
+        <p>서울대학생의, 서울대학생에 의한, 서울대학생을 위한 소개팅</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        {{ form.media }}
+        <form action="{% url "self-dating-new" %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+          {% if form.errors %}
+            <p class="small danger">
+              <i class="fa fa-close"></i> 셀프소개팅 양식에 문제가 있습니다. 다시 한번 확인 후 신청 부탁드립니다.
+            </p>
+          {% endif %}
+          
+          <div class="form-group">
+            <label>제목</label>
+            <input type="text" value="" name="title" id="id_title" class="form-control" placeholder="셀프소개팅 제목" required/>
+          </div>
+
+          <div class="form-group">
+            <label>본문</label>
+
+            <p class="small danger" style="display:none;">
+              <i class="fa fa-close"></i>
+              셀프소개팅의 경우에는 반드시 200자 이상의 자기소개가 필요합니다.
+              조금 불편하시더라고, 더 나은 서비스를 위해서 성실한 작성 부탁드리겠습니다. 감사합니다.
+            </p>
+            <p class="small success" style="display:none;">
+              <i class="fa fa-check"></i>
+              성실한 자기소개를 작성해주셔서 진심으로 감사드립니다.
+            </p>
+
+            {{ form.content }}
+          </div>
+
+          <hr/>
+
+          <p class="small success">
+            <i class="fa fa-check"></i>
+            스누썸 셀프소개팅 ( 이하 "셀소" )은 효과적인 매칭 시스템 도입을 위해서 태그 기능을 제공합니다.
+          </p>
+
+          <div class="form-group">
+            <label>나를 나타내는 태그</label>
+            <span class="small success">
+              <i class="fa fa-check"></i> 저는 이런 <strong>{% if user.userprofile.is_boy %}남자{% else %}여자{% endif %}</strong>입니다
+            </span>
+            <input type="text" value="" name="tags_myself" id="id_tags_myself" class="form-control" data-role="tagsinput" placeholder="저는 이런 사람입니다"/>
+          </div>
+
+          <div class="form-group">
+            <label>상대방을 나타내는 태그</label>
+            <span class="small success">
+              <i class="fa fa-check"></i>저는 이런 <strong>{% if user.userprofile.is_boy %}여자{% else %}남자{% endif %}</strong>를 원합니다
+            </span>
+            <input type="text" value="" name="tags_partner" id="id_tags_partner" class="form-control" data-role="tagsinput" placeholder="이런 상대방을 원합니다" required/>
+          </div>
+
+          <div class="form-group">
+            <label>셀프소개팅 진행 동의</label>
+            <p class="small">
+              나({{ user.userprofile.nickname }})는 셀프 소개팅 진행과정에 대해서 충분히 숙지하였으며,
+              아래의 "셀프소개팅 등록하기" 버튼을 누르는 것으로 셀프소개팅 전 과정에 있어 <u>매너있고 성실하게 진행할 것</u>임을 약속합니다.
+            </p>
+          </div>
+
+          <button type="submit" class="text-center btn-snussum-darkgrey" disabled>
+            <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셀프소개팅 등록하기
+          </button>
+        </form>
+
+        <p class="pull-right small">
+          <i class="fa fa-question-circle"></i>
+          셀프소개팅 진행 과정이 궁금하세요?
+          <a href="{% url "about" %}" target="_blank">스누썸 서비스 소개 바로가기</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</section>
+{% endblock %}

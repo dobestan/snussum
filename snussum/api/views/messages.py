@@ -1,0 +1,41 @@
+from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
+from api.tasks.messages import send_sms, send_email
+
+
+class APIMessageBase(APIView):
+    permission_classes = (IsAuthenticated, )
+
+
+class APIMessageSMS(APIMessageBase):
+
+    def post(self, request, *args, **kwargs):
+        send_sms.delay(request.data)
+        return Response(status=status.HTTP_200_OK)
+
+
+class APIMessageEmail(APIMessageBase):
+
+    def post(self, request, *args, **kwargs):
+        send_email.delay(request.data)
+        return Response(status=status.HTTP_200_OK)
+
+
+class ContactAdmin(APIView):
+
+    def post(self, request, *args, **kwargs):
+        content = request.data.get("content", None)
+        contact = request.data.get("contact", None)
+
+        send_sms.delay({"to": "01022205736", "body": "%s from %s" % (content, contact)})
+
+        if contact:
+            send_sms.delay({
+                'to': contact,
+                'body': "[스누썸] 남겨주신 문의사항은 확인 후 빠르게 연락드릴 수 있도록 하겠습니다. 감사합니다."
+            })
+
+        return Response(status=status.HTTP_200_OK)

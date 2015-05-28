@@ -1,0 +1,25 @@
+footer#footer {
+  background-color: $snussum-darkgrey;
+  color: $snussum-lightgrey;
+  padding: 30px;
+  margin-top: 50px;
+
+  ul {
+    list-style-type: none;
+    padding-left: 0px;
+
+    li {
+      display: inline;
+      padding-right: 15px;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+          color: $snussum-blue;
+        }
+      }
+    }
+  }
+}

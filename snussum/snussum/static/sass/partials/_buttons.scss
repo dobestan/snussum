@@ -1,0 +1,75 @@
+@mixin btn-default {
+  border: none;
+  display: block;
+  text-decoration: none;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.btn-snussum-darkgrey {
+  @include btn-default;
+
+  background-color: $snussum-darkgrey;
+  color: $snussum-lightgrey;
+
+  &:disabled {
+    background-color: rgba($snussum-darkgrey, 0.3);
+  }
+}
+
+.btn-snussum-lightgrey {
+  @include btn-default;
+
+  background-color: $snussum-lightgrey;
+  color: $snussum-darkgrey;
+}
+
+.btn-snussum-red {
+  @include btn-default;
+
+  background-color: $snussum-red;
+  color: $snussum-lightgrey;
+
+  &:disabled {
+    background-color: rgba($snussum-red, 0.3);
+  }
+}
+
+.social-login {
+  @include btn-default;
+
+  &.social-login-kakao {
+    text-decoration: inherit;
+
+    $kakao-yellow: #FFDE00;
+    $kakao-brown: #3C1E1E;
+
+    color: $kakao-brown;
+    background-color: $kakao-yellow;
+
+    &:hover {
+      background-color: darken($kakao-yellow, 2%);
+    }
+  }
+
+  &.social-login-facebook {
+    text-decoration: inherit;
+
+    $facebook-blue: #3B5998;
+    $facebook-white: #FFFFFF;
+
+    color: $facebook-white;
+    background-color: $facebook-blue;
+
+    &:hover {
+      background-color: darken($facebook-blue, 2%);
+    }
+  }
+}

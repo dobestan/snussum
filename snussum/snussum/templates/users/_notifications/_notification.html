@@ -1,0 +1,42 @@
+<li class="notification {% if notification.unread %}unread{% endif %}">
+  <a href="{{ notification.action_object.get_absolute_url }}">
+    <div class="media">
+      <div class="media-left">
+        <img src="{{ notification.actor.userprofile.profile_image_url }}" alt=""/>
+      </div>
+      <div class="media-body">
+        <p>
+          {% if notification.action_object_content_type.name == "dating" %}
+            {% if notification.verb == "created" %}
+              <strong>{{ notification.actor.userprofile.nickname }}</strong> 님과 새롭게 매칭되었습니다.
+            {% elif notification.verb == "accepted" %}
+              <strong>{{ notification.actor.userprofile.nickname }}</strong> 이 수락하였습니다: "{{ notification.description }}"
+            {% elif notification.verb == "refused" %}
+              <strong>{{ notification.actor.userprofile.nickname }}</strong> 이 거절하였습니다.
+            {% endif %}
+
+          {% elif notification.action_object_content_type.name == "comment" %}
+            <strong>{{ notification.actor.userprofile.nickname }}</strong> 님이 새로운 메시지를 보냈습니다: "{{ notification.description|truncatechars:30 }}"
+
+          {% elif notification.action_object_content_type.name == "self dating" %}
+            셀프소개팅 <strong>"{{ notification.description }}"</strong>이 성공적으로 등록되었습니다.
+
+          {% elif notification.action_object_content_type.name == "self dating apply" %}
+            {% if notification.verb == "created" %}
+              <strong>{{ notification.actor.userprofile.nickname }}</strong> 님이 셀프소개팅에 지원하였습니다: "{{ notification.description }}"
+            {% elif notification.verb == "accepted" %}
+              <strong>{{ notification.actor.userprofile.nickname }}</strong> 님이 수락하였습니다: "{{ notification.description }}"
+            {% elif notification.verb == "refused" %}
+              <strong>{{ notification.actor.userprofile.nickname }}</strong> 님이 거절하였습니다: "{{ notification.description }}"
+            {% endif %}
+
+          {% endif %}
+        </p>
+        <p class="small pull-right darkgrey">
+          <i class="fa fa-clock-o"></i>
+          {{ notification.timesince }}
+        </p>
+      </div>
+    </div>
+  </a>
+</li>

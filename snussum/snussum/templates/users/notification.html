@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+
+{% block title %}알람 전체보기 - 썸타는 서울대학교 :: 스누썸{% endblock %}
+
+{% block content %}
+<section id="notifications">
+
+  <section class="container">
+    <div class="row">
+      <div class="page-header text-center">
+        <h1 class="jua">알림센터 <small class="jua">Notifications</small></h1>
+        <p>데이트 매칭 정보, 댓글 정보 등에 대한 알림을 확인하실 수 있습니다</p>
+      </div>
+    </div>
+
+    <section id="notifications" class="container">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <ul class="notifications">
+          {% for notification in user.notifications.all %}
+            {% include "users/_notifications/_notification.html" with notification=notification %}
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  </section>
+
+</section>
+{% endblock %}

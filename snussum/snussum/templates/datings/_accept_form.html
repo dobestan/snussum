@@ -1,0 +1,73 @@
+{% if user.userprofile.is_phonenumber_verified %}
+  {% comment %}
+  - 한 사람이라도 거절한 경우, 데이트가 이뤄질 수 없다.
+  {% endcomment %}
+
+  {% if partner_is_accepted == False or myself_is_accepted == False  %}
+    <p class="small danger">
+      <i class="fa fa-close"></i>
+      인연이 아니였네요.
+      연락처 공개는 되지 않았지만 아래의 대화방을 통해서 계속 대화를 나누실 수 있습니다.
+    </p>
+    <hr />
+    <span class="small success"><i class="fa fa-check"></i> 당신도 셀프소개팅의 주인공이 될 수 있습니다. 썸타는 서울대, 스누썸은 서울대학생의, 서울대학생에 의한, 서울대학생을 위한 소개팅 서비스입니다</span>
+    <a href="{% url "self-dating-new" %}" target="_blank" class="text-center btn-snussum-darkgrey">
+      <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셀프소개팅 신청하기
+    </a>
+  {% elif partner_is_accepted == True and myself_is_accepted == True %}
+    <p class="small success">
+      <i class="fa fa-check"></i>
+      축하드립니다. 서로 수락하여 연락처가 공개되었습니다.
+      좋은 인연되시길 바랍니다.
+    </p>
+
+  {% else %}
+    <p class="small success">
+      <i class="fa fa-check"></i>
+      상대방과 서로 수락하게 되면, 서로의 연락처가 공개됩니다.
+      연락처 공개 전, 아래의 대화방을 통해서 충분한 대화 나누시기 바랍니다.
+    </p>
+
+    {% if myself_is_accepted == None %}
+      <form action="{% url "dating-accept" dating.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+        <label>상대방에게 남길 메시지</label>
+        <div class="form-group"k>
+          <textarea name="content" id="id_content" class="form-control" rows="3" placeholder="상대방에게 수락 시 남기는 메시지는 SMS로 발송됩니다"></textarea>
+        </div>
+        <button type="submit" class="text-center btn-snussum-red">
+          <i class="fa fa-thumbs-o-up"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연락처 공개하기
+        </button>
+      </form>
+      <hr />
+      <form action="{% url "dating-refuse" dating.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+        <button type="submit" class="text-center btn-snussum-darkgrey">
+          <i class="fa fa-thumbs-o-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인연이 아니였네요
+        </button>
+      </form>
+    {% else %}
+      <p class="small danger">
+        <i class="fa fa-close"></i>
+        상대방의 의사를 기다리고 있습니다.
+      </p>
+    {% endif %}
+
+  {% endif %}
+
+{% else %}
+<p class="small danger">
+  <i class="fa fa-close"></i>
+  상대방과 매칭을 위해서는 연락처 인증이 필요합니다.
+  아래의 양식을 통해서 인증할 수 있습니다.
+</p>
+
+<form action="{% url "users:update-profile-account-phonenumber" %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+  <div class="form-group">
+    <input type="tel" value="{{ user.userprofile.phonenumber }}" name="phonenumber" id="id_phonenumber" class="form-control" placeholder="010-1234-5678"/>
+  </div>
+
+  <button type="submit" class="text-center btn-snussum-red">
+    <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연락처 업데이트
+  </button>
+</form>
+{% endif %}
+

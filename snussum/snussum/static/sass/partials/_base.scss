@@ -1,0 +1,61 @@
+@import "bourbon";
+
+// Snussum Custom Color-Set
+// http://flatuicolors.com/
+$snussum-darkgrey: #34495E;
+$snussum-lightgrey: #ECF0F1;
+$snussum-red: #E74C3C;
+$snussum-blue: #3498DB;
+$snussum-orange: #F39C12;
+
+// Bootstrap Colors
+$bootstrap-primary: #428BCA;
+$bootstrap-info: #5BC0DE;
+$bootstrap-warning: #F0AD4E;
+$bootstrap-success: #5CB85C;
+$bootstrap-danger: #D9534F;
+
+.primary {color: $bootstrap-primary;}
+// Disabled - Not to override bootstrap-notify css
+// .info {color: $bootstrap-info;}
+// .warning {color: $bootstrap-warning;}
+.success {color: $bootstrap-success;}
+.danger {color: $bootstrap-danger;}
+
+.darkgrey {color: $snussum-darkgrey;}
+.lightgrey {color: $snussum-lightgrey;}
+.red {color: $snussum-red;}
+.blue {color: $snussum-blue;}
+.oranger {color: $snussum-orange;}
+
+.border {
+  border: 2px solid $snussum-lightgrey;
+  border-radius: 5px;
+
+  // Bootstrap Style Borders
+  &.border-primary {border-color: $bootstrap-primary;}
+  &.border-info {border-color: $bootstrap-info;}
+  &.border-warning {border-color: $bootstrap-warning;}
+  &.border-success {border-color: $bootstrap-success;}
+  &.border-danger {border-color: $bootstrap-danger;}
+
+  // Snussum Custom Style Borders
+  &.border-darkgrey {border-color: $snussum-darkgrey;}
+  &.border-lightgrey {border-color: $snussum-lightgrey;}
+  &.border-red {border-color: $snussum-red;}
+  &.border-blue {border-color: $snussum-blue;}
+  &.border-orange {border-color: $snussum-orange;}
+}
+
+@mixin profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid $snussum-lightgrey;
+
+  margin-bottom: 20px;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

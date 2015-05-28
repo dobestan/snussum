@@ -1,0 +1,31 @@
+{% if self_dating.user == user %}
+  <p class="small success">
+    <i class="fa fa-check"></i>
+    셀프소개팅이 성공적으로 진행중입니다.
+  </p>
+{% else %}
+  {% if myself_dating_apply %}
+    <p class="small success">
+      <i class="fa fa-check"></i>
+      셀프소개팅에 성공적으로 지원하였습니다.
+    </p>
+  {% else %}
+    <form action="{% url "self-dating-apply" self_dating.hash_id %}" method="POST" accept-charset="utf-8">{% csrf_token %}
+      <div class="form-group">
+        <label>상대방에게 전달할 문구</label>
+        <textarea id="id_content" name="content" class="form-control" rows=10></textarea>
+      </div>
+
+      <button type="submit" class="text-center btn-snussum-red">
+        <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셀프소개팅 지원하기
+      </button>
+
+      <hr />
+
+      <span class="small success"><i class="fa fa-check"></i> 당신도 셀프소개팅의 주인공이 될 수 있습니다. 썸타는 서울대, 스누썸은 서울대학생의, 서울대학생에 의한, 서울대학생을 위한 소개팅 서비스입니다</span>
+      <a href="{% url "self-dating-new" %}" target="_blank" class="text-center btn-snussum-darkgrey">
+        <i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셀프소개팅 신청하기
+      </a>
+    </form>
+  {% endif %}
+{% endif %}

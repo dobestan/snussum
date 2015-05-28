@@ -1,0 +1,47 @@
+{% extends "_base.html" %}
+
+{% block title %}마이페이지 - 썸타는 서울대학교 :: 스누썸{% endblock %}
+
+{% block content %}
+<section id="profile">
+
+  <section class="container">
+    <div class="row">
+      <div class="page-header text-center">
+        <h1 class="jua">마이페이지 <small class="jua">Profile</small></h1>
+        <p>기본정보를 확인하거나 수정하실 수 있습니다</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="col-sm-12 col-md-6 col-md-offset-3">
+      <div class="profile-settings-lists text-center">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="profile-settings-list active">
+            <a href="#account" data-toggle="tab" aria-controls="account">기본 정보</a>
+          </li>
+          <li class="profile-settings-list">
+            <a href="#information" data-toggle="tab" aria-controls="information">프로필 정보</a>
+          </li>
+          <li class="profile-settings-list">
+            <a href="#condition" data-toggle="tab" aria-controls="condition">매칭 조건</a>
+          </li>
+        </ul>
+      </div>
+
+      <section class="profile-settings-details tab-content">
+        <section id="account" role="tabpanel" class="tab-pane profile-settings-detail animated fadeIn active">
+          {% include "users/_profile/_account.html" %}
+        </section>
+        <section id="information" role="tabpanel" class="tab-pane profile-settings-detail animated fadeIn">
+          {% include "users/_profile/_information.html" %}
+        </section>
+        <section id="condition" role="tabpanel" class="tab-pane profile-settings-detail animated fadeIn">
+          {% include "users/_profile/_condition.html" %}
+        </section>
+      </section>
+    </div>
+  </section>
+</section>
+{% endblock %}

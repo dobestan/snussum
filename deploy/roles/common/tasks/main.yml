@@ -1,0 +1,17 @@
+- name: apt-get update
+  apt: update_cache=yes
+
+- name: apt-get upgrade
+  apt: upgrade=full
+
+- name: Install Packages
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "make"
+    - "build-essential"
+    - "git"
+    - "wget"
+    - "curl"
+    - "llvm"

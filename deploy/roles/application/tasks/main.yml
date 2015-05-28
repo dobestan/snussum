@@ -1,0 +1,25 @@
+- name: Git Clone Project
+  git:
+    repo: "{{ git_repo }}"
+    version: "{{ git_branch }}"
+    dest: "/root/{{ application_name }}/"
+    accept_hostkey: yes
+
+- name: Delete .pyc
+  command: find . -name '*.pyc' -delete
+  args:
+    chdir: "/root/{{ application_name }}"
+
+- name: Install Packages
+  pip: 
+    requirements: "/root/{{ application_name }}/requirements.txt"
+    chdir: "/root/{{ application_name }}"
+    virtualenv: "/root/.pyenv/versions/{{ virtualenv_name }}"
+
+- name: Project Permission
+  file:
+    path: "/root/{{ application_name }}"
+    recurse: yes
+    group: "{{ gunicorn_group }}"
+    owner: "{{ gunicorn_user }}"
+    state: directory

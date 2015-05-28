@@ -1,0 +1,19 @@
+{% extends "_base.html" %}
+
+{% block title %}오늘의 매칭 - 썸타는 서울대학교 :: 스누썸{% endblock %}
+
+{% block content %}
+  <section id="dashboard">
+    {% include "_partials/_datings/_today.html" with dating=dating_matched_today %}
+    {% include "_partials/_datings/_recently.html" with datings=datings_matched_recently %}
+
+    <div class="container">
+      <div class="pull-right">
+        <p class="small">
+          지나간 매칭 전체를 보고싶으세요?
+          <a href="{% url "dating-list" %}">지금까지의 매칭 전체보기</a>
+        </p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

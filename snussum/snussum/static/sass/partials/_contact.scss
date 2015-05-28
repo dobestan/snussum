@@ -1,0 +1,22 @@
+section#contact {
+  img {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 50px;
+  }
+
+  #snussum-contact {
+    display: none;
+    z-index: 1050;
+
+    width: 100%;
+    position: fixed;
+    right: 0;
+    bottom: 70px;
+
+    .panel {
+      background-color: $snussum-lightgrey
+    }
+  }
+}
