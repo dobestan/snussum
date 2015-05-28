@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 
 from datetime import timedelta, datetime
 
-from snussum.settings import SNUSSUM_URL
+from django.conf import settings
 
 
 class SelfDating(models.Model):
@@ -35,7 +35,7 @@ class SelfDating(models.Model):
         return reverse("self-dating-detail", kwargs={'slug': self.hash_id})
 
     def get_full_absolute_url(self):
-        return SNUSSUM_URL + self.get_absolute_url()
+        return settings.SNUSSUM_URL + self.get_absolute_url()
 
     def _time_left(self):
         if self.is_finished:
@@ -127,7 +127,7 @@ class SelfDatingApply(models.Model):
         return reverse("self-dating-detail", kwargs={'slug': self.self_dating.hash_id}) + "#" + self.hash_id
 
     def get_full_absolute_url(self):
-        return SNUSSUM_URL + self.get_absolute_url()
+        return settings.SNUSSUM_URL + self.get_absolute_url()
 
 
 @receiver(post_save, sender=SelfDating)

@@ -14,7 +14,7 @@ import datetime
 
 from users.tasks.dating import send_dating_matched_sms
 
-from snussum.settings import SNUSSUM_URL
+from django.conf import settings
 
 
 class DatingManager(models.Manager):
@@ -76,7 +76,7 @@ class Dating(models.Model):
         return reverse("dating-detail", kwargs={'slug': self.hash_id})
 
     def get_full_absolute_url(self):
-        return SNUSSUM_URL + self.get_absolute_url()
+        return settings.SNUSSUM_URL + self.get_absolute_url()
 
 
 @receiver(post_save, sender=Dating)

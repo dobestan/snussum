@@ -10,7 +10,7 @@ from api.tasks.shortener import shorten_url, url_builder
 
 from selenium import webdriver
 
-from snussum.settings import SNUSSUM_URL
+from django.conf import settings
 from api.tasks.shortener import url_builder
 
 
@@ -23,7 +23,7 @@ def send_phonenumber_verification_sms(user):
         kwargs={
             'phonenumber_verification_token': user.userprofile.phonenumber_verification_token})
 
-    url = url_builder(SNUSSUM_URL + url, utm_source=UTM_SOURCE, utm_medium=UTM_MEDIUM)
+    url = url_builder(settings.SNUSSUM_URL + url, utm_source=UTM_SOURCE, utm_medium=UTM_MEDIUM)
 
     data = {
         'to': user.userprofile.phonenumber,
@@ -42,14 +42,14 @@ def send_university_verification_email(user):
         'username': user.username,
     })
 
-    url = SNUSSUM_URL + reverse('users:university-verification',
+    url = settings.SNUSSUM_URL + reverse('users:university-verification',
                                 kwargs={'university_verification_token': user.userprofile.university_verification_token,
                                         })
     url = url_builder(url, utm_source=UTM_SOURCE, utm_medium=UTM_MEDIUM)
 
     data = {
         'to': user.email,
-        'subject': "[스누썸] 서울대학교 동문 인증 이메일",
+        'subject': "[스누썸] 서울대학교 인증을 위한 이메일입니다",
         'body': email_template.render(email_context),
     }
 
