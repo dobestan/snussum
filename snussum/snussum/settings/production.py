@@ -11,7 +11,7 @@ INSTALLED_APPS += (
 # https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 DEBUG = False
-ALLOWED_HOSTS = [".snussum.com", ]
+ALLOWED_HOSTS = [".snussum.com", ".snusex.com", ".snuanal.com", ]
 
 
 # Static/Media File Management
