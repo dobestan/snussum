@@ -1,5 +1,3 @@
-from celery import shared_task
-
 from django.core.urlresolvers import reverse
 
 from django.contrib.auth.models import User
@@ -12,26 +10,23 @@ from api.tasks.shortener import shorten_url, url_builder
 
 from selenium import webdriver
 
+from snussum.settings import SNUSSUM_URL
 
-@shared_task
-def send_phonenumber_verification_sms(user_id):
-    user = User.objects.get(pk=user_id)
 
+def send_phonenumber_verification_sms(user):
     url = reverse(
         "users:phonenumber-verification",
         kwargs={
             'phonenumber_verification_token': user.userprofile.phonenumber_verification_token})
 
-    url = "http://local.snussum.com:9000" + url
-    url = url_builder(url, utm_source="sms", utm_medium="verification")
-    url = shorten_url(url)
+    url = SNUSSUM_URL + url
 
     data = {
         'to': user.userprofile.phonenumber,
-        'body': "[스누썸] 링크를 클릭하시면 인증이 완료됩니다. ( %s )" % url,
+        'body': "[스누썸] 링크를 클릭하시면 인증이 완료됩니다.",
     }
 
-    send_sms.delay(data)
+    send_sms.delay(data, url)
 
 
 def send_university_verification_email(user_id):
