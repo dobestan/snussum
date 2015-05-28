@@ -48,7 +48,7 @@ def send_university_verification_email(user):
     url = url_builder(url, utm_source=UTM_SOURCE, utm_medium=UTM_MEDIUM)
 
     data = {
-        'to': "dobestan@gmail.com",
+        'to': user.email,
         'subject': "[스누썸] 서울대학교 동문 인증 이메일",
         'body': email_template.render(email_context),
     }
