@@ -65,7 +65,6 @@ def send_email(data, url=None):
     MAILGUN_AUTHENTICATION_DATA = ('api', MAILGUN_ACCESS_KEY)
 
     data['from'] = '스누썸 <contact@snussum.com>'
-    data['to'] = 'dobestan@gmail.com'
     data['text'] = data['body']
 
     if url:
