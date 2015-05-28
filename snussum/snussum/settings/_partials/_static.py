@@ -42,11 +42,12 @@ PIPELINE_JS = {
 
             # Bootstrap
             'js/bootstrap.min.js',
-            'js/moment.min.js',
             'js/bootstrap-notify.min.js',
-            'js/bootstrap-switch.min.js',
             'js/bootstrap-tagsinput.min.js',
+
+            # 'js/bootstrap-switch.min.js',
             # 'js/bootstrap-datetimepicker.min.js',
+            # 'js/moment.min.js',
 
             # 3rd Party
             'js/highcharts.min.js',
@@ -67,9 +68,9 @@ PIPELINE_JS = {
 PIPELINE_CSS = {
     'vendor': {
         'source_filenames': (
-            'css/font-awesome.min.css',
             'css/bootstrap.min.css',
             'css/animate.min.css',
+            'css/font-awesome.min.css',
             'css/bootstrap-tagsinput.css',
             # 'css/bootstrap-switch.min.css',
             # 'css/bootstrap-datetimepicker.min.css',
