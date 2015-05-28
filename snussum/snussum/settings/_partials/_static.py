@@ -28,7 +28,10 @@ STATICFILES_FINDERS = (
 STATIC_ROOT = os.path.join(BASE_DIR, 'STATIC_ROOT')
 
 PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.closure.ClosureCompressor'
+PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yui.YUICompressor'
+
 PIPELINE_CLOSURE_BINARY = '/usr/local/bin/closure-compiler'
+# PIPELINE_YUI_BINARY = '/usr/local/bin/yuicompressor'
 
 PIPELINE_JS = {
     'vendor': {
@@ -64,12 +67,12 @@ PIPELINE_JS = {
 PIPELINE_CSS = {
     'vendor': {
         'source_filenames': (
-            'css/bootstrap.min.css',
             'css/font-awesome.min.css',
+            'css/bootstrap.min.css',
             'css/animate.min.css',
             'css/bootstrap-tagsinput.css',
-            'css/bootstrap-switch.min.css',
-            'css/bootstrap-datetimepicker.min.css',
+            # 'css/bootstrap-switch.min.css',
+            # 'css/bootstrap-datetimepicker.min.css',
         ),
         'output_filename': 'css/vendor.min.css'
     },

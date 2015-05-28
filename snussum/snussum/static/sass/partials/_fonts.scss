@@ -49,7 +49,7 @@
   font-family: 'BM JUA';
   font-style: normal;
   font-weight: normal;
-  src: local('BM JUA'), local('BM JUA_OTF'), local('BM Jua'), local('배달의민족 주아');
+  src: local('BM JUA'), local('BM JUA_OTF'), local('BM Jua');
   src: url(../fonts/BM-JUA.eot);
   src: url(../fonts/BM-JUA.eot?#iefix) format('embedded-opentype'),
        url(../fonts/BM-JUA.woff) format('woff'),
@@ -62,5 +62,5 @@
 }
 
 .jua {
-  font-family: 'BM JUA', '배달의민족 주아', sans-serif;
+  font-family: 'BM JUA', sans-serif;
 }
