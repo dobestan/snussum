@@ -1,8 +1,9 @@
 from celery import shared_task
 
 
-from analytics.models.demographics import Demographics
+from analytics.models.demographic import Demographic
 
 
-def calculate_demographics():
-    pass
+@shared_task
+def calculate_analytics_demographic():
+    Demographic.objects.create_analytics()

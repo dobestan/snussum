@@ -135,3 +135,7 @@ class SelfDatingList(ListView):
     def get_context_data(self, **kwargs):
         context = super(SelfDatingList, self).get_context_data(**kwargs)
         return context
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(SelfDatingList, self).dispatch(*args, **kwargs)

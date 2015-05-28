@@ -35,8 +35,7 @@ class ContactAdmin(APIView):
         if contact:
             send_sms.delay({
                 'to': contact,
-                'body': "[스누썸] 안녕하세요. 썸날입니다. 서비스에 문의사항/피드백을 남겨주셔서 진심으로 감사합니다.\
-                        남겨주신 문의사항/피드백은 제가 확인 후 빠르게 연락드릴 수 있도록 하겠습니다. 감사합니다."
+                'body': "[스누썸] 남겨주신 문의사항은 확인 후 빠르게 연락드릴 수 있도록 하겠습니다. 감사합니다."
             })
 
         return Response(status=status.HTTP_200_OK)

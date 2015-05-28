@@ -344,7 +344,7 @@ class UserProfile(models.Model):
         self.update_phonenumber_verification_token()
 
         self.save()
-        send_phonenumber_verification_sms.delay(self.pk)
+        send_phonenumber_verification_sms(self.user)
 
     def update_university(self, email_username, university):
         self.university = university
@@ -356,7 +356,7 @@ class UserProfile(models.Model):
         self.user.save()
         self.save()
 
-        send_university_verification_email(self.user.id)
+        send_university_verification_email(self.user)
 
 
 def create_user_profile(sender, instance, created, **kwargs):

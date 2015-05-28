@@ -12,8 +12,8 @@ SUMMERNOTE_CONFIG = {
         ['style', ['style']],
         ['style', ['bold', 'italic', 'underline', 'clear']],
         ['para', ['ul', 'ol']],
-        ['insert', ['link', 'picture']],
-        ['view', ['fullscreen']],
+        # ['insert', ['link', 'picture']],
+        # ['view', ['fullscreen']],
     ],
 
     # Set external media files for SummernoteInplaceWidget.
