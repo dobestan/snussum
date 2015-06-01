@@ -42,9 +42,9 @@ def send_university_verification_email(user):
         'username': user.username,
     })
 
-    url = settings.SNUSSUM_URL + reverse('users:university-verification',
-                                kwargs={'university_verification_token': user.userprofile.university_verification_token,
-                                        })
+    url = settings.SNUSSUM_URL +\
+        reverse('users:university-verification',
+                kwargs={'university_verification_token': user.userprofile.university_verification_token, })
     url = url_builder(url, utm_source=UTM_SOURCE, utm_medium=UTM_MEDIUM)
 
     data = {
